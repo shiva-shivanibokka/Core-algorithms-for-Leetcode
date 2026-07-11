@@ -13,6 +13,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      # Solutions use only the standard library, so there are no deps to install.
+      - name: Install dependencies
+        run: pip install -r requirements.txt
       - name: Run every notebook cell and check its asserts
         run: python verify_notebooks.py

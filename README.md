@@ -5,7 +5,6 @@
 [![Verify notebooks](https://github.com/shiva-shivanibokka/Core-algorithms-for-Leetcode/actions/workflows/verify.yml/badge.svg)](https://github.com/shiva-shivanibokka/Core-algorithms-for-Leetcode/actions/workflows/verify.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/)
-![Dependencies: none](https://img.shields.io/badge/dependencies-stdlib%20only-brightgreen.svg)
 
 ---
 
@@ -90,7 +89,8 @@ flowchart TD
 
 ## Tech Stack
 
-- **Python 3.12** — solutions use the **standard library only** (`heapq`, `bisect`, `collections`); no third-party packages, so there's nothing to install and nothing to break.
+- **Python 3.12** — almost entirely the **standard library** (`heapq`, `bisect`, `collections`).
+- **`sortedcontainers`** — the only third-party dependency (used in 5 cells) for `SortedList` / `SortedDict`, Python's balanced-BST / TreeMap equivalent, on problems that need an ordered structure with O(log n) operations.
 - **Jupyter Notebooks** — chosen so explanation, solution, and tests live together in one readable artifact.
 - **GitHub Actions** — CI that runs the full verification on every push.
 
@@ -104,11 +104,12 @@ flowchart TD
 
 ## Getting Started
 
-No dependencies to install — Python 3.9+ and the standard library are all you need.
+Python 3.9+ and a single dependency (`sortedcontainers`).
 
 ```bash
 git clone https://github.com/shiva-shivanibokka/Core-algorithms-for-Leetcode.git
 cd Core-algorithms-for-Leetcode
+pip install -r requirements.txt
 
 # Study interactively:
 jupyter notebook            # then open any NN_Pattern.ipynb
@@ -147,6 +148,7 @@ This is the same check CI runs, so a green local run means a green build.
 ├── ...                            # │  13 pattern notebooks, each ~90 graded,
 ├── 13_Dynamic_Programming.ipynb   # ┘  company-tagged problems + inline tests
 ├── verify_notebooks.py            # runs every cell, exits non-zero on any failure
+├── requirements.txt               # single dependency: sortedcontainers
 ├── verify_tags.js                 # dev utility: counts company-tagged problems
 ├── inspect_headings.js            # dev utility: inspects notebook headings
 ├── .github/workflows/verify.yml   # CI: run verify_notebooks.py on every push
@@ -169,7 +171,7 @@ All figures below are structural counts, directly verifiable from the repo:
 - **13** algorithm patterns, in a deliberate learning order.
 - **~90** problems per pattern (**~1,170** total), each tagged with the companies that ask it and labelled Easy / Medium / Hard.
 - **100%** of solution cells pass `verify_notebooks.py`, enforced by CI on every push.
-- **0** third-party dependencies — pure standard library.
+- **1** third-party dependency (`sortedcontainers`); everything else is the standard library.
 
 ## Roadmap
 

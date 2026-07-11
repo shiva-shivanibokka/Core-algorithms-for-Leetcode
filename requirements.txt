@@ -1,0 +1,4 @@
+# SortedList / SortedDict — Python's balanced-BST / TreeMap equivalent,
+# used by the handful of problems that need an ordered structure with
+# O(log n) insert/delete/lookup. Everything else uses only the standard library.
+sortedcontainers>=2.4
