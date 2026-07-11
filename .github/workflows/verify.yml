@@ -1,0 +1,18 @@
+name: Verify notebooks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      # Solutions use only the standard library, so there are no deps to install.
+      - name: Run every notebook cell and check its asserts
+        run: python verify_notebooks.py
