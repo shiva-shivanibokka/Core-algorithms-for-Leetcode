@@ -24,7 +24,7 @@ export default function Trace({
   const [i, setI] = useState(0);
   const [playing, setPlaying] = useState(false);
   const timer = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
-  const last = trace.steps.length - 1;
+  const last = Math.max(0, trace.steps.length - 1);
 
   useEffect(() => {
     setI(0);
@@ -83,7 +83,14 @@ export default function Trace({
             <span className="rowname mono">{row.name}</span>
             <div
               className={`cells ${row.kind}`}
-              style={{ "--n": row.values.length } as React.CSSProperties}
+              style={
+                {
+                  "--n": row.values.length,
+                  // the labels stack under the row, so the box has to be told
+                  // how many tiers to leave space for
+                  "--tiers": row.movers.length,
+                } as React.CSSProperties
+              }
             >
               {row.values.map((v, n) => {
                 const on = row.movers.filter((m) => step?.m[m] === n);
@@ -95,7 +102,11 @@ export default function Trace({
               })}
               {row.movers.map((m, n) => {
                 const at = step?.m[m];
-                if (at === undefined) return null;
+                // One slot past either end is meaningful and drawn: `right =
+                // len(nums)` is an exclusive bound, and a pointer that has run
+                // off the front sits at -1. Anything further out is no longer
+                // pointing at this row, so it is not drawn at all.
+                if (at === undefined || at < -1 || at > row.values.length) return null;
                 return (
                   <span
                     key={m}

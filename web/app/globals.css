@@ -299,10 +299,6 @@ a { color: inherit; }
 
 /* ─────────────────────────────────────────────────────────── problem view */
 .problem { padding-block: 4px 80px; display: flex; flex-direction: column; gap: 30px; }
-.problem .back {
-  background: none; border: none; padding: 0; cursor: pointer; font: inherit;
-  font-size: 13.5px; color: var(--dim);
-}
 .problem .back:hover { color: var(--cyan); }
 .problem h1 {
   margin: 10px 0 0; font-size: clamp(28px, 4.4vw, 42px); font-weight: 600;
@@ -345,35 +341,6 @@ a { color: inherit; }
   font-family: var(--font-mono), monospace; font-size: 14px; color: var(--bright);
 }
 
-.codewrap { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
-@media (min-width: 940px) {
-  .codewrap { grid-template-columns: minmax(0, 1fr) 220px; gap: 28px; }
-  /* Each note is pinned to its own line. The code never wraps (white-space:
-     pre), so a line's offset is exactly its index times the line height, and
-     the two columns start at the same y. */
-  .gutter { position: relative; padding-top: 0; }
-  .gutter .note {
-    position: absolute; left: 0; right: 0;
-    top: calc(var(--code-pad) + var(--line, 0) * var(--code-line));
-  }
-}
-.codeblock { position: relative; }
-.codewrap { --code-line: 24.3px; --code-pad: 23px; }
-.codeblock pre {
-  margin: 0; overflow-x: auto; background: var(--surface);
-  border: 1px solid var(--edge); border-radius: 12px; padding: 22px 24px;
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 13.5px; line-height: var(--code-line);
-}
-.codeblock .line {
-  display: block; white-space: pre; padding: 0 6px 0 10px;
-  margin: 0 -6px 0 -10px; border-radius: 4px;
-}
-.codeblock .line.pending { visibility: hidden; }
-.codeblock .line.writing {
-  background: linear-gradient(90deg, rgba(167, 139, 250, 0.17), transparent 72%);
-  box-shadow: inset 2px 0 0 var(--cyan);
-}
 .caret {
   display: inline-block; width: 0.55em; height: 1.05em;
   vertical-align: -0.2em; margin-left: 2px;
@@ -383,26 +350,8 @@ a { color: inherit; }
   animation: caret 1s steps(1) infinite;
 }
 @keyframes caret { 50% { opacity: 0; } }
-.skip {
-  position: absolute; right: 14px; top: 12px;
-  font-family: var(--font-mono), monospace; font-size: 10.5px; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--dim); background: var(--raised);
-  border: 1px solid var(--edge); border-radius: 20px; padding: 5px 11px; cursor: pointer;
-}
-.skip:hover { color: var(--cyan); border-color: var(--edge-lit); }
 
-.gutter { display: flex; flex-direction: column; gap: 15px; padding-top: 6px; }
-.gutter .note {
-  margin: 0; font-size: 13px; line-height: 1.5; color: #948fb8;
-  border-left: 1px solid #2e2a52; padding-left: 13px;
-  opacity: 1; transition: opacity 260ms ease;
-}
-.gutter .note.pending { opacity: 0; }
-.gutter .none {
-  margin: 0; font-size: 12.5px; color: var(--dim); font-style: italic;
-}
 @media (prefers-reduced-motion: reduce) {
-  .gutter .note { transition: none; }
   .caret.on { animation: none; }
 }
 
@@ -686,11 +635,6 @@ a { color: inherit; }
 }
 
 /* the two-up row: the reasoning beside the shape it describes */
-.thinkrow { display: grid; gap: 22px; align-items: start; }
-@media (min-width: 1000px) {
-  .thinkrow { grid-template-columns: minmax(0, 1fr) minmax(340px, 42%); gap: 34px; }
-}
-
 /* ──────────────────────────── the solution's own run, replayed ─────────── */
 /* Not an illustration of the pattern -- a recording of this solution running
    on one of its own test cases. It sits directly above the code and lights the
@@ -710,16 +654,25 @@ a { color: inherit; }
   overflow-x: auto; white-space: nowrap; max-width: 100%;
 }
 .trace-rows { display: flex; flex-direction: column; gap: 18px; padding: 20px 20px 6px; }
+/* the scroll lives on the row, and the labels sit inside .cells, so the
+   padding above is what keeps them out of the clip */
 .trace-row { display: flex; align-items: flex-start; gap: 14px; overflow-x: auto; }
 .trace-row .rowname {
   font-size: 11.5px; color: var(--dim); padding-top: 15px; white-space: nowrap;
 }
 /* the row of cells is laid out horizontally, one column per element */
 .trace .cells {
-  position: relative; display: grid; gap: 6px; padding-bottom: 34px;
-  grid-template-columns: repeat(var(--n), minmax(30px, 46px));
+  --cw: 46px; --gap: 6px;
+  position: relative; display: grid; gap: var(--gap);
+  grid-template-columns: repeat(var(--n), var(--cw));
+  /* one tier per label, plus room for the last label's descenders */
+  padding-bottom: calc(18px + var(--tiers, 1) * 16px);
+  /* a slot either side, because a pointer legitimately sits just outside the
+     row: `right = len(nums)` is an exclusive bound, and one that has run off
+     the front sits at -1 */
+  margin-inline: calc(var(--cw) + var(--gap));
 }
-.trace .cells.text { grid-template-columns: repeat(var(--n), minmax(26px, 34px)); }
+.trace .cells.text { --cw: 34px; }
 .trace .cell {
   display: flex; align-items: center; justify-content: center; height: 38px;
   border-radius: 7px; border: 1px solid var(--edge); background: var(--bg);
@@ -732,9 +685,12 @@ a { color: inherit; }
 .trace .cell-mark {
   position: absolute; display: flex; flex-direction: column; align-items: center; gap: 2px;
   font-family: var(--font-mono), monospace; font-size: 10px; color: var(--cyan);
-  left: calc(var(--at) * (100% + 6px) / var(--n));
-  width: calc((100% + 6px) / var(--n) - 6px);
-  top: calc(40px + var(--tier) * 15px);
+  left: calc(var(--at) * (var(--cw) + var(--gap)));
+  width: var(--cw);
+  /* the shared .cell-mark rule sets bottom: 0; leaving it set here would
+     stretch every marker's box down to the foot of the row */
+  top: calc(42px + var(--tier) * 16px);
+  bottom: auto;
   transition: left 200ms ease;
 }
 .trace .cell-mark i {
@@ -765,4 +721,15 @@ a { color: inherit; }
 
 @media (prefers-reduced-motion: reduce) {
   .trace .cell, .trace .cell-mark { transition: none; }
+}
+
+/* The verification strip and the pattern explainer each open a section, so
+   each gets a real h2 rather than jumping from h1 straight to h3. */
+.section-title {
+  margin: 0 0 14px; font-size: 20px; font-weight: 600; color: var(--bright);
+  letter-spacing: -0.02em;
+}
+.about > summary h2 {
+  margin: 0; font-size: inherit; font-weight: inherit; color: inherit;
+  letter-spacing: inherit; display: inline;
 }

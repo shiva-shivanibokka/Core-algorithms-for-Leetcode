@@ -2410,13 +2410,13 @@
       "name": "hasApple",
       "kind": "numbers",
       "values": [
-       false,
-       false,
-       true,
-       false,
-       true,
-       true,
-       false
+       "F",
+       "F",
+       "T",
+       "F",
+       "T",
+       "T",
+       "F"
       ],
       "movers": [
        "child"

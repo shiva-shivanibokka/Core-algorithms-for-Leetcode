@@ -36,6 +36,7 @@ export default async function Home() {
       </section>
 
       <section className="shell">
+        <h2 className="section-title">How it&rsquo;s verified</h2>
         <div className="assurance">
           <article>
             <h3>
@@ -82,7 +83,7 @@ export default async function Home() {
 
         <div className="patterns">
           {patterns.map((p) => {
-            const total = TIERS.reduce((sum, t) => sum + p.counts[t], 0);
+            const total = TIERS.reduce((sum, t) => sum + p.counts[t], 0) || 1;
             return (
               <Link key={p.slug} href={`/p/${p.slug}/`} className="pcard">
                 <span className="head">

@@ -5,15 +5,21 @@
  * explained against, so the logo is the idea rather than an abstract glyph --
  * two carets closing on the pair that matches.
  */
-export default function Mark({ size = 30 }: { size?: number }) {
+export default function Mark({
+  size = 30,
+  decorative = false,
+}: {
+  size?: number;
+  /** true where the mark sits beside the words it would otherwise repeat */
+  decorative?: boolean;
+}) {
   return (
     <svg
       width={size}
       height={size}
       viewBox="0 0 32 32"
       fill="none"
-      role="img"
-      aria-label="Pattern Bank"
+      {...(decorative ? { "aria-hidden": true } : { role: "img", "aria-label": "Pattern Bank" })}
     >
       <rect x="1" y="1" width="30" height="30" rx="8" fill="url(#mark-bg)" />
       <rect x="1" y="1" width="30" height="30" rx="8" stroke="url(#mark-edge)" />

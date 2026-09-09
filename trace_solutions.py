@@ -36,6 +36,8 @@ MAX_FRAMES = 56
 MAX_SEQ = 26
 #: A sequence in this range makes a watchable animation.
 GOOD_SEQ = range(3, 21)
+#: More labels than this under one row is a wall of text, not a picture.
+MAX_MOVERS = 4
 #: Guard against a solution that loops forever on a traced run.
 MAX_STEPS = 400_000
 
@@ -64,7 +66,10 @@ def literal_sequences(call):
             out.append((i, list(value), "text", built))
         elif (isinstance(value, list) and 1 <= len(value) <= MAX_SEQ
               and all(isinstance(v, (int, float)) for v in value)):
-            out.append((i, value, "numbers", built))
+            # bool is a subclass of int in Python, so a list of flags lands
+            # here too. "False" does not fit in a cell; T and F do.
+            cells = [("T" if v else "F") if isinstance(v, bool) else v for v in value]
+            out.append((i, cells, "numbers", built))
     return out
 
 
@@ -271,6 +276,16 @@ def trace(solution: str, tests: str, base_ns: dict) -> dict | None:
                if k in by_node and v in span}
         )
         if movers:
+            # A reversal can have eleven locals holding a node at some point,
+            # which is a wall of labels rather than a picture. Keep the few
+            # that actually travel -- the ones that visit the most positions.
+            if len(movers) > MAX_MOVERS:
+                seen = {m: set() for m in movers}
+                for f in frames:
+                    for k, v in {**f["ints"], **f["nodes"]}.items():
+                        if k in seen:
+                            seen[k].add(v)
+                movers = sorted(sorted(movers, key=lambda m: (-len(seen[m]), m))[:MAX_MOVERS])
             rows.append({"name": name, "kind": kind, "values": values, "movers": movers})
 
     if not rows:

@@ -14,7 +14,9 @@ const STEP_MS = 2100;
  * always be stepped by hand.
  */
 export default function Visual({ slug }: { slug: string }) {
-  const steps = SCENES[slug];
+  // Never undefined: the hooks below read steps.length during render, so a
+  // guard placed after them would come too late to help.
+  const steps = SCENES[slug] ?? [];
   const [i, setI] = useState(0);
   const [playing, setPlaying] = useState(true);
   const timer = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
@@ -27,25 +29,38 @@ export default function Visual({ slug }: { slug: string }) {
     [steps.length],
   );
 
+  // A hidden tab throttles timers to about one a second, so the loop is parked
+  // while the page is not being looked at. This listener has to live outside
+  // the playing effect: hiding the tab sets playing to false, which would
+  // otherwise tear down the very listener that resumes it.
+  const wasPlaying = useRef(false);
   useEffect(() => {
-    if (!playing) return;
-    // A hidden tab throttles timers, so a returning visitor would otherwise
-    // find the loop stalled halfway through a step.
-    const onHide = () => setPlaying(!document.hidden);
-    document.addEventListener("visibilitychange", onHide);
-    timer.current = setInterval(() => setI((n) => (n + 1) % steps.length), STEP_MS);
-    return () => {
-      clearInterval(timer.current);
-      document.removeEventListener("visibilitychange", onHide);
+    const onVisibility = () => {
+      if (document.hidden) {
+        setPlaying((p) => {
+          wasPlaying.current = p;
+          return false;
+        });
+      } else if (wasPlaying.current) {
+        setPlaying(true);
+      }
     };
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => document.removeEventListener("visibilitychange", onVisibility);
+  }, []);
+
+  useEffect(() => {
+    if (!playing || steps.length === 0) return;
+    timer.current = setInterval(() => setI((n) => (n + 1) % steps.length), STEP_MS);
+    return () => clearInterval(timer.current);
   }, [playing, steps.length]);
 
   useEffect(() => {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) setPlaying(false);
   }, []);
 
-  if (!steps) return null;
   const step = steps[i];
+  if (!step) return null;
 
   return (
     <figure className="visual">
@@ -183,4 +198,3 @@ export function hasVisual(slug: string): boolean {
   return Boolean(SCENES[slug]);
 }
 
-export type { Step };

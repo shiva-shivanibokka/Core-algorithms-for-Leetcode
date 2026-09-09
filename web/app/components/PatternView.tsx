@@ -35,7 +35,17 @@ export default function PatternView({ pattern }: { pattern: Pattern }) {
   // The open problem lives in the URL, so a solution can be linked to and the
   // browser's back button returns to the list rather than leaving the pattern.
   useEffect(() => {
-    const sync = () => setOpenId(decodeURIComponent(location.hash.slice(1)) || null);
+    const sync = () => {
+      const raw = location.hash.slice(1);
+      let id = raw;
+      try {
+        id = decodeURIComponent(raw);
+      } catch {
+        // a malformed escape like #%zz -- treat it as no problem selected
+        // rather than throwing out of the effect and blanking the page
+      }
+      setOpenId(id || null);
+    };
     sync();
     addEventListener("hashchange", sync);
     return () => removeEventListener("hashchange", sync);
@@ -85,7 +95,7 @@ export default function PatternView({ pattern }: { pattern: Pattern }) {
         <details className="about">
           <summary>
             <span className="caretmark" aria-hidden="true">&#9654;</span>
-            How this pattern works
+            <h2>How this pattern works</h2>
             <span className="hint">
               {pattern.about.sections.map((x) => x.heading).slice(0, 3).join(" · ")}
               {pattern.about.sections.length > 3 ? " …" : ""}
@@ -181,7 +191,6 @@ function ProblemView({ problem, pattern }: { problem: Problem; pattern: Pattern 
   const noteCount = Object.keys(explained).length;
   const authoredCount = Object.values(explained).filter((n) => !n.derived).length;
 
-  const reduced = useRef(false);
   const [written, setWritten] = useState(0); // how many lines have arrived
   // the line the recording is currently executing, so the code can follow it
   const [liveLine, setLiveLine] = useState<number | null>(null);
@@ -194,8 +203,7 @@ function ProblemView({ problem, pattern }: { problem: Problem; pattern: Pattern 
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
-    reduced.current = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced.current) {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setWritten(lines.length);
       return;
     }
@@ -208,7 +216,9 @@ function ProblemView({ problem, pattern }: { problem: Problem; pattern: Pattern 
       if (i >= lines.length) return;
       // Most lines carry a note now, so a note is no longer the exception
       // worth pausing on. Only the author's own comments get the longer beat.
-      timer.current = setTimeout(step, explained[i]?.derived === false ? NOTE_MS : pace);
+      // `i` counts lines revealed, so the one just shown is `i - 1`. Reading
+      // `explained[i]` held the long beat over the wrong line.
+      timer.current = setTimeout(step, explained[i - 1]?.derived === false ? NOTE_MS : pace);
     };
     timer.current = setTimeout(step, 260);
 

@@ -33,7 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className="masthead">
           <div className="shell">
             <Link href="/" className="wordmark">
-              <Mark />
+              <Mark decorative />
               <span className="lockup">
                 Pattern Bank
                 <span className="sub">Core algorithms</span>
