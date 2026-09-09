@@ -3,6 +3,27 @@
  "slug": "dynamic-programming",
  "name": "Dynamic Programming",
  "note": null,
+ "about": {
+  "lead": "",
+  "sections": [
+   {
+    "heading": "Pattern Overview",
+    "body": "**Dynamic Programming (DP)** solves problems by breaking them into overlapping subproblems and storing results to avoid recomputation.\n\n### Two Implementation Styles\n- **Top-down (Memoization):** Recursive + cache\n- **Bottom-up (Tabulation):** Iterative + DP table"
+   },
+   {
+    "heading": "DP Sub-Patterns",
+    "body": "### 1. Fibonacci / 1D DP\nEach state depends on a few previous states.\n```python\ndp = [0] * (n+1)\ndp[0], dp[1] = 0, 1\nfor i in range(2, n+1):\n    dp[i] = dp[i-1] + dp[i-2]\n```\n\n### 2. 0/1 Knapsack\nEach item included or excluded (no reuse).\n```python\ndp = [0] * (capacity+1)\nfor weight, value in items:\n    for c in range(capacity, weight-1, -1):  # reverse!\n        dp[c] = max(dp[c], dp[c-weight] + value)\n```\n\n### 3. Unbounded Knapsack\nItems can be reused (forward iteration).\n```python\ndp = [0] * (capacity+1)\nfor c in range(1, capacity+1):\n    for weight, value in items:\n        if weight <= c:\n            dp[c] = max(dp[c], dp[c-weight] + value)\n```\n\n### 4. Longest Common Subsequence (LCS)\n2D DP on two sequences.\n```python\ndp = [[0]*(n+1) for _ in range(m+1)]\nfor i in range(1, m+1):\n    for j in range(1, n+1):\n        if s1[i-1] == s2[j-1]: dp[i][j] = dp[i-1][j-1] + 1\n        else: dp[i][j] = max(dp[i-1][j], dp[i][j-1])\n```\n\n### 5. Palindromic DP\nExpand around center or dp[i][j] = is s[i..j] palindrome?\n```python\ndp = [[False]*n for _ in range(n)]\nfor i in range(n): dp[i][i] = True\nfor i in range(n-1): dp[i][i+1] = (s[i]==s[i+1])\nfor length in range(3, n+1):\n    for i in range(n-length+1):\n        j = i+length-1\n        dp[i][j] = s[i]==s[j] and dp[i+1][j-1]\n```\n\n### 6. DP on Grids\nPaths in a 2D grid.\n```python\ndp = [[0]*n for _ in range(m)]\ndp[0][0] = 1\nfor r in range(m):\n    for c in range(n):\n        if r > 0: dp[r][c] += dp[r-1][c]\n        if c > 0: dp[r][c] += dp[r][c-1]\n```\n\n### 7. Bitmask DP\nState compression using bitmasks for small n (≤20).\n```python\ndp = [INF] * (1 << n)\ndp[0] = 0\nfor mask in range(1 << n):\n    for i in range(n):\n        if not (mask >> i & 1): continue\n        dp[mask] = min(dp[mask], dp[mask ^ (1<<i)] + cost[i])\n```"
+   },
+   {
+    "heading": "Complexity Summary",
+    "body": "| Pattern | Time | Space |\n|---------|------|-------|\n| 1D DP (Fibonacci) | O(n) | O(1) optimized |\n| 0/1 Knapsack | O(n*W) | O(W) |\n| Unbounded Knapsack | O(n*W) | O(W) |\n| LCS | O(mn) | O(mn) or O(n) |\n| Palindromic | O(n²) | O(n²) |\n| Grid DP | O(mn) | O(mn) |\n| Bitmask DP | O(2^n * n) | O(2^n) |"
+   },
+   {
+    "heading": "Key Decision: Which DP Pattern?",
+    "body": "| Problem signal | Pattern |\n|----------------|---------|\n| \"How many ways\" / \"min/max\" with recurrence | 1D DP |\n| \"Select items, limited capacity\" | 0/1 Knapsack |\n| \"Coins, unlimited use\" | Unbounded Knapsack |\n| \"Two strings, matching/aligning\" | LCS |\n| \"Palindrome / substr\" | Palindromic DP |\n| \"Grid, paths\" | Grid DP |\n| \"Visiting all nodes / assignments\" | Bitmask DP |"
+   }
+  ]
+ },
  "notebook": "13_Dynamic_Programming.ipynb",
  "problems": [
   {
@@ -21,7 +42,8 @@
    "tests": "assert climbStairs(2) == 2\nassert climbStairs(3) == 3\nassert climbStairs(5) == 8\nassert climbStairs(10) == 89\nprint(\"All tests passed!\")",
    "verified": [
     "climbStairs"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=70"
   },
   {
    "id": "13-02-fibonacci-number",
@@ -37,7 +59,8 @@
    "solution": "def fib(n):\n    if n <= 1: return n\n    a, b = 0, 1\n    for _ in range(2, n+1):\n        a, b = b, a+b\n    return b",
    "notes": {},
    "tests": "assert fib(0) == 0\nassert fib(1) == 1\nassert fib(6) == 8\nassert fib(10) == 55\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=509"
   },
   {
    "id": "13-03-house-robber",
@@ -53,7 +76,8 @@
    "solution": "def rob(nums):\n    prev2, prev1 = 0, 0\n    for n in nums:\n        prev2, prev1 = prev1, max(prev1, prev2 + n)\n    return prev1",
    "notes": {},
    "tests": "assert rob([1,2,3,1]) == 4\nassert rob([2,7,9,3,1]) == 12\nassert rob([2,1]) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=198"
   },
   {
    "id": "13-04-min-cost-climbing-stairs",
@@ -69,7 +93,8 @@
    "solution": "def minCostClimbingStairs(cost):\n    n = len(cost)\n    a, b = cost[0], cost[1]\n    for i in range(2, n):\n        a, b = b, cost[i] + min(a, b)\n    return min(a, b)",
    "notes": {},
    "tests": "assert minCostClimbingStairs([10,15,20]) == 15\nassert minCostClimbingStairs([1,100,1,1,1,100,1,1,100,1]) == 6\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=746"
   },
   {
    "id": "13-05-pascal-s-triangle",
@@ -85,7 +110,8 @@
    "solution": "def generate(numRows):\n    triangle = []\n    for r in range(numRows):\n        row = [1] * (r+1)\n        for j in range(1, r):\n            row[j] = triangle[r-1][j-1] + triangle[r-1][j]\n        triangle.append(row)\n    return triangle",
    "notes": {},
    "tests": "assert generate(1) == [[1]]\nassert generate(5) == [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=118"
   },
   {
    "id": "13-06-pascal-s-triangle-ii",
@@ -101,7 +127,8 @@
    "solution": "def getRow(rowIndex):\n    row = [1] * (rowIndex+1)\n    for i in range(1, rowIndex+1):\n        for j in range(i-1, 0, -1):\n            row[j] += row[j-1]\n    return row",
    "notes": {},
    "tests": "assert getRow(3) == [1,3,3,1]\nassert getRow(0) == [1]\nassert getRow(4) == [1,4,6,4,1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=119"
   },
   {
    "id": "13-07-maximum-subarray-kadane-s-algorithm",
@@ -117,7 +144,8 @@
    "solution": "def maxSubArray(nums):\n    curr = best = nums[0]\n    for n in nums[1:]:\n        curr = max(n, curr + n)\n        best = max(best, curr)\n    return best",
    "notes": {},
    "tests": "assert maxSubArray([-2,1,-3,4,-1,2,1,-5,4]) == 6\nassert maxSubArray([1]) == 1\nassert maxSubArray([5,4,-1,7,8]) == 23\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=53"
   },
   {
    "id": "13-08-best-time-to-buy-and-sell-stock",
@@ -133,7 +161,8 @@
    "solution": "def maxProfit(prices):\n    min_price = float(\"inf\")\n    max_profit = 0\n    for p in prices:\n        min_price = min(min_price, p)\n        max_profit = max(max_profit, p - min_price)\n    return max_profit",
    "notes": {},
    "tests": "assert maxProfit([7,1,5,3,6,4]) == 5\nassert maxProfit([7,6,4,3,1]) == 0\nassert maxProfit([1,2]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=121"
   },
   {
    "id": "13-09-range-sum-query-immutable",
@@ -149,7 +178,8 @@
    "solution": "class NumArray:\n    def __init__(self, nums):\n        self.prefix = [0] * (len(nums)+1)\n        for i, n in enumerate(nums):\n            self.prefix[i+1] = self.prefix[i] + n\n    def sumRange(self, left, right):\n        return self.prefix[right+1] - self.prefix[left]\n\nna = NumArray([-2,0,3,-5,2,-1])",
    "notes": {},
    "tests": "assert na.sumRange(0,2) == 1\nassert na.sumRange(2,5) == -1\nassert na.sumRange(0,5) == -3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=303"
   },
   {
    "id": "13-10-counting-bits",
@@ -165,7 +195,8 @@
    "solution": "def countBits(n):\n    dp = [0] * (n+1)\n    for i in range(1, n+1):\n        dp[i] = dp[i >> 1] + (i & 1)\n    return dp",
    "notes": {},
    "tests": "assert countBits(2) == [0,1,1]\nassert countBits(5) == [0,1,1,2,1,2]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=338"
   },
   {
    "id": "13-11-is-subsequence-dp",
@@ -181,7 +212,8 @@
    "solution": "def isSubsequence(s, t):\n    i = 0\n    for c in t:\n        if i < len(s) and c == s[i]:\n            i += 1\n    return i == len(s)",
    "notes": {},
    "tests": "assert isSubsequence(\"abc\", \"ahbgdc\") == True\nassert isSubsequence(\"axc\", \"ahbgdc\") == False\nassert isSubsequence(\"\", \"ahbgdc\") == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=392"
   },
   {
    "id": "13-12-n-th-tribonacci-number",
@@ -197,7 +229,8 @@
    "solution": "def tribonacci(n):\n    if n == 0: return 0\n    if n <= 2: return 1\n    a, b, c = 0, 1, 1\n    for _ in range(3, n+1):\n        a, b, c = b, c, a+b+c\n    return c",
    "notes": {},
    "tests": "assert tribonacci(4) == 4\nassert tribonacci(25) == 1389537\nassert tribonacci(0) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1137"
   },
   {
    "id": "13-13-get-maximum-in-generated-array",
@@ -213,7 +246,8 @@
    "solution": "def getMaximumGenerated(n):\n    if n == 0: return 0\n    nums = [0] * (n+1)\n    nums[1] = 1\n    for i in range(1, n//2 + 1):\n        nums[2*i] = nums[i]\n        if 2*i+1 <= n:\n            nums[2*i+1] = nums[i] + nums[i+1]\n    return max(nums)",
    "notes": {},
    "tests": "assert getMaximumGenerated(7) == 3\nassert getMaximumGenerated(2) == 1\nassert getMaximumGenerated(3) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1646"
   },
   {
    "id": "13-14-longest-turbulent-subarray",
@@ -231,7 +265,8 @@
     "3": "ending with up / down move"
    },
    "tests": "assert maxTurbulenceSize([9,4,2,10,7,8,8,1,9]) == 5\nassert maxTurbulenceSize([4,8,12,16]) == 2\nassert maxTurbulenceSize([100]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=978"
   },
   {
    "id": "13-15-jump-game",
@@ -247,7 +282,8 @@
    "solution": "def canJump(nums):\n    max_reach = 0\n    for i, n in enumerate(nums):\n        if i > max_reach: return False\n        max_reach = max(max_reach, i + n)\n    return True",
    "notes": {},
    "tests": "assert canJump([2,3,1,1,4]) == True\nassert canJump([3,2,1,0,4]) == False\nassert canJump([0]) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=55"
   },
   {
    "id": "13-16-divisor-game",
@@ -263,7 +299,8 @@
    "solution": "def divisorGame(n):\n    return n % 2 == 0",
    "notes": {},
    "tests": "assert divisorGame(2) == True\nassert divisorGame(3) == False\nassert divisorGame(4) == True\nassert divisorGame(100) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1025"
   },
   {
    "id": "13-17-maximum-subarray-product-simplified",
@@ -279,7 +316,8 @@
    "solution": "def maxProduct(nums):\n    max_prod = min_prod = result = nums[0]\n    for n in nums[1:]:\n        candidates = (n, max_prod*n, min_prod*n)\n        max_prod = max(candidates)\n        min_prod = min(candidates)\n        result = max(result, max_prod)\n    return result",
    "notes": {},
    "tests": "assert maxProduct([2,3,-2,4]) == 6\nassert maxProduct([-2,0,-1]) == 0\nassert maxProduct([-2,3,-4]) == 24\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=152"
   },
   {
    "id": "13-18-delete-and-earn-simplified",
@@ -297,7 +335,8 @@
     "7": "House Robber on points"
    },
    "tests": "assert deleteAndEarn([3,4,2]) == 6\nassert deleteAndEarn([2,2,3,3,3,4]) == 9\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=740"
   },
   {
    "id": "13-19-number-of-1-bits",
@@ -313,7 +352,8 @@
    "solution": "def hammingWeight(n):\n    count = 0\n    while n:\n        n &= (n-1)\n        count += 1\n    return count",
    "notes": {},
    "tests": "assert hammingWeight(11) == 3   # 1011\nassert hammingWeight(128) == 1  # 10000000\nassert hammingWeight(4294967293) == 31\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=191"
   },
   {
    "id": "13-20-reverse-bits",
@@ -329,7 +369,8 @@
    "solution": "def reverseBits(n):\n    result = 0\n    for _ in range(32):\n        result = (result << 1) | (n & 1)\n        n >>= 1\n    return result",
    "notes": {},
    "tests": "assert reverseBits(43261596) == 964176192\nassert reverseBits(4294967293) == 3221225471\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=190"
   },
   {
    "id": "13-21-unique-paths",
@@ -347,7 +388,8 @@
    "tests": "assert uniquePaths(3, 7) == 28\nassert uniquePaths(3, 2) == 3\nassert uniquePaths(1, 1) == 1\nprint(\"All tests passed!\")",
    "verified": [
     "uniquePaths"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=62"
   },
   {
    "id": "13-22-coin-change",
@@ -365,7 +407,8 @@
    "tests": "assert coinChange([1,5,11], 15) == 3\nassert coinChange([2], 3) == -1\nassert coinChange([1,2,5], 11) == 3\nprint(\"All tests passed!\")",
    "verified": [
     "coinChange"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=322"
   },
   {
    "id": "13-23-longest-increasing-subsequence",
@@ -385,7 +428,8 @@
    "tests": "assert lengthOfLIS([10,9,2,5,3,7,101,18]) == 4\nassert lengthOfLIS([0,1,0,3,2,3]) == 4\nassert lengthOfLIS([7,7,7,7,7]) == 1\nprint(\"All tests passed!\")",
    "verified": [
     "lengthOfLIS"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=300"
   },
   {
    "id": "13-24-house-robber-ii",
@@ -401,7 +445,8 @@
    "solution": "def robII(nums):\n    def rob_range(arr):\n        prev2, prev1 = 0, 0\n        for n in arr:\n            prev2, prev1 = prev1, max(prev1, prev2+n)\n        return prev1\n    if len(nums) == 1: return nums[0]\n    return max(rob_range(nums[:-1]), rob_range(nums[1:]))",
    "notes": {},
    "tests": "assert robII([2,3,2]) == 3\nassert robII([1,2,3,1]) == 4\nassert robII([1,2,3]) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=213"
   },
   {
    "id": "13-25-partition-equal-subset-sum",
@@ -419,7 +464,8 @@
    "tests": "assert canPartition([1,5,11,5]) == True\nassert canPartition([1,2,3,5]) == False\nassert canPartition([1,1]) == True\nprint(\"All tests passed!\")",
    "verified": [
     "canPartition"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=416"
   },
   {
    "id": "13-26-jump-game-ii",
@@ -435,7 +481,8 @@
    "solution": "def jump(nums):\n    jumps = cur_end = farthest = 0\n    for i in range(len(nums)-1):\n        farthest = max(farthest, i + nums[i])\n        if i == cur_end:\n            jumps += 1\n            cur_end = farthest\n    return jumps",
    "notes": {},
    "tests": "assert jump([2,3,1,1,4]) == 2\nassert jump([2,3,0,1,4]) == 2\nassert jump([0]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=45"
   },
   {
    "id": "13-27-decode-ways",
@@ -451,7 +498,8 @@
    "solution": "def numDecodings(s):\n    if not s or s[0] == '0': return 0\n    prev2, prev1 = 1, 1\n    for i in range(1, len(s)):\n        curr = 0\n        if s[i] != '0':\n            curr += prev1\n        two = int(s[i-1:i+1])\n        if 10 <= two <= 26:\n            curr += prev2\n        prev2, prev1 = prev1, curr\n    return prev1",
    "notes": {},
    "tests": "assert numDecodings(\"12\") == 2\nassert numDecodings(\"226\") == 3\nassert numDecodings(\"06\") == 0\nassert numDecodings(\"0\") == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=91"
   },
   {
    "id": "13-28-word-break",
@@ -467,7 +515,8 @@
    "solution": "def wordBreak(s, wordDict):\n    word_set = set(wordDict)\n    n = len(s)\n    dp = [False] * (n+1)\n    dp[0] = True\n    for i in range(1, n+1):\n        for j in range(i):\n            if dp[j] and s[j:i] in word_set:\n                dp[i] = True; break\n    return dp[n]",
    "notes": {},
    "tests": "assert wordBreak(\"leetcode\", [\"leet\",\"code\"]) == True\nassert wordBreak(\"applepenapple\", [\"apple\",\"pen\"]) == True\nassert wordBreak(\"catsandog\", [\"cats\",\"dog\",\"sand\",\"and\",\"cat\"]) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=139"
   },
   {
    "id": "13-29-longest-palindromic-substring",
@@ -483,7 +532,8 @@
    "solution": "def longestPalindrome(s):\n    def expand(l, r):\n        while l >= 0 and r < len(s) and s[l] == s[r]:\n            l -= 1; r += 1\n        return s[l+1:r]\n    result = \"\"\n    for i in range(len(s)):\n        for sub in [expand(i,i), expand(i,i+1)]:\n            if len(sub) > len(result): result = sub\n    return result",
    "notes": {},
    "tests": "assert longestPalindrome(\"babad\") in [\"bab\",\"aba\"]\nassert longestPalindrome(\"cbbd\") == \"bb\"\nassert longestPalindrome(\"a\") == \"a\"\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=5"
   },
   {
    "id": "13-30-minimum-path-sum",
@@ -501,7 +551,8 @@
     "3": "first row"
    },
    "tests": "assert minPathSum([[1,3,1],[1,5,1],[4,2,1]]) == 7\nassert minPathSum([[1,2,3],[4,5,6]]) == 12\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=64"
   },
   {
    "id": "13-31-target-sum-dp-version",
@@ -517,7 +568,8 @@
    "solution": "def findTargetSumWaysDP(nums, target):\n    total = sum(nums)\n    if (total + target) % 2 != 0 or abs(target) > total: return 0\n    t = (total + target) // 2\n    dp = [0] * (t+1)\n    dp[0] = 1\n    for n in nums:\n        for j in range(t, n-1, -1):\n            dp[j] += dp[j-n]\n    return dp[t]",
    "notes": {},
    "tests": "assert findTargetSumWaysDP([1,1,1,1,1], 3) == 5\nassert findTargetSumWaysDP([1], 1) == 1\nassert findTargetSumWaysDP([1], 2) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=494"
   },
   {
    "id": "13-32-maximum-length-of-repeated-subarray",
@@ -533,7 +585,8 @@
    "solution": "def findLength(nums1, nums2):\n    m, n = len(nums1), len(nums2)\n    dp = [0] * (n+1)\n    result = 0\n    for i in range(1, m+1):\n        new_dp = [0] * (n+1)\n        for j in range(1, n+1):\n            if nums1[i-1] == nums2[j-1]:\n                new_dp[j] = dp[j-1] + 1\n                result = max(result, new_dp[j])\n        dp = new_dp\n    return result",
    "notes": {},
    "tests": "assert findLength([1,2,3,2,1],[3,2,1,4,7]) == 3\nassert findLength([0,0,0,0,0],[0,0,0,0,0]) == 5\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=718"
   },
   {
    "id": "13-33-domino-and-tromino-tiling",
@@ -549,7 +602,8 @@
    "solution": "def numTilings(n):\n    MOD = 10**9 + 7\n    if n <= 2: return n\n    dp = [0] * (n+1)\n    dp[1], dp[2], dp[3] = 1, 2, 5\n    for i in range(4, n+1):\n        dp[i] = (2*dp[i-1] + dp[i-3]) % MOD\n    return dp[n]",
    "notes": {},
    "tests": "assert numTilings(1) == 1\nassert numTilings(2) == 2\nassert numTilings(3) == 5\nassert numTilings(4) == 11\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=790"
   },
   {
    "id": "13-34-count-number-of-texts",
@@ -565,7 +619,8 @@
    "solution": "def countTextsFull(pressedKeys):\n    MOD = 10**9 + 7\n    n = len(pressedKeys)\n    dp = [0] * (n+1)\n    dp[0] = 1\n    for i in range(1, n+1):\n        dp[i] = dp[i-1]\n        if i >= 2 and pressedKeys[i-1] == pressedKeys[i-2]:\n            dp[i] = (dp[i] + dp[i-2]) % MOD\n            if i >= 3 and pressedKeys[i-1] == pressedKeys[i-3]:\n                dp[i] = (dp[i] + dp[i-3]) % MOD\n                if pressedKeys[i-1] in '79' and i >= 4 and pressedKeys[i-1] == pressedKeys[i-4]:\n                    dp[i] = (dp[i] + dp[i-4]) % MOD\n    return dp[n]",
    "notes": {},
    "tests": "assert countTextsFull(\"22233\") == 8\nassert countTextsFull(\"222222222222222222222222222222222222\") == 82876089\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2266"
   },
   {
    "id": "13-35-maximum-product-subarray-full",
@@ -581,7 +636,8 @@
    "solution": "def maxProductFull(nums):\n    max_p = min_p = result = nums[0]\n    for n in nums[1:]:\n        if n < 0: max_p, min_p = min_p, max_p\n        max_p = max(n, max_p * n)\n        min_p = min(n, min_p * n)\n        result = max(result, max_p)\n    return result",
    "notes": {},
    "tests": "assert maxProductFull([2,3,-2,4]) == 6\nassert maxProductFull([-2,0,-1]) == 0\nassert maxProductFull([-2,3,-4]) == 24\nassert maxProductFull([-2,-3,-4]) == 12\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=152"
   },
   {
    "id": "13-36-edit-distance",
@@ -599,7 +655,8 @@
    "tests": "assert minDistance(\"horse\",\"ros\") == 3\nassert minDistance(\"intention\",\"execution\") == 5\nassert minDistance(\"\",\"\") == 0\nassert minDistance(\"a\",\"\") == 1\nprint(\"All tests passed!\")",
    "verified": [
     "minDistance"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=72"
   },
   {
    "id": "13-37-longest-common-subsequence",
@@ -617,7 +674,8 @@
    "tests": "assert longestCommonSubsequence(\"abcde\",\"ace\") == 3\nassert longestCommonSubsequence(\"abc\",\"abc\") == 3\nassert longestCommonSubsequence(\"abc\",\"def\") == 0\nprint(\"All tests passed!\")",
    "verified": [
     "longestCommonSubsequence"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1143"
   },
   {
    "id": "13-38-best-time-to-buy-and-sell-stock-iv",
@@ -636,7 +694,8 @@
     "7": "sell[t] = max profit after selling with t transactions completed"
    },
    "tests": "assert maxProfitK(2, [2,4,1]) == 2\nassert maxProfitK(2, [3,2,6,5,0,3]) == 7\nassert maxProfitK(0, [1,2,3]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=188"
   },
   {
    "id": "13-39-maximal-rectangle",
@@ -652,7 +711,8 @@
    "solution": "def maximalRectangle(matrix):\n    if not matrix or not matrix[0]: return 0\n    n = len(matrix[0])\n    heights = [0] * (n+1)\n    max_area = 0\n\n    def largest_hist(h):\n        stack = [-1]\n        area = 0\n        for i, v in enumerate(h):\n            while stack[-1] != -1 and h[stack[-1]] >= v:\n                height = h[stack.pop()]\n                width = i - stack[-1] - 1\n                area = max(area, height * width)\n            stack.append(i)\n        return area\n\n    for row in matrix:\n        for c in range(n):\n            heights[c] = heights[c]+1 if row[c]=='1' else 0\n        max_area = max(max_area, largest_hist(heights))\n    return max_area\n\nmatrix = [\n    [\"1\",\"0\",\"1\",\"0\",\"0\"],\n    [\"1\",\"0\",\"1\",\"1\",\"1\"],\n    [\"1\",\"1\",\"1\",\"1\",\"1\"],\n    [\"1\",\"0\",\"0\",\"1\",\"0\"]\n]",
    "notes": {},
    "tests": "assert maximalRectangle(matrix) == 6\nassert maximalRectangle([[\"0\"]]) == 0\nassert maximalRectangle([[\"1\"]]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=85"
   },
   {
    "id": "13-40-burst-balloons",
@@ -668,7 +728,8 @@
    "solution": "def maxCoins(nums):\n    nums = [1] + nums + [1]\n    n = len(nums)\n    dp = [[0]*n for _ in range(n)]\n    for length in range(2, n):\n        for left in range(0, n-length):\n            right = left + length\n            for k in range(left+1, right):\n                dp[left][right] = max(\n                    dp[left][right],\n                    nums[left]*nums[k]*nums[right] + dp[left][k] + dp[k][right]\n                )\n    return dp[0][n-1]",
    "notes": {},
    "tests": "assert maxCoins([3,1,5,8]) == 167\nassert maxCoins([1,5]) == 10\nassert maxCoins([]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=312"
   },
   {
    "id": "13-41-regular-expression-matching",
@@ -687,7 +748,8 @@
     "11": "one or more"
    },
    "tests": "assert isMatch(\"aa\",\"a\") == False\nassert isMatch(\"aa\",\"a*\") == True\nassert isMatch(\"ab\",\".*\") == True\nassert isMatch(\"aab\",\"c*a*b\") == True\nassert isMatch(\"mississippi\",\"mis*is*p*.\") == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=10"
   },
   {
    "id": "13-42-wildcard-matching",
@@ -703,7 +765,8 @@
    "solution": "def isMatchWild(s, p):\n    m, n = len(s), len(p)\n    dp = [False] * (n+1)\n    dp[0] = True\n    for j in range(1, n+1):\n        dp[j] = dp[j-1] and p[j-1] == '*'\n    for i in range(1, m+1):\n        new_dp = [False] * (n+1)\n        for j in range(1, n+1):\n            if p[j-1] == '*':\n                new_dp[j] = dp[j] or new_dp[j-1]\n            elif p[j-1] == '?' or p[j-1] == s[i-1]:\n                new_dp[j] = dp[j-1]\n        dp = new_dp\n    return dp[n]",
    "notes": {},
    "tests": "assert isMatchWild(\"aa\",\"a\") == False\nassert isMatchWild(\"aa\",\"*\") == True\nassert isMatchWild(\"cb\",\"?a\") == False\nassert isMatchWild(\"adceb\",\"*a*b\") == True\nassert isMatchWild(\"acdcb\",\"a*c?b\") == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=44"
   },
   {
    "id": "13-43-distinct-subsequences",
@@ -719,7 +782,8 @@
    "solution": "def numDistinct(s, t):\n    m, n = len(s), len(t)\n    dp = [0] * (n+1)\n    dp[0] = 1\n    for i in range(1, m+1):\n        for j in range(min(i, n), 0, -1):\n            if s[i-1] == t[j-1]:\n                dp[j] += dp[j-1]\n    return dp[n]",
    "notes": {},
    "tests": "assert numDistinct(\"rabbbit\",\"rabbit\") == 3\nassert numDistinct(\"babgbag\",\"bag\") == 5\nassert numDistinct(\"a\",\"b\") == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=115"
   },
   {
    "id": "13-44-stone-game-and-stone-game-vii",
@@ -740,7 +804,8 @@
     "17": "Take right: score = total - stones[j] - dp[i][j-1]"
    },
    "tests": "assert stoneGame([5,3,4,5]) == True\nassert stoneGame([3,7,2,3]) == True\nassert stoneGameVII([5,3,1,4,2]) == 6\nassert stoneGameVII([7,90,5,1,100,10,10,2]) == 122\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=877"
   },
   {
    "id": "13-45-minimum-window-subsequence-simplified",
@@ -760,7 +825,8 @@
     "11": "Backward: shrink window"
    },
    "tests": "assert minWindowSubsequence(\"abcdebdde\",\"bde\") == \"bcde\"\nassert minWindowSubsequence(\"jmeqksfrsdcmsiwvaovztaqenprpvnbstl\",\"u\") == \"\"\nassert minWindowSubsequence(\"cnhczmccqouqadqtmjjzl\",\"mm\") == \"mccqouqadqtm\"\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=727"
   },
   {
    "id": "13-46-best-time-to-buy-and-sell-stock-ii",
@@ -776,7 +842,8 @@
    "solution": "def maxProfitII(prices):\n    return sum(max(0, prices[i]-prices[i-1]) for i in range(1, len(prices)))",
    "notes": {},
    "tests": "assert maxProfitII([7,1,5,3,6,4]) == 7\nassert maxProfitII([1,2,3,4,5]) == 4\nassert maxProfitII([7,6,4,3,1]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=122"
   },
   {
    "id": "13-47-coin-change-ii",
@@ -792,7 +859,8 @@
    "solution": "def change(amount, coins):\n    dp = [0] * (amount + 1)\n    dp[0] = 1\n    for coin in coins:\n        for a in range(coin, amount + 1):\n            dp[a] += dp[a - coin]\n    return dp[amount]",
    "notes": {},
    "tests": "assert change(5, [1,2,5]) == 4\nassert change(3, [2]) == 0\nassert change(10, [10]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=518"
   },
   {
    "id": "13-48-perfect-squares",
@@ -808,7 +876,8 @@
    "solution": "def numSquares(n):\n    dp = [float('inf')] * (n + 1)\n    dp[0] = 0\n    sq = 1\n    while sq * sq <= n:\n        for i in range(sq * sq, n + 1):\n            dp[i] = min(dp[i], dp[i - sq * sq] + 1)\n        sq += 1\n    return dp[n]",
    "notes": {},
    "tests": "assert numSquares(12) == 3\nassert numSquares(13) == 2\nassert numSquares(1)  == 1\nassert numSquares(4)  == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=279"
   },
   {
    "id": "13-49-0-1-knapsack-classic",
@@ -826,7 +895,8 @@
     "3": "reverse!"
    },
    "tests": "assert knapsack01([1,3,4,5],[1,4,5,7],7) == 9\nassert knapsack01([2,3,4],[3,4,5],5) == 7\nassert knapsack01([1],[10],0) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "13-50-unbounded-knapsack-rod-cutting-classic",
@@ -844,7 +914,8 @@
     "2": "prices[i] = revenue for rod of length i+1"
    },
    "tests": "assert rodCutting([1,5,8,9,10,17,17,20], 8) == 22\nassert rodCutting([3,5,8,9,10,17,17,20], 8) == 24\nassert rodCutting([1,5,8,9], 4) == 10\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "13-51-paint-house",
@@ -860,7 +931,8 @@
    "solution": "def minCostPaint(costs):\n    r, g, b = costs[0]\n    for i in range(1, len(costs)):\n        nr = costs[i][0] + min(g, b)\n        ng = costs[i][1] + min(r, b)\n        nb = costs[i][2] + min(r, g)\n        r, g, b = nr, ng, nb\n    return min(r, g, b)",
    "notes": {},
    "tests": "assert minCostPaint([[17,2,17],[16,16,5],[14,3,19]]) == 10\nassert minCostPaint([[7,6,2]]) == 2\nassert minCostPaint([[1,2,3],[1,2,3]]) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=256"
   },
   {
    "id": "13-52-delete-and-earn",
@@ -876,7 +948,8 @@
    "solution": "def deleteAndEarn(nums):\n    if not nums: return 0\n    bucket = [0] * (max(nums) + 1)\n    for n in nums:\n        bucket[n] += n\n    prev2, prev1 = 0, 0\n    for val in bucket:\n        prev2, prev1 = prev1, max(prev1, prev2 + val)\n    return prev1",
    "notes": {},
    "tests": "assert deleteAndEarn([3,4,2]) == 6\nassert deleteAndEarn([2,2,3,3,3,4]) == 9\nassert deleteAndEarn([1]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=740"
   },
   {
    "id": "13-53-count-ways-to-reach-nth-stair",
@@ -892,7 +965,8 @@
    "solution": "def countWays(n):\n    if n <= 0: return 0\n    if n == 1: return 1\n    a, b = 1, 2\n    for _ in range(3, n + 1):\n        a, b = b, a + b\n    return b",
    "notes": {},
    "tests": "assert countWays(1) == 1\nassert countWays(2) == 2\nassert countWays(4) == 5\nassert countWays(6) == 13\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=70"
   },
   {
    "id": "13-54-maximum-sum-of-non-adjacent-elements-house-robber-vari",
@@ -908,7 +982,8 @@
    "solution": "def maxNonAdj(arr):\n    if not arr: return 0\n    prev2, prev1 = 0, 0\n    for x in arr:\n        prev2, prev1 = prev1, max(prev1, prev2 + x)\n    return prev1",
    "notes": {},
    "tests": "assert maxNonAdj([5,5,10,100,10,5]) == 110\nassert maxNonAdj([1,2,3]) == 4\nassert maxNonAdj([2,4,6,2,5]) == 13\nassert maxNonAdj([]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "13-55-ugly-number-ii",
@@ -924,7 +999,8 @@
    "solution": "def nthUglyNumber(n):\n    ugly = [1] * n\n    i2 = i3 = i5 = 0\n    for i in range(1, n):\n        next2, next3, next5 = ugly[i2]*2, ugly[i3]*3, ugly[i5]*5\n        nxt = min(next2, next3, next5)\n        ugly[i] = nxt\n        if nxt == next2: i2 += 1\n        if nxt == next3: i3 += 1\n        if nxt == next5: i5 += 1\n    return ugly[n - 1]",
    "notes": {},
    "tests": "assert nthUglyNumber(1)  == 1\nassert nthUglyNumber(10) == 12\nassert nthUglyNumber(15) == 24\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=264"
   },
   {
    "id": "13-56-minimum-cost-for-tickets",
@@ -940,7 +1016,8 @@
    "solution": "def mincostTickets(days, costs):\n    travel = set(days)\n    dp = [0] * 366\n    for i in range(1, 366):\n        if i not in travel:\n            dp[i] = dp[i-1]\n        else:\n            dp[i] = min(\n                dp[i-1]             + costs[0],\n                dp[max(0, i-7)]    + costs[1],\n                dp[max(0, i-30)]   + costs[2]\n            )\n    return dp[365]",
    "notes": {},
    "tests": "assert mincostTickets([1,4,6,7,8,20],[2,7,15]) == 11\nassert mincostTickets([1,2,3,4,5,6,7,8,9,10,30,31],[2,7,15]) == 17\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=983"
   },
   {
    "id": "13-57-ones-and-zeroes",
@@ -956,7 +1033,8 @@
    "solution": "def findMaxForm(strs, m, n):\n    dp = [[0]*(n+1) for _ in range(m+1)]\n    for s in strs:\n        zeros = s.count(\"0\")\n        ones  = s.count(\"1\")\n        for i in range(m, zeros-1, -1):\n            for j in range(n, ones-1, -1):\n                dp[i][j] = max(dp[i][j], dp[i-zeros][j-ones] + 1)\n    return dp[m][n]",
    "notes": {},
    "tests": "assert findMaxForm([\"10\",\"0001\",\"111001\",\"1\",\"0\"], 5, 3) == 4\nassert findMaxForm([\"10\",\"0\",\"1\"], 1, 1) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=474"
   },
   {
    "id": "13-58-longest-common-subsequence",
@@ -974,7 +1052,8 @@
    "tests": "assert longestCommonSubsequence(\"abcde\", \"ace\") == 3\nassert longestCommonSubsequence(\"abc\",   \"abc\") == 3\nassert longestCommonSubsequence(\"abc\",   \"def\") == 0\nprint(\"All tests passed!\")",
    "verified": [
     "longestCommonSubsequence"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1143"
   },
   {
    "id": "13-59-integer-break",
@@ -990,7 +1069,8 @@
    "solution": "def integerBreak(n):\n    dp = [0] * (n + 1)\n    dp[1] = 1\n    for i in range(2, n + 1):\n        for j in range(1, i):\n            dp[i] = max(dp[i], j*(i-j), j*dp[i-j])\n    return dp[n]",
    "notes": {},
    "tests": "assert integerBreak(2) == 1\nassert integerBreak(10) == 36\nassert integerBreak(3) == 2\nassert integerBreak(4) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=343"
   },
   {
    "id": "13-60-counting-bits-extended",
@@ -1006,7 +1086,8 @@
    "solution": "def countBitsExtended(n):\n    dp = [0] * (n + 1)\n    for i in range(1, n + 1):\n        dp[i] = dp[i >> 1] + (i & 1)\n    positions = []\n    for i in range(n + 1):\n        bits = []\n        tmp, pos = i, 0\n        while tmp:\n            if tmp & 1: bits.append(pos)\n            tmp >>= 1\n            pos += 1\n        positions.append(bits)\n    return dp, positions\n\ncounts, pos = countBitsExtended(5)",
    "notes": {},
    "tests": "assert list(counts) == [0,1,1,2,1,2]\nassert pos[5] == [0, 2]   # 5 = 101b\nassert pos[3] == [0, 1]   # 3 = 011b\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=338"
   },
   {
    "id": "13-61-maximum-alternating-subsequence-length",
@@ -1022,7 +1103,8 @@
    "solution": "def maxAlternatingSum(nums):\n    even, odd = 0, 0\n    for n in nums:\n        even, odd = max(even, odd + n), max(odd, even - n)\n    return even",
    "notes": {},
    "tests": "assert maxAlternatingSum([4,2,5,3]) == 7\nassert maxAlternatingSum([5,6,7,8]) == 8\nassert maxAlternatingSum([6,2,1,2,4,5]) == 10\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1911"
   },
   {
    "id": "13-62-maximize-the-confusion-of-an-exam",
@@ -1038,7 +1120,8 @@
    "solution": "def maxConsecutiveAnswers(answerKey, k):\n    def maxWindow(ch):\n        left = count = res = 0\n        for right in range(len(answerKey)):\n            if answerKey[right] == ch: count += 1\n            while count > k:\n                if answerKey[left] == ch: count -= 1\n                left += 1\n            res = max(res, right - left + 1)\n        return res\n    return max(maxWindow(\"T\"), maxWindow(\"F\"))",
    "notes": {},
    "tests": "assert maxConsecutiveAnswers(\"TTFF\", 2) == 4\nassert maxConsecutiveAnswers(\"TFFT\", 1) == 3\nassert maxConsecutiveAnswers(\"TTFTTFTT\", 1) == 5\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2024"
   },
   {
    "id": "13-63-stone-game-warmup",
@@ -1054,7 +1137,8 @@
    "solution": "def stoneGameDP(piles):\n    n = len(piles)\n    dp = [[0]*n for _ in range(n)]\n    for i in range(n): dp[i][i] = piles[i]\n    for length in range(2, n+1):\n        for i in range(n - length + 1):\n            j = i + length - 1\n            dp[i][j] = max(piles[i] - dp[i+1][j], piles[j] - dp[i][j-1])\n    return dp[0][n-1] > 0",
    "notes": {},
    "tests": "assert stoneGameDP([5,3,4,5]) == True\nassert stoneGameDP([3,7,2,3]) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=877"
   },
   {
    "id": "13-64-number-of-dice-rolls-with-target-sum",
@@ -1070,7 +1154,8 @@
    "solution": "def numRollsToTarget(n, k, target):\n    MOD = 10**9 + 7\n    dp = [0] * (target + 1)\n    dp[0] = 1\n    for _ in range(n):\n        ndp = [0] * (target + 1)\n        for s in range(target + 1):\n            if not dp[s]: continue\n            for face in range(1, k + 1):\n                if s + face <= target:\n                    ndp[s + face] = (ndp[s + face] + dp[s]) % MOD\n        dp = ndp\n    return dp[target]",
    "notes": {},
    "tests": "assert numRollsToTarget(1, 6, 3) == 1\nassert numRollsToTarget(2, 6, 7) == 6\nassert numRollsToTarget(2, 5, 10) == 1\nassert numRollsToTarget(1, 2, 3) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1155"
   },
   {
    "id": "13-65-knight-dialer",
@@ -1086,7 +1171,8 @@
    "solution": "def knightDialer(n):\n    MOD = 10**9 + 7\n    moves = {\n        0:[4,6], 1:[6,8], 2:[7,9], 3:[4,8],\n        4:[0,3,9], 5:[], 6:[0,1,7],\n        7:[2,6], 8:[1,3], 9:[2,4]\n    }\n    dp = [1] * 10\n    for _ in range(n - 1):\n        ndp = [0] * 10\n        for key in range(10):\n            for nxt in moves[key]:\n                ndp[nxt] = (ndp[nxt] + dp[key]) % MOD\n        dp = ndp\n    return sum(dp) % MOD",
    "notes": {},
    "tests": "assert knightDialer(1) == 10\nassert knightDialer(2) == 20\nassert knightDialer(3) == 46\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=935"
   },
   {
    "id": "13-66-coin-change-ii-full",
@@ -1105,7 +1191,8 @@
     "4": "inner fwd => unbounded"
    },
    "tests": "assert changeFull(5, [1,2,5])  == 4\nassert changePerms(5, [1,2,5]) == 9\nassert changeFull(3, [2]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=518"
   },
   {
    "id": "13-67-minimum-cost-for-tickets-full",
@@ -1121,7 +1208,8 @@
    "solution": "def mincostTicketsFull(days, costs):\n    travel = set(days)\n    dp = [0] * 366\n    for i in range(1, 366):\n        if i not in travel:\n            dp[i] = dp[i - 1]\n            continue\n        c1  = dp[i - 1]           + costs[0]\n        c7  = dp[max(0, i - 7)]   + costs[1]\n        c30 = dp[max(0, i - 30)]  + costs[2]\n        dp[i] = min(c1, c7, c30)\n    return dp[365]",
    "notes": {},
    "tests": "assert mincostTicketsFull([1,4,6,7,8,20],[2,7,15]) == 11\nassert mincostTicketsFull([1,2,3,4,5,6,7,8,9,10,30,31],[2,7,15]) == 17\nassert mincostTicketsFull([1],[1,30,365]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=983"
   },
   {
    "id": "13-68-longest-arithmetic-subsequence",
@@ -1137,7 +1225,8 @@
    "solution": "def longestArithSeqLength(nums):\n    dp = [{} for _ in nums]\n    res = 2\n    for i in range(1, len(nums)):\n        for j in range(i):\n            d = nums[i] - nums[j]\n            dp[i][d] = dp[j].get(d, 1) + 1\n            res = max(res, dp[i][d])\n    return res",
    "notes": {},
    "tests": "assert longestArithSeqLength([3,6,9,12]) == 4\nassert longestArithSeqLength([9,4,7,2,10]) == 3\nassert longestArithSeqLength([20,1,15,3,10,5,8]) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1027"
   },
   {
    "id": "13-69-longest-palindromic-subsequence",
@@ -1153,7 +1242,8 @@
    "solution": "def longestPalindromeSubseq(s):\n    n = len(s)\n    dp = [[0]*n for _ in range(n)]\n    for i in range(n): dp[i][i] = 1\n    for length in range(2, n+1):\n        for i in range(n - length + 1):\n            j = i + length - 1\n            if s[i] == s[j]:\n                dp[i][j] = (dp[i+1][j-1] if length > 2 else 0) + 2\n            else:\n                dp[i][j] = max(dp[i+1][j], dp[i][j-1])\n    return dp[0][n-1]",
    "notes": {},
    "tests": "assert longestPalindromeSubseq(\"bbbab\") == 4\nassert longestPalindromeSubseq(\"cbbd\")  == 2\nassert longestPalindromeSubseq(\"a\")     == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=516"
   },
   {
    "id": "13-70-best-time-to-buy-and-sell-stock-with-cooldown",
@@ -1169,7 +1259,8 @@
    "solution": "def maxProfitCooldown(prices):\n    hold = float(\"-inf\")\n    sold = rest = 0\n    for p in prices:\n        hold, sold, rest = max(hold, rest - p), hold + p, max(rest, sold)\n    return max(sold, rest)",
    "notes": {},
    "tests": "assert maxProfitCooldown([1,2,3,0,2]) == 3\nassert maxProfitCooldown([1]) == 0\nassert maxProfitCooldown([2,1,4]) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=309"
   },
   {
    "id": "13-71-best-time-to-buy-and-sell-stock-with-transaction-fee",
@@ -1185,7 +1276,8 @@
    "solution": "def maxProfitFee(prices, fee):\n    hold = float(\"-inf\")\n    cash = 0\n    for p in prices:\n        hold = max(hold, cash - p)\n        cash = max(cash, hold + p - fee)\n    return cash",
    "notes": {},
    "tests": "assert maxProfitFee([1,3,2,8,4,9], 2) == 8\nassert maxProfitFee([1,3,7,5,10,3], 3) == 6\nassert maxProfitFee([1,2], 1) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=714"
   },
   {
    "id": "13-72-arithmetic-slices-ii-subsequence",
@@ -1201,7 +1293,8 @@
    "solution": "def numberOfArithmeticSlices(nums):\n    n = len(nums)\n    dp = [{} for _ in range(n)]\n    res = 0\n    for i in range(n):\n        for j in range(i):\n            d = nums[i] - nums[j]\n            cnt = dp[j].get(d, 0)\n            dp[i][d] = dp[i].get(d, 0) + cnt + 1\n            res += cnt\n    return res",
    "notes": {},
    "tests": "assert numberOfArithmeticSlices([2,4,6,8,10]) == 7\nassert numberOfArithmeticSlices([7,7,7,7,7]) == 16\nassert numberOfArithmeticSlices([0,2000000000,-294967296]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=446"
   },
   {
    "id": "13-73-reducing-dishes",
@@ -1217,7 +1310,8 @@
    "solution": "def maxSatisfaction(satisfaction):\n    satisfaction.sort(reverse=True)\n    total = running = 0\n    for s in satisfaction:\n        running += s\n        if running <= 0: break\n        total += running\n    return total",
    "notes": {},
    "tests": "assert maxSatisfaction([-1,-8,0,5,-9]) == 14\nassert maxSatisfaction([4,3,2]) == 20\nassert maxSatisfaction([-1,-4,-5]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1402"
   },
   {
    "id": "13-74-number-of-dice-rolls-with-target-sum-full",
@@ -1233,7 +1327,8 @@
    "solution": "def numRollsToTargetFull(n, k, target):\n    MOD = 10**9 + 7\n    dp = [0] * (target + 1)\n    dp[0] = 1\n    for _ in range(n):\n        ndp = [0] * (target + 1)\n        for s in range(target + 1):\n            if not dp[s]: continue\n            for face in range(1, k + 1):\n                ns = s + face\n                if ns <= target:\n                    ndp[ns] = (ndp[ns] + dp[s]) % MOD\n        dp = ndp\n    return dp[target]",
    "notes": {},
    "tests": "assert numRollsToTargetFull(1, 6, 3) == 1\nassert numRollsToTargetFull(2, 6, 7) == 6\nassert numRollsToTargetFull(30, 30, 500) == 222616187\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1155"
   },
   {
    "id": "13-75-stone-game-iii",
@@ -1249,7 +1344,8 @@
    "solution": "def stoneGameIII(stoneValue):\n    n = len(stoneValue)\n    dp = [float(\"-inf\")] * (n + 1)\n    dp[n] = 0\n    for i in range(n - 1, -1, -1):\n        take = 0\n        for k in range(1, 4):\n            if i + k <= n:\n                take += stoneValue[i + k - 1]\n                dp[i] = max(dp[i], take - dp[i + k])\n    if dp[0] > 0: return \"Alice\"\n    if dp[0] < 0: return \"Bob\"\n    return \"Tie\"",
    "notes": {},
    "tests": "assert stoneGameIII([1,2,3,7])  == \"Bob\"\nassert stoneGameIII([1,2,3,-9]) == \"Alice\"\nassert stoneGameIII([1,2,3,6])  == \"Tie\"\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1406"
   },
   {
    "id": "13-76-maximum-score-from-performing-multiplication-operation",
@@ -1265,7 +1361,8 @@
    "solution": "def maximumScore(nums, multipliers):\n    n, m = len(nums), len(multipliers)\n    dp = [[0]*(m+1) for _ in range(m+1)]\n    for i in range(m-1, -1, -1):\n        for left in range(i, -1, -1):\n            right = n - 1 - (i - left)\n            mul = multipliers[i]\n            dp[i][left] = max(\n                mul * nums[left]  + dp[i+1][left+1],\n                mul * nums[right] + dp[i+1][left]\n            )\n    return dp[0][0]",
    "notes": {},
    "tests": "assert maximumScore([1,2,3], [3,2,1]) == 14\nassert maximumScore([-5,-3,-3,-2,7,1],[-10,-5,3,4,6]) == 102\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1770"
   },
   {
    "id": "13-77-minimum-swaps-to-make-sequences-increasing",
@@ -1281,7 +1378,8 @@
    "solution": "def minSwap(nums1, nums2):\n    keep, swap = 0, 1\n    for i in range(1, len(nums1)):\n        nkeep = nswap = float(\"inf\")\n        if nums1[i] > nums1[i-1] and nums2[i] > nums2[i-1]:\n            nkeep = min(nkeep, keep)\n            nswap = min(nswap, swap + 1)\n        if nums1[i] > nums2[i-1] and nums2[i] > nums1[i-1]:\n            nkeep = min(nkeep, swap)\n            nswap = min(nswap, keep + 1)\n        keep, swap = nkeep, nswap\n    return min(keep, swap)",
    "notes": {},
    "tests": "assert minSwap([1,3,5,4],[1,2,3,7]) == 1\nassert minSwap([0,3,5,8,9],[2,1,4,6,9]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=801"
   },
   {
    "id": "13-78-ones-and-zeroes-full",
@@ -1297,7 +1395,8 @@
    "solution": "def findMaxFormFull(strs, m, n):\n    dp = [[0]*(n+1) for _ in range(m+1)]\n    for s in strs:\n        z = s.count(\"0\")\n        o = s.count(\"1\")\n        for i in range(m, z-1, -1):\n            for j in range(n, o-1, -1):\n                dp[i][j] = max(dp[i][j], dp[i-z][j-o] + 1)\n    return dp[m][n]",
    "notes": {},
    "tests": "assert findMaxFormFull([\"10\",\"0001\",\"111001\",\"1\",\"0\"],5,3) == 4\nassert findMaxFormFull([\"10\",\"0\",\"1\"],1,1) == 2\nassert findMaxFormFull([\"0\"],1,0) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=474"
   },
   {
    "id": "13-79-restore-the-array",
@@ -1313,7 +1412,8 @@
    "solution": "def numberOfArrays(s, k):\n    MOD = 10**9 + 7\n    n = len(s)\n    dp = [0] * (n + 1)\n    dp[0] = 1\n    for i in range(1, n + 1):\n        num = 0\n        for j in range(i - 1, -1, -1):\n            if s[j] == \"0\": continue\n            num = int(s[j:i])\n            if num > k: break\n            dp[i] = (dp[i] + dp[j]) % MOD\n    return dp[n]",
    "notes": {},
    "tests": "assert numberOfArrays(\"1000\",  10000) == 1\nassert numberOfArrays(\"1000\",  10)    == 0\nassert numberOfArrays(\"1317\",  2000)  == 8\nassert numberOfArrays(\"2020\",  30)    == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1416"
   },
   {
    "id": "13-80-delete-and-earn-full",
@@ -1329,7 +1429,8 @@
    "solution": "def deleteAndEarnFull(nums):\n    if not nums: return 0\n    max_val = max(nums)\n    bucket = [0] * (max_val + 1)\n    for n in nums:\n        bucket[n] += n\n    prev2 = prev1 = 0\n    for v in bucket:\n        prev2, prev1 = prev1, max(prev1, prev2 + v)\n    return prev1",
    "notes": {},
    "tests": "assert deleteAndEarnFull([3,4,2]) == 6\nassert deleteAndEarnFull([2,2,3,3,3,4]) == 9\nassert deleteAndEarnFull([1,1,1,2,4,5,5,5,6]) == 18\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=740"
   },
   {
    "id": "13-81-longest-increasing-subsequence-o-n-log-n-patience-sort",
@@ -1345,7 +1446,8 @@
    "solution": "import bisect\n\ndef lengthOfLISFast(nums):\n    tails = []\n    for n in nums:\n        pos = bisect.bisect_left(tails, n)\n        if pos == len(tails):\n            tails.append(n)\n        else:\n            tails[pos] = n\n    return len(tails)",
    "notes": {},
    "tests": "assert lengthOfLISFast([10,9,2,5,3,7,101,18]) == 4\nassert lengthOfLISFast([0,1,0,3,2,3]) == 4\nassert lengthOfLISFast([7,7,7,7,7,7,7]) == 1\nassert lengthOfLISFast([1,3,6,7,9,4,10,5,6]) == 6\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "13-82-maximum-profit-in-job-scheduling",
@@ -1361,7 +1463,8 @@
    "solution": "import bisect\n\ndef jobScheduling(startTime, endTime, profit):\n    jobs = sorted(zip(startTime, endTime, profit), key=lambda x: x[1])\n    ends = [0]\n    dp   = [0]\n    for s, e, p in jobs:\n        i = bisect.bisect_right(ends, s) - 1\n        best = max(dp[-1], dp[i] + p)\n        ends.append(e)\n        dp.append(best)\n    return dp[-1]",
    "notes": {},
    "tests": "assert jobScheduling([1,2,3,3],[3,4,5,6],[50,10,40,70]) == 120\nassert jobScheduling([1,2,3,4,6],[3,5,10,6,9],[20,20,100,70,60]) == 150\nassert jobScheduling([1,1,1],[2,3,4],[5,6,4]) == 6\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1235"
   },
   {
    "id": "13-83-strange-printer",
@@ -1377,7 +1480,8 @@
    "solution": "def strangePrinter(s):\n    n = len(s)\n    dp = [[0]*n for _ in range(n)]\n    for i in range(n): dp[i][i] = 1\n    for length in range(2, n+1):\n        for i in range(n - length + 1):\n            j = i + length - 1\n            dp[i][j] = dp[i][j-1] + 1\n            for k in range(i, j):\n                if s[k] == s[j]:\n                    val = dp[i][k] + (dp[k+1][j-1] if k+1 <= j-1 else 0)\n                    dp[i][j] = min(dp[i][j], val)\n    return dp[0][n-1]",
    "notes": {},
    "tests": "assert strangePrinter(\"aaabbb\") == 2\nassert strangePrinter(\"aba\") == 2\nassert strangePrinter(\"abcabc\") == 5\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=664"
   },
   {
    "id": "13-84-remove-boxes",
@@ -1393,7 +1497,8 @@
    "solution": "from functools import lru_cache\n\ndef removeBoxes(boxes):\n    @lru_cache(maxsize=None)\n    def dp(l, r, k):\n        if l > r: return 0\n        while l < r and boxes[l] == boxes[l+1]:\n            l += 1; k += 1\n        res = (k+1)**2 + dp(l+1, r, 0)\n        for m in range(l+1, r+1):\n            if boxes[m] == boxes[l]:\n                res = max(res, dp(l+1, m-1, 0) + dp(m, r, k+1))\n        return res\n    return dp(0, len(boxes)-1, 0)",
    "notes": {},
    "tests": "assert removeBoxes([1,3,2,2,2,3,4,3,1]) == 23\nassert removeBoxes([1,1,1]) == 9\nassert removeBoxes([1]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=546"
   },
   {
    "id": "13-85-minimum-cost-to-merge-stones",
@@ -1409,7 +1514,8 @@
    "solution": "def mergeStones(stones, k):\n    n = len(stones)\n    if (n - 1) % (k - 1) != 0: return -1\n    prefix = [0] * (n + 1)\n    for i in range(n): prefix[i+1] = prefix[i] + stones[i]\n    dp = [[0]*n for _ in range(n)]\n    for length in range(k, n+1):\n        for i in range(n - length + 1):\n            j = i + length - 1\n            dp[i][j] = float(\"inf\")\n            for m in range(i, j, k-1):\n                dp[i][j] = min(dp[i][j], dp[i][m] + dp[m+1][j])\n            if (length - 1) % (k - 1) == 0:\n                dp[i][j] += prefix[j+1] - prefix[i]\n    return dp[0][n-1]",
    "notes": {},
    "tests": "assert mergeStones([3,2,4,1], 2) == 20\nassert mergeStones([3,2,4,1], 3) == -1\nassert mergeStones([3,5,1,2,6], 3) == 25\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1000"
   },
   {
    "id": "13-86-cherry-pickup-ii",
@@ -1425,7 +1531,8 @@
    "solution": "def cherryPickup2(grid):\n    rows, cols = len(grid), len(grid[0])\n    INF = float(\"-inf\")\n    dp = [[INF]*cols for _ in range(cols)]\n    dp[0][cols-1] = grid[0][0] + (grid[0][cols-1] if cols > 1 else 0)\n    for r in range(1, rows):\n        ndp = [[INF]*cols for _ in range(cols)]\n        for c1 in range(cols):\n            for c2 in range(cols):\n                if dp[c1][c2] == INF: continue\n                for dc1 in [-1,0,1]:\n                    for dc2 in [-1,0,1]:\n                        nc1, nc2 = c1+dc1, c2+dc2\n                        if 0 <= nc1 < cols and 0 <= nc2 < cols:\n                            ch = grid[r][nc1] + (grid[r][nc2] if nc1!=nc2 else 0)\n                            ndp[nc1][nc2] = max(ndp[nc1][nc2], dp[c1][c2] + ch)\n        dp = ndp\n    return max(dp[c1][c2] for c1 in range(cols) for c2 in range(cols) if dp[c1][c2] != INF)",
    "notes": {},
    "tests": "assert cherryPickup2([[3,1,1],[2,5,1],[1,5,5],[2,1,1]]) == 24\nassert cherryPickup2([[1,0,0,0,0,0,1],[2,0,0,0,0,3,0],[2,0,9,0,0,0,0],[0,3,0,5,4,0,0],[1,0,2,3,0,0,6]]) == 28\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1463"
   },
   {
    "id": "13-87-number-of-music-playlists",
@@ -1441,7 +1548,8 @@
    "solution": "def numMusicPlaylists(n, goal, k):\n    MOD = 10**9 + 7\n    dp = [[0]*(n+1) for _ in range(goal+1)]\n    dp[0][0] = 1\n    for i in range(1, goal+1):\n        for j in range(1, n+1):\n            dp[i][j] += dp[i-1][j-1] * (n - (j-1)) % MOD\n            if j > k:\n                dp[i][j] += dp[i-1][j] * (j - k) % MOD\n            dp[i][j] %= MOD\n    return dp[goal][n]",
    "notes": {},
    "tests": "assert numMusicPlaylists(3, 3, 1) == 6\nassert numMusicPlaylists(2, 3, 0) == 6\nassert numMusicPlaylists(2, 3, 1) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=920"
   },
   {
    "id": "13-88-longest-common-subsequence-of-three-strings-classic-ex",
@@ -1457,7 +1565,8 @@
    "solution": "def lcsThree(s1, s2, s3):\n    l1, l2, l3 = len(s1), len(s2), len(s3)\n    dp = [[[0]*(l3+1) for _ in range(l2+1)] for _ in range(l1+1)]\n    for i in range(1, l1+1):\n        for j in range(1, l2+1):\n            for k in range(1, l3+1):\n                if s1[i-1] == s2[j-1] == s3[k-1]:\n                    dp[i][j][k] = dp[i-1][j-1][k-1] + 1\n                else:\n                    dp[i][j][k] = max(dp[i-1][j][k], dp[i][j-1][k], dp[i][j][k-1])\n    return dp[l1][l2][l3]",
    "notes": {},
    "tests": "assert lcsThree(\"geeks\",\"geeks\",\"geek\") == 4\nassert lcsThree(\"abcd1e2\",\"bc12ea\",\"bd1ea\") == 3\nassert lcsThree(\"abc\",\"def\",\"ghi\") == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "13-89-count-all-valid-pickup-and-delivery-options",
@@ -1475,7 +1584,8 @@
     "4": "positions to insert P_i"
    },
    "tests": "assert countOrders(1) == 1\nassert countOrders(2) == 6\nassert countOrders(3) == 90\nassert countOrders(4) == 2520\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1359"
   },
   {
    "id": "13-90-maximize-score-after-n-operations",
@@ -1491,7 +1601,8 @@
    "solution": "from math import gcd\n\ndef maximizeScore(nums):\n    n2 = len(nums)\n    n  = n2 // 2\n    full = 1 << n2\n    dp = [0] * full\n    g = [[0]*n2 for _ in range(n2)]\n    for i in range(n2):\n        for j in range(i+1, n2):\n            g[i][j] = gcd(nums[i], nums[j])\n    for mask in range(full):\n        bits = bin(mask).count(\"1\")\n        if bits % 2 != 0: continue\n        op = bits // 2 + 1\n        for i in range(n2):\n            if mask >> i & 1: continue\n            for j in range(i+1, n2):\n                if mask >> j & 1: continue\n                nmask = mask | (1<<i) | (1<<j)\n                dp[nmask] = max(dp[nmask], dp[mask] + op * g[i][j])\n    return dp[full-1]",
    "notes": {},
    "tests": "assert maximizeScore([1,2]) == 1\nassert maximizeScore([3,4,6,8]) == 11\nassert maximizeScore([1,2,3,4,5,6]) == 14\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2305"
   }
  ]
 }

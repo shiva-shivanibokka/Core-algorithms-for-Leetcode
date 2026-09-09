@@ -3,6 +3,39 @@
  "slug": "binary-tree-bfs",
  "name": "Binary Tree BFS",
  "note": "Level Order Traversal",
+ "about": {
+  "lead": "",
+  "sections": [
+   {
+    "heading": "What is BFS on a Binary Tree?",
+    "body": "Breadth-First Search (BFS) visits nodes **level by level**, from left to right. It uses a **queue** to track which nodes to process next. This contrasts with DFS, which goes deep before backtracking."
+   },
+   {
+    "heading": "When to Use BFS vs DFS",
+    "body": "| Scenario | Use |\n|---|---|\n| Minimum depth / shortest path | BFS |\n| Level-by-level processing | BFS |\n| Nearest neighbor | BFS |\n| Path existence, subtree logic | DFS |\n| Inorder/preorder/postorder | DFS |\n| Max depth | Either |"
+   },
+   {
+    "heading": "Key Implementation Detail: Use `collections.deque`",
+    "body": "Always use `deque` instead of a plain list for the queue. `list.pop(0)` is **O(n)** while `deque.popleft()` is **O(1)**."
+   },
+   {
+    "heading": "Core BFS Template",
+    "body": "```python\nfrom collections import deque\ndef bfs(root):\n    if not root: return []\n    result = []\n    queue = deque([root])\n    while queue:\n        level_size = len(queue)\n        level = []\n        for _ in range(level_size):\n            node = queue.popleft()\n            level.append(node.val)\n            if node.left: queue.append(node.left)\n            if node.right: queue.append(node.right)\n        result.append(level)\n    return result\n```"
+   },
+   {
+    "heading": "Two Key Variants",
+    "body": "1. **Standard Level Order**: Process level by level, collect results per level.\n2. **Zigzag Level Order**: Alternate direction (left-to-right, right-to-left) using a flag."
+   },
+   {
+    "heading": "BFS with State",
+    "body": "You can pass extra state along with nodes in the queue:\n```python\nqueue = deque([(root, 0)])  # (node, current_sum)\nwhile queue:\n    node, curr = queue.popleft()\n    # use curr...\n```"
+   },
+   {
+    "heading": "Complexity",
+    "body": "| | BFS Tree | BFS Grid |\n|---|---|---|\n| Time | O(n) — visit every node | O(rows * cols) |\n| Space | O(w) — max width of tree | O(min(rows,cols)) |\n\nThe space is O(w) because the queue holds at most one full level at a time. In a perfect binary tree the last level has n/2 nodes → O(n) worst case."
+   }
+  ]
+ },
  "notebook": "08_Binary_Tree_BFS.ipynb",
  "problems": [
   {
@@ -19,7 +52,8 @@
    "solution": "from collections import deque\n\ndef levelOrder(root):\n    if not root: return []\n    result = []\n    queue = deque([root])\n    while queue:\n        level_size = len(queue)\n        level = []\n        for _ in range(level_size):\n            node = queue.popleft()\n            level.append(node.val)\n            if node.left: queue.append(node.left)\n            if node.right: queue.append(node.right)\n        result.append(level)\n    return result",
    "notes": {},
    "tests": "assert levelOrder(build_tree([3,9,20,None,None,15,7])) == [[3],[9,20],[15,7]]\nassert levelOrder(build_tree([1])) == [[1]]\nassert levelOrder(None) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=102"
   },
   {
    "id": "08-02-binary-tree-level-order-traversal-ii",
@@ -35,7 +69,8 @@
    "solution": "def levelOrderBottom(root):\n    if not root: return []\n    result = []\n    queue = deque([root])\n    while queue:\n        level_size = len(queue)\n        level = []\n        for _ in range(level_size):\n            node = queue.popleft()\n            level.append(node.val)\n            if node.left: queue.append(node.left)\n            if node.right: queue.append(node.right)\n        result.append(level)\n    return result[::-1]",
    "notes": {},
    "tests": "assert levelOrderBottom(build_tree([3,9,20,None,None,15,7])) == [[15,7],[9,20],[3]]\nassert levelOrderBottom(build_tree([1])) == [[1]]\nassert levelOrderBottom(None) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=107"
   },
   {
    "id": "08-03-average-of-levels-in-binary-tree",
@@ -51,7 +86,8 @@
    "solution": "def averageOfLevels(root):\n    if not root: return []\n    result = []\n    queue = deque([root])\n    while queue:\n        level_size = len(queue)\n        level_sum = 0\n        for _ in range(level_size):\n            node = queue.popleft()\n            level_sum += node.val\n            if node.left: queue.append(node.left)\n            if node.right: queue.append(node.right)\n        result.append(level_sum / level_size)\n    return result",
    "notes": {},
    "tests": "assert averageOfLevels(build_tree([3,9,20,None,None,15,7])) == [3.0, 14.5, 11.0]\nassert averageOfLevels(build_tree([3,9,20,15,7])) == [3.0, 14.5, 11.0]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=637"
   },
   {
    "id": "08-04-maximum-depth-of-binary-tree-using-bfs",
@@ -67,7 +103,8 @@
    "solution": "def maxDepth(root):\n    if not root: return 0\n    depth = 0\n    queue = deque([root])\n    while queue:\n        depth += 1\n        for _ in range(len(queue)):\n            node = queue.popleft()\n            if node.left: queue.append(node.left)\n            if node.right: queue.append(node.right)\n    return depth",
    "notes": {},
    "tests": "assert maxDepth(build_tree([3,9,20,None,None,15,7])) == 3\nassert maxDepth(build_tree([1,None,2])) == 2\nassert maxDepth(None) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=104"
   },
   {
    "id": "08-05-minimum-depth-of-binary-tree-using-bfs",
@@ -83,7 +120,8 @@
    "solution": "def minDepth(root):\n    if not root: return 0\n    queue = deque([(root, 1)])\n    while queue:\n        node, depth = queue.popleft()\n        if not node.left and not node.right:\n            return depth\n        if node.left: queue.append((node.left, depth + 1))\n        if node.right: queue.append((node.right, depth + 1))\n    return 0",
    "notes": {},
    "tests": "assert minDepth(build_tree([3,9,20,None,None,15,7])) == 2\nassert minDepth(build_tree([2,None,3,None,4,None,5,None,6])) == 5\nassert minDepth(build_tree([1])) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=111"
   },
   {
    "id": "08-06-binary-tree-zigzag-level-order-traversal",
@@ -99,7 +137,8 @@
    "solution": "def zigzagLevelOrder(root):\n    if not root: return []\n    result = []\n    queue = deque([root])\n    left_to_right = True\n    while queue:\n        level_size = len(queue)\n        level = []\n        for _ in range(level_size):\n            node = queue.popleft()\n            level.append(node.val)\n            if node.left: queue.append(node.left)\n            if node.right: queue.append(node.right)\n        result.append(level if left_to_right else level[::-1])\n        left_to_right = not left_to_right\n    return result",
    "notes": {},
    "tests": "assert zigzagLevelOrder(build_tree([3,9,20,None,None,15,7])) == [[3],[20,9],[15,7]]\nassert zigzagLevelOrder(build_tree([1])) == [[1]]\nassert zigzagLevelOrder(None) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=103"
   },
   {
    "id": "08-07-find-largest-value-in-each-tree-row",
@@ -115,7 +154,8 @@
    "solution": "def largestValues(root):\n    if not root: return []\n    result = []\n    queue = deque([root])\n    while queue:\n        level_max = float('-inf')\n        for _ in range(len(queue)):\n            node = queue.popleft()\n            level_max = max(level_max, node.val)\n            if node.left: queue.append(node.left)\n            if node.right: queue.append(node.right)\n        result.append(level_max)\n    return result",
    "notes": {},
    "tests": "assert largestValues(build_tree([1,3,2,5,3,None,9])) == [1,3,9]\nassert largestValues(build_tree([1,2,3])) == [1,3]\nassert largestValues(None) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=515"
   },
   {
    "id": "08-08-find-bottom-left-tree-value",
@@ -133,7 +173,8 @@
     "4": "first node of current level"
    },
    "tests": "assert findBottomLeftValue(build_tree([2,1,3])) == 1\nassert findBottomLeftValue(build_tree([1,2,3,4,None,5,6,None,None,7])) == 7\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=513"
   },
   {
    "id": "08-09-check-completeness-of-a-binary-tree",
@@ -149,7 +190,8 @@
    "solution": "def isCompleteTree(root):\n    if not root: return True\n    queue = deque([root])\n    seen_null = False\n    while queue:\n        node = queue.popleft()\n        for child in [node.left, node.right]:\n            if child is None:\n                seen_null = True\n            else:\n                if seen_null: return False\n                queue.append(child)\n    return True",
    "notes": {},
    "tests": "assert isCompleteTree(build_tree([1,2,3,4,5,6])) == True\nassert isCompleteTree(build_tree([1,2,3,4,5,None,7])) == False\nassert isCompleteTree(build_tree([1,2,3,4,5,6,7])) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=958"
   },
   {
    "id": "08-10-even-odd-tree",
@@ -168,7 +210,8 @@
     "11": "odd level: even values, strictly decreasing"
    },
    "tests": "assert isEvenOddTree(build_tree([1,10,4,3,None,7,9,12,8,6,None,None,2])) == True\nassert isEvenOddTree(build_tree([5,4,2,3,3,7])) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1609"
   },
   {
    "id": "08-11-symmetric-tree-using-bfs",
@@ -184,7 +227,8 @@
    "solution": "def isSymmetric(root):\n    if not root: return True\n    queue = deque([(root.left, root.right)])\n    while queue:\n        left, right = queue.popleft()\n        if not left and not right: continue\n        if not left or not right: return False\n        if left.val != right.val: return False\n        queue.append((left.left, right.right))\n        queue.append((left.right, right.left))\n    return True",
    "notes": {},
    "tests": "assert isSymmetric(build_tree([1,2,2,3,4,4,3])) == True\nassert isSymmetric(build_tree([1,2,2,None,3,None,3])) == False\nassert isSymmetric(build_tree([1])) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=101"
   },
   {
    "id": "08-12-cousins-in-binary-tree",
@@ -200,7 +244,8 @@
    "solution": "def isCousins(root, x, y):\n    queue = deque([(root, None, 0)])\n    info = {}\n    while queue:\n        node, parent, depth = queue.popleft()\n        if node.val == x or node.val == y:\n            info[node.val] = (depth, parent)\n        if len(info) == 2:\n            break\n        if node.left: queue.append((node.left, node, depth+1))\n        if node.right: queue.append((node.right, node, depth+1))\n    if x not in info or y not in info: return False\n    dx, px = info[x]\n    dy, py = info[y]\n    return dx == dy and px != py",
    "notes": {},
    "tests": "assert isCousins(build_tree([1,2,3,4]), 4, 3) == False\nassert isCousins(build_tree([1,2,3,None,4,None,5]), 5, 4) == True\nassert isCousins(build_tree([1,2,3,None,4]), 2, 3) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=993"
   },
   {
    "id": "08-13-maximum-level-sum-of-a-binary-tree",
@@ -216,7 +261,8 @@
    "solution": "def maxLevelSum(root):\n    if not root: return 0\n    queue = deque([root])\n    max_sum = float('-inf')\n    best_level = 1\n    level = 1\n    while queue:\n        level_sum = 0\n        for _ in range(len(queue)):\n            node = queue.popleft()\n            level_sum += node.val\n            if node.left: queue.append(node.left)\n            if node.right: queue.append(node.right)\n        if level_sum > max_sum:\n            max_sum = level_sum\n            best_level = level\n        level += 1\n    return best_level",
    "notes": {},
    "tests": "assert maxLevelSum(build_tree([1,7,0,7,-8,None,None])) == 2\nassert maxLevelSum(build_tree([989,None,10250,98693,-89388,None,None,None,-32127])) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1161"
   },
   {
    "id": "08-14-deepest-leaves-sum",
@@ -232,7 +278,8 @@
    "solution": "def deepestLeavesSum(root):\n    if not root: return 0\n    queue = deque([root])\n    level_sum = 0\n    while queue:\n        level_sum = 0\n        for _ in range(len(queue)):\n            node = queue.popleft()\n            level_sum += node.val\n            if node.left: queue.append(node.left)\n            if node.right: queue.append(node.right)\n    return level_sum",
    "notes": {},
    "tests": "assert deepestLeavesSum(build_tree([1,2,3,4,5,None,6,7,None,None,None,None,8])) == 15\nassert deepestLeavesSum(build_tree([6,7,8,2,7,1,3,9,None,1,4,None,None,None,5])) == 19\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1302"
   },
   {
    "id": "08-15-n-ary-tree-level-order-traversal",
@@ -250,7 +297,8 @@
     "20": "Build: 1 -> [3,2,4], 3 -> [5,6]"
    },
    "tests": "assert naryLevelOrder(root) == [[1],[3,2,4],[5,6]]\nassert naryLevelOrder(None) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=429"
   },
   {
    "id": "08-16-binary-tree-right-side-view-using-bfs",
@@ -266,7 +314,8 @@
    "solution": "def rightSideView(root):\n    if not root: return []\n    result = []\n    queue = deque([root])\n    while queue:\n        right_val = None\n        for _ in range(len(queue)):\n            node = queue.popleft()\n            right_val = node.val\n            if node.left: queue.append(node.left)\n            if node.right: queue.append(node.right)\n        result.append(right_val)\n    return result",
    "notes": {},
    "tests": "assert rightSideView(build_tree([1,2,3,None,5,None,4])) == [1,3,4]\nassert rightSideView(build_tree([1,None,3])) == [1,3]\nassert rightSideView(None) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=199"
   },
   {
    "id": "08-17-sum-of-left-leaves-using-bfs",
@@ -282,7 +331,8 @@
    "solution": "def sumOfLeftLeaves(root):\n    if not root: return 0\n    total = 0\n    queue = deque([(root, False)])\n    while queue:\n        node, is_left = queue.popleft()\n        if not node.left and not node.right and is_left:\n            total += node.val\n        if node.left: queue.append((node.left, True))\n        if node.right: queue.append((node.right, False))\n    return total",
    "notes": {},
    "tests": "assert sumOfLeftLeaves(build_tree([3,9,20,None,None,15,7])) == 24\nassert sumOfLeftLeaves(build_tree([1])) == 0\nassert sumOfLeftLeaves(build_tree([1,2,3,4,5])) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=404"
   },
   {
    "id": "08-18-path-sum-using-bfs-with-state",
@@ -298,7 +348,8 @@
    "solution": "def hasPathSum(root, targetSum):\n    if not root: return False\n    queue = deque([(root, targetSum - root.val)])\n    while queue:\n        node, remaining = queue.popleft()\n        if not node.left and not node.right and remaining == 0:\n            return True\n        if node.left: queue.append((node.left, remaining - node.left.val))\n        if node.right: queue.append((node.right, remaining - node.right.val))\n    return False",
    "notes": {},
    "tests": "assert hasPathSum(build_tree([5,4,8,11,None,13,4,7,2,None,None,None,1]), 22) == True\nassert hasPathSum(build_tree([1,2,3]), 5) == False\nassert hasPathSum(None, 0) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=112"
   },
   {
    "id": "08-19-count-nodes-equal-to-average-of-subtree",
@@ -314,7 +365,8 @@
    "solution": "def averageOfSubtree(root):\n    count = [0]\n    def dfs(node):\n        if not node: return (0, 0)\n        ls, lc = dfs(node.left)\n        rs, rc = dfs(node.right)\n        total_sum = ls + rs + node.val\n        total_count = lc + rc + 1\n        if node.val == total_sum // total_count:\n            count[0] += 1\n        return (total_sum, total_count)\n    dfs(root)\n    return count[0]",
    "notes": {},
    "tests": "assert averageOfSubtree(build_tree([4,8,5,0,1,None,6])) == 5\nassert averageOfSubtree(build_tree([1])) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2265"
   },
   {
    "id": "08-20-invert-binary-tree-using-bfs",
@@ -330,7 +382,8 @@
    "solution": "def invertTree(root):\n    if not root: return None\n    queue = deque([root])\n    while queue:\n        node = queue.popleft()\n        node.left, node.right = node.right, node.left\n        if node.left: queue.append(node.left)\n        if node.right: queue.append(node.right)\n    return root\n\ndef tree_to_list(root):\n    if not root: return []\n    result, q = [], deque([root])\n    while q:\n        node = q.popleft()\n        if node:\n            result.append(node.val)\n            q.append(node.left)\n            q.append(node.right)\n        else:\n            result.append(None)\n    while result and result[-1] is None:\n        result.pop()\n    return result",
    "notes": {},
    "tests": "assert tree_to_list(invertTree(build_tree([4,2,7,1,3,6,9]))) == [4,7,2,9,6,3,1]\nassert tree_to_list(invertTree(build_tree([2,1,3]))) == [2,3,1]\nassert invertTree(None) is None\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=226"
   },
   {
    "id": "08-21-populating-next-right-pointers-in-each-node",
@@ -348,7 +401,8 @@
     "18": "Build perfect tree: 1, 2, 3, 4, 5, 6, 7"
    },
    "tests": "assert r.next is None\nassert r.left.next == r.right\nassert r.left.left.next == r.left.right\nassert r.left.right.next == r.right.left\nassert r.right.left.next == r.right.right\nassert r.right.right.next is None\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=116"
   },
   {
    "id": "08-22-populating-next-right-pointers-in-each-node-ii",
@@ -366,7 +420,8 @@
     "18": "Build: 1, 2, 3, 4, 5, None, 7"
    },
    "tests": "assert r.left.next == r.right\nassert r.left.left.next == r.left.right\nassert r.left.right.next == r.right.right\nassert r.right.right.next is None\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=117"
   },
   {
    "id": "08-23-maximum-width-of-binary-tree",
@@ -384,7 +439,8 @@
     "9": "normalize to prevent overflow"
    },
    "tests": "assert widthOfBinaryTree(build_tree([1,3,2,5,3,None,9])) == 4\nassert widthOfBinaryTree(build_tree([1,3,2,5,None,None,9,6,None,7])) == 7\nassert widthOfBinaryTree(build_tree([1,3,2,5])) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=662"
   },
   {
    "id": "08-24-rotting-oranges",
@@ -400,7 +456,8 @@
    "solution": "def orangesRotting(grid):\n    rows, cols = len(grid), len(grid[0])\n    fresh = 0\n    queue = deque()\n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == 2: queue.append((r, c, 0))\n            elif grid[r][c] == 1: fresh += 1\n    if fresh == 0: return 0\n    dirs = [(0,1),(0,-1),(1,0),(-1,0)]\n    time = 0\n    while queue:\n        r, c, t = queue.popleft()\n        for dr, dc in dirs:\n            nr, nc = r+dr, c+dc\n            if 0<=nr<rows and 0<=nc<cols and grid[nr][nc]==1:\n                grid[nr][nc] = 2\n                fresh -= 1\n                time = t + 1\n                queue.append((nr, nc, t+1))\n    return time if fresh == 0 else -1",
    "notes": {},
    "tests": "assert orangesRotting([[2,1,1],[1,1,0],[0,1,1]]) == 4\nassert orangesRotting([[2,1,1],[0,1,1],[1,0,1]]) == -1\nassert orangesRotting([[0,2]]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=994"
   },
   {
    "id": "08-25-01-matrix-shortest-distance-to-0",
@@ -416,7 +473,8 @@
    "solution": "def updateMatrix(mat):\n    rows, cols = len(mat), len(mat[0])\n    dist = [[float('inf')] * cols for _ in range(rows)]\n    queue = deque()\n    for r in range(rows):\n        for c in range(cols):\n            if mat[r][c] == 0:\n                dist[r][c] = 0\n                queue.append((r, c))\n    dirs = [(0,1),(0,-1),(1,0),(-1,0)]\n    while queue:\n        r, c = queue.popleft()\n        for dr, dc in dirs:\n            nr, nc = r+dr, c+dc\n            if 0<=nr<rows and 0<=nc<cols and dist[nr][nc] > dist[r][c] + 1:\n                dist[nr][nc] = dist[r][c] + 1\n                queue.append((nr, nc))\n    return dist",
    "notes": {},
    "tests": "assert updateMatrix([[0,0,0],[0,1,0],[0,0,0]]) == [[0,0,0],[0,1,0],[0,0,0]]\nassert updateMatrix([[0,0,0],[0,1,0],[1,1,1]]) == [[0,0,0],[0,1,0],[1,2,1]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=542"
   },
   {
    "id": "08-26-nearest-exit-from-entrance-in-maze",
@@ -432,7 +490,8 @@
    "solution": "def nearestExit(maze, entrance):\n    rows, cols = len(maze), len(maze[0])\n    er, ec = entrance\n    queue = deque([(er, ec, 0)])\n    maze[er][ec] = '+'\n    dirs = [(0,1),(0,-1),(1,0),(-1,0)]\n    while queue:\n        r, c, steps = queue.popleft()\n        for dr, dc in dirs:\n            nr, nc = r+dr, c+dc\n            if 0<=nr<rows and 0<=nc<cols and maze[nr][nc]=='.':\n                if nr==0 or nr==rows-1 or nc==0 or nc==cols-1:\n                    return steps + 1\n                maze[nr][nc] = '+'\n                queue.append((nr, nc, steps+1))\n    return -1",
    "notes": {},
    "tests": "assert nearestExit([['+','+','.','+'],['.','.','.','+'],['+','+','+','.']], [1,2]) == 1\nassert nearestExit([['+','+','+'],['.','.','.'],['+'[0],'+','+']],[1,0]) == 2\nassert nearestExit([['.','+']], [0,0]) == -1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1926"
   },
   {
    "id": "08-27-word-ladder",
@@ -448,7 +507,8 @@
    "solution": "def ladderLength(beginWord, endWord, wordList):\n    word_set = set(wordList)\n    if endWord not in word_set: return 0\n    queue = deque([(beginWord, 1)])\n    visited = {beginWord}\n    while queue:\n        word, length = queue.popleft()\n        for i in range(len(word)):\n            for c in 'abcdefghijklmnopqrstuvwxyz':\n                new_word = word[:i] + c + word[i+1:]\n                if new_word == endWord: return length + 1\n                if new_word in word_set and new_word not in visited:\n                    visited.add(new_word)\n                    queue.append((new_word, length + 1))\n    return 0",
    "notes": {},
    "tests": "assert ladderLength(\"hit\", \"cog\", [\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]) == 5\nassert ladderLength(\"hit\", \"cog\", [\"hot\",\"dot\",\"dog\",\"lot\",\"log\"]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=127"
   },
   {
    "id": "08-28-minimum-genetic-mutation",
@@ -464,7 +524,8 @@
    "solution": "def minMutation(startGene, endGene, bank):\n    bank_set = set(bank)\n    if endGene not in bank_set: return -1\n    queue = deque([(startGene, 0)])\n    visited = {startGene}\n    while queue:\n        gene, mutations = queue.popleft()\n        if gene == endGene: return mutations\n        for i in range(len(gene)):\n            for c in 'ACGT':\n                new_gene = gene[:i] + c + gene[i+1:]\n                if new_gene in bank_set and new_gene not in visited:\n                    visited.add(new_gene)\n                    queue.append((new_gene, mutations + 1))\n    return -1",
    "notes": {},
    "tests": "assert minMutation(\"AACCGGTT\", \"AACCGGTA\", [\"AACCGGTA\"]) == 1\nassert minMutation(\"AACCGGTT\", \"AAACGGTA\", [\"AACCGGTA\",\"AACCGCTA\",\"AAACGGTA\"]) == 2\nassert minMutation(\"AAAAACCC\", \"AACCCCCC\", [\"AAAACCCC\",\"AAACCCCC\",\"AACCCCCC\"]) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=433"
   },
   {
    "id": "08-29-jump-game-iii",
@@ -480,7 +541,8 @@
    "solution": "def canReach(arr, start):\n    n = len(arr)\n    queue = deque([start])\n    visited = {start}\n    while queue:\n        idx = queue.popleft()\n        if arr[idx] == 0: return True\n        for nxt in [idx + arr[idx], idx - arr[idx]]:\n            if 0 <= nxt < n and nxt not in visited:\n                visited.add(nxt)\n                queue.append(nxt)\n    return False",
    "notes": {},
    "tests": "assert canReach([4,2,3,0,3,1,2], 5) == True\nassert canReach([4,2,3,0,3,1,2], 0) == True\nassert canReach([3,0,2,1,2], 2) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1306"
   },
   {
    "id": "08-30-time-needed-to-inform-all-employees",
@@ -496,7 +558,8 @@
    "solution": "from collections import defaultdict\n\ndef numOfMinutes(n, headID, manager, informTime):\n    subordinates = defaultdict(list)\n    for emp, mgr in enumerate(manager):\n        if mgr != -1:\n            subordinates[mgr].append(emp)\n    queue = deque([(headID, 0)])\n    max_time = 0\n    while queue:\n        emp, t = queue.popleft()\n        max_time = max(max_time, t)\n        for sub in subordinates[emp]:\n            queue.append((sub, t + informTime[emp]))\n    return max_time",
    "notes": {},
    "tests": "assert numOfMinutes(1, 0, [-1], [0]) == 0\nassert numOfMinutes(6, 2, [2,2,-1,2,2,2], [0,0,1,0,0,0]) == 1\nassert numOfMinutes(7, 6, [1,2,3,4,5,6,-1], [0,6,5,4,3,2,1]) == 21\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1376"
   },
   {
    "id": "08-31-course-schedule-kahn-s-bfs-topological-sort",
@@ -512,7 +575,8 @@
    "solution": "def canFinish(numCourses, prerequisites):\n    graph = defaultdict(list)\n    in_degree = [0] * numCourses\n    for a, b in prerequisites:\n        graph[b].append(a)\n        in_degree[a] += 1\n    queue = deque(i for i in range(numCourses) if in_degree[i] == 0)\n    processed = 0\n    while queue:\n        node = queue.popleft()\n        processed += 1\n        for neighbor in graph[node]:\n            in_degree[neighbor] -= 1\n            if in_degree[neighbor] == 0:\n                queue.append(neighbor)\n    return processed == numCourses",
    "notes": {},
    "tests": "assert canFinish(2, [[1,0]]) == True\nassert canFinish(2, [[1,0],[0,1]]) == False\nassert canFinish(5, [[1,4],[2,4],[3,1],[3,2]]) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=207"
   },
   {
    "id": "08-32-all-nodes-distance-k-in-binary-tree",
@@ -531,7 +595,8 @@
     "12": "BFS from target"
    },
    "tests": "assert distanceK(tree, 5, 2) == [1, 4, 7]\nassert distanceK(build_tree([1]), 1, 3) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=863"
   },
   {
    "id": "08-33-maximum-difference-between-node-and-ancestor-using-bfs",
@@ -547,7 +612,8 @@
    "solution": "def maxAncestorDiff(root):\n    if not root: return 0\n    queue = deque([(root, root.val, root.val)])\n    result = 0\n    while queue:\n        node, path_min, path_max = queue.popleft()\n        result = max(result, path_max - path_min)\n        if node.left:\n            nmin = min(path_min, node.left.val)\n            nmax = max(path_max, node.left.val)\n            queue.append((node.left, nmin, nmax))\n        if node.right:\n            nmin = min(path_min, node.right.val)\n            nmax = max(path_max, node.right.val)\n            queue.append((node.right, nmin, nmax))\n    return result",
    "notes": {},
    "tests": "assert maxAncestorDiff(build_tree([8,3,10,1,6,None,14,None,None,4,7,13])) == 7\nassert maxAncestorDiff(build_tree([1,None,2,None,0,3])) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1026"
   },
   {
    "id": "08-34-step-by-step-directions-from-a-binary-tree-node-to-ano",
@@ -565,7 +631,8 @@
     "16": "Remove common prefix (LCA path)"
    },
    "tests": "assert getDirections(build_tree([5,1,2,3,None,6,4]), 3, 6) == \"UURL\"\nassert getDirections(build_tree([2,1]), 2, 1) == \"L\"\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2096"
   },
   {
    "id": "08-35-minimum-time-to-collect-all-apples-in-a-tree",
@@ -581,7 +648,8 @@
    "solution": "def minTime(n, edges, hasApple):\n    graph = defaultdict(list)\n    for u, v in edges:\n        graph[u].append(v)\n        graph[v].append(u)\n    \n    def dfs(node, parent):\n        total = 0\n        for child in graph[node]:\n            if child == parent: continue\n            child_time = dfs(child, node)\n            if child_time > 0 or hasApple[child]:\n                total += child_time + 2\n        return total\n    \n    return dfs(0, -1)",
    "notes": {},
    "tests": "assert minTime(7, [[0,1],[0,2],[1,4],[1,5],[2,3],[2,6]], [False,False,True,False,True,True,False]) == 8\nassert minTime(7, [[0,1],[0,2],[1,4],[1,5],[2,3],[2,6]], [False,False,True,False,False,True,False]) == 6\nassert minTime(7, [[0,1],[0,2],[1,4],[1,5],[2,3],[2,6]], [False,False,False,False,False,False,False]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1443"
   },
   {
    "id": "08-36-word-ladder-ii",
@@ -600,7 +668,8 @@
     "21": "DFS to reconstruct paths"
    },
    "tests": "assert sorted(res) == sorted(expected)\nassert findLadders(\"hit\", \"cog\", [\"hot\",\"dot\",\"dog\",\"lot\",\"log\"]) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=126"
   },
   {
    "id": "08-37-shortest-path-in-a-grid-with-obstacles-elimination",
@@ -618,7 +687,8 @@
     "3": "(r, c, remaining_k, steps)"
    },
    "tests": "assert shortestPath([[0,0,0],[1,1,0],[0,0,0],[0,1,1],[0,0,0]], 1) == 6\nassert shortestPath([[0,1,1],[1,1,1],[1,0,0]], 1) == -1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1293"
   },
   {
    "id": "08-38-bus-routes",
@@ -634,7 +704,8 @@
    "solution": "def numBusesToDestination(routes, source, target):\n    if source == target: return 0\n    stop_to_routes = defaultdict(set)\n    for i, route in enumerate(routes):\n        for stop in route:\n            stop_to_routes[stop].add(i)\n    visited_stops = {source}\n    visited_routes = set()\n    queue = deque([source])\n    buses = 0\n    while queue:\n        buses += 1\n        for _ in range(len(queue)):\n            stop = queue.popleft()\n            for route_idx in stop_to_routes[stop]:\n                if route_idx in visited_routes: continue\n                visited_routes.add(route_idx)\n                for next_stop in routes[route_idx]:\n                    if next_stop == target: return buses\n                    if next_stop not in visited_stops:\n                        visited_stops.add(next_stop)\n                        queue.append(next_stop)\n    return -1",
    "notes": {},
    "tests": "assert numBusesToDestination([[1,2,7],[3,6,7]], 1, 6) == 2\nassert numBusesToDestination([[7,12],[4,5,15],[6],[15,19],[9,12,13]], 15, 12) == -1\nassert numBusesToDestination([[1,7],[3,5]], 5, 5) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=815"
   },
   {
    "id": "08-39-cut-off-trees-for-golf-event",
@@ -650,7 +721,8 @@
    "solution": "def cutOffTree(forest):\n    rows, cols = len(forest), len(forest[0])\n    trees = sorted((forest[r][c], r, c) for r in range(rows) for c in range(cols) if forest[r][c] > 1)\n    \n    def bfs(sr, sc, tr, tc):\n        if sr == tr and sc == tc: return 0\n        visited = {(sr, sc)}\n        queue = deque([(sr, sc, 0)])\n        dirs = [(0,1),(0,-1),(1,0),(-1,0)]\n        while queue:\n            r, c, steps = queue.popleft()\n            for dr, dc in dirs:\n                nr, nc = r+dr, c+dc\n                if 0<=nr<rows and 0<=nc<cols and forest[nr][nc]!=0 and (nr,nc) not in visited:\n                    if nr==tr and nc==tc: return steps+1\n                    visited.add((nr,nc))\n                    queue.append((nr,nc,steps+1))\n        return -1\n    \n    total = 0\n    sr, sc = 0, 0\n    for _, tr, tc in trees:\n        d = bfs(sr, sc, tr, tc)\n        if d == -1: return -1\n        total += d\n        sr, sc = tr, tc\n    return total",
    "notes": {},
    "tests": "assert cutOffTree([[1,2,3],[0,0,4],[7,6,5]]) == 6\nassert cutOffTree([[2,3,4],[0,0,5],[8,7,6]]) == 6\nassert cutOffTree([[1,2,3],[0,0,0],[7,6,5]]) == -1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=675"
   },
   {
    "id": "08-40-minimum-number-of-flips-to-convert-binary-matrix-to-ze",
@@ -666,7 +738,8 @@
    "solution": "def minFlips(mat):\n    rows, cols = len(mat), len(mat[0])\n    start = 0\n    for r in range(rows):\n        for c in range(cols):\n            if mat[r][c]: start |= (1 << (r * cols + c))\n    if start == 0: return 0\n    dirs = [(0,0),(0,1),(0,-1),(1,0),(-1,0)]\n    queue = deque([(start, 0)])\n    visited = {start}\n    while queue:\n        state, flips = queue.popleft()\n        for r in range(rows):\n            for c in range(cols):\n                new_state = state\n                for dr, dc in dirs:\n                    nr, nc = r+dr, c+dc\n                    if 0<=nr<rows and 0<=nc<cols:\n                        new_state ^= (1 << (nr * cols + nc))\n                if new_state == 0: return flips + 1\n                if new_state not in visited:\n                    visited.add(new_state)\n                    queue.append((new_state, flips + 1))\n    return -1",
    "notes": {},
    "tests": "assert minFlips([[0,0],[0,1]]) == 3\nassert minFlips([[0]]) == 0\nassert minFlips([[1,0,0],[1,0,0]]) == -1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1284"
   },
   {
    "id": "08-41-swim-in-rising-water",
@@ -684,7 +757,8 @@
     "5": "Dijkstra: minimize maximum elevation along path"
    },
    "tests": "assert swimInWater([[0,2],[1,3]]) == 3\nassert swimInWater([[0,1,2,3,4],[24,23,22,21,5],[12,13,14,15,16],[11,17,18,19,20],[10,9,8,7,6]]) == 16\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=778"
   },
   {
    "id": "08-42-minimum-cost-to-make-at-least-one-valid-path-in-a-grid",
@@ -703,7 +777,8 @@
     "5": "(cost, r, c)"
    },
    "tests": "assert minCost([[1,1,1,1],[2,2,2,2],[1,1,1,1],[2,2,2,2]]) == 3\nassert minCost([[1,1,3],[3,2,2],[1,1,4],[4,2,3]]) == 1\nassert minCost([[1,2],[4,3]]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1368"
   },
   {
    "id": "08-43-escape-the-spreading-fire",
@@ -719,7 +794,8 @@
    "solution": "def maximumMinutes(grid):\n    rows, cols = len(grid), len(grid[0])\n    dirs = [(0,1),(0,-1),(1,0),(-1,0)]\n    \n    def bfs_fire(t):\n        fire_time = [[float('inf')] * cols for _ in range(rows)]\n        queue = deque()\n        for r in range(rows):\n            for c in range(cols):\n                if grid[r][c] == 1:\n                    fire_time[r][c] = 0\n                    queue.append((r, c, 0))\n        while queue:\n            r, c, ft = queue.popleft()\n            for dr, dc in dirs:\n                nr, nc = r+dr, c+dc\n                if 0<=nr<rows and 0<=nc<cols and grid[nr][nc]!=2 and fire_time[nr][nc]==float('inf'):\n                    fire_time[nr][nc] = ft + 1\n                    queue.append((nr, nc, ft+1))\n        return fire_time\n    \n    def can_escape(wait):\n        fire_time = bfs_fire(wait)\n        if fire_time[0][0] <= wait: return False\n        dist = [[float('inf')] * cols for _ in range(rows)]\n        dist[0][0] = wait\n        queue = deque([(0, 0, wait)])\n        while queue:\n            r, c, t = queue.popleft()\n            for dr, dc in dirs:\n                nr, nc = r+dr, c+dc\n                if 0<=nr<rows and 0<=nc<cols and grid[nr][nc]!=2 and dist[nr][nc]==float('inf'):\n                    arrive = t + 1\n                    if nr==rows-1 and nc==cols-1:\n                        if arrive <= fire_time[nr][nc]: return True\n                    elif arrive < fire_time[nr][nc]:\n                        dist[nr][nc] = arrive\n                        queue.append((nr, nc, arrive))\n        return False\n    \n    lo, hi = 0, rows * cols\n    if not can_escape(0): return -1\n    if can_escape(hi): return 10**9\n    while lo < hi:\n        mid = (lo + hi + 1) // 2\n        if can_escape(mid): lo = mid\n        else: hi = mid - 1\n    return lo",
    "notes": {},
    "tests": "assert maximumMinutes([[0,2,0,0,0,0,0],[0,0,0,2,2,1,0],[0,2,0,0,1,2,0],[0,0,2,2,2,0,2],[0,0,0,0,0,0,0]]) == 3\nassert maximumMinutes([[0,0,0,0],[0,1,2,0],[0,2,0,0]]) == -1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2258"
   },
   {
    "id": "08-44-zuma-game-simplified",
@@ -735,7 +811,8 @@
    "solution": "from functools import lru_cache\n\ndef findMinStep(board, hand):\n    def remove_consecutive(s):\n        changed = True\n        while changed:\n            changed = False\n            i = 0\n            new_s = []\n            while i < len(s):\n                j = i\n                while j < len(s) and s[j] == s[i]: j += 1\n                if j - i >= 3: changed = True\n                else: new_s.append(s[i:j])\n                i = j\n            s = ''.join(new_s)\n        return s\n    \n    hand_count = {}\n    for c in hand: hand_count[c] = hand_count.get(c, 0) + 1\n    \n    @lru_cache(maxsize=None)\n    def dfs(board, hand_tuple):\n        board = remove_consecutive(board)\n        if not board: return 0\n        hand = dict(hand_tuple)\n        res = float('inf')\n        i = 0\n        while i < len(board):\n            j = i\n            while j < len(board) and board[j] == board[i]: j += 1\n            need = 3 - (j - i)\n            c = board[i]\n            if hand.get(c, 0) >= need:\n                new_hand = dict(hand)\n                new_hand[c] -= need\n                sub = dfs(board[:i] + board[j:], tuple(sorted(new_hand.items())))\n                if sub != float('inf'):\n                    res = min(res, need + sub)\n            i = j\n        return res\n    \n    ans = dfs(board, tuple(sorted(hand_count.items())))\n    return ans if ans != float('inf') else -1",
    "notes": {},
    "tests": "assert findMinStep(\"WRRBBW\", \"RB\") == -1\nassert findMinStep(\"WWRRBBWW\", \"WRBRW\") == 2\nassert findMinStep(\"G\", \"GGGGG\") == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=488"
   },
   {
    "id": "08-45-serialize-and-deserialize-binary-tree-using-bfs",
@@ -751,7 +828,8 @@
    "solution": "class Codec:\n    def serialize(self, root):\n        if not root: return '[]'\n        result = []\n        queue = deque([root])\n        while queue:\n            node = queue.popleft()\n            if node:\n                result.append(str(node.val))\n                queue.append(node.left)\n                queue.append(node.right)\n            else:\n                result.append('null')\n        while result and result[-1] == 'null':\n            result.pop()\n        return '[' + ','.join(result) + ']'\n    \n    def deserialize(self, data):\n        if data == '[]': return None\n        vals = data[1:-1].split(',')\n        root = TreeNode(int(vals[0]))\n        queue = deque([root])\n        i = 1\n        while queue and i < len(vals):\n            node = queue.popleft()\n            if i < len(vals) and vals[i] != 'null':\n                node.left = TreeNode(int(vals[i]))\n                queue.append(node.left)\n            i += 1\n            if i < len(vals) and vals[i] != 'null':\n                node.right = TreeNode(int(vals[i]))\n                queue.append(node.right)\n            i += 1\n        return root\n\ncodec = Codec()\ntree = build_tree([1,2,3,None,None,4,5])",
    "notes": {},
    "tests": "assert codec.serialize(codec.deserialize(codec.serialize(tree))) == codec.serialize(tree)\nassert codec.serialize(None) == '[]'\nassert codec.deserialize('[]') is None\nresult_tree = codec.deserialize('[1,2,3,null,null,4,5]')\nassert codec.serialize(result_tree) == '[1,2,3,null,null,4,5]'\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=297"
   },
   {
    "id": "08-46-count-total-nodes-in-binary-tree-using-bfs",
@@ -767,7 +845,8 @@
    "solution": "from collections import deque\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef build_tree(values):\n    if not values or values[0] is None: return None\n    root = TreeNode(values[0])\n    q = deque([root]); i = 1\n    while q and i < len(values):\n        node = q.popleft()\n        if i < len(values) and values[i] is not None:\n            node.left = TreeNode(values[i]); q.append(node.left)\n        i += 1\n        if i < len(values) and values[i] is not None:\n            node.right = TreeNode(values[i]); q.append(node.right)\n        i += 1\n    return root\n\ndef countNodes(root):\n    if not root: return 0\n    count = 0\n    queue = deque([root])\n    while queue:\n        node = queue.popleft()\n        count += 1\n        if node.left: queue.append(node.left)\n        if node.right: queue.append(node.right)\n    return count",
    "notes": {},
    "tests": "assert countNodes(build_tree([1,2,3,4,5,6])) == 6\nassert countNodes(build_tree([1])) == 1\nassert countNodes(None) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=222"
   },
   {
    "id": "08-47-sum-all-node-values-using-bfs",
@@ -783,7 +862,8 @@
    "solution": "from collections import deque\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef build_tree(values):\n    if not values or values[0] is None: return None\n    root = TreeNode(values[0])\n    q = deque([root]); i = 1\n    while q and i < len(values):\n        node = q.popleft()\n        if i < len(values) and values[i] is not None:\n            node.left = TreeNode(values[i]); q.append(node.left)\n        i += 1\n        if i < len(values) and values[i] is not None:\n            node.right = TreeNode(values[i]); q.append(node.right)\n        i += 1\n    return root\n\ndef sumNodes(root):\n    if not root: return 0\n    total = 0\n    queue = deque([root])\n    while queue:\n        node = queue.popleft()\n        total += node.val\n        if node.left: queue.append(node.left)\n        if node.right: queue.append(node.right)\n    return total",
    "notes": {},
    "tests": "assert sumNodes(build_tree([1,2,3,4,5])) == 15\nassert sumNodes(build_tree([10,5,3])) == 18\nassert sumNodes(None) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "08-48-find-minimum-value-in-binary-tree-using-bfs",
@@ -799,7 +879,8 @@
    "solution": "from collections import deque\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef build_tree(values):\n    if not values or values[0] is None: return None\n    root = TreeNode(values[0])\n    q = deque([root]); i = 1\n    while q and i < len(values):\n        node = q.popleft()\n        if i < len(values) and values[i] is not None:\n            node.left = TreeNode(values[i]); q.append(node.left)\n        i += 1\n        if i < len(values) and values[i] is not None:\n            node.right = TreeNode(values[i]); q.append(node.right)\n        i += 1\n    return root\n\ndef findMin(root):\n    if not root: return float('inf')\n    min_val = float('inf')\n    queue = deque([root])\n    while queue:\n        node = queue.popleft()\n        min_val = min(min_val, node.val)\n        if node.left: queue.append(node.left)\n        if node.right: queue.append(node.right)\n    return min_val",
    "notes": {},
    "tests": "assert findMin(build_tree([3,1,5,0,2,4,6])) == 0\nassert findMin(build_tree([5,3,8,1,4])) == 1\nassert findMin(build_tree([7])) == 7\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "08-49-find-maximum-value-in-binary-tree-using-bfs",
@@ -815,7 +896,8 @@
    "solution": "from collections import deque\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef build_tree(values):\n    if not values or values[0] is None: return None\n    root = TreeNode(values[0])\n    q = deque([root]); i = 1\n    while q and i < len(values):\n        node = q.popleft()\n        if i < len(values) and values[i] is not None:\n            node.left = TreeNode(values[i]); q.append(node.left)\n        i += 1\n        if i < len(values) and values[i] is not None:\n            node.right = TreeNode(values[i]); q.append(node.right)\n        i += 1\n    return root\n\ndef findMax(root):\n    if not root: return float('-inf')\n    max_val = float('-inf')\n    queue = deque([root])\n    while queue:\n        node = queue.popleft()\n        max_val = max(max_val, node.val)\n        if node.left: queue.append(node.left)\n        if node.right: queue.append(node.right)\n    return max_val",
    "notes": {},
    "tests": "assert findMax(build_tree([3,1,5,0,2,4,6])) == 6\nassert findMax(build_tree([5,3,8,1,4])) == 8\nassert findMax(build_tree([7])) == 7\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "08-50-level-at-which-node-with-given-value-exists",
@@ -831,7 +913,8 @@
    "solution": "from collections import deque\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef build_tree(values):\n    if not values or values[0] is None: return None\n    root = TreeNode(values[0])\n    q = deque([root]); i = 1\n    while q and i < len(values):\n        node = q.popleft()\n        if i < len(values) and values[i] is not None:\n            node.left = TreeNode(values[i]); q.append(node.left)\n        i += 1\n        if i < len(values) and values[i] is not None:\n            node.right = TreeNode(values[i]); q.append(node.right)\n        i += 1\n    return root\n\ndef findLevel(root, target):\n    if not root: return -1\n    queue = deque([root])\n    level = 1\n    while queue:\n        for _ in range(len(queue)):\n            node = queue.popleft()\n            if node.val == target: return level\n            if node.left: queue.append(node.left)\n            if node.right: queue.append(node.right)\n        level += 1\n    return -1",
    "notes": {},
    "tests": "assert findLevel(build_tree([3,9,20,None,None,15,7]), 15) == 3\nassert findLevel(build_tree([3,9,20,None,None,15,7]), 3) == 1\nassert findLevel(build_tree([3,9,20,None,None,15,7]), 99) == -1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "08-51-count-leaves-using-bfs",
@@ -847,7 +930,8 @@
    "solution": "from collections import deque\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef build_tree(values):\n    if not values or values[0] is None: return None\n    root = TreeNode(values[0])\n    q = deque([root]); i = 1\n    while q and i < len(values):\n        node = q.popleft()\n        if i < len(values) and values[i] is not None:\n            node.left = TreeNode(values[i]); q.append(node.left)\n        i += 1\n        if i < len(values) and values[i] is not None:\n            node.right = TreeNode(values[i]); q.append(node.right)\n        i += 1\n    return root\n\ndef countLeaves(root):\n    if not root: return 0\n    count = 0\n    queue = deque([root])\n    while queue:\n        node = queue.popleft()\n        if not node.left and not node.right:\n            count += 1\n        if node.left: queue.append(node.left)\n        if node.right: queue.append(node.right)\n    return count",
    "notes": {},
    "tests": "assert countLeaves(build_tree([3,9,20,None,None,15,7])) == 3\nassert countLeaves(build_tree([1])) == 1\nassert countLeaves(build_tree([1,2,3,4,5])) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "08-52-find-all-nodes-at-level-k-from-root-using-bfs",
@@ -863,7 +947,8 @@
    "solution": "from collections import deque\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef build_tree(values):\n    if not values or values[0] is None: return None\n    root = TreeNode(values[0])\n    q = deque([root]); i = 1\n    while q and i < len(values):\n        node = q.popleft()\n        if i < len(values) and values[i] is not None:\n            node.left = TreeNode(values[i]); q.append(node.left)\n        i += 1\n        if i < len(values) and values[i] is not None:\n            node.right = TreeNode(values[i]); q.append(node.right)\n        i += 1\n    return root\n\ndef nodesAtLevelK(root, k):\n    if not root: return []\n    queue = deque([root])\n    depth = 0\n    while queue:\n        level_size = len(queue)\n        if depth == k:\n            return [queue[i].val for i in range(level_size)]\n        for _ in range(level_size):\n            node = queue.popleft()\n            if node.left: queue.append(node.left)\n            if node.right: queue.append(node.right)\n        depth += 1\n    return []",
    "notes": {},
    "tests": "assert nodesAtLevelK(build_tree([3,9,20,None,None,15,7]), 2) == [15, 7]\nassert nodesAtLevelK(build_tree([3,9,20,None,None,15,7]), 0) == [3]\nassert nodesAtLevelK(build_tree([3,9,20,None,None,15,7]), 5) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "08-53-check-if-binary-tree-is-perfect-using-bfs",
@@ -879,7 +964,8 @@
    "solution": "from collections import deque\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef build_tree(values):\n    if not values or values[0] is None: return None\n    root = TreeNode(values[0])\n    q = deque([root]); i = 1\n    while q and i < len(values):\n        node = q.popleft()\n        if i < len(values) and values[i] is not None:\n            node.left = TreeNode(values[i]); q.append(node.left)\n        i += 1\n        if i < len(values) and values[i] is not None:\n            node.right = TreeNode(values[i]); q.append(node.right)\n        i += 1\n    return root\n\ndef isPerfect(root):\n    if not root: return True\n    queue = deque([root])\n    leaf_level = None\n    level = 0\n    while queue:\n        size = len(queue)\n        for _ in range(size):\n            node = queue.popleft()\n            is_leaf = not node.left and not node.right\n            if is_leaf:\n                if leaf_level is None: leaf_level = level\n                elif leaf_level != level: return False\n            else:\n                if not node.left or not node.right: return False\n                if leaf_level is not None: return False\n                queue.append(node.left)\n                queue.append(node.right)\n        level += 1\n    return True",
    "notes": {},
    "tests": "assert isPerfect(build_tree([1,2,3,4,5,6,7])) == True\nassert isPerfect(build_tree([1,2,3])) == True\nassert isPerfect(build_tree([1,2,3,4,5])) == False\nassert isPerfect(build_tree([1])) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "08-54-print-level-order-in-spiral",
@@ -895,7 +981,8 @@
    "solution": "from collections import deque\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef build_tree(values):\n    if not values or values[0] is None: return None\n    root = TreeNode(values[0])\n    q = deque([root]); i = 1\n    while q and i < len(values):\n        node = q.popleft()\n        if i < len(values) and values[i] is not None:\n            node.left = TreeNode(values[i]); q.append(node.left)\n        i += 1\n        if i < len(values) and values[i] is not None:\n            node.right = TreeNode(values[i]); q.append(node.right)\n        i += 1\n    return root\n\ndef spiralOrder(root):\n    if not root: return []\n    result = []\n    queue = deque([root])\n    left_to_right = True\n    while queue:\n        level = []\n        for _ in range(len(queue)):\n            node = queue.popleft()\n            level.append(node.val)\n            if node.left: queue.append(node.left)\n            if node.right: queue.append(node.right)\n        result.append(level if left_to_right else level[::-1])\n        left_to_right = not left_to_right\n    return result",
    "notes": {},
    "tests": "assert spiralOrder(build_tree([3,9,20,None,None,15,7])) == [[3],[20,9],[15,7]]\nassert spiralOrder(build_tree([1])) == [[1]]\nassert spiralOrder(None) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=103"
   },
   {
    "id": "08-55-find-width-of-binary-tree-at-each-level",
@@ -911,7 +998,8 @@
    "solution": "from collections import deque\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef build_tree(values):\n    if not values or values[0] is None: return None\n    root = TreeNode(values[0])\n    q = deque([root]); i = 1\n    while q and i < len(values):\n        node = q.popleft()\n        if i < len(values) and values[i] is not None:\n            node.left = TreeNode(values[i]); q.append(node.left)\n        i += 1\n        if i < len(values) and values[i] is not None:\n            node.right = TreeNode(values[i]); q.append(node.right)\n        i += 1\n    return root\n\ndef widthPerLevel(root):\n    if not root: return []\n    widths = []\n    queue = deque([root])\n    while queue:\n        size = len(queue)\n        widths.append(size)\n        for _ in range(size):\n            node = queue.popleft()\n            if node.left: queue.append(node.left)\n            if node.right: queue.append(node.right)\n    return widths",
    "notes": {},
    "tests": "assert widthPerLevel(build_tree([3,9,20,None,None,15,7])) == [1,2,2]\nassert widthPerLevel(build_tree([1,2,3,4,5,6,7])) == [1,2,4]\nassert widthPerLevel(None) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "08-56-jump-game-ii-bfs-framing",
@@ -927,7 +1015,8 @@
    "solution": "def jump(nums):\n    if len(nums) <= 1: return 0\n    jumps = 0\n    current_end = 0\n    farthest = 0\n    for i in range(len(nums) - 1):\n        farthest = max(farthest, i + nums[i])\n        if i == current_end:\n            jumps += 1\n            current_end = farthest\n            if current_end >= len(nums) - 1:\n                break\n    return jumps",
    "notes": {},
    "tests": "assert jump([2,3,1,1,4]) == 2\nassert jump([2,3,0,1,4]) == 2\nassert jump([1]) == 0\nassert jump([1,2]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=45"
   },
   {
    "id": "08-57-snakes-and-ladders-bfs-on-board",
@@ -943,7 +1032,8 @@
    "solution": "from collections import deque\n\ndef snakesAndLadders(board):\n    n = len(board)\n    def num_to_rc(s):\n        s -= 1\n        row, col = divmod(s, n)\n        if row % 2 == 0:\n            return (n - 1 - row, col)\n        else:\n            return (n - 1 - row, n - 1 - col)\n    queue = deque([(1, 0)])\n    visited = {1}\n    while queue:\n        s, moves = queue.popleft()\n        for dice in range(1, 7):\n            ns = s + dice\n            if ns > n * n: break\n            r, c = num_to_rc(ns)\n            if board[r][c] != -1: ns = board[r][c]\n            if ns == n * n: return moves + 1\n            if ns not in visited:\n                visited.add(ns)\n                queue.append((ns, moves + 1))\n    return -1\n\nboard1 = [[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],\n          [-1,35,-1,-1,13,-1],[-1,-1,-1,-1,-1,-1],[-1,15,-1,-1,-1,-1]]",
    "notes": {},
    "tests": "assert snakesAndLadders(board1) == 4\nassert snakesAndLadders([[-1,-1],[-1,3]]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=909"
   },
   {
    "id": "08-58-open-the-lock-bfs-on-4-digit-combinations",
@@ -959,7 +1049,8 @@
    "solution": "from collections import deque\n\ndef openLock(deadends, target):\n    dead = set(deadends)\n    if '0000' in dead: return -1\n    if target == '0000': return 0\n    queue = deque([('0000', 0)])\n    visited = {'0000'}\n    while queue:\n        state, turns = queue.popleft()\n        for i in range(4):\n            d = int(state[i])\n            for delta in (1, -1):\n                nd = (d + delta) % 10\n                new_state = state[:i] + str(nd) + state[i+1:]\n                if new_state == target: return turns + 1\n                if new_state not in visited and new_state not in dead:\n                    visited.add(new_state)\n                    queue.append((new_state, turns + 1))\n    return -1",
    "notes": {},
    "tests": "assert openLock(['0201','0101','0102','1212','2002'], '0202') == 6\nassert openLock(['8888'], '0009') == 1\nassert openLock(['0000'], '8888') == -1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=752"
   },
   {
    "id": "08-59-is-graph-bipartite-bfs-coloring",
@@ -975,7 +1066,8 @@
    "solution": "from collections import deque\n\ndef isBipartite(graph):\n    color = [-1] * len(graph)\n    for start in range(len(graph)):\n        if color[start] != -1: continue\n        queue = deque([start])\n        color[start] = 0\n        while queue:\n            node = queue.popleft()\n            for nb in graph[node]:\n                if color[nb] == -1:\n                    color[nb] = 1 - color[node]\n                    queue.append(nb)\n                elif color[nb] == color[node]:\n                    return False\n    return True",
    "notes": {},
    "tests": "assert isBipartite([[1,3],[0,2],[1,3],[0,2]]) == True\nassert isBipartite([[1,2,3],[0,2],[0,1,3],[0,2]]) == False\nassert isBipartite([[],[3],[],[1],[]])  == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=785"
   },
   {
    "id": "08-60-flood-fill-bfs-version",
@@ -991,7 +1083,8 @@
    "solution": "from collections import deque\n\ndef floodFill(image, sr, sc, color):\n    orig = image[sr][sc]\n    if orig == color: return image\n    rows, cols = len(image), len(image[0])\n    queue = deque([(sr, sc)])\n    image[sr][sc] = color\n    while queue:\n        r, c = queue.popleft()\n        for dr, dc in [(0,1),(0,-1),(1,0),(-1,0)]:\n            nr, nc = r+dr, c+dc\n            if 0 <= nr < rows and 0 <= nc < cols and image[nr][nc] == orig:\n                image[nr][nc] = color\n                queue.append((nr, nc))\n    return image",
    "notes": {},
    "tests": "assert floodFill([[1,1,1],[1,1,0],[1,0,1]], 1, 1, 2) == [[2,2,2],[2,2,0],[2,0,1]]\nassert floodFill([[0,0,0],[0,0,0]], 0, 0, 0) == [[0,0,0],[0,0,0]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=733"
   },
   {
    "id": "08-61-number-of-islands-bfs-version",
@@ -1007,7 +1100,8 @@
    "solution": "from collections import deque\n\ndef numIslands(grid):\n    if not grid: return 0\n    rows, cols = len(grid), len(grid[0])\n    visited = set()\n    count = 0\n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == '1' and (r, c) not in visited:\n                count += 1\n                queue = deque([(r, c)])\n                visited.add((r, c))\n                while queue:\n                    cr, cc = queue.popleft()\n                    for dr, dc in [(0,1),(0,-1),(1,0),(-1,0)]:\n                        nr, nc = cr+dr, cc+dc\n                        if 0<=nr<rows and 0<=nc<cols and grid[nr][nc]=='1' and (nr,nc) not in visited:\n                            visited.add((nr, nc))\n                            queue.append((nr, nc))\n    return count\n\ng1 = [['1','1','1','1','0'],['1','1','0','1','0'],['1','1','0','0','0'],['0','0','0','0','0']]",
    "notes": {},
    "tests": "assert numIslands(g1) == 1\ng2 = [['1','1','0','0','0'],['1','1','0','0','0'],['0','0','1','0','0'],['0','0','0','1','1']]\nassert numIslands(g2) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=200"
   },
   {
    "id": "08-62-max-area-of-island-bfs-version",
@@ -1023,7 +1117,8 @@
    "solution": "from collections import deque\n\ndef maxAreaOfIsland(grid):\n    rows, cols = len(grid), len(grid[0])\n    visited = set()\n    max_area = 0\n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == 1 and (r, c) not in visited:\n                area = 0\n                queue = deque([(r, c)])\n                visited.add((r, c))\n                while queue:\n                    cr, cc = queue.popleft()\n                    area += 1\n                    for dr, dc in [(0,1),(0,-1),(1,0),(-1,0)]:\n                        nr, nc = cr+dr, cc+dc\n                        if 0<=nr<rows and 0<=nc<cols and grid[nr][nc]==1 and (nr,nc) not in visited:\n                            visited.add((nr, nc))\n                            queue.append((nr, nc))\n                max_area = max(max_area, area)\n    return max_area\n\ngrid1 = [[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],\n         [0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],\n         [0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],\n         [0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]]",
    "notes": {},
    "tests": "assert maxAreaOfIsland(grid1) == 6\nassert maxAreaOfIsland([[0,0,0,0,0,0,0,0]]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=695"
   },
   {
    "id": "08-63-walls-and-gates-multi-source-bfs",
@@ -1039,7 +1134,8 @@
    "solution": "from collections import deque\n\ndef wallsAndGates(rooms):\n    if not rooms: return\n    INF = 2147483647\n    rows, cols = len(rooms), len(rooms[0])\n    queue = deque()\n    for r in range(rows):\n        for c in range(cols):\n            if rooms[r][c] == 0:\n                queue.append((r, c))\n    while queue:\n        r, c = queue.popleft()\n        for dr, dc in [(0,1),(0,-1),(1,0),(-1,0)]:\n            nr, nc = r+dr, c+dc\n            if 0<=nr<rows and 0<=nc<cols and rooms[nr][nc] == INF:\n                rooms[nr][nc] = rooms[r][c] + 1\n                queue.append((nr, nc))\n\nINF = 2147483647\nrooms = [[INF,-1,0,INF],[INF,INF,INF,-1],[INF,-1,INF,-1],[0,-1,INF,INF]]\nwallsAndGates(rooms)",
    "notes": {},
    "tests": "assert rooms == [[3,-1,0,1],[2,2,1,-1],[1,-1,2,-1],[0,-1,3,4]]\nempty = [[INF]]\nwallsAndGates(empty)\nassert empty == [[INF]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=286"
   },
   {
    "id": "08-64-pacific-atlantic-water-flow-bfs-from-both-coasts",
@@ -1055,7 +1151,8 @@
    "solution": "from collections import deque\n\ndef pacificAtlantic(heights):\n    rows, cols = len(heights), len(heights[0])\n    def bfs(starts):\n        visited = set(starts)\n        queue = deque(starts)\n        while queue:\n            r, c = queue.popleft()\n            for dr, dc in [(0,1),(0,-1),(1,0),(-1,0)]:\n                nr, nc = r+dr, c+dc\n                if 0<=nr<rows and 0<=nc<cols and (nr,nc) not in visited and heights[nr][nc] >= heights[r][c]:\n                    visited.add((nr, nc))\n                    queue.append((nr, nc))\n        return visited\n    pacific_starts  = [(0,c) for c in range(cols)] + [(r,0) for r in range(1,rows)]\n    atlantic_starts = [(rows-1,c) for c in range(cols)] + [(r,cols-1) for r in range(rows-1)]\n    pac = bfs(pacific_starts)\n    atl = bfs(atlantic_starts)\n    return sorted([list(p) for p in pac & atl])\n\nheights = [[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,1,1,2,4]]\nresult = pacificAtlantic(heights)\nexpected = sorted([[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]])",
    "notes": {},
    "tests": "assert result == expected\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=417"
   },
   {
    "id": "08-65-surrounded-regions-bfs-from-border",
@@ -1071,7 +1168,8 @@
    "solution": "from collections import deque\nimport copy\n\ndef solve(board):\n    if not board: return\n    rows, cols = len(board), len(board[0])\n    queue = deque()\n    for r in range(rows):\n        for c in [0, cols-1]:\n            if board[r][c] == 'O': queue.append((r, c))\n    for c in range(cols):\n        for r in [0, rows-1]:\n            if board[r][c] == 'O': queue.append((r, c))\n    while queue:\n        r, c = queue.popleft()\n        if board[r][c] != 'O': continue\n        board[r][c] = 'S'\n        for dr, dc in [(0,1),(0,-1),(1,0),(-1,0)]:\n            nr, nc = r+dr, c+dc\n            if 0<=nr<rows and 0<=nc<cols and board[nr][nc]=='O':\n                queue.append((nr, nc))\n    for r in range(rows):\n        for c in range(cols):\n            if board[r][c] == 'O': board[r][c] = 'X'\n            elif board[r][c] == 'S': board[r][c] = 'O'\n\nboard1 = [['X','X','X','X'],['X','O','O','X'],['X','X','O','X'],['X','O','X','X']]\nsolve(board1)",
    "notes": {},
    "tests": "assert board1 == [['X','X','X','X'],['X','X','X','X'],['X','X','X','X'],['X','O','X','X']]\nboard2 = [['X']]\nsolve(board2)\nassert board2 == [['X']]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=130"
   },
   {
    "id": "08-66-snakes-and-ladders-full",
@@ -1087,7 +1185,8 @@
    "solution": "from collections import deque\n\ndef snakesAndLaddersFull(board):\n    n = len(board)\n    def label_to_rc(s):\n        s -= 1\n        row, col = divmod(s, n)\n        if row % 2 == 0:\n            return (n - 1 - row, col)\n        return (n - 1 - row, n - 1 - col)\n    \n    visited = {1}\n    queue = deque([(1, 0)])\n    target = n * n\n    while queue:\n        pos, moves = queue.popleft()\n        for d in range(1, 7):\n            nxt = pos + d\n            if nxt > target: break\n            r, c = label_to_rc(nxt)\n            if board[r][c] != -1:\n                nxt = board[r][c]\n            if nxt == target: return moves + 1\n            if nxt not in visited:\n                visited.add(nxt)\n                queue.append((nxt, moves + 1))\n    return -1\n\nboard = [[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],\n         [-1,35,-1,-1,13,-1],[-1,-1,-1,-1,-1,-1],[-1,15,-1,-1,-1,-1]]",
    "notes": {},
    "tests": "assert snakesAndLaddersFull(board) == 4\nassert snakesAndLaddersFull([[-1,-1],[-1,3]]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=909"
   },
   {
    "id": "08-67-open-the-lock-full",
@@ -1103,7 +1202,8 @@
    "solution": "from collections import deque\n\ndef openLockFull(deadends, target):\n    dead = set(deadends)\n    start = '0000'\n    if start in dead: return -1\n    if start == target: return 0\n    queue = deque([(start, 0)])\n    visited = {start}\n    while queue:\n        state, turns = queue.popleft()\n        for i in range(4):\n            d = int(state[i])\n            for delta in (1, -1):\n                new_d = (d + delta) % 10\n                new_state = state[:i] + str(new_d) + state[i+1:]\n                if new_state == target: return turns + 1\n                if new_state not in visited and new_state not in dead:\n                    visited.add(new_state)\n                    queue.append((new_state, turns + 1))\n    return -1",
    "notes": {},
    "tests": "assert openLockFull(['0201','0101','0102','1212','2002'], '0202') == 6\nassert openLockFull(['8888'], '0009') == 1\nassert openLockFull(['0000'], '8888') == -1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=752"
   },
   {
    "id": "08-68-is-graph-bipartite-full",
@@ -1119,7 +1219,8 @@
    "solution": "from collections import deque\n\ndef isBipartiteFull(graph):\n    n = len(graph)\n    color = [-1] * n\n    for start in range(n):\n        if color[start] != -1: continue\n        color[start] = 0\n        queue = deque([start])\n        while queue:\n            node = queue.popleft()\n            for neighbor in graph[node]:\n                if color[neighbor] == -1:\n                    color[neighbor] = 1 - color[node]\n                    queue.append(neighbor)\n                elif color[neighbor] == color[node]:\n                    return False\n    return True",
    "notes": {},
    "tests": "assert isBipartiteFull([[1,3],[0,2],[1,3],[0,2]]) == True\nassert isBipartiteFull([[1,2,3],[0,2],[0,1,3],[0,2]]) == False\nassert isBipartiteFull([[], [2,4,6], [1,4,8], [6,7], [1,2], [6,9], [1,3,5], [3], [2], [5]]) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=785"
   },
   {
    "id": "08-69-number-of-operations-to-make-network-connected",
@@ -1135,7 +1236,8 @@
    "solution": "from collections import defaultdict, deque\n\ndef makeConnected(n, connections):\n    if len(connections) < n - 1: return -1\n    graph = defaultdict(list)\n    for u, v in connections:\n        graph[u].append(v)\n        graph[v].append(u)\n    visited = set()\n    components = 0\n    for node in range(n):\n        if node not in visited:\n            components += 1\n            queue = deque([node])\n            visited.add(node)\n            while queue:\n                curr = queue.popleft()\n                for nb in graph[curr]:\n                    if nb not in visited:\n                        visited.add(nb)\n                        queue.append(nb)\n    return components - 1",
    "notes": {},
    "tests": "assert makeConnected(4, [[0,1],[0,2],[1,2]]) == 1\nassert makeConnected(6, [[0,1],[0,2],[0,3],[1,2],[1,3]]) == 2\nassert makeConnected(6, [[0,1],[0,2],[0,3],[1,2]]) == -1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1319"
   },
   {
    "id": "08-70-shortest-path-in-binary-matrix",
@@ -1151,7 +1253,8 @@
    "solution": "from collections import deque\n\ndef shortestPathBinaryMatrix(grid):\n    n = len(grid)\n    if grid[0][0] == 1 or grid[n-1][n-1] == 1: return -1\n    if n == 1: return 1\n    queue = deque([(0, 0, 1)])\n    grid[0][0] = 1\n    while queue:\n        r, c, dist = queue.popleft()\n        for dr in [-1, 0, 1]:\n            for dc in [-1, 0, 1]:\n                if dr == 0 and dc == 0: continue\n                nr, nc = r+dr, c+dc\n                if 0<=nr<n and 0<=nc<n and grid[nr][nc] == 0:\n                    if nr == n-1 and nc == n-1: return dist + 1\n                    grid[nr][nc] = 1\n                    queue.append((nr, nc, dist+1))\n    return -1",
    "notes": {},
    "tests": "assert shortestPathBinaryMatrix([[0,1],[1,0]]) == 2\nassert shortestPathBinaryMatrix([[0,0,0],[1,1,0],[1,1,0]]) == 4\nassert shortestPathBinaryMatrix([[1,0,0],[1,1,0],[1,1,0]]) == -1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1091"
   },
   {
    "id": "08-71-pacific-atlantic-water-flow-bfs-full",
@@ -1167,7 +1270,8 @@
    "solution": "from collections import deque\n\ndef pacificAtlanticFull(heights):\n    rows, cols = len(heights), len(heights[0])\n    \n    def bfs(sources):\n        visited = set(sources)\n        q = deque(sources)\n        while q:\n            r, c = q.popleft()\n            for dr, dc in [(0,1),(0,-1),(1,0),(-1,0)]:\n                nr, nc = r+dr, c+dc\n                if (0<=nr<rows and 0<=nc<cols and\n                    (nr,nc) not in visited and\n                    heights[nr][nc] >= heights[r][c]):\n                    visited.add((nr,nc))\n                    q.append((nr,nc))\n        return visited\n    \n    pac = bfs([(0,c) for c in range(cols)] + [(r,0) for r in range(1,rows)])\n    atl = bfs([(rows-1,c) for c in range(cols)] + [(r,cols-1) for r in range(rows-1)])\n    return sorted([list(p) for p in pac & atl])\n\nheights = [[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,1,1,2,4]]",
    "notes": {},
    "tests": "assert pacificAtlanticFull(heights) == sorted([[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]])\nassert pacificAtlanticFull([[1]]) == [[0,0]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=417"
   },
   {
    "id": "08-72-surrounded-regions-bfs-full",
@@ -1183,7 +1287,8 @@
    "solution": "from collections import deque\n\ndef solveFull(board):\n    if not board or not board[0]: return\n    rows, cols = len(board), len(board[0])\n    queue = deque()\n    for r in range(rows):\n        for c in range(cols):\n            if (r in (0, rows-1) or c in (0, cols-1)) and board[r][c] == 'O':\n                queue.append((r, c))\n    while queue:\n        r, c = queue.popleft()\n        if board[r][c] != 'O': continue\n        board[r][c] = 'S'\n        for dr, dc in [(0,1),(0,-1),(1,0),(-1,0)]:\n            nr, nc = r+dr, c+dc\n            if 0<=nr<rows and 0<=nc<cols and board[nr][nc] == 'O':\n                queue.append((nr,nc))\n    for r in range(rows):\n        for c in range(cols):\n            if board[r][c] == 'O': board[r][c] = 'X'\n            elif board[r][c] == 'S': board[r][c] = 'O'\n\nb1 = [['X','X','X','X'],['X','O','O','X'],['X','X','O','X'],['X','O','X','X']]\nsolveFull(b1)",
    "notes": {},
    "tests": "assert b1 == [['X','X','X','X'],['X','X','X','X'],['X','X','X','X'],['X','O','X','X']]\nb2 = [['O']]\nsolveFull(b2)\nassert b2 == [['O']]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=130"
   },
   {
    "id": "08-73-number-of-enclaves-bfs",
@@ -1199,7 +1304,8 @@
    "solution": "from collections import deque\n\ndef numEnclaves(grid):\n    rows, cols = len(grid), len(grid[0])\n    queue = deque()\n    for r in range(rows):\n        for c in range(cols):\n            if (r in (0, rows-1) or c in (0, cols-1)) and grid[r][c] == 1:\n                queue.append((r, c))\n                grid[r][c] = 0\n    while queue:\n        r, c = queue.popleft()\n        for dr, dc in [(0,1),(0,-1),(1,0),(-1,0)]:\n            nr, nc = r+dr, c+dc\n            if 0<=nr<rows and 0<=nc<cols and grid[nr][nc] == 1:\n                grid[nr][nc] = 0\n                queue.append((nr,nc))\n    return sum(grid[r][c] for r in range(rows) for c in range(cols))",
    "notes": {},
    "tests": "assert numEnclaves([[0,0,0,0],[1,0,1,0],[0,1,1,0],[0,0,0,0]]) == 3\nassert numEnclaves([[0,1,1,0],[0,0,1,0],[0,0,1,0],[0,0,0,0]]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1020"
   },
   {
    "id": "08-74-clone-graph-bfs",
@@ -1215,7 +1321,8 @@
    "solution": "from collections import deque\n\nclass GraphNode:\n    def __init__(self, val=0, neighbors=None):\n        self.val = val\n        self.neighbors = neighbors if neighbors is not None else []\n\ndef cloneGraph(node):\n    if not node: return None\n    clone_map = {node: GraphNode(node.val)}\n    queue = deque([node])\n    while queue:\n        curr = queue.popleft()\n        for nb in curr.neighbors:\n            if nb not in clone_map:\n                clone_map[nb] = GraphNode(nb.val)\n                queue.append(nb)\n            clone_map[curr].neighbors.append(clone_map[nb])\n    return clone_map[node]\n\nn1 = GraphNode(1); n2 = GraphNode(2); n3 = GraphNode(3); n4 = GraphNode(4)\nn1.neighbors = [n2, n4]; n2.neighbors = [n1, n3]; n3.neighbors = [n2, n4]; n4.neighbors = [n1, n3]\ncloned = cloneGraph(n1)",
    "notes": {},
    "tests": "assert cloned is not n1\nassert cloned.val == 1\nassert len(cloned.neighbors) == 2\nassert cloneGraph(None) is None\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=133"
   },
   {
    "id": "08-75-shortest-bridge",
@@ -1231,7 +1338,8 @@
    "solution": "from collections import deque\n\ndef shortestBridge(grid):\n    rows, cols = len(grid), len(grid[0])\n    dirs = [(0,1),(0,-1),(1,0),(-1,0)]\n    \n    def dfs(r, c, island):\n        grid[r][c] = 2\n        island.append((r, c))\n        for dr, dc in dirs:\n            nr, nc = r+dr, c+dc\n            if 0<=nr<rows and 0<=nc<cols and grid[nr][nc] == 1:\n                dfs(nr, nc, island)\n    \n    island1 = []\n    found = False\n    for r in range(rows):\n        if found: break\n        for c in range(cols):\n            if grid[r][c] == 1:\n                dfs(r, c, island1)\n                found = True\n                break\n    \n    queue = deque([(r, c, 0) for r, c in island1])\n    while queue:\n        r, c, dist = queue.popleft()\n        for dr, dc in dirs:\n            nr, nc = r+dr, c+dc\n            if 0<=nr<rows and 0<=nc<cols:\n                if grid[nr][nc] == 1: return dist\n                if grid[nr][nc] == 0:\n                    grid[nr][nc] = 2\n                    queue.append((nr, nc, dist+1))\n    return -1\n\nimport sys; sys.setrecursionlimit(10000)",
    "notes": {},
    "tests": "assert shortestBridge([[0,1],[1,0]]) == 1\nassert shortestBridge([[0,1,0],[0,0,0],[0,0,1]]) == 2\nassert shortestBridge([[1,1,1,1,1],[1,0,0,0,1],[1,0,1,0,1],[1,0,0,0,1],[1,1,1,1,1]]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=934"
   },
   {
    "id": "08-76-as-far-from-land-as-possible-multi-source-bfs",
@@ -1247,7 +1355,8 @@
    "solution": "from collections import deque\n\ndef maxDistance(grid):\n    n = len(grid)\n    queue = deque()\n    for r in range(n):\n        for c in range(n):\n            if grid[r][c] == 1:\n                queue.append((r, c, 0))\n    if not queue or len(queue) == n * n: return -1\n    max_dist = -1\n    visited = set((r, c) for r, c, _ in queue)\n    while queue:\n        r, c, dist = queue.popleft()\n        for dr, dc in [(0,1),(0,-1),(1,0),(-1,0)]:\n            nr, nc = r+dr, c+dc\n            if 0<=nr<n and 0<=nc<n and (nr,nc) not in visited:\n                visited.add((nr,nc))\n                max_dist = max(max_dist, dist+1)\n                queue.append((nr, nc, dist+1))\n    return max_dist",
    "notes": {},
    "tests": "assert maxDistance([[1,0,1],[0,0,0],[1,0,1]]) == 2\nassert maxDistance([[1,0,0],[0,0,0],[0,0,0]]) == 4\nassert maxDistance([[1,1,1],[1,1,1],[1,1,1]]) == -1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1162"
   },
   {
    "id": "08-77-map-of-highest-peak-multi-source-bfs",
@@ -1263,7 +1372,8 @@
    "solution": "from collections import deque\n\ndef highestPeak(isWater):\n    rows, cols = len(isWater), len(isWater[0])\n    height = [[-1]*cols for _ in range(rows)]\n    queue = deque()\n    for r in range(rows):\n        for c in range(cols):\n            if isWater[r][c] == 1:\n                height[r][c] = 0\n                queue.append((r, c))\n    while queue:\n        r, c = queue.popleft()\n        for dr, dc in [(0,1),(0,-1),(1,0),(-1,0)]:\n            nr, nc = r+dr, c+dc\n            if 0<=nr<rows and 0<=nc<cols and height[nr][nc] == -1:\n                height[nr][nc] = height[r][c] + 1\n                queue.append((nr, nc))\n    return height",
    "notes": {},
    "tests": "assert highestPeak([[0,1],[0,0]]) == [[1,0],[2,1]]\nassert highestPeak([[0,0,1],[1,0,0],[0,0,0]]) == [[1,1,0],[0,1,1],[1,2,2]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1765"
   },
   {
    "id": "08-78-jump-game-iv-bfs-on-index-graph",
@@ -1279,7 +1389,8 @@
    "solution": "from collections import deque, defaultdict\n\ndef minJumps(arr):\n    n = len(arr)\n    if n == 1: return 0\n    value_to_indices = defaultdict(list)\n    for i, v in enumerate(arr):\n        value_to_indices[v].append(i)\n    visited = {0}\n    queue = deque([(0, 0)])\n    while queue:\n        idx, steps = queue.popleft()\n        for nxt in [idx-1, idx+1] + value_to_indices[arr[idx]]:\n            if nxt == n-1: return steps + 1\n            if 0<=nxt<n and nxt not in visited:\n                visited.add(nxt)\n                queue.append((nxt, steps+1))\n        value_to_indices[arr[idx]] = []\n    return -1",
    "notes": {},
    "tests": "assert minJumps([100,-23,-23,404,100,23,23,23,3,404]) == 3\nassert minJumps([7]) == 0\nassert minJumps([7,6,9,6,9,6,9,7]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1345"
   },
   {
    "id": "08-79-minimum-fuel-cost-to-report-to-capital",
@@ -1295,7 +1406,8 @@
    "solution": "from collections import defaultdict, deque\nimport math\n\ndef minimumFuelCost(roads, seats):\n    if not roads: return 0\n    n = len(roads) + 1\n    graph = defaultdict(list)\n    degree = [0] * n\n    for u, v in roads:\n        graph[u].append(v)\n        graph[v].append(u)\n        degree[u] += 1\n        degree[v] += 1\n    \n    people = [1] * n\n    fuel = 0\n    queue = deque([i for i in range(1, n) if degree[i] == 1])\n    while queue:\n        node = queue.popleft()\n        for nb in graph[node]:\n            if degree[nb] == 0: continue\n            fuel += math.ceil(people[node] / seats)\n            people[nb] += people[node]\n            degree[nb] -= 1\n            if nb != 0 and degree[nb] == 1:\n                queue.append(nb)\n        degree[node] = 0\n    return fuel",
    "notes": {},
    "tests": "assert minimumFuelCost([[0,1],[0,2],[0,3]], 5) == 3\nassert minimumFuelCost([[3,1],[3,2],[1,0],[0,4],[0,5],[4,6]], 2) == 7\nassert minimumFuelCost([], 1) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2477"
   },
   {
    "id": "08-80-find-closest-node-to-given-two-nodes",
@@ -1311,7 +1423,8 @@
    "solution": "def closestMeetingNode(edges, node1, node2):\n    n = len(edges)\n    \n    def bfs_dist(start):\n        dist = [-1] * n\n        dist[start] = 0\n        curr = start\n        while curr != -1 and edges[curr] != -1:\n            nxt = edges[curr]\n            if dist[nxt] != -1: break\n            dist[nxt] = dist[curr] + 1\n            curr = nxt\n        return dist\n    \n    d1 = bfs_dist(node1)\n    d2 = bfs_dist(node2)\n    best = -1\n    best_dist = float('inf')\n    for i in range(n):\n        if d1[i] != -1 and d2[i] != -1:\n            mx = max(d1[i], d2[i])\n            if mx < best_dist:\n                best_dist = mx\n                best = i\n    return best",
    "notes": {},
    "tests": "assert closestMeetingNode([2,2,3,-1], 0, 1) == 2\nassert closestMeetingNode([1,2,-1], 0, 2) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2359"
   },
   {
    "id": "08-81-shortest-path-visiting-all-nodes-bitmask-bfs",
@@ -1327,7 +1440,8 @@
    "solution": "from collections import deque\n\ndef shortestPathLength(graph):\n    n = len(graph)\n    full_mask = (1 << n) - 1\n    queue = deque()\n    visited = set()\n    for i in range(n):\n        mask = 1 << i\n        queue.append((i, mask, 0))\n        visited.add((i, mask))\n    while queue:\n        node, mask, dist = queue.popleft()\n        if mask == full_mask: return dist\n        for nb in graph[node]:\n            new_mask = mask | (1 << nb)\n            if (nb, new_mask) not in visited:\n                visited.add((nb, new_mask))\n                queue.append((nb, new_mask, dist+1))\n    return -1",
    "notes": {},
    "tests": "assert shortestPathLength([[1,2,3],[0],[0],[0]]) == 4\nassert shortestPathLength([[1],[0,2,4],[1,3,4],[2],[1,2]]) == 4\nassert shortestPathLength([[1],[0]]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=847"
   },
   {
    "id": "08-82-trapping-rain-water-ii-bfs-min-heap",
@@ -1343,7 +1457,8 @@
    "solution": "import heapq\n\ndef trapRainWater(heightMap):\n    rows, cols = len(heightMap), len(heightMap[0])\n    if rows < 3 or cols < 3: return 0\n    heap = []\n    visited = [[False]*cols for _ in range(rows)]\n    for r in range(rows):\n        for c in range(cols):\n            if r==0 or r==rows-1 or c==0 or c==cols-1:\n                heapq.heappush(heap, (heightMap[r][c], r, c))\n                visited[r][c] = True\n    water = 0\n    while heap:\n        h, r, c = heapq.heappop(heap)\n        for dr, dc in [(0,1),(0,-1),(1,0),(-1,0)]:\n            nr, nc = r+dr, c+dc\n            if 0<=nr<rows and 0<=nc<cols and not visited[nr][nc]:\n                visited[nr][nc] = True\n                water += max(0, h - heightMap[nr][nc])\n                heapq.heappush(heap, (max(h, heightMap[nr][nc]), nr, nc))\n    return water",
    "notes": {},
    "tests": "assert trapRainWater([[1,4,3,1,3,2],[3,2,1,3,2,4],[2,3,3,2,3,1]]) == 4\nassert trapRainWater([[3,3,3,3,3],[3,2,2,2,3],[3,2,1,2,3],[3,2,2,2,3],[3,3,3,3,3]]) == 10\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=407"
   },
   {
    "id": "08-83-sliding-puzzle-bfs-on-state",
@@ -1359,7 +1474,8 @@
    "solution": "from collections import deque\n\ndef slidingPuzzle(board):\n    start = ''.join(str(x) for row in board for x in row)\n    target = '123450'\n    neighbors = {0:[1,3],1:[0,2,4],2:[1,5],3:[0,4],4:[1,3,5],5:[2,4]}\n    queue = deque([(start, 0)])\n    visited = {start}\n    while queue:\n        state, moves = queue.popleft()\n        if state == target: return moves\n        zero = state.index('0')\n        for nb in neighbors[zero]:\n            lst = list(state)\n            lst[zero], lst[nb] = lst[nb], lst[zero]\n            new_state = ''.join(lst)\n            if new_state not in visited:\n                visited.add(new_state)\n                queue.append((new_state, moves+1))\n    return -1",
    "notes": {},
    "tests": "assert slidingPuzzle([[1,2,3],[4,0,5]]) == 1\nassert slidingPuzzle([[1,2,3],[5,4,0]]) == -1\nassert slidingPuzzle([[4,1,2],[5,0,3]]) == 5\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=773"
   },
   {
    "id": "08-84-network-delay-time-dijkstra",
@@ -1375,7 +1491,8 @@
    "solution": "import heapq\nfrom collections import defaultdict\n\ndef networkDelayTime(times, n, k):\n    graph = defaultdict(list)\n    for u, v, w in times:\n        graph[u].append((v, w))\n    dist = {i: float('inf') for i in range(1, n+1)}\n    dist[k] = 0\n    heap = [(0, k)]\n    while heap:\n        d, node = heapq.heappop(heap)\n        if d > dist[node]: continue\n        for nb, w in graph[node]:\n            nd = d + w\n            if nd < dist[nb]:\n                dist[nb] = nd\n                heapq.heappush(heap, (nd, nb))\n    ans = max(dist.values())\n    return ans if ans < float('inf') else -1",
    "notes": {},
    "tests": "assert networkDelayTime([[2,1,1],[2,3,1],[3,4,1]], 4, 2) == 2\nassert networkDelayTime([[1,2,1]], 2, 1) == 1\nassert networkDelayTime([[1,2,1]], 2, 2) == -1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=743"
   },
   {
    "id": "08-85-cheapest-flights-within-k-stops-modified-bfs-bellman-f",
@@ -1391,7 +1508,8 @@
    "solution": "from collections import defaultdict\n\ndef findCheapestPrice(n, flights, src, dst, k):\n    prices = [float('inf')] * n\n    prices[src] = 0\n    for _ in range(k + 1):\n        temp = prices[:]\n        for u, v, w in flights:\n            if prices[u] != float('inf') and prices[u] + w < temp[v]:\n                temp[v] = prices[u] + w\n        prices = temp\n    return prices[dst] if prices[dst] != float('inf') else -1",
    "notes": {},
    "tests": "assert findCheapestPrice(4, [[0,1,100],[1,2,100],[2,0,100],[1,3,600],[2,3,200]], 0, 3, 1) == 700\nassert findCheapestPrice(3, [[0,1,100],[1,2,100],[0,2,500]], 0, 2, 1) == 200\nassert findCheapestPrice(3, [[0,1,100],[1,2,100],[0,2,500]], 0, 2, 0) == 500\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=787"
   },
   {
    "id": "08-86-find-the-city-with-smallest-number-of-neighbors-at-thr",
@@ -1407,7 +1525,8 @@
    "solution": "def findTheCity(n, edges, distanceThreshold):\n    INF = float('inf')\n    dist = [[INF]*n for _ in range(n)]\n    for i in range(n): dist[i][i] = 0\n    for u, v, w in edges:\n        dist[u][v] = w\n        dist[v][u] = w\n    for k in range(n):\n        for i in range(n):\n            for j in range(n):\n                if dist[i][k] + dist[k][j] < dist[i][j]:\n                    dist[i][j] = dist[i][k] + dist[k][j]\n    best_city = -1\n    best_count = INF\n    for city in range(n):\n        count = sum(1 for j in range(n) if city != j and dist[city][j] <= distanceThreshold)\n        if count <= best_count:\n            best_count = count\n            best_city = city\n    return best_city",
    "notes": {},
    "tests": "assert findTheCity(4, [[0,1,3],[1,2,1],[1,3,4],[2,3,1]], 4) == 3\nassert findTheCity(5, [[0,1,2],[0,4,8],[1,2,3],[1,4,2],[2,3,1],[3,4,1]], 2) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1334"
   },
   {
    "id": "08-87-path-with-maximum-probability-dijkstra-max-heap",
@@ -1423,7 +1542,8 @@
    "solution": "import heapq\nfrom collections import defaultdict\n\ndef maxProbability(n, edges, succProb, start, end):\n    graph = defaultdict(list)\n    for i, (u, v) in enumerate(edges):\n        graph[u].append((v, succProb[i]))\n        graph[v].append((u, succProb[i]))\n    prob = [0.0] * n\n    prob[start] = 1.0\n    heap = [(-1.0, start)]\n    while heap:\n        p, node = heapq.heappop(heap)\n        p = -p\n        if node == end: return p\n        if p < prob[node]: continue\n        for nb, edge_prob in graph[node]:\n            np_ = p * edge_prob\n            if np_ > prob[nb]:\n                prob[nb] = np_\n                heapq.heappush(heap, (-np_, nb))\n    return 0.0",
    "notes": {},
    "tests": "assert abs(maxProbability(3, [[0,1],[1,2],[0,2]], [0.5,0.5,0.2], 0, 2) - 0.25) < 1e-6\nassert abs(maxProbability(3, [[0,1],[1,2],[0,2]], [0.5,0.5,0.3], 0, 2) - 0.3) < 1e-6\nassert maxProbability(3, [[0,1]], [0.5], 0, 2) == 0.0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1514"
   },
   {
    "id": "08-88-path-with-minimum-effort-dijkstra-on-grid",
@@ -1439,7 +1559,8 @@
    "solution": "import heapq\n\ndef minimumEffortPath(heights):\n    rows, cols = len(heights), len(heights[0])\n    effort = [[float('inf')]*cols for _ in range(rows)]\n    effort[0][0] = 0\n    heap = [(0, 0, 0)]\n    while heap:\n        eff, r, c = heapq.heappop(heap)\n        if r == rows-1 and c == cols-1: return eff\n        if eff > effort[r][c]: continue\n        for dr, dc in [(0,1),(0,-1),(1,0),(-1,0)]:\n            nr, nc = r+dr, c+dc\n            if 0<=nr<rows and 0<=nc<cols:\n                new_eff = max(eff, abs(heights[nr][nc] - heights[r][c]))\n                if new_eff < effort[nr][nc]:\n                    effort[nr][nc] = new_eff\n                    heapq.heappush(heap, (new_eff, nr, nc))\n    return 0",
    "notes": {},
    "tests": "assert minimumEffortPath([[1,2,2],[3,8,2],[5,3,5]]) == 2\nassert minimumEffortPath([[1,2,3],[3,8,4],[5,3,5]]) == 1\nassert minimumEffortPath([[1,2,1,1,1],[1,2,1,2,1],[1,2,1,2,1],[1,2,1,2,1],[1,1,1,2,1]]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1631"
   },
   {
    "id": "08-89-minimum-cost-to-make-at-least-one-valid-path-in-a-grid",
@@ -1455,7 +1576,8 @@
    "solution": "from collections import deque\n\ndef minCost(grid):\n    rows, cols = len(grid), len(grid[0])\n    dir_map = {1:(0,1), 2:(0,-1), 3:(1,0), 4:(-1,0)}\n    dist = [[float('inf')]*cols for _ in range(rows)]\n    dist[0][0] = 0\n    dq = deque([(0, 0, 0)])\n    while dq:\n        cost, r, c = dq.popleft()\n        if cost > dist[r][c]: continue\n        for direction, (dr, dc) in dir_map.items():\n            nr, nc = r+dr, c+dc\n            if 0<=nr<rows and 0<=nc<cols:\n                new_cost = cost + (0 if grid[r][c] == direction else 1)\n                if new_cost < dist[nr][nc]:\n                    dist[nr][nc] = new_cost\n                    if grid[r][c] == direction:\n                        dq.appendleft((new_cost, nr, nc))\n                    else:\n                        dq.append((new_cost, nr, nc))\n    return dist[rows-1][cols-1]",
    "notes": {},
    "tests": "assert minCost([[1,1,1,1],[2,2,2,2],[1,1,1,1],[2,2,2,2]]) == 3\nassert minCost([[1,1,3],[3,2,2],[1,1,4]]) == 0\nassert minCost([[1,2],[4,3]]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1368"
   },
   {
    "id": "08-90-detonate-maximum-bombs-bfs-on-directed-graph",
@@ -1471,7 +1593,8 @@
    "solution": "from collections import deque, defaultdict\n\ndef maximumDetonation(bombs):\n    n = len(bombs)\n    graph = defaultdict(list)\n    for i in range(n):\n        xi, yi, ri = bombs[i]\n        for j in range(n):\n            if i == j: continue\n            xj, yj, _ = bombs[j]\n            if (xi-xj)**2 + (yi-yj)**2 <= ri**2:\n                graph[i].append(j)\n    \n    def bfs(start):\n        visited = {start}\n        queue = deque([start])\n        while queue:\n            node = queue.popleft()\n            for nb in graph[node]:\n                if nb not in visited:\n                    visited.add(nb)\n                    queue.append(nb)\n        return len(visited)\n    \n    return max(bfs(i) for i in range(n))",
    "notes": {},
    "tests": "assert maximumDetonation([[2,1,3],[6,1,4]]) == 2\nassert maximumDetonation([[1,1,5],[10,10,5]]) == 1\nassert maximumDetonation([[1,2,3],[2,3,1],[3,4,2],[4,5,3],[5,6,4]]) == 5\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2101"
   }
  ]
 }

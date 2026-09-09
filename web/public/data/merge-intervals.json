@@ -3,6 +3,35 @@
  "slug": "merge-intervals",
  "name": "Merge Intervals",
  "note": null,
+ "about": {
+  "lead": "",
+  "sections": [
+   {
+    "heading": "What Is It?",
+    "body": "The Merge Intervals pattern deals with problems involving **overlapping ranges or intervals**. You work with pairs `[start, end]` and need to combine, count, or manipulate them efficiently."
+   },
+   {
+    "heading": "Core Strategy",
+    "body": "1. **Sort by start time**\n2. Iterate, checking if current interval overlaps with the previous\n3. **Overlap condition**: `current.start <= previous.end`\n4. If overlap: **extend** `previous.end = max(previous.end, current.end)`\n5. If no overlap: push the previous and start tracking the current"
+   },
+   {
+    "heading": "Four Overlap Cases (ASCII Diagram)",
+    "body": "```\nprev:  |-------|         prev:  |-------|         prev:  |-------|         prev:  |-------|\ncurr:      |-------|     curr:  |---|              curr:     |---|          curr:  |--------|\n  Case 1: partial       Case 2: contained in      Case 3: partial         Case 4: curr contains\n  overlap right         prev (left side)           overlap left            prev entirely\n```\nAll 4 cases merge to: `[min(start1,start2), max(end1,end2)]`.\n\n**Non-overlap**: `curr.start > prev.end` → no merge, add prev to result."
+   },
+   {
+    "heading": "Templates",
+    "body": "### Template 1 — Merge Intervals\n```python\ndef merge(intervals):\n    intervals.sort(key=lambda x: x[0])\n    merged = [intervals[0]]\n    for start, end in intervals[1:]:\n        if start <= merged[-1][1]:          # overlap\n            merged[-1][1] = max(merged[-1][1], end)\n        else:\n            merged.append([start, end])     # no overlap\n    return merged\n```\n\n### Template 2 — Insert Interval\n```python\ndef insert(intervals, newInterval):\n    result = []\n    i = 0\n    # Add all intervals that end before new one starts\n    while i < len(intervals) and intervals[i][1] < newInterval[0]:\n        result.append(intervals[i]); i += 1\n    # Merge all overlapping intervals\n    while i < len(intervals) and intervals[i][0] <= newInterval[1]:\n        newInterval[0] = min(newInterval[0], intervals[i][0])\n        newInterval[1] = max(newInterval[1], intervals[i][1])\n        i += 1\n    result.append(newInterval)\n    result.extend(intervals[i:])\n    return result\n```\n\n### Template 3 — Interval Intersection\n```python\ndef intersect(A, B):\n    i = j = 0\n    result = []\n    while i < len(A) and j < len(B):\n        lo = max(A[i][0], B[j][0])\n        hi = min(A[i][1], B[j][1])\n        if lo <= hi: result.append([lo, hi])\n        if A[i][1] < B[j][1]: i += 1\n        else: j += 1\n    return result\n```"
+   },
+   {
+    "heading": "Complexity",
+    "body": "| Operation | Time | Space |\n|-----------|------|-------|\n| Sort + merge | O(n log n) | O(n) |\n| Insert (sorted) | O(n) | O(n) |\n| Intersection (two sorted) | O(m+n) | O(m+n) |\n| Min rooms (events line sweep) | O(n log n) | O(n) |"
+   },
+   {
+    "heading": "Key Tips",
+    "body": "**Always sort by start** unless the input is already sorted\n- For minimum rooms/groups: use a **min-heap** of end times or a **sweep line** (events)\n- For \"remove minimum intervals to make non-overlapping\": sort by **end time** (greedy)\n- Difference array / prefix sum trick works when you need cumulative overlap counts\n\n---\n# Easy Problems (20)"
+   }
+  ]
+ },
  "notebook": "05_Merge_Intervals.ipynb",
  "problems": [
   {
@@ -21,7 +50,8 @@
    "tests": "assert merge([[1,3],[2,6],[8,10],[15,18]]) == [[1,6],[8,10],[15,18]]\nassert merge([[1,4],[4,5]]) == [[1,5]]\nassert merge([[1,4],[2,3]]) == [[1,4]]\nassert merge([[1,2]]) == [[1,2]]\nprint(\"All tests passed!\")",
    "verified": [
     "merge"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=56"
   },
   {
    "id": "05-02-summary-ranges",
@@ -39,7 +69,8 @@
     "13": "handle the last range"
    },
    "tests": "assert summaryRanges([0,1,2,4,5,7]) == [\"0->2\",\"4->5\",\"7\"]\nassert summaryRanges([0,2,3,4,6,8,9]) == [\"0\",\"2->4\",\"6\",\"8->9\"]\nassert summaryRanges([]) == []\nassert summaryRanges([1]) == [\"1\"]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=228"
   },
   {
    "id": "05-03-meeting-rooms",
@@ -55,7 +86,8 @@
    "solution": "def canAttendMeetings(intervals):\n    intervals.sort(key=lambda x: x[0])\n    for i in range(1, len(intervals)):\n        if intervals[i][0] < intervals[i-1][1]:\n            return False\n    return True",
    "notes": {},
    "tests": "assert canAttendMeetings([[0,30],[5,10],[15,20]]) == False\nassert canAttendMeetings([[7,10],[2,4]]) == True\nassert canAttendMeetings([]) == True\nassert canAttendMeetings([[1,5],[5,10]]) == True  # back to back is fine\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=252"
   },
   {
    "id": "05-04-determine-if-two-events-have-conflict",
@@ -71,7 +103,8 @@
    "solution": "def haveConflict(event1, event2):\n    return event1[0] <= event2[1] and event2[0] <= event1[1]",
    "notes": {},
    "tests": "assert haveConflict([\"01:15\",\"02:00\"],[\"02:00\",\"03:00\"]) == True\nassert haveConflict([\"01:00\",\"02:00\"],[\"01:20\",\"03:00\"]) == True\nassert haveConflict([\"10:00\",\"11:00\"],[\"14:00\",\"15:00\"]) == False\nassert haveConflict([\"09:00\",\"10:00\"],[\"10:00\",\"11:00\"]) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2446"
   },
   {
    "id": "05-05-maximum-population-year",
@@ -90,7 +123,8 @@
     "4": "person is NOT alive in death year"
    },
    "tests": "assert maximumPopulation([[1993,1999],[2000,2010]]) == 1993\nassert maximumPopulation([[1950,1961],[1960,1971],[1970,1981]]) == 1960\nassert maximumPopulation([[1950,2000],[1975,2005],[1950,2000],[1975,2005]]) in [1975, 1950]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1854"
   },
   {
    "id": "05-06-points-that-intersect-with-cars",
@@ -106,7 +140,8 @@
    "solution": "def numberOfPoints(nums):\n    nums.sort()\n    merged = [nums[0][:]]\n    for s, e in nums[1:]:\n        if s <= merged[-1][1]:\n            merged[-1][1] = max(merged[-1][1], e)\n        else:\n            merged.append([s, e])\n    return sum(e - s + 1 for s, e in merged)",
    "notes": {},
    "tests": "assert numberOfPoints([[3,6],[1,5],[4,7]]) == 7\nassert numberOfPoints([[1,3],[5,8]]) == 7\nassert numberOfPoints([[1,2],[3,4],[5,6]]) == 6\nassert numberOfPoints([[1,1],[2,2]]) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2848"
   },
   {
    "id": "05-07-minimum-number-of-moves-to-seat-everyone",
@@ -122,7 +157,8 @@
    "solution": "def minMovesToSeat(seats, students):\n    seats.sort()\n    students.sort()\n    return sum(abs(s - t) for s, t in zip(seats, students))",
    "notes": {},
    "tests": "assert minMovesToSeat([3,1,5],[2,7,4]) == 4\nassert minMovesToSeat([4,1,5,9],[1,3,2,6]) == 7\nassert minMovesToSeat([2,2,6,6],[1,3,2,6]) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2037"
   },
   {
    "id": "05-08-minimum-time-visiting-all-points",
@@ -138,7 +174,8 @@
    "solution": "def minTimeToVisitAllPoints(points):\n    total = 0\n    for i in range(1, len(points)):\n        dx = abs(points[i][0] - points[i-1][0])\n        dy = abs(points[i][1] - points[i-1][1])\n        total += max(dx, dy)\n    return total",
    "notes": {},
    "tests": "assert minTimeToVisitAllPoints([[1,1],[3,4],[-1,0]]) == 7\nassert minTimeToVisitAllPoints([[3,2],[-2,2]]) == 5\nassert minTimeToVisitAllPoints([[0,0],[1,1],[2,2]]) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1266"
   },
   {
    "id": "05-09-range-sum-query-immutable",
@@ -154,7 +191,8 @@
    "solution": "class NumArray:\n    def __init__(self, nums):\n        self.prefix = [0] * (len(nums) + 1)\n        for i, n in enumerate(nums):\n            self.prefix[i+1] = self.prefix[i] + n\n    \n    def sumRange(self, left, right):\n        return self.prefix[right+1] - self.prefix[left]\n\nna = NumArray([-2,0,3,-5,2,-1])",
    "notes": {},
    "tests": "assert na.sumRange(0,2) == 1\nassert na.sumRange(2,5) == -1\nassert na.sumRange(0,5) == -3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=303"
   },
   {
    "id": "05-10-count-ways-to-group-overlapping-ranges",
@@ -172,7 +210,8 @@
     "6": "new component"
    },
    "tests": "assert countWays([[6,10],[5,15]]) == 2\nassert countWays([[1,3],[10,20],[2,5],[4,8]]) == 4\nassert countWays([[1,2],[3,4],[5,6]]) == 8\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2580"
   },
   {
    "id": "05-11-non-overlapping-intervals-easy-count",
@@ -192,7 +231,8 @@
    "tests": "assert eraseOverlapIntervals([[1,2],[2,3],[3,4],[1,3]]) == 1\nassert eraseOverlapIntervals([[1,2],[1,2],[1,2]]) == 2\nassert eraseOverlapIntervals([[1,2],[2,3]]) == 0\nassert eraseOverlapIntervals([[1,100],[11,22],[1,11],[2,12]]) == 2\nprint(\"All tests passed!\")",
    "verified": [
     "eraseOverlapIntervals"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=435"
   },
   {
    "id": "05-12-partition-array-into-disjoint-intervals",
@@ -208,7 +248,8 @@
    "solution": "def partitionDisjoint(nums):\n    left_max = nums[0]\n    curr_max = nums[0]\n    partition = 0\n    for i in range(1, len(nums)):\n        if nums[i] < left_max:\n            partition = i\n            left_max = curr_max\n        else:\n            curr_max = max(curr_max, nums[i])\n    return partition + 1",
    "notes": {},
    "tests": "assert partitionDisjoint([5,0,3,8,6]) == 3\nassert partitionDisjoint([1,1,1,0,6,12]) == 4\nassert partitionDisjoint([1,2,3,4]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=915"
   },
   {
    "id": "05-13-missing-ranges",
@@ -224,7 +265,8 @@
    "solution": "def findMissingRanges(nums, lower, upper):\n    result = []\n    prev = lower - 1\n    for i in range(len(nums) + 1):\n        curr = nums[i] if i < len(nums) else upper + 1\n        if curr - prev == 2:\n            result.append([prev + 1, prev + 1])\n        elif curr - prev > 2:\n            result.append([prev + 1, curr - 1])\n        prev = curr\n    return result",
    "notes": {},
    "tests": "assert findMissingRanges([0,1,3,50,75], 0, 99) == [[2,2],[4,49],[51,74],[76,99]]\nassert findMissingRanges([], 1, 1) == [[1,1]]\nassert findMissingRanges([], -3, -1) == [[-3,-1]]\nassert findMissingRanges([-1], -1, -1) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=163"
   },
   {
    "id": "05-14-check-if-all-1-s-are-at-least-k-places-away",
@@ -240,7 +282,8 @@
    "solution": "def kLengthApart(nums, k):\n    last = -1\n    for i, n in enumerate(nums):\n        if n == 1:\n            if last != -1 and i - last - 1 < k:\n                return False\n            last = i\n    return True",
    "notes": {},
    "tests": "assert kLengthApart([1,0,0,0,1,0,0,1], 2) == True\nassert kLengthApart([1,0,0,1,0,1], 2) == False\nassert kLengthApart([1,1,1,1,1], 0) == True\nassert kLengthApart([0,1,0,1], 1) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1437"
   },
   {
    "id": "05-15-count-days-spent-together",
@@ -256,7 +299,8 @@
    "solution": "def countDaysTogether(arriveAlice, leaveAlice, arriveBob, leaveBob):\n    days_in_month = [31,28,31,30,31,30,31,31,30,31,30,31]\n    \n    def toDayOfYear(date):\n        month, day = int(date[:2]), int(date[3:])\n        return sum(days_in_month[:month-1]) + day\n    \n    start = max(toDayOfYear(arriveAlice), toDayOfYear(arriveBob))\n    end = min(toDayOfYear(leaveAlice), toDayOfYear(leaveBob))\n    return max(0, end - start + 1)",
    "notes": {},
    "tests": "assert countDaysTogether(\"08-15\",\"08-18\",\"08-16\",\"08-19\") == 3\nassert countDaysTogether(\"10-01\",\"10-31\",\"11-01\",\"12-31\") == 0\nassert countDaysTogether(\"01-01\",\"12-31\",\"01-01\",\"12-31\") == 365\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2409"
   },
   {
    "id": "05-16-number-of-rectangles-that-can-form-the-largest-square",
@@ -272,7 +316,8 @@
    "solution": "def countGoodRectangles(rectangles):\n    max_side = max(min(l, w) for l, w in rectangles)\n    return sum(1 for l, w in rectangles if min(l, w) == max_side)",
    "notes": {},
    "tests": "assert countGoodRectangles([[5,8],[3,9],[5,12],[16,5]]) == 3\nassert countGoodRectangles([[2,3],[3,7],[4,3],[3,7]]) == 3\nassert countGoodRectangles([[1,1],[1,1],[1,1]]) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1725"
   },
   {
    "id": "05-17-find-right-interval-simplified",
@@ -288,7 +333,8 @@
    "solution": "import bisect\n\ndef findRightIntervalSimple(intervals):\n    sorted_starts = sorted((iv[0], i) for i, iv in enumerate(intervals))\n    keys = [s[0] for s in sorted_starts]\n    result = []\n    for start, end in intervals:\n        pos = bisect.bisect_left(keys, end)\n        result.append(sorted_starts[pos][1] if pos < len(keys) else -1)\n    return result",
    "notes": {},
    "tests": "assert findRightIntervalSimple([[1,2]]) == [-1]\nassert findRightIntervalSimple([[3,4],[2,3],[1,2]]) == [-1,0,1]\nassert findRightIntervalSimple([[1,4],[2,3],[3,4]]) == [-1,2,-1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "05-18-count-subarrays-with-fixed-bounds",
@@ -304,7 +350,8 @@
    "solution": "def countSubarrays(nums, minK, maxK):\n    count = 0\n    last_min = last_max = bad = -1\n    for i, num in enumerate(nums):\n        if num < minK or num > maxK:\n            bad = i\n        if num == minK:\n            last_min = i\n        if num == maxK:\n            last_max = i\n        count += max(0, min(last_min, last_max) - bad)\n    return count",
    "notes": {},
    "tests": "assert countSubarrays([1,3,5,2,7,5], 1, 5) == 2\nassert countSubarrays([1,1,1,1], 1, 1) == 10\nassert countSubarrays([1,2,3,4], 2, 3) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2444"
   },
   {
    "id": "05-19-remove-covered-intervals",
@@ -322,7 +369,8 @@
     "5": "not covered"
    },
    "tests": "assert removeCoveredIntervals([[1,4],[3,6],[2,8]]) == 2\nassert removeCoveredIntervals([[1,4],[2,3]]) == 1\nassert removeCoveredIntervals([[1,2],[1,4],[3,4]]) == 1\nassert removeCoveredIntervals([[3,10],[4,10],[5,11]]) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1288"
   },
   {
    "id": "05-20-count-number-of-texts",
@@ -340,7 +388,8 @@
     "8": "current key alone"
    },
    "tests": "assert countTexts(\"22233\") == 8\nassert countTexts(\"222222222222222222222222222222222222\") == 82876089\nassert countTexts(\"8\") == 1\nassert countTexts(\"999\") == 4  # 9/99/999/9_9 → wait, 7 ways for 3 nines on key 9\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2266"
   },
   {
    "id": "05-21-merge-intervals-full",
@@ -356,7 +405,8 @@
    "solution": "def mergeFull(intervals):\n    intervals.sort(key=lambda x: x[0])\n    result = []\n    for interval in intervals:\n        if result and interval[0] <= result[-1][1]:\n            result[-1][1] = max(result[-1][1], interval[1])\n        else:\n            result.append(interval[:])\n    return result",
    "notes": {},
    "tests": "assert mergeFull([[1,3],[2,6],[8,10],[15,18]]) == [[1,6],[8,10],[15,18]]\nassert mergeFull([[1,4],[4,5]]) == [[1,5]]\nassert mergeFull([[1,4],[0,0]]) == [[0,0],[1,4]]\nassert mergeFull([[1,4],[2,3]]) == [[1,4]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=56"
   },
   {
    "id": "05-22-insert-interval",
@@ -376,7 +426,8 @@
     "15": "Phase 3: add remaining"
    },
    "tests": "assert insert([[1,3],[6,9]], [2,5]) == [[1,5],[6,9]]\nassert insert([[1,2],[3,5],[6,7],[8,10],[12,16]], [4,8]) == [[1,2],[3,10],[12,16]]\nassert insert([], [5,7]) == [[5,7]]\nassert insert([[1,5]], [2,3]) == [[1,5]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=57"
   },
   {
    "id": "05-23-non-overlapping-intervals",
@@ -392,7 +443,8 @@
    "solution": "def eraseOverlapIntervalsFull(intervals):\n    if not intervals:\n        return 0\n    intervals.sort(key=lambda x: x[1])\n    kept = 1\n    last_end = intervals[0][1]\n    for i in range(1, len(intervals)):\n        if intervals[i][0] >= last_end:\n            kept += 1\n            last_end = intervals[i][1]\n    return len(intervals) - kept",
    "notes": {},
    "tests": "assert eraseOverlapIntervalsFull([[1,2],[2,3],[3,4],[1,3]]) == 1\nassert eraseOverlapIntervalsFull([[1,2],[1,2],[1,2]]) == 2\nassert eraseOverlapIntervalsFull([[1,2],[2,3]]) == 0\nassert eraseOverlapIntervalsFull([[-52,31],[-73,-26],[82,97],[-65,-11],[-62,-49],[95,99],[58,95],[-31,49],[66,98],[-63,2],[30,47],[-40,-26]]) == 7\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=435"
   },
   {
    "id": "05-24-meeting-rooms-ii",
@@ -411,7 +463,8 @@
     "9": "reuse room"
    },
    "tests": "assert minMeetingRooms([[0,30],[5,10],[15,20]]) == 2\nassert minMeetingRooms([[7,10],[2,4]]) == 1\nassert minMeetingRooms([[1,5],[2,3],[3,7],[4,8]]) == 3\nassert minMeetingRooms([]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=253"
   },
   {
    "id": "05-25-minimum-number-of-arrows-to-burst-balloons",
@@ -431,7 +484,8 @@
    "tests": "assert findMinArrowShots([[10,16],[2,8],[1,6],[7,12]]) == 2\nassert findMinArrowShots([[1,2],[3,4],[5,6],[7,8]]) == 4\nassert findMinArrowShots([[1,2],[2,3],[3,4],[4,5]]) == 2\nassert findMinArrowShots([[1,2]]) == 1\nprint(\"All tests passed!\")",
    "verified": [
     "findMinArrowShots"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=452"
   },
   {
    "id": "05-26-interval-list-intersections",
@@ -449,7 +503,8 @@
     "9": "advance the one that ends earlier"
    },
    "tests": "assert intervalIntersection([[0,2],[5,10],[13,23],[24,25]],[[1,5],[8,12],[15,24],[25,26]]) == [[1,2],[5,5],[8,10],[15,23],[24,24],[25,25]]\nassert intervalIntersection([[1,3],[5,9]],[]) == []\nassert intervalIntersection([],[]) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=986"
   },
   {
    "id": "05-27-my-calendar-i",
@@ -470,7 +525,8 @@
     "13": "check overlap with next booking"
    },
    "tests": "assert cal.book(10, 20) == True\nassert cal.book(15, 25) == False\nassert cal.book(20, 30) == True\nassert cal.book(5, 10) == True\nassert cal.book(5, 15) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=729"
   },
   {
    "id": "05-28-divide-intervals-into-minimum-number-of-groups",
@@ -486,7 +542,8 @@
    "solution": "import heapq\n\ndef minGroups(intervals):\n    intervals.sort()\n    heap = []\n    for start, end in intervals:\n        if heap and heap[0] < start:\n            heapq.heappop(heap)\n        heapq.heappush(heap, end)\n    return len(heap)",
    "notes": {},
    "tests": "assert minGroups([[5,10],[6,8],[1,5],[2,3],[1,10]]) == 3\nassert minGroups([[1,3],[5,6],[8,10],[11,13]]) == 1\nassert minGroups([[1,2],[2,3],[3,4]]) == 2  # inclusive intervals share endpoints\nassert minGroups([[1,4],[2,5],[3,6]]) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2406"
   },
   {
    "id": "05-29-car-pooling",
@@ -502,7 +559,8 @@
    "solution": "def carPooling(trips, capacity):\n    diff = [0] * 1001\n    for passengers, start, end in trips:\n        diff[start] += passengers\n        diff[end] -= passengers\n    curr = 0\n    for delta in diff:\n        curr += delta\n        if curr > capacity:\n            return False\n    return True",
    "notes": {},
    "tests": "assert carPooling([[2,1,5],[3,3,7]], 4) == False\nassert carPooling([[2,1,5],[3,3,7]], 5) == True\nassert carPooling([[3,2,7],[3,7,9],[8,3,9]], 11) == True\nassert carPooling([[2,1,5],[3,5,7]], 3) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1094"
   },
   {
    "id": "05-30-maximum-cpu-load-classic-interval-scheduling",
@@ -521,7 +579,8 @@
     "8": "remove jobs that have ended"
    },
    "tests": "assert maxCPULoad([[1,4,3],[2,5,4],[7,9,6]]) == 7\nassert maxCPULoad([[6,7,10],[2,4,11],[8,12,15]]) == 15\nassert maxCPULoad([[1,4,2],[2,4,1],[3,6,5]]) == 8\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "05-31-task-scheduler",
@@ -539,7 +598,8 @@
     "7": "formula: (max_freq-1) slots of (n+1) plus final group"
    },
    "tests": "assert leastInterval([\"A\",\"A\",\"A\",\"B\",\"B\",\"B\"], 2) == 8\nassert leastInterval([\"A\",\"A\",\"A\",\"B\",\"B\",\"B\"], 0) == 6\nassert leastInterval([\"A\",\"A\",\"A\",\"A\",\"A\",\"A\",\"B\",\"C\",\"D\",\"E\",\"F\",\"G\"], 2) == 16\nassert leastInterval([\"A\",\"B\",\"C\",\"D\",\"E\",\"F\"], 2) == 6\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=621"
   },
   {
    "id": "05-32-remove-covered-intervals-full",
@@ -555,7 +615,8 @@
    "solution": "def removeCoveredFull(intervals):\n    intervals.sort(key=lambda x: (x[0], -x[1]))\n    count = 0\n    max_end = 0\n    for _, end in intervals:\n        if end > max_end:\n            count += 1\n            max_end = end\n    return count",
    "notes": {},
    "tests": "assert removeCoveredFull([[1,4],[3,6],[2,8]]) == 2\nassert removeCoveredFull([[1,4],[2,3]]) == 1\nassert removeCoveredFull([[1,2],[1,4],[3,4]]) == 1\nassert removeCoveredFull([[1,4],[1,6],[2,8],[5,9]]) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1288"
   },
   {
    "id": "05-33-minimum-interval-to-include-each-query",
@@ -575,7 +636,8 @@
     "15": "remove intervals that end before q"
    },
    "tests": "assert minInterval([[1,4],[2,4],[3,6],[4,4]], [2,3,4,5]) == [3,3,1,4]\nassert minInterval([[2,3],[2,5],[1,8],[20,25]], [2,19,5,22]) == [2,-1,4,6]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2158"
   },
   {
    "id": "05-34-average-waiting-time",
@@ -591,7 +653,8 @@
    "solution": "def averageWaitingTime(customers):\n    total_wait = 0\n    free_at = 0\n    for arrival, cook_time in customers:\n        free_at = max(free_at, arrival) + cook_time\n        total_wait += free_at - arrival\n    return total_wait / len(customers)",
    "notes": {},
    "tests": "assert abs(averageWaitingTime([[1,2],[2,5],[4,3]]) - 5.0) < 1e-9\nassert abs(averageWaitingTime([[5,2],[5,4],[10,3],[20,1]]) - 3.25) < 1e-9\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1701"
   },
   {
    "id": "05-35-my-calendar-i-full-sortedlist-variant",
@@ -611,7 +674,8 @@
     "14": "check overlap with next interval"
    },
    "tests": "assert mc.book(10, 20) == True\nassert mc.book(15, 25) == False\nassert mc.book(20, 30) == True\nassert mc.book(5, 10) == True\nassert mc.book(25, 35) == False  # overlaps [20,30]\nassert mc.book(5, 11) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=729"
   },
   {
    "id": "05-36-the-skyline-problem",
@@ -643,7 +707,8 @@
     "40": "clean up ended buildings"
    },
    "tests": "assert getSkyline([[2,9,10],[3,7,15],[5,12,12],[15,20,10],[19,24,8]]) == [[2,10],[3,15],[7,12],[12,0],[15,10],[20,8],[24,0]]\nassert getSkyline([[0,2,3],[2,5,3]]) == [[0,3],[5,0]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=218"
   },
   {
    "id": "05-37-range-module",
@@ -664,7 +729,8 @@
     "18": "overlap — merge"
    },
    "tests": "assert rm.queryRange(10, 14) == True\nassert rm.queryRange(13, 15) == False\nassert rm.queryRange(16, 17) == True\nrm.addRange(13, 15)\nassert rm.queryRange(13, 15) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=715"
   },
   {
    "id": "05-38-my-calendar-iii",
@@ -680,7 +746,8 @@
    "solution": "from sortedcontainers import SortedDict\n\nclass MyCalendarThree:\n    def __init__(self):\n        self.timeline = SortedDict()\n    \n    def book(self, start, end):\n        self.timeline[start] = self.timeline.get(start, 0) + 1\n        self.timeline[end] = self.timeline.get(end, 0) - 1\n        max_k = curr = 0\n        for delta in self.timeline.values():\n            curr += delta\n            max_k = max(max_k, curr)\n        return max_k\n\nmc3 = MyCalendarThree()",
    "notes": {},
    "tests": "assert mc3.book(10, 20) == 1\nassert mc3.book(50, 60) == 1\nassert mc3.book(10, 40) == 2\nassert mc3.book(5, 15) == 3\nassert mc3.book(5, 10) == 3\nassert mc3.book(25, 55) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=732"
   },
   {
    "id": "05-39-data-stream-as-disjoint-intervals",
@@ -701,7 +768,8 @@
     "18": "adjacent or overlapping — merge"
    },
    "tests": "assert sr.getIntervals() == [[1,1]]\nsr.addNum(3)\nassert sr.getIntervals() == [[1,1],[3,3]]\nsr.addNum(7)\nsr.addNum(2)\nassert sr.getIntervals() == [[1,3],[7,7]]\nsr.addNum(6)\nassert sr.getIntervals() == [[1,3],[6,7]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=352"
   },
   {
    "id": "05-40-minimum-number-of-taps-to-open-to-water-a-garden",
@@ -723,7 +791,8 @@
     "16": "no progress — impossible"
    },
    "tests": "assert minTaps(5, [3,4,1,1,0,0]) == 1\nassert minTaps(3, [0,0,0,0]) == -1\nassert minTaps(7, [1,2,1,0,2,1,0,1]) == 3\nassert minTaps(8, [4,0,0,0,4,0,0,0,4]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1326"
   },
   {
    "id": "05-41-maximum-number-of-events-that-can-be-attended-ii",
@@ -742,7 +811,8 @@
     "12": "find last event that ends before s"
    },
    "tests": "assert maxValue([[1,2,4],[3,4,3],[2,3,1]], 2) == 7\nassert maxValue([[1,2,4],[3,4,3],[2,3,10]], 2) == 10\nassert maxValue([[1,1,1],[2,2,2],[3,3,3],[4,4,4]], 3) == 9\nassert maxValue([[1,2,4],[3,4,3],[2,3,1]], 3) == 7\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1751"
   },
   {
    "id": "05-42-falling-squares",
@@ -762,7 +832,8 @@
     "11": "overlap"
    },
    "tests": "assert fallingSquares([[1,2],[2,2],[1,2]]) == [2,4,6]\nassert fallingSquares([[100,100],[200,100]]) == [100,100]\nassert fallingSquares([[1,2],[1,2],[1,2]]) == [2,4,6]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=699"
   },
   {
    "id": "05-43-employee-free-time",
@@ -782,7 +853,8 @@
     "17": "Free time = gaps between merged intervals"
    },
    "tests": "assert employeeFreeTime([[[1,3],[6,7]],[[2,4]],[[2,5],[9,12]]]) == [[5,6],[7,9]]\nassert employeeFreeTime([[[1,3],[9,12]],[[2,4]],[[6,8]]]) == [[4,6],[8,9]]\nassert employeeFreeTime([[[1,2],[5,10]],[[3,6]]]) == [[2,3]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=759"
   },
   {
    "id": "05-44-russian-doll-envelopes-interval-nesting",
@@ -798,7 +870,8 @@
    "solution": "import bisect\n\ndef maxEnvelopesInterval(envelopes):\n    envelopes.sort(key=lambda x: (x[0], -x[1]))\n    tails = []\n    for _, h in envelopes:\n        pos = bisect.bisect_left(tails, h)\n        if pos == len(tails):\n            tails.append(h)\n        else:\n            tails[pos] = h\n    return len(tails)",
    "notes": {},
    "tests": "assert maxEnvelopesInterval([[5,4],[6,4],[6,7],[2,3]]) == 3\nassert maxEnvelopesInterval([[1,1],[1,1],[1,1]]) == 1\nassert maxEnvelopesInterval([[1,3],[3,5],[6,7],[6,8],[8,4],[9,5]]) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=354"
   },
   {
    "id": "05-45-minimum-cost-to-cut-a-stick",
@@ -816,7 +889,8 @@
     "6": "length = number of intervals between i and j"
    },
    "tests": "assert minCost(7, [1,3,4,5]) == 16\nassert minCost(9, [5,6,1,4,2]) == 22\nassert minCost(10, [2,4,7]) == 20\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1547"
   },
   {
    "id": "05-46-merge-two-2d-arrays-by-summing-values",
@@ -832,7 +906,8 @@
    "solution": "def mergeArrays(nums1, nums2):\n    from collections import defaultdict\n    totals = defaultdict(int)\n    for id_, val in nums1:\n        totals[id_] += val\n    for id_, val in nums2:\n        totals[id_] += val\n    return sorted([k, v] for k, v in totals.items())",
    "notes": {},
    "tests": "assert mergeArrays([[1,2],[2,3],[4,5]],[[1,4],[3,2],[4,1]]) == [[1,6],[2,3],[3,2],[4,6]]\nassert mergeArrays([[2,4],[3,6],[5,5]],[[1,3],[4,3]]) == [[1,3],[2,4],[3,6],[4,3],[5,5]]\nassert mergeArrays([],[]) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2570"
   },
   {
    "id": "05-47-count-days-without-meetings",
@@ -848,7 +923,8 @@
    "solution": "def countDays(days, meetings):\n    meetings.sort()\n    merged = []\n    for s, e in meetings:\n        if merged and s <= merged[-1][1]:\n            merged[-1][1] = max(merged[-1][1], e)\n        else:\n            merged.append([s, e])\n    busy = sum(e - s + 1 for s, e in merged)\n    return days - busy",
    "notes": {},
    "tests": "assert countDays(10, [[5,7],[1,3],[9,10]]) == 2\nassert countDays(5, [[2,4],[1,3]]) == 1\nassert countDays(6, [[1,6]]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=3169"
   },
   {
    "id": "05-48-convert-character-ranges-to-interval-list",
@@ -864,7 +940,8 @@
    "solution": "def charRanges(s):\n    nums = sorted(ord(c) for c in s)\n    if not nums:\n        return []\n    result = []\n    start = nums[0]\n    for i in range(1, len(nums)):\n        if nums[i] != nums[i-1] + 1:\n            result.append([start, nums[i-1]])\n            start = nums[i]\n    result.append([start, nums[-1]])\n    return result",
    "notes": {},
    "tests": "assert charRanges('abcef') == [[97,99],[101,102]]\nassert charRanges('z') == [[122,122]]\nassert charRanges('') == []\nassert charRanges('ace') == [[97,97],[99,99],[101,101]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "05-49-find-the-intersection-of-two-lists-as-ranges",
@@ -880,7 +957,8 @@
    "solution": "def intersectAsRanges(a, b):\n    common = sorted(set(a) & set(b))\n    if not common:\n        return []\n    result = []\n    start = common[0]\n    for i in range(1, len(common)):\n        if common[i] != common[i-1] + 1:\n            result.append([start, common[i-1]])\n            start = common[i]\n    result.append([start, common[-1]])\n    return result",
    "notes": {},
    "tests": "assert intersectAsRanges([1,2,3,5,6],[2,3,4,6,7]) == [[2,3],[6,6]]\nassert intersectAsRanges([1,2],[3,4]) == []\nassert intersectAsRanges([1,2,3],[1,2,3]) == [[1,3]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "05-50-flowers-in-bloom-at-time-t",
@@ -896,7 +974,8 @@
    "solution": "def flowersAtTime(flowers, t):\n    return sum(1 for s, e in flowers if s <= t <= e)",
    "notes": {},
    "tests": "assert flowersAtTime([[1,6],[3,7],[9,12],[4,13]], 4) == 3\nassert flowersAtTime([[1,6],[3,7],[9,12],[4,13]], 9) == 2\nassert flowersAtTime([[1,2],[3,4]], 5) == 0\nassert flowersAtTime([], 1) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2251"
   },
   {
    "id": "05-51-rectangle-overlap",
@@ -912,7 +991,8 @@
    "solution": "def isRectangleOverlap(rec1, rec2):\n    return not (rec1[2] <= rec2[0] or rec2[2] <= rec1[0] or\n                rec1[3] <= rec2[1] or rec2[3] <= rec1[1])",
    "notes": {},
    "tests": "assert isRectangleOverlap([0,0,2,2],[1,1,3,3]) == True\nassert isRectangleOverlap([0,0,1,1],[1,0,2,1]) == False\nassert isRectangleOverlap([0,0,2,2],[3,3,5,5]) == False\nassert isRectangleOverlap([0,0,3,3],[1,1,2,2]) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=836"
   },
   {
    "id": "05-52-largest-number-at-least-twice-of-others",
@@ -928,7 +1008,8 @@
    "solution": "def dominantIndex(nums):\n    if len(nums) == 1:\n        return 0\n    idx = nums.index(max(nums))\n    m = nums[idx]\n    for i, v in enumerate(nums):\n        if i != idx and m < 2 * v:\n            return -1\n    return idx",
    "notes": {},
    "tests": "assert dominantIndex([3,6,1,0]) == 1\nassert dominantIndex([1,2,3,4]) == -1\nassert dominantIndex([1]) == 0\nassert dominantIndex([0,0,0,1]) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=747"
   },
   {
    "id": "05-53-maximum-difference-between-adjacent-elements",
@@ -944,7 +1025,8 @@
    "solution": "def maxAdjacentDiff(nums):\n    return max(abs(nums[i] - nums[i-1]) for i in range(1, len(nums)))",
    "notes": {},
    "tests": "assert maxAdjacentDiff([1, 5, 2, 10]) == 8\nassert maxAdjacentDiff([1, 2, 3, 4]) == 1\nassert maxAdjacentDiff([10, 1]) == 9\nassert maxAdjacentDiff([3, 3, 3]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "05-54-employee-shift-interval-coverage",
@@ -960,7 +1042,8 @@
    "solution": "def totalShiftCoverage(shifts):\n    if not shifts:\n        return 0\n    shifts.sort()\n    merged = [list(shifts[0])]\n    for s, e in shifts[1:]:\n        if s <= merged[-1][1]:\n            merged[-1][1] = max(merged[-1][1], e)\n        else:\n            merged.append([s, e])\n    return sum(e - s for s, e in merged)",
    "notes": {},
    "tests": "assert totalShiftCoverage([[1,4],[2,6],[8,10]]) == 7\nassert totalShiftCoverage([[1,3],[3,5]]) == 4\nassert totalShiftCoverage([]) == 0\nassert totalShiftCoverage([[0,24]]) == 24\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "05-55-minimum-taps-to-water-garden-small-input",
@@ -976,7 +1059,8 @@
    "solution": "def minTaps(n, ranges):\n    max_reach = [0] * (n + 1)\n    for i, r in enumerate(ranges):\n        left = max(0, i - r)\n        max_reach[left] = max(max_reach[left], i + r)\n    taps = cur_end = far = 0\n    for i in range(n + 1):\n        if i > cur_end:\n            return -1\n        if i > far:\n            taps += 1\n            far = cur_end\n        cur_end = max(cur_end, max_reach[i])\n    return taps",
    "notes": {},
    "tests": "assert minTaps(5, [3,4,1,1,0,0]) == 1\nassert minTaps(3, [0,0,0,0]) == -1\nassert minTaps(7, [1,2,1,0,2,1,0,1]) == 3\nassert minTaps(0, [0]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "05-56-partition-labels",
@@ -992,7 +1076,8 @@
    "solution": "def partitionLabels(s):\n    last = {c: i for i, c in enumerate(s)}\n    result = []\n    start = end = 0\n    for i, c in enumerate(s):\n        end = max(end, last[c])\n        if i == end:\n            result.append(end - start + 1)\n            start = i + 1\n    return result",
    "notes": {},
    "tests": "assert partitionLabels('ababcbacadefegdehijhklij') == [9,7,8]\nassert partitionLabels('eccbbbbdec') == [10]\nassert partitionLabels('a') == [1]\nassert partitionLabels('ab') == [1,1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=763"
   },
   {
    "id": "05-57-find-all-intervals-that-overlap-with-a-given-interval",
@@ -1008,7 +1093,8 @@
    "solution": "def findOverlapping(intervals, q):\n    qs, qe = q\n    return [iv for iv in intervals if iv[0] <= qe and qs <= iv[1]]\n\nivs = [[1,3],[2,6],[8,10],[15,18]]",
    "notes": {},
    "tests": "assert findOverlapping(ivs, [2,9]) == [[1,3],[2,6],[8,10]]\nassert findOverlapping(ivs, [4,7]) == [[2,6]]\nassert findOverlapping(ivs, [11,14]) == []\nassert findOverlapping(ivs, [1,18]) == [[1,3],[2,6],[8,10],[15,18]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "05-58-count-overlapping-pairs-of-intervals-na-ve",
@@ -1024,7 +1110,8 @@
    "solution": "def countOverlappingPairs(intervals):\n    count = 0\n    n = len(intervals)\n    for i in range(n):\n        for j in range(i+1, n):\n            a, b = intervals[i], intervals[j]\n            if a[0] <= b[1] and b[0] <= a[1]:\n                count += 1\n    return count",
    "notes": {},
    "tests": "assert countOverlappingPairs([[1,3],[2,4],[5,7]]) == 1\nassert countOverlappingPairs([[1,5],[2,3],[4,6]]) == 2\nassert countOverlappingPairs([[1,2],[3,4]]) == 0\nassert countOverlappingPairs([[1,10],[2,9],[3,8]]) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "05-59-merge-overlapping-intervals-return-count-merged",
@@ -1040,7 +1127,8 @@
    "solution": "def countAfterMerge(intervals):\n    if not intervals:\n        return 0\n    intervals.sort()\n    merged = [list(intervals[0])]\n    for s, e in intervals[1:]:\n        if s <= merged[-1][1]:\n            merged[-1][1] = max(merged[-1][1], e)\n        else:\n            merged.append([s, e])\n    return len(merged)",
    "notes": {},
    "tests": "assert countAfterMerge([[1,3],[2,6],[8,10],[15,18]]) == 3\nassert countAfterMerge([[1,4],[4,5]]) == 1\nassert countAfterMerge([[1,2],[3,4],[5,6]]) == 3\nassert countAfterMerge([]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "05-60-find-gaps-between-intervals",
@@ -1056,7 +1144,8 @@
    "solution": "def findGaps(intervals, lo, hi):\n    gaps = []\n    prev = lo\n    for s, e in sorted(intervals):\n        if prev < s:\n            gaps.append([prev, s])\n        prev = max(prev, e)\n    if prev < hi:\n        gaps.append([prev, hi])\n    return gaps",
    "notes": {},
    "tests": "assert findGaps([[2,5],[7,9]], 0, 10) == [[0,2],[5,7],[9,10]]\nassert findGaps([[0,10]], 0, 10) == []\nassert findGaps([], 1, 5) == [[1,5]]\nassert findGaps([[1,2],[3,4]], 0, 5) == [[0,1],[2,3],[4,5]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "05-61-find-maximum-overlap-at-any-point",
@@ -1072,7 +1161,8 @@
    "solution": "def maxOverlap(intervals):\n    events = []\n    for s, e in intervals:\n        events.append((s, 1))\n        events.append((e + 1, -1))\n    events.sort()\n    cur = res = 0\n    for _, delta in events:\n        cur += delta\n        res = max(res, cur)\n    return res",
    "notes": {},
    "tests": "assert maxOverlap([[1,3],[2,4],[3,5]]) == 3\nassert maxOverlap([[1,2],[3,4],[5,6]]) == 1\nassert maxOverlap([[1,10],[2,9],[3,8],[4,7]]) == 4\nassert maxOverlap([[1,1]]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "05-62-sort-and-merge-bookings",
@@ -1088,7 +1178,8 @@
    "solution": "def mergeBookings(bookings):\n    intervals = sorted([s, e] for s, e, _ in bookings)\n    if not intervals:\n        return []\n    merged = [intervals[0]]\n    for s, e in intervals[1:]:\n        if s <= merged[-1][1]:\n            merged[-1][1] = max(merged[-1][1], e)\n        else:\n            merged.append([s, e])\n    return merged",
    "notes": {},
    "tests": "assert mergeBookings([[1,3,50],[2,5,80],[7,9,30]]) == [[1,5],[7,9]]\nassert mergeBookings([[1,2,10],[3,4,20]]) == [[1,2],[3,4]]\nassert mergeBookings([]) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "05-63-check-if-schedule-is-conflict-free",
@@ -1104,7 +1195,8 @@
    "solution": "def isConflictFree(slots):\n    slots.sort()\n    for i in range(1, len(slots)):\n        if slots[i][0] < slots[i-1][1]:\n            return False\n    return True",
    "notes": {},
    "tests": "assert isConflictFree([[1,2],[3,4],[5,6]]) == True\nassert isConflictFree([[1,3],[2,4]]) == False\nassert isConflictFree([[1,2],[2,3]]) == True\nassert isConflictFree([]) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "05-64-longest-non-overlapping-intervals-greedy",
@@ -1120,7 +1212,8 @@
    "solution": "def maxNonOverlapping(intervals):\n    intervals.sort(key=lambda x: x[1])\n    count = 0\n    end = float('-inf')\n    for s, e in intervals:\n        if s >= end:\n            count += 1\n            end = e\n    return count",
    "notes": {},
    "tests": "assert maxNonOverlapping([[1,2],[2,3],[3,4],[1,3]]) == 3\nassert maxNonOverlapping([[1,2],[1,2],[1,2]]) == 1\nassert maxNonOverlapping([[1,2],[2,3]]) == 2\nassert maxNonOverlapping([]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "05-65-find-union-length-of-all-intervals",
@@ -1136,7 +1229,8 @@
    "solution": "def unionLength(intervals):\n    if not intervals:\n        return 0\n    intervals = sorted(intervals)\n    merged = [list(intervals[0])]\n    for s, e in intervals[1:]:\n        if s <= merged[-1][1]:\n            merged[-1][1] = max(merged[-1][1], e)\n        else:\n            merged.append([s, e])\n    return sum(e - s + 1 for s, e in merged)",
    "notes": {},
    "tests": "assert unionLength([[1,3],[2,5],[7,9]]) == 8\nassert unionLength([[1,4],[4,8]]) == 8\nassert unionLength([[1,1],[2,2],[3,3]]) == 3\nassert unionLength([]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=3224"
   },
   {
    "id": "05-66-my-calendar-ii",
@@ -1152,7 +1246,8 @@
    "solution": "class MyCalendarTwo:\n    def __init__(self):\n        self.single = []\n        self.double = []\n\n    def _overlap(self, a, b, c, d):\n        return max(a, c) < min(b, d)\n\n    def book(self, start, end):\n        for s, e in self.double:\n            if self._overlap(start, end, s, e):\n                return False\n        for s, e in self.single:\n            if self._overlap(start, end, s, e):\n                self.double.append([max(start, s), min(end, e)])\n        self.single.append([start, end])\n        return True\n\ncal = MyCalendarTwo()",
    "notes": {},
    "tests": "assert cal.book(10, 20) == True\nassert cal.book(50, 60) == True\nassert cal.book(10, 40) == True\nassert cal.book(5, 15) == False\nassert cal.book(5, 10) == True\nassert cal.book(25, 55) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=731"
   },
   {
    "id": "05-67-maximum-number-of-events-that-can-be-attended",
@@ -1168,7 +1263,8 @@
    "solution": "import heapq\n\ndef maxEvents(events):\n    events.sort()\n    heap = []\n    i = 0\n    n = len(events)\n    count = 0\n    day = 1\n    max_day = max(e for _, e in events)\n    while i < n or heap:\n        while i < n and events[i][0] == day:\n            heapq.heappush(heap, events[i][1])\n            i += 1\n        while heap and heap[0] < day:\n            heapq.heappop(heap)\n        if heap:\n            heapq.heappop(heap)\n            count += 1\n        day += 1\n        if day > max_day:\n            break\n    return count",
    "notes": {},
    "tests": "assert maxEvents([[1,2],[2,3],[3,4]]) == 3\nassert maxEvents([[1,2],[2,3],[3,4],[1,2]]) == 4\nassert maxEvents([[1,4],[4,4],[2,2],[3,4],[1,1]]) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1353"
   },
   {
    "id": "05-68-minimum-arrows-from-the-top-vertical-arrow-variant",
@@ -1186,7 +1282,8 @@
    "tests": "assert findMinArrowShots([[10,16],[2,8],[1,6],[7,12]]) == 2\nassert findMinArrowShots([[1,2],[3,4],[5,6],[7,8]]) == 4\nassert findMinArrowShots([[1,2],[2,3],[3,4],[4,5]]) == 2\nassert findMinArrowShots([]) == 0\nprint(\"All tests passed!\")",
    "verified": [
     "findMinArrowShots"
-   ]
+   ],
+   "leetcodeUrl": null
   },
   {
    "id": "05-69-interval-schedule-maximization-weighted-simplified",
@@ -1204,7 +1301,8 @@
     "7": "compatible if start >= prev_end"
    },
    "tests": "assert jobSchedulingSimple([[1,2,50],[3,5,20],[6,9,100],[2,100,200]]) == 250\nassert jobSchedulingSimple([[1,3,20],[2,5,20],[3,10,100],[4,6,70],[6,9,60]]) == 150\nassert jobSchedulingSimple([[1,2,1],[1,2,2],[1,2,3]]) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "05-70-maximum-sum-of-non-overlapping-intervals",
@@ -1220,7 +1318,8 @@
    "solution": "from bisect import bisect_right\n\ndef maxSumNonOverlap(intervals):\n    intervals.sort(key=lambda x: x[1])\n    ends = [iv[1] for iv in intervals]\n    dp = [0] * (len(intervals) + 1)\n    for i, (s, e, v) in enumerate(intervals):\n        k = bisect_right(ends, s)\n        dp[i+1] = max(dp[i], dp[k] + v)\n    return dp[-1]",
    "notes": {},
    "tests": "assert maxSumNonOverlap([[1,3,4],[2,5,6],[3,7,2],[5,8,5]]) == 11\nassert maxSumNonOverlap([[1,2,10],[2,3,20],[3,4,30]]) == 60\nassert maxSumNonOverlap([[1,5,5],[2,4,3],[3,6,2]]) == 5\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "05-71-sweep-line-count-active-intervals-at-each-integer-poin",
@@ -1236,7 +1335,8 @@
    "solution": "def countActive(intervals, lo, hi):\n    size = hi - lo + 1\n    diff = [0] * (size + 1)\n    for s, e in intervals:\n        l = max(s, lo) - lo\n        r = min(e, hi) - lo\n        if l <= r:\n            diff[l] += 1\n            if r + 1 <= size:\n                diff[r + 1] -= 1\n    result = []\n    cur = 0\n    for i in range(size):\n        cur += diff[i]\n        result.append(cur)\n    return result",
    "notes": {},
    "tests": "assert countActive([[1,3],[2,4],[5,7]], 1, 7) == [1,2,2,1,1,1,1]\nassert countActive([[1,5],[2,3]], 1, 5) == [1,2,2,1,1]\nassert countActive([], 0, 3) == [0,0,0,0]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "05-72-minimum-platforms-required-railway-station-classic",
@@ -1252,7 +1352,8 @@
    "solution": "def minPlatforms(arrivals, departures):\n    arrivals.sort()\n    departures.sort()\n    platforms = 1\n    max_platforms = 1\n    i = j = 0\n    i += 1\n    while i < len(arrivals) and j < len(departures):\n        if arrivals[i] <= departures[j]:\n            platforms += 1\n            i += 1\n        else:\n            platforms -= 1\n            j += 1\n        max_platforms = max(max_platforms, platforms)\n    return max_platforms",
    "notes": {},
    "tests": "assert minPlatforms([900,940,950,1100,1500,1800],[910,1200,1120,1130,1900,2000]) == 3\nassert minPlatforms([900,1100],[1000,1200]) == 1\nassert minPlatforms([100,200,300],[400,500,600]) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "05-73-overlapping-rectangles-total-area",
@@ -1268,7 +1369,8 @@
    "solution": "def computeArea(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2):\n    area_a = (ax2 - ax1) * (ay2 - ay1)\n    area_b = (bx2 - bx1) * (by2 - by1)\n    ix1 = max(ax1, bx1)\n    iy1 = max(ay1, by1)\n    ix2 = min(ax2, bx2)\n    iy2 = min(ay2, by2)\n    intersection = max(0, ix2 - ix1) * max(0, iy2 - iy1)\n    return area_a + area_b - intersection",
    "notes": {},
    "tests": "assert computeArea(-3,0,3,4,0,-1,9,2) == 45\nassert computeArea(-2,-2,2,2,-2,-2,2,2) == 16\nassert computeArea(0,0,1,1,2,2,3,3) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "05-74-merge-k-interval-lists",
@@ -1284,7 +1386,8 @@
    "solution": "def mergeKLists(lists):\n    all_intervals = [iv for lst in lists for iv in lst]\n    if not all_intervals:\n        return []\n    all_intervals.sort()\n    merged = [list(all_intervals[0])]\n    for s, e in all_intervals[1:]:\n        if s <= merged[-1][1]:\n            merged[-1][1] = max(merged[-1][1], e)\n        else:\n            merged.append([s, e])\n    return merged",
    "notes": {},
    "tests": "assert mergeKLists([[[1,3],[5,7]],[[2,4],[6,8]],[[9,10]]]) == [[1,4],[5,8],[9,10]]\nassert mergeKLists([[[1,2]],[[3,4]],[[5,6]]]) == [[1,2],[3,4],[5,6]]\nassert mergeKLists([]) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "05-75-find-median-from-data-stream",
@@ -1303,7 +1406,8 @@
     "5": "min-heap"
    },
    "tests": "assert mf.findMedian() == 1.5\nmf.addNum(3)\nassert mf.findMedian() == 2.0\nmf.addNum(4)\nassert mf.findMedian() == 2.5\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=295"
   },
   {
    "id": "05-76-describe-the-painting",
@@ -1319,7 +1423,8 @@
    "solution": "from collections import defaultdict\n\ndef splitPainting(segments):\n    events = defaultdict(set)\n    for l, r, c in segments:\n        events[l].add(('add', c))\n        events[r].add(('remove', c))\n    points = sorted(events)\n    result = []\n    active = set()\n    prev = None\n    for p in points:\n        if prev is not None and active:\n            result.append([prev, p, frozenset(active)])\n        for op, c in events[p]:\n            if op == 'add':\n                active.add(c)\n            else:\n                active.discard(c)\n        prev = p\n    return result\n\nres = splitPainting([[1,4,5],[4,7,7],[1,7,3]])",
    "notes": {},
    "tests": "assert res[0][:2] == [1, 4]\nassert 5 in res[0][2] and 3 in res[0][2]\nassert res[1][:2] == [4, 7]\nassert 7 in res[1][2] and 3 in res[1][2]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1943"
   },
   {
    "id": "05-77-amount-of-new-area-painted-each-day",
@@ -1340,7 +1445,8 @@
     "16": "path compression"
    },
    "tests": "assert amountPainted([[1,4],[4,7],[5,8]]) == [3,3,1]\nassert amountPainted([[1,5],[1,5]]) == [4,0]\nassert amountPainted([[1,2],[2,3],[3,4]]) == [1,1,1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2158"
   },
   {
    "id": "05-78-minimum-interval-to-include-each-query",
@@ -1358,7 +1464,8 @@
     "6": "(size, end)"
    },
    "tests": "assert minInterval([[1,4],[2,4],[3,6],[4,4]], [2,3,4,5]) == [3,3,1,4]\nassert minInterval([[2,3],[2,5],[1,8],[20,25]], [2,19,5,22]) == [2,-1,4,6]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2158"
   },
   {
    "id": "05-79-largest-rectangle-in-histogram",
@@ -1374,7 +1481,8 @@
    "solution": "def largestRectangleArea(heights):\n    stack = []\n    max_area = 0\n    heights = heights + [0]\n    for i, h in enumerate(heights):\n        start = i\n        while stack and stack[-1][1] > h:\n            idx, height = stack.pop()\n            max_area = max(max_area, height * (i - idx))\n            start = idx\n        stack.append((start, h))\n    return max_area",
    "notes": {},
    "tests": "assert largestRectangleArea([2,1,5,6,2,3]) == 10\nassert largestRectangleArea([2,4]) == 4\nassert largestRectangleArea([1]) == 1\nassert largestRectangleArea([1,1,1,1]) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=84"
   },
   {
    "id": "05-80-count-integers-in-intervals",
@@ -1393,7 +1501,8 @@
     "13": "check left neighbor"
    },
    "tests": "assert ci.count() == 6\nci.add(5, 8)\nassert ci.count() == 8\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2276"
   },
   {
    "id": "05-81-count-integers-in-intervals-full",
@@ -1413,7 +1522,8 @@
     "14": "walk backwards to find all overlapping intervals"
    },
    "tests": "assert cif.count() == 6\ncif.add(5, 8)\nassert cif.count() == 8\ncif.add(1, 10)\nassert cif.count() == 10\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2276"
   },
   {
    "id": "05-82-maximum-profit-in-job-scheduling",
@@ -1429,7 +1539,8 @@
    "solution": "from bisect import bisect_right\n\ndef jobScheduling(startTime, endTime, profit):\n    jobs = sorted(zip(startTime, endTime, profit), key=lambda x: x[1])\n    ends = [j[1] for j in jobs]\n    dp = [0] * (len(jobs) + 1)\n    for i, (s, e, p) in enumerate(jobs):\n        k = bisect_right(ends, s)\n        dp[i+1] = max(dp[i], dp[k] + p)\n    return dp[-1]",
    "notes": {},
    "tests": "assert jobScheduling([1,2,3,3],[3,4,5,6],[50,10,40,70]) == 120\nassert jobScheduling([1,2,3,4,6],[3,5,10,6,9],[20,20,100,70,60]) == 150\nassert jobScheduling([1,1,1],[2,3,4],[5,6,4]) == 6\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1235"
   },
   {
    "id": "05-83-video-stitching",
@@ -1445,7 +1556,8 @@
    "solution": "def videoStitching(clips, time):\n    clips.sort()\n    count = 0\n    cur_end = 0\n    far = 0\n    i = 0\n    while cur_end < time:\n        while i < len(clips) and clips[i][0] <= cur_end:\n            far = max(far, clips[i][1])\n            i += 1\n        if far <= cur_end:\n            return -1\n        cur_end = far\n        count += 1\n    return count",
    "notes": {},
    "tests": "assert videoStitching([[0,2],[4,6],[8,10],[1,9],[1,5],[5,9]], 10) == 3\nassert videoStitching([[0,1],[1,2]], 5) == -1\nassert videoStitching([[0,1],[6,8],[0,2],[5,6],[0,4],[0,3],[6,7],[1,3],[4,7],[1,4],[2,5],[2,6],[3,4],[4,5],[5,7],[6,9]], 9) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1024"
   },
   {
    "id": "05-84-jump-game-ii-as-interval-cover",
@@ -1461,7 +1573,8 @@
    "solution": "def jump(nums):\n    jumps = 0\n    cur_end = 0\n    far = 0\n    for i in range(len(nums) - 1):\n        far = max(far, i + nums[i])\n        if i == cur_end:\n            jumps += 1\n            cur_end = far\n    return jumps",
    "notes": {},
    "tests": "assert jump([2,3,1,1,4]) == 2\nassert jump([2,3,0,1,4]) == 2\nassert jump([1,2,1,1,1]) == 3\nassert jump([0]) == 0\nassert jump([1,1,1,1]) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=45"
   },
   {
    "id": "05-85-minimum-number-of-intervals-to-cover-a-range",
@@ -1477,7 +1590,8 @@
    "solution": "def minIntervalsCover(intervals, lo, hi):\n    intervals.sort()\n    count = 0\n    cur = lo\n    i = 0\n    n = len(intervals)\n    while cur < hi:\n        far = cur\n        while i < n and intervals[i][0] <= cur:\n            far = max(far, intervals[i][1])\n            i += 1\n        if far == cur:\n            return -1\n        cur = far\n        count += 1\n    return count",
    "notes": {},
    "tests": "assert minIntervalsCover([[1,3],[2,5],[4,7]], 1, 7) == 3\nassert minIntervalsCover([[1,2],[3,4]], 1, 4) == -1\nassert minIntervalsCover([[1,10]], 1, 10) == 1\nassert minIntervalsCover([[1,3],[2,4],[3,6],[5,8]], 1, 8) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "05-86-weighted-job-scheduling-maximize-profit",
@@ -1496,7 +1610,8 @@
     "10": "Compatible if next job starts >= prev end"
    },
    "tests": "assert weightedJobSchedule([(1,3,20),(2,5,20),(3,10,100),(4,6,70),(6,9,60)]) == 150\nassert weightedJobSchedule([(1,2,50),(1,3,10),(2,3,40),(2,4,25)]) == 90\nassert weightedJobSchedule([(1,4,3),(2,5,4),(3,6,5)]) == 5\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "05-87-minimum-cost-to-cut-a-stick-full",
@@ -1514,7 +1629,8 @@
     "4": "length of interval in index space"
    },
    "tests": "assert minCost(7, [1,3,4,5]) == 16\nassert minCost(9, [5,6,1,4,2]) == 22\nassert minCost(4, [2]) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1547"
   },
   {
    "id": "05-88-strange-printer-ii",
@@ -1530,7 +1646,8 @@
    "solution": "def isPrintable(targetGrid):\n    from collections import defaultdict, deque\n    m, n = len(targetGrid), len(targetGrid[0])\n    bounds = {}\n    for i in range(m):\n        for j in range(n):\n            c = targetGrid[i][j]\n            if c not in bounds:\n                bounds[c] = [i, j, i, j]\n            else:\n                bounds[c][0] = min(bounds[c][0], i)\n                bounds[c][1] = min(bounds[c][1], j)\n                bounds[c][2] = max(bounds[c][2], i)\n                bounds[c][3] = max(bounds[c][3], j)\n    graph = defaultdict(set)\n    indegree = defaultdict(int)\n    colors = set(bounds)\n    for c in colors:\n        r1, c1, r2, c2 = bounds[c]\n        for i in range(r1, r2+1):\n            for j in range(c1, c2+1):\n                other = targetGrid[i][j]\n                if other != c and other not in graph[c]:\n                    graph[c].add(other)\n                    indegree[other] = indegree.get(other, 0) + 1\n    for c in colors:\n        if c not in indegree:\n            indegree[c] = 0\n    q = deque(c for c in colors if indegree[c] == 0)\n    visited = 0\n    while q:\n        c = q.popleft()\n        visited += 1\n        for nb in graph[c]:\n            indegree[nb] -= 1\n            if indegree[nb] == 0:\n                q.append(nb)\n    return visited == len(colors)",
    "notes": {},
    "tests": "assert isPrintable([[1,1,1,1],[1,2,2,1],[1,2,2,1],[1,1,1,1]]) == True\nassert isPrintable([[1,1,1],[3,1,3]]) == False\nassert isPrintable([[1,2],[2,1]]) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1591"
   },
   {
    "id": "05-89-minimum-difficulty-of-a-job-schedule",
@@ -1548,7 +1665,8 @@
     "6": "dp[i][j] = min difficulty for first j jobs in i days"
    },
    "tests": "assert minDifficulty([6,5,4,3,2,1], 2) == 7\nassert minDifficulty([9,9,9], 4) == -1\nassert minDifficulty([1,1,1], 3) == 3\nassert minDifficulty([7,1,7,1,7,1], 3) == 15\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1335"
   },
   {
    "id": "05-90-zuma-game-with-interval-dp",
@@ -1566,7 +1684,8 @@
     "8": "Remove groups of 3+ consecutive same chars"
    },
    "tests": "assert findMinStep('WRRBBW', 'RB') == -1\nassert findMinStep('WWRRBBWW', 'WRBRW') == 2\nassert findMinStep('G', 'GGGGG') == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=488"
   }
  ]
 }

@@ -3,6 +3,31 @@
  "slug": "binary-tree-dfs",
  "name": "Binary Tree DFS",
  "note": "Depth-First Search",
+ "about": {
+  "lead": "",
+  "sections": [
+   {
+    "heading": "What Is It?",
+    "body": "DFS explores a binary tree by going as **deep as possible** before backtracking. It comes in three orderings depending on when the root is visited relative to its children."
+   },
+   {
+    "heading": "Three DFS Orderings",
+    "body": "### Preorder (Root → Left → Right)\n```python\ndef preorder(root):\n    if not root: return\n    visit(root)        # process root FIRST\n    preorder(root.left)\n    preorder(root.right)\n```\n**Use when**: copying/serializing a tree, recording paths, prefix operations.\n\n### Inorder (Left → Root → Right)\n```python\ndef inorder(root):\n    if not root: return\n    inorder(root.left)\n    visit(root)        # process root IN MIDDLE\n    inorder(root.right)\n```\n**Use when**: BST → sorted order, binary search on BST.\n\n### Postorder (Left → Right → Root)\n```python\ndef postorder(root):\n    if not root: return\n    postorder(root.left)\n    postorder(root.right)\n    visit(root)        # process root LAST\n```\n**Use when**: deleting a tree, computing subtree properties (height, sum, etc.)."
+   },
+   {
+    "heading": "Iterative DFS with Explicit Stack",
+    "body": "```python\ndef inorder_iterative(root):\n    result, stack = [], []\n    curr = root\n    while curr or stack:\n        while curr:           # go left as far as possible\n            stack.append(curr)\n            curr = curr.left\n        curr = stack.pop()    # process node\n        result.append(curr.val)\n        curr = curr.right     # go right\n    return result\n```"
+   },
+   {
+    "heading": "Path Problems Pattern",
+    "body": "For path-based problems, **pass running state down** (as function parameters) and **return computed values up**:\n```python\ndef solve(root, running_state):\n    if not root: return base_case\n    # update running state\n    new_state = update(running_state, root.val)\n    # recurse and combine results from children\n    left_result = solve(root.left, new_state)\n    right_result = solve(root.right, new_state)\n    return combine(left_result, right_result)\n```"
+   },
+   {
+    "heading": "Complexity",
+    "body": "| Operation | Time | Space |\n|-----------|------|-------|\n| Full traversal | O(n) | O(h) where h = height |\n| Balanced tree height | O(log n) | — |\n| Worst case (skewed tree) | O(n) | O(n) stack |\n| Iterative DFS | O(n) | O(h) explicit stack |"
+   }
+  ]
+ },
  "notebook": "07_Binary_Tree_DFS.ipynb",
  "problems": [
   {
@@ -19,7 +44,8 @@
    "solution": "def maxDepth(root):\n    if not root:\n        return 0\n    return 1 + max(maxDepth(root.left), maxDepth(root.right))",
    "notes": {},
    "tests": "assert maxDepth(build_tree([3,9,20,None,None,15,7])) == 3\nassert maxDepth(build_tree([1,None,2])) == 2\nassert maxDepth(None) == 0\nassert maxDepth(build_tree([1])) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=104"
   },
   {
    "id": "07-02-minimum-depth-of-binary-tree",
@@ -35,7 +61,8 @@
    "solution": "def minDepth(root):\n    if not root:\n        return 0\n    if not root.left and not root.right:\n        return 1\n    if not root.left:\n        return 1 + minDepth(root.right)\n    if not root.right:\n        return 1 + minDepth(root.left)\n    return 1 + min(minDepth(root.left), minDepth(root.right))",
    "notes": {},
    "tests": "assert minDepth(build_tree([3,9,20,None,None,15,7])) == 2\nassert minDepth(build_tree([2,None,3,None,4,None,5,None,6])) == 5\nassert minDepth(None) == 0\nassert minDepth(build_tree([1])) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=111"
   },
   {
    "id": "07-03-invert-binary-tree",
@@ -51,7 +78,8 @@
    "solution": "def invertTree(root):\n    if not root:\n        return None\n    root.left, root.right = invertTree(root.right), invertTree(root.left)\n    return root",
    "notes": {},
    "tests": "assert tree_to_list(invertTree(build_tree([4,2,7,1,3,6,9]))) == [4,7,2,9,6,3,1]\nassert tree_to_list(invertTree(build_tree([2,1,3]))) == [2,3,1]\nassert invertTree(None) is None\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=226"
   },
   {
    "id": "07-04-symmetric-tree",
@@ -67,7 +95,8 @@
    "solution": "def isSymmetric(root):\n    def isMirror(left, right):\n        if not left and not right:\n            return True\n        if not left or not right:\n            return False\n        return (left.val == right.val and\n                isMirror(left.left, right.right) and\n                isMirror(left.right, right.left))\n    return isMirror(root.left, root.right)",
    "notes": {},
    "tests": "assert isSymmetric(build_tree([1,2,2,3,4,4,3])) == True\nassert isSymmetric(build_tree([1,2,2,None,3,None,3])) == False\nassert isSymmetric(build_tree([1])) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=101"
   },
   {
    "id": "07-05-same-tree",
@@ -83,7 +112,8 @@
    "solution": "def isSameTree(p, q):\n    if not p and not q:\n        return True\n    if not p or not q:\n        return False\n    return (p.val == q.val and\n            isSameTree(p.left, q.left) and\n            isSameTree(p.right, q.right))",
    "notes": {},
    "tests": "assert isSameTree(build_tree([1,2,3]), build_tree([1,2,3])) == True\nassert isSameTree(build_tree([1,2]), build_tree([1,None,2])) == False\nassert isSameTree(build_tree([1,2,1]), build_tree([1,1,2])) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=100"
   },
   {
    "id": "07-06-path-sum",
@@ -99,7 +129,8 @@
    "solution": "def hasPathSum(root, targetSum):\n    if not root:\n        return False\n    if not root.left and not root.right:\n        return root.val == targetSum\n    return (hasPathSum(root.left, targetSum - root.val) or\n            hasPathSum(root.right, targetSum - root.val))",
    "notes": {},
    "tests": "assert hasPathSum(build_tree([5,4,8,11,None,13,4,7,2,None,None,None,1]), 22) == True\nassert hasPathSum(build_tree([1,2,3]), 5) == False\nassert hasPathSum(None, 0) == False\nassert hasPathSum(build_tree([1,2]), 1) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=112"
   },
   {
    "id": "07-07-binary-tree-paths",
@@ -115,7 +146,8 @@
    "solution": "def binaryTreePaths(root):\n    result = []\n    def dfs(node, path):\n        if not node:\n            return\n        path += str(node.val)\n        if not node.left and not node.right:\n            result.append(path)\n        else:\n            dfs(node.left, path + \"->\")\n            dfs(node.right, path + \"->\")\n    dfs(root, \"\")\n    return result",
    "notes": {},
    "tests": "assert sorted(binaryTreePaths(build_tree([1,2,3,None,5]))) == sorted([\"1->2->5\",\"1->3\"])\nassert binaryTreePaths(build_tree([1])) == [\"1\"]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=257"
   },
   {
    "id": "07-08-sum-of-left-leaves",
@@ -131,7 +163,8 @@
    "solution": "def sumOfLeftLeaves(root):\n    def dfs(node, is_left):\n        if not node:\n            return 0\n        if not node.left and not node.right:\n            return node.val if is_left else 0\n        return dfs(node.left, True) + dfs(node.right, False)\n    return dfs(root, False)",
    "notes": {},
    "tests": "assert sumOfLeftLeaves(build_tree([3,9,20,None,None,15,7])) == 24\nassert sumOfLeftLeaves(build_tree([1])) == 0\nassert sumOfLeftLeaves(build_tree([1,2,3,4,5])) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=404"
   },
   {
    "id": "07-09-diameter-of-binary-tree",
@@ -147,7 +180,8 @@
    "solution": "def diameterOfBinaryTree(root):\n    max_diameter = [0]\n    def height(node):\n        if not node:\n            return 0\n        left_h = height(node.left)\n        right_h = height(node.right)\n        max_diameter[0] = max(max_diameter[0], left_h + right_h)\n        return 1 + max(left_h, right_h)\n    height(root)\n    return max_diameter[0]",
    "notes": {},
    "tests": "assert diameterOfBinaryTree(build_tree([1,2,3,4,5])) == 3\nassert diameterOfBinaryTree(build_tree([1,2])) == 1\nassert diameterOfBinaryTree(build_tree([1])) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=543"
   },
   {
    "id": "07-10-balanced-binary-tree",
@@ -163,7 +197,8 @@
    "solution": "def isBalanced(root):\n    def check(node):\n        if not node:\n            return 0\n        left = check(node.left)\n        if left == -1:\n            return -1\n        right = check(node.right)\n        if right == -1:\n            return -1\n        if abs(left - right) > 1:\n            return -1\n        return 1 + max(left, right)\n    return check(root) != -1",
    "notes": {},
    "tests": "assert isBalanced(build_tree([3,9,20,None,None,15,7])) == True\nassert isBalanced(build_tree([1,2,2,3,3,None,None,4,4])) == False\nassert isBalanced(None) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=110"
   },
   {
    "id": "07-11-count-complete-tree-nodes",
@@ -181,7 +216,8 @@
     "12": "perfect binary tree"
    },
    "tests": "assert countNodes(build_tree([1,2,3,4,5,6])) == 6\nassert countNodes(None) == 0\nassert countNodes(build_tree([1])) == 1\nassert countNodes(build_tree([1,2,3,4,5,6,7])) == 7\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=222"
   },
   {
    "id": "07-12-subtree-of-another-tree",
@@ -197,7 +233,8 @@
    "solution": "def isSubtree(root, subRoot):\n    def isSame(a, b):\n        if not a and not b: return True\n        if not a or not b: return False\n        return a.val == b.val and isSame(a.left, b.left) and isSame(a.right, b.right)\n    \n    if not root:\n        return False\n    if isSame(root, subRoot):\n        return True\n    return isSubtree(root.left, subRoot) or isSubtree(root.right, subRoot)",
    "notes": {},
    "tests": "assert isSubtree(build_tree([3,4,5,1,2]), build_tree([4,1,2])) == True\nassert isSubtree(build_tree([3,4,5,1,2,None,None,None,None,0]), build_tree([4,1,2])) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=572"
   },
   {
    "id": "07-13-lowest-common-ancestor-of-bst",
@@ -216,7 +253,8 @@
     "11": "node 8"
    },
    "tests": "assert lcaBST(root, p, q).val == 6\n\np = root.left       # node 2\nq = root.left.right # node 4\nassert lcaBST(root, p, q).val == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=235"
   },
   {
    "id": "07-14-merge-two-binary-trees",
@@ -232,7 +270,8 @@
    "solution": "def mergeTrees(root1, root2):\n    if not root1:\n        return root2\n    if not root2:\n        return root1\n    root1.val += root2.val\n    root1.left = mergeTrees(root1.left, root2.left)\n    root1.right = mergeTrees(root1.right, root2.right)\n    return root1\n\nt1 = build_tree([1,3,2,5])\nt2 = build_tree([2,1,3,None,4,None,7])",
    "notes": {},
    "tests": "assert tree_to_list(mergeTrees(t1, t2)) == [3,4,5,5,4,None,7]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=617"
   },
   {
    "id": "07-15-search-in-bst",
@@ -248,7 +287,8 @@
    "solution": "def searchBST(root, val):\n    while root:\n        if root.val == val:\n            return root\n        elif val < root.val:\n            root = root.left\n        else:\n            root = root.right\n    return None\n\nroot = build_tree([4,2,7,1,3])\nresult = searchBST(root, 2)",
    "notes": {},
    "tests": "assert result is not None and tree_to_list(result) == [2,1,3]\nassert searchBST(root, 5) is None\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=700"
   },
   {
    "id": "07-16-range-sum-of-bst",
@@ -264,7 +304,8 @@
    "solution": "def rangeSumBST(root, low, high):\n    if not root:\n        return 0\n    total = 0\n    if low <= root.val <= high:\n        total += root.val\n    if root.val > low:\n        total += rangeSumBST(root.left, low, high)\n    if root.val < high:\n        total += rangeSumBST(root.right, low, high)\n    return total",
    "notes": {},
    "tests": "assert rangeSumBST(build_tree([10,5,15,3,7,None,18]), 7, 15) == 32\nassert rangeSumBST(build_tree([10,5,15,3,7,13,18,1,None,6]), 6, 10) == 23\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=938"
   },
   {
    "id": "07-17-univalued-binary-tree",
@@ -280,7 +321,8 @@
    "solution": "def isUnivalTree(root):\n    def dfs(node, val):\n        if not node:\n            return True\n        if node.val != val:\n            return False\n        return dfs(node.left, val) and dfs(node.right, val)\n    return dfs(root, root.val)",
    "notes": {},
    "tests": "assert isUnivalTree(build_tree([1,1,1,1,1,None,1])) == True\nassert isUnivalTree(build_tree([2,2,2,5,2])) == False\nassert isUnivalTree(build_tree([1])) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=965"
   },
   {
    "id": "07-18-leaf-similar-trees",
@@ -296,7 +338,8 @@
    "solution": "def leafSimilar(root1, root2):\n    def getLeaves(node):\n        if not node:\n            return []\n        if not node.left and not node.right:\n            return [node.val]\n        return getLeaves(node.left) + getLeaves(node.right)\n    return getLeaves(root1) == getLeaves(root2)",
    "notes": {},
    "tests": "assert leafSimilar(build_tree([3,5,1,6,2,9,8,None,None,7,4]), build_tree([3,5,1,6,7,4,2,None,None,None,None,None,None,9,8])) == True\nassert leafSimilar(build_tree([1,2,3]), build_tree([1,3,2])) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=872"
   },
   {
    "id": "07-19-find-mode-in-bst",
@@ -312,7 +355,8 @@
    "solution": "def findMode(root):\n    modes = []\n    max_count = count = 0\n    prev = None\n    \n    def inorder(node):\n        nonlocal prev, count, max_count\n        if not node:\n            return\n        inorder(node.left)\n        count = count + 1 if node.val == prev else 1\n        if count > max_count:\n            max_count = count\n            modes.clear()\n            modes.append(node.val)\n        elif count == max_count:\n            modes.append(node.val)\n        prev = node.val\n        inorder(node.right)\n    \n    inorder(root)\n    return modes",
    "notes": {},
    "tests": "assert sorted(findMode(build_tree([1,None,2,2]))) == [2]\nassert sorted(findMode(build_tree([0]))) == [0]\nresult = findMode(build_tree([1,1,2,None,None,2]))\nassert sorted(result) == [1, 2]  # both appear twice\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=501"
   },
   {
    "id": "07-20-two-sum-iv-input-is-a-bst",
@@ -328,7 +372,8 @@
    "solution": "def findTarget(root, k):\n    seen = set()\n    def dfs(node):\n        if not node:\n            return False\n        if k - node.val in seen:\n            return True\n        seen.add(node.val)\n        return dfs(node.left) or dfs(node.right)\n    return dfs(root)",
    "notes": {},
    "tests": "assert findTarget(build_tree([5,3,6,2,4,None,7]), 9) == True\nassert findTarget(build_tree([5,3,6,2,4,None,7]), 28) == False\nassert findTarget(build_tree([1,None,2]), 3) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=653"
   },
   {
    "id": "07-21-binary-tree-inorder-traversal-iterative",
@@ -344,7 +389,8 @@
    "solution": "def inorderTraversal(root):\n    result, stack = [], []\n    curr = root\n    while curr or stack:\n        while curr:\n            stack.append(curr)\n            curr = curr.left\n        curr = stack.pop()\n        result.append(curr.val)\n        curr = curr.right\n    return result",
    "notes": {},
    "tests": "assert inorderTraversal(build_tree([1,None,2,3])) == [1,3,2]\nassert inorderTraversal(build_tree([1,2,3,4,5])) == [4,2,5,1,3]\nassert inorderTraversal(None) == []\nassert inorderTraversal(build_tree([1])) == [1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=94"
   },
   {
    "id": "07-22-validate-bst",
@@ -360,7 +406,8 @@
    "solution": "def isValidBST(root):\n    def validate(node, min_val, max_val):\n        if not node:\n            return True\n        if node.val <= min_val or node.val >= max_val:\n            return False\n        return (validate(node.left, min_val, node.val) and\n                validate(node.right, node.val, max_val))\n    return validate(root, float('-inf'), float('inf'))",
    "notes": {},
    "tests": "assert isValidBST(build_tree([2,1,3])) == True\nassert isValidBST(build_tree([5,1,4,None,None,3,6])) == False\nassert isValidBST(build_tree([2,2,2])) == False\nassert isValidBST(build_tree([1,None,1])) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=98"
   },
   {
    "id": "07-23-construct-binary-tree-from-preorder-and-inorder-traver",
@@ -376,7 +423,8 @@
    "solution": "def buildTreePreIn(preorder, inorder):\n    inorder_map = {val: i for i, val in enumerate(inorder)}\n    \n    def build(pre_start, pre_end, in_start, in_end):\n        if pre_start > pre_end:\n            return None\n        root_val = preorder[pre_start]\n        root = TreeNode(root_val)\n        mid = inorder_map[root_val]\n        left_size = mid - in_start\n        root.left = build(pre_start + 1, pre_start + left_size, in_start, mid - 1)\n        root.right = build(pre_start + left_size + 1, pre_end, mid + 1, in_end)\n        return root\n    \n    n = len(preorder)\n    return build(0, n - 1, 0, n - 1)\n\nresult = buildTreePreIn([3,9,20,15,7], [9,3,15,20,7])",
    "notes": {},
    "tests": "assert tree_to_list(result) == [3,9,20,None,None,15,7]\nresult2 = buildTreePreIn([1,2], [2,1])\nassert tree_to_list(result2) == [1,2]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=105"
   },
   {
    "id": "07-24-path-sum-ii",
@@ -394,7 +442,8 @@
     "11": "backtrack"
    },
    "tests": "assert sorted(pathSum(build_tree([5,4,8,11,None,13,4,7,2,None,None,5,1]), 22)) == sorted([[5,4,11,2],[5,8,4,5]])\nassert pathSum(build_tree([1,2,3]), 5) == []\nassert pathSum(build_tree([1,2]), 0) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=113"
   },
   {
    "id": "07-25-lowest-common-ancestor-of-binary-tree",
@@ -413,7 +462,8 @@
     "11": "1"
    },
    "tests": "assert lowestCommonAncestor(root, p, q).val == 3\n\np = root.left               # 5\nq = root.left.right.right   # 4\nassert lowestCommonAncestor(root, p, q).val == 5\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=236"
   },
   {
    "id": "07-26-kth-smallest-element-in-bst",
@@ -429,7 +479,8 @@
    "solution": "def kthSmallestBST(root, k):\n    stack = []\n    curr = root\n    while curr or stack:\n        while curr:\n            stack.append(curr)\n            curr = curr.left\n        curr = stack.pop()\n        k -= 1\n        if k == 0:\n            return curr.val\n        curr = curr.right",
    "notes": {},
    "tests": "assert kthSmallestBST(build_tree([3,1,4,None,2]), 1) == 1\nassert kthSmallestBST(build_tree([5,3,6,2,4,None,None,1]), 3) == 3\nassert kthSmallestBST(build_tree([1,None,2]), 2) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=230"
   },
   {
    "id": "07-27-sum-root-to-leaf-numbers",
@@ -445,7 +496,8 @@
    "solution": "def sumNumbers(root):\n    def dfs(node, curr_num):\n        if not node:\n            return 0\n        curr_num = curr_num * 10 + node.val\n        if not node.left and not node.right:\n            return curr_num\n        return dfs(node.left, curr_num) + dfs(node.right, curr_num)\n    return dfs(root, 0)",
    "notes": {},
    "tests": "assert sumNumbers(build_tree([1,2,3])) == 25  # 12 + 13\nassert sumNumbers(build_tree([4,9,0,5,1])) == 1026  # 495 + 491 + 40\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=129"
   },
   {
    "id": "07-28-flatten-binary-tree-to-linked-list",
@@ -461,7 +513,8 @@
    "solution": "def flattenTree(root):\n    curr = root\n    while curr:\n        if curr.left:\n            rightmost = curr.left\n            while rightmost.right:\n                rightmost = rightmost.right\n            rightmost.right = curr.right\n            curr.right = curr.left\n            curr.left = None\n        curr = curr.right\n\ndef right_chain(root):\n    vals = []\n    while root:\n        vals.append(root.val)\n        root = root.right\n    return vals\n\nr = build_tree([1,2,5,3,4,None,6])\nflattenTree(r)",
    "notes": {},
    "tests": "assert right_chain(r) == [1,2,3,4,5,6]\n\nr2 = build_tree([0])\nflattenTree(r2)\nassert right_chain(r2) == [0]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=114"
   },
   {
    "id": "07-29-house-robber-iii",
@@ -479,7 +532,8 @@
     "3": "(rob_this_node, skip_this_node)"
    },
    "tests": "assert rob(build_tree([3,2,3,None,3,None,1])) == 7\nassert rob(build_tree([3,4,5,1,3,None,1])) == 9\nassert rob(build_tree([4,1,None,2,None,3])) == 7\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=337"
   },
   {
    "id": "07-30-delete-node-in-bst",
@@ -497,7 +551,8 @@
     "13": "Find inorder successor (min of right subtree)"
    },
    "tests": "assert vals == [2,4,5,6,7]\n\nr2 = build_tree([5,3,6,2,4,None,7])\nr2 = deleteNode(r2, 0)  # key not in tree\nassert inorderTraversal(r2) == [2,3,4,5,6,7]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=450"
   },
   {
    "id": "07-31-all-nodes-distance-k-in-binary-tree",
@@ -517,7 +572,8 @@
     "20": "BFS from target"
    },
    "tests": "assert sorted(distanceK(root, 5, 2)) == sorted([7,4,1])\nassert distanceK(root, 1, 0) == [1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=863"
   },
   {
    "id": "07-32-recover-binary-search-tree",
@@ -536,7 +592,8 @@
     "10": "second violation: smaller node"
    },
    "tests": "assert inorderTraversal(r) == [1,2,3]\n\nr2 = build_tree([3,1,4,None,None,2])\nrecoverTree(r2)\nassert inorderTraversal(r2) == [1,2,3,4]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=99"
   },
   {
    "id": "07-33-unique-binary-search-trees-ii",
@@ -552,7 +609,8 @@
    "solution": "def generateTrees(n):\n    def generate(start, end):\n        if start > end:\n            return [None]\n        trees = []\n        for root_val in range(start, end + 1):\n            lefts = generate(start, root_val - 1)\n            rights = generate(root_val + 1, end)\n            for left in lefts:\n                for right in rights:\n                    root = TreeNode(root_val)\n                    root.left = left\n                    root.right = right\n                    trees.append(root)\n        return trees\n    return generate(1, n)\n\ntrees = generateTrees(3)",
    "notes": {},
    "tests": "assert len(trees) == 5  # Catalan(3) = 5\ntrees1 = generateTrees(1)\nassert len(trees1) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=95"
   },
   {
    "id": "07-34-binary-tree-right-side-view-using-dfs",
@@ -570,7 +628,8 @@
     "7": "visit right first"
    },
    "tests": "assert rightSideView(build_tree([1,2,3,None,5,None,4])) == [1,3,4]\nassert rightSideView(build_tree([1,None,3])) == [1,3]\nassert rightSideView(None) == []\nassert rightSideView(build_tree([1,2,3,4])) == [1,3,4]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=199"
   },
   {
    "id": "07-35-find-duplicate-subtrees",
@@ -586,7 +645,8 @@
    "solution": "from collections import defaultdict\n\ndef findDuplicateSubtrees(root):\n    count = defaultdict(int)\n    result = []\n    \n    def serialize(node):\n        if not node:\n            return \"#\"\n        serial = f\"{node.val},{serialize(node.left)},{serialize(node.right)}\"\n        count[serial] += 1\n        if count[serial] == 2:\n            result.append(node)\n        return serial\n    \n    serialize(root)\n    return result\n\nroot = build_tree([1,2,3,4,None,2,4,None,None,4])\ndups = findDuplicateSubtrees(root)\ndup_vals = sorted([d.val for d in dups])",
    "notes": {},
    "tests": "assert dup_vals == [2, 4]  # subtrees rooted at 2 and 4 are duplicated\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=652"
   },
   {
    "id": "07-36-binary-tree-maximum-path-sum",
@@ -605,7 +665,8 @@
     "11": "Return the best single-direction path"
    },
    "tests": "assert maxPathSum(build_tree([1,2,3])) == 6\nassert maxPathSum(build_tree([-10,9,20,None,None,15,7])) == 42\nassert maxPathSum(build_tree([-3])) == -3\nassert maxPathSum(build_tree([1,-2,-3,1,3,-2,None,-1])) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=124"
   },
   {
    "id": "07-37-serialize-and-deserialize-binary-tree",
@@ -621,7 +682,8 @@
    "solution": "class Codec:\n    def serialize(self, root):\n        result = []\n        def preorder(node):\n            if not node:\n                result.append(\"#\")\n                return\n            result.append(str(node.val))\n            preorder(node.left)\n            preorder(node.right)\n        preorder(root)\n        return \",\".join(result)\n    \n    def deserialize(self, data):\n        tokens = iter(data.split(\",\"))\n        def build():\n            token = next(tokens)\n            if token == \"#\":\n                return None\n            node = TreeNode(int(token))\n            node.left = build()\n            node.right = build()\n            return node\n        return build()\n\ncodec = Codec()\noriginal = build_tree([1,2,3,None,None,4,5])\nserialized = codec.serialize(original)\ndeserialized = codec.deserialize(serialized)",
    "notes": {},
    "tests": "assert tree_to_list(deserialized) == tree_to_list(original)\n\nassert codec.deserialize(codec.serialize(None)) is None\nr2 = build_tree([1,2])\nassert tree_to_list(codec.deserialize(codec.serialize(r2))) == [1,2]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=297"
   },
   {
    "id": "07-38-vertical-order-traversal-of-binary-tree",
@@ -637,7 +699,8 @@
    "solution": "from collections import defaultdict\n\ndef verticalTraversal(root):\n    nodes = []\n    def dfs(node, row, col):\n        if not node: return\n        nodes.append((col, row, node.val))\n        dfs(node.left, row + 1, col - 1)\n        dfs(node.right, row + 1, col + 1)\n    dfs(root, 0, 0)\n    nodes.sort()\n    result = []\n    col_map = defaultdict(list)\n    for col, row, val in nodes:\n        col_map[col].append(val)\n    for col in sorted(col_map):\n        result.append(col_map[col])\n    return result",
    "notes": {},
    "tests": "assert verticalTraversal(build_tree([3,9,20,None,None,15,7])) == [[9],[3,15],[20],[7]]\nassert verticalTraversal(build_tree([1,2,3,4,5,6,7])) == [[4],[2],[1,5,6],[3],[7]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=987"
   },
   {
    "id": "07-39-binary-tree-cameras",
@@ -660,7 +723,8 @@
     "17": "root not covered"
    },
    "tests": "assert minCameraCover(build_tree([0,0,None,0,0])) == 1\nassert minCameraCover(build_tree([0,0,None,0,None,0,None,None,0])) == 2\nassert minCameraCover(build_tree([0])) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=968"
   },
   {
    "id": "07-40-maximum-sum-bst-in-binary-tree",
@@ -678,7 +742,8 @@
     "5": "Returns (is_bst, min_val, max_val, subtree_sum)"
    },
    "tests": "assert maxSumBST(build_tree([1,4,3,2,4,2,5,None,None,None,None,None,None,4,6])) == 20\nassert maxSumBST(build_tree([4,3,None,1,2])) == 2\nassert maxSumBST(build_tree([-4,-2,-5])) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1373"
   },
   {
    "id": "07-41-count-of-smaller-numbers-after-self-using-bst",
@@ -697,7 +762,8 @@
     "5": "count of duplicates"
    },
    "tests": "assert countSmaller([5,2,6,1]) == [2,1,1,0]\nassert countSmaller([-1]) == [0]\nassert countSmaller([-1,-1]) == [0,0]\nassert countSmaller([1,2,3,4]) == [0,0,0,0]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=315"
   },
   {
    "id": "07-42-recover-bst-extended-morris-inorder",
@@ -718,7 +784,8 @@
     "21": "unthread"
    },
    "tests": "assert inorderTraversal(r) == [1,2,3,4]\n\nr2 = build_tree([1,3,None,None,2])\nrecoverTreeMorris(r2)\nassert inorderTraversal(r2) == [1,2,3]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "07-43-binary-tree-coloring-game",
@@ -734,7 +801,8 @@
    "solution": "def btreeGameWinningMove(root, n, x):\n    left_count = right_count = [0, 0]\n    \n    def dfs(node):\n        if not node:\n            return 0\n        left = dfs(node.left)\n        right = dfs(node.right)\n        if node.val == x:\n            left_count[0] = left\n            right_count[0] = right\n        return left + right + 1\n    \n    dfs(root)\n    left = left_count[0]\n    right = right_count[0]\n    parent = n - left - right - 1\n    return max(left, right, parent) > n // 2",
    "notes": {},
    "tests": "assert btreeGameWinningMove(build_tree([1,2,3,4,5,6,7,8,9,10,11]), 11, 3) == True\nassert btreeGameWinningMove(build_tree([1,2,3]), 3, 1) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1145"
   },
   {
    "id": "07-44-construct-binary-tree-from-preorder-and-postorder-trav",
@@ -753,7 +821,8 @@
     "20": "Verify by checking pre/post order matches"
    },
    "tests": "assert get_preorder(result) == pre\nassert get_postorder(result) == post\n\npre2, post2 = [1], [1]\nresult2 = constructFromPrePost(pre2, post2)\nassert get_preorder(result2) == [1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=889"
   },
   {
    "id": "07-45-number-of-ways-to-reorder-array-to-get-same-bst-simpli",
@@ -771,7 +840,8 @@
     "12": "Ways to interleave left and right sequences"
    },
    "tests": "assert numOfWays([2,1,3]) == 1\nassert numOfWays([3,4,5,1,2]) == 5\nassert numOfWays([1,2,3]) == 0\nassert numOfWays([3,1,2,5,4,6]) == 19\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1569"
   },
   {
    "id": "07-46-convert-bst-to-greater-tree",
@@ -789,7 +859,8 @@
     "30": "Build BST: [4,1,6,0,2,5,7,None,None,None,3,None,None,None,8]"
    },
    "tests": "assert root.val == 30\n\nassert root.left.val == 36\n\nassert root.right.val == 21\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=538"
   },
   {
    "id": "07-47-binary-tree-tilt",
@@ -805,7 +876,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef findTilt(root):\n\n    total = [0]\n\n    def subtree_sum(node):\n\n        if not node:\n\n            return 0\n\n        l = subtree_sum(node.left)\n\n        r = subtree_sum(node.right)\n\n        total[0] += abs(l - r)\n\n        return node.val + l + r\n\n    subtree_sum(root)\n\n    return total[0]\n\n\n\nroot = TreeNode(1, TreeNode(2), TreeNode(3))",
    "notes": {},
    "tests": "assert findTilt(root) == 1\n\nroot2 = TreeNode(4, TreeNode(2, TreeNode(3), TreeNode(5)), TreeNode(9, None, TreeNode(7)))\n\nassert findTilt(root2) == 15\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=563"
   },
   {
    "id": "07-48-sum-of-nodes-with-even-valued-grandparent",
@@ -823,7 +895,8 @@
     "20": "dummy odd parent/grandparent"
    },
    "tests": "assert sumEvenGrandparent(root) == 18\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1315"
   },
   {
    "id": "07-49-count-good-nodes-in-binary-tree",
@@ -839,7 +912,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef goodNodes(root):\n\n    def dfs(node, max_val):\n\n        if not node:\n\n            return 0\n\n        good = 1 if node.val >= max_val else 0\n\n        new_max = max(max_val, node.val)\n\n        return good + dfs(node.left, new_max) + dfs(node.right, new_max)\n\n    return dfs(root, float('-inf'))\n\n\n\nroot = TreeNode(3, TreeNode(1, TreeNode(3)), TreeNode(4, TreeNode(1), TreeNode(5)))",
    "notes": {},
    "tests": "assert goodNodes(root) == 4\n\nroot2 = TreeNode(3, TreeNode(3, TreeNode(4), TreeNode(2)))\n\nassert goodNodes(root2) == 3\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1448"
   },
   {
    "id": "07-50-path-sum-iii",
@@ -855,7 +929,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\nfrom collections import defaultdict\n\n\n\ndef pathSum(root, targetSum):\n\n    prefix = defaultdict(int)\n\n    prefix[0] = 1\n\n    def dfs(node, curr_sum):\n\n        if not node:\n\n            return 0\n\n        curr_sum += node.val\n\n        count = prefix[curr_sum - targetSum]\n\n        prefix[curr_sum] += 1\n\n        count += dfs(node.left, curr_sum) + dfs(node.right, curr_sum)\n\n        prefix[curr_sum] -= 1\n\n        return count\n\n    return dfs(root, 0)\n\n\n\nroot = TreeNode(10)\n\nroot.left = TreeNode(5, TreeNode(3, TreeNode(3), TreeNode(-2)), TreeNode(2, None, TreeNode(1)))\n\nroot.right = TreeNode(-3, None, TreeNode(11))",
    "notes": {},
    "tests": "assert pathSum(root, 8) == 3\n\nassert pathSum(TreeNode(5, TreeNode(4, TreeNode(11, TreeNode(7), TreeNode(2))), TreeNode(8, TreeNode(13), TreeNode(4, TreeNode(5), TreeNode(1)))), 22) == 3\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=437"
   },
   {
    "id": "07-51-binary-tree-pruning",
@@ -871,7 +946,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef pruneTree(root):\n\n    if not root:\n\n        return None\n\n    root.left = pruneTree(root.left)\n\n    root.right = pruneTree(root.right)\n\n    if root.val == 0 and not root.left and not root.right:\n\n        return None\n\n    return root\n\n\n\ndef to_list(node):\n\n    if not node: return []\n\n    return [node.val] + to_list(node.left) + to_list(node.right)\n\n\n\nroot = TreeNode(1, TreeNode(0, TreeNode(0), TreeNode(0)), TreeNode(1, TreeNode(0), TreeNode(1)))\n\npruned = pruneTree(root)",
    "notes": {},
    "tests": "assert to_list(pruned) == [1, 1, 1]\n\nroot2 = TreeNode(1, None, TreeNode(0, TreeNode(0), TreeNode(1)))\n\npruned2 = pruneTree(root2)\n\nassert to_list(pruned2) == [1, 0, 1]\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=814"
   },
   {
    "id": "07-52-deepest-leaves-sum",
@@ -889,7 +965,8 @@
     "6": "[max_depth, total_sum]"
    },
    "tests": "assert deepestLeavesSum(root) == 15\n\nassert deepestLeavesSum(TreeNode(6, TreeNode(7, TreeNode(2), TreeNode(7)), TreeNode(8, TreeNode(1), TreeNode(3)))) == 13\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1302"
   },
   {
    "id": "07-53-find-the-leftmost-value-in-the-last-row",
@@ -907,7 +984,8 @@
     "6": "[max_depth, value]"
    },
    "tests": "assert findBottomLeftValue(TreeNode(2, TreeNode(1), TreeNode(3))) == 1\n\nroot = TreeNode(1)\n\nroot.left = TreeNode(2, TreeNode(4)); root.right = TreeNode(3, TreeNode(5, TreeNode(7)), TreeNode(6))\n\nassert findBottomLeftValue(root) == 7\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=513"
   },
   {
    "id": "07-54-maximum-binary-tree",
@@ -923,7 +1001,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef constructMaximumBinaryTree(nums):\n\n    if not nums:\n\n        return None\n\n    max_idx = nums.index(max(nums))\n\n    root = TreeNode(nums[max_idx])\n\n    root.left = constructMaximumBinaryTree(nums[:max_idx])\n\n    root.right = constructMaximumBinaryTree(nums[max_idx + 1:])\n\n    return root\n\n\n\ndef preorder(node):\n\n    if not node: return []\n\n    return [node.val] + preorder(node.left) + preorder(node.right)",
    "notes": {},
    "tests": "assert preorder(constructMaximumBinaryTree([3,2,1,6,0,5])) == [6,3,2,1,5,0]\n\nassert preorder(constructMaximumBinaryTree([3,2,3])) == [3,3,2]\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=654"
   },
   {
    "id": "07-55-all-elements-in-two-binary-search-trees",
@@ -939,7 +1018,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef getAllElements(root1, root2):\n\n    def inorder(node, lst):\n\n        if node:\n\n            inorder(node.left, lst)\n\n            lst.append(node.val)\n\n            inorder(node.right, lst)\n\n    a, b = [], []\n\n    inorder(root1, a); inorder(root2, b)\n\n    merged, i, j = [], 0, 0\n\n    while i < len(a) and j < len(b):\n\n        if a[i] <= b[j]:\n\n            merged.append(a[i]); i += 1\n\n        else:\n\n            merged.append(b[j]); j += 1\n\n    merged.extend(a[i:]); merged.extend(b[j:])\n\n    return merged\n\n\n\nt1 = TreeNode(2, TreeNode(1), TreeNode(4))\n\nt2 = TreeNode(1, TreeNode(0), TreeNode(3))",
    "notes": {},
    "tests": "assert getAllElements(t1, t2) == [0, 1, 1, 2, 3, 4]\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1305"
   },
   {
    "id": "07-56-cousins-in-binary-tree",
@@ -955,7 +1035,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef isCousins(root, x, y):\n\n    info = {}\n\n    def dfs(node, parent, depth):\n\n        if not node: return\n\n        if node.val == x or node.val == y:\n\n            info[node.val] = (depth, parent)\n\n        dfs(node.left, node.val, depth + 1)\n\n        dfs(node.right, node.val, depth + 1)\n\n    dfs(root, None, 0)\n\n    if x not in info or y not in info: return False\n\n    dx, px = info[x]; dy, py = info[y]\n\n    return dx == dy and px != py\n\n\n\nroot = TreeNode(1, TreeNode(2, TreeNode(4)), TreeNode(3))",
    "notes": {},
    "tests": "assert isCousins(root, 4, 3) == False\n\nroot2 = TreeNode(1, TreeNode(2, None, TreeNode(4)), TreeNode(3, None, TreeNode(5)))\n\nassert isCousins(root2, 5, 4) == True\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=993"
   },
   {
    "id": "07-57-check-if-binary-tree-is-symmetric-dfs",
@@ -971,7 +1052,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef isSymmetricDFS(root):\n\n    def mirror(l, r):\n\n        if not l and not r: return True\n\n        if not l or not r: return False\n\n        return l.val == r.val and mirror(l.left, r.right) and mirror(l.right, r.left)\n\n    return mirror(root.left, root.right) if root else True\n\n\n\nsym = TreeNode(1, TreeNode(2, TreeNode(3), TreeNode(4)), TreeNode(2, TreeNode(4), TreeNode(3)))",
    "notes": {},
    "tests": "assert isSymmetricDFS(sym) == True\n\nasym = TreeNode(1, TreeNode(2, None, TreeNode(3)), TreeNode(2, None, TreeNode(3)))\n\nassert isSymmetricDFS(asym) == False\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "07-58-check-if-all-leaves-are-at-the-same-level",
@@ -987,7 +1069,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef allLeavesAtSameLevel(root):\n\n    leaf_depth = [None]\n\n    def dfs(node, depth):\n\n        if not node: return True\n\n        if not node.left and not node.right:\n\n            if leaf_depth[0] is None:\n\n                leaf_depth[0] = depth\n\n                return True\n\n            return depth == leaf_depth[0]\n\n        return dfs(node.left, depth + 1) and dfs(node.right, depth + 1)\n\n    return dfs(root, 0)\n\n\n\ngood = TreeNode(1, TreeNode(2, TreeNode(4), TreeNode(5)), TreeNode(3, TreeNode(6), TreeNode(7)))",
    "notes": {},
    "tests": "assert allLeavesAtSameLevel(good) == True\n\nbad = TreeNode(1, TreeNode(2, TreeNode(4)), TreeNode(3))\n\nassert allLeavesAtSameLevel(bad) == False\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "07-59-count-nodes-at-each-level-dfs",
@@ -1003,7 +1086,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef countNodesPerLevel(root):\n\n    counts = []\n\n    def dfs(node, depth):\n\n        if not node: return\n\n        if depth == len(counts):\n\n            counts.append(0)\n\n        counts[depth] += 1\n\n        dfs(node.left, depth + 1)\n\n        dfs(node.right, depth + 1)\n\n    dfs(root, 0)\n\n    return counts\n\n\n\nroot = TreeNode(1, TreeNode(2, TreeNode(4), TreeNode(5)), TreeNode(3, None, TreeNode(6)))",
    "notes": {},
    "tests": "assert countNodesPerLevel(root) == [1, 2, 3]\n\nassert countNodesPerLevel(TreeNode(1)) == [1]\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "07-60-find-the-longest-path-from-root-to-leaf",
@@ -1019,7 +1103,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef longestRootToLeaf(root):\n\n    def dfs(node):\n\n        if not node: return []\n\n        l, r = dfs(node.left), dfs(node.right)\n\n        longer = l if len(l) >= len(r) else r\n\n        return [node.val] + longer\n\n    return dfs(root)\n\n\n\nroot = TreeNode(1, TreeNode(2, TreeNode(4), TreeNode(5)), TreeNode(3))",
    "notes": {},
    "tests": "assert longestRootToLeaf(root) == [1, 2, 4]\n\nsingle = TreeNode(42)\n\nassert longestRootToLeaf(single) == [42]\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "07-61-find-the-shortest-path-from-root-to-leaf",
@@ -1035,7 +1120,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef shortestRootToLeaf(root):\n\n    def dfs(node):\n\n        if not node: return None\n\n        if not node.left and not node.right: return [node.val]\n\n        l, r = dfs(node.left), dfs(node.right)\n\n        if l is None: return [node.val] + r\n\n        if r is None: return [node.val] + l\n\n        shorter = l if len(l) <= len(r) else r\n\n        return [node.val] + shorter\n\n    return dfs(root) or []\n\n\n\nroot = TreeNode(1, TreeNode(2, TreeNode(4), TreeNode(5)), TreeNode(3))",
    "notes": {},
    "tests": "assert shortestRootToLeaf(root) == [1, 3]\n\nsingle = TreeNode(7)\n\nassert shortestRootToLeaf(single) == [7]\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "07-62-sum-of-all-root-to-leaf-numbers-variant",
@@ -1051,7 +1137,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef sumNumbers(root):\n\n    def dfs(node, curr):\n\n        if not node: return 0\n\n        curr = curr * 10 + node.val\n\n        if not node.left and not node.right:\n\n            return curr\n\n        return dfs(node.left, curr) + dfs(node.right, curr)\n\n    return dfs(root, 0)\n\n\n\nroot = TreeNode(4, TreeNode(9, TreeNode(5), TreeNode(1)), TreeNode(0))",
    "notes": {},
    "tests": "assert sumNumbers(root) == 1026  # 495 + 491 + 40\n\nassert sumNumbers(TreeNode(1, TreeNode(2), TreeNode(3))) == 25  # 12 + 13\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "07-63-validate-binary-search-tree-iterative-inorder",
@@ -1067,7 +1154,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef isValidBSTIterative(root):\n\n    stack, prev = [], float('-inf')\n\n    curr = root\n\n    while curr or stack:\n\n        while curr:\n\n            stack.append(curr)\n\n            curr = curr.left\n\n        curr = stack.pop()\n\n        if curr.val <= prev:\n\n            return False\n\n        prev = curr.val\n\n        curr = curr.right\n\n    return True",
    "notes": {},
    "tests": "assert isValidBSTIterative(TreeNode(2, TreeNode(1), TreeNode(3))) == True\n\nassert isValidBSTIterative(TreeNode(5, TreeNode(1), TreeNode(4, TreeNode(3), TreeNode(6)))) == False\n\nassert isValidBSTIterative(TreeNode(2, TreeNode(2), TreeNode(2))) == False\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "07-64-increasing-order-search-tree",
@@ -1083,7 +1171,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef increasingBST(root):\n\n    nodes = []\n\n    def inorder(node):\n\n        if node:\n\n            inorder(node.left)\n\n            nodes.append(node)\n\n            inorder(node.right)\n\n    inorder(root)\n\n    for i in range(len(nodes)):\n\n        nodes[i].left = None\n\n        nodes[i].right = nodes[i + 1] if i + 1 < len(nodes) else None\n\n    return nodes[0] if nodes else None\n\n\n\ndef right_chain(node):\n\n    vals = []\n\n    while node:\n\n        assert node.left is None\n\n        vals.append(node.val)\n\n        node = node.right\n\n    return vals\n\n\n\nroot = TreeNode(5, TreeNode(3, TreeNode(2, TreeNode(1)), TreeNode(4)), TreeNode(6, None, TreeNode(8, TreeNode(7), TreeNode(9))))",
    "notes": {},
    "tests": "assert right_chain(increasingBST(root)) == [1,2,3,4,5,6,7,8,9]\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=897"
   },
   {
    "id": "07-65-average-of-even-node-values-not-divisible-by-three-tre",
@@ -1099,7 +1188,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef averageEvenNotDivBy3(root):\n\n    vals = []\n\n    def dfs(node):\n\n        if not node: return\n\n        if node.val % 2 == 0 and node.val % 3 != 0:\n\n            vals.append(node.val)\n\n        dfs(node.left)\n\n        dfs(node.right)\n\n    dfs(root)\n\n    return sum(vals) / len(vals) if vals else 0.0\n\n\n\nroot = TreeNode(1, TreeNode(2, TreeNode(6), TreeNode(4)), TreeNode(3, TreeNode(8), TreeNode(12)))\n\n# Even and not div by 3: 2 (ok), 6 (div by 3, skip), 4 (ok), 8 (ok), 12 (div by 3, skip)",
    "notes": {},
    "tests": "assert averageEvenNotDivBy3(root) == (2 + 4 + 8) / 3\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "07-66-path-sum-iii-full-prefix-sum-dfs",
@@ -1115,7 +1205,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\nfrom collections import defaultdict\n\n\n\ndef pathSumIII(root, targetSum):\n\n    prefix = defaultdict(int)\n\n    prefix[0] = 1\n\n    result = [0]\n\n    def dfs(node, curr):\n\n        if not node: return\n\n        curr += node.val\n\n        result[0] += prefix[curr - targetSum]\n\n        prefix[curr] += 1\n\n        dfs(node.left, curr)\n\n        dfs(node.right, curr)\n\n        prefix[curr] -= 1\n\n    dfs(root, 0)\n\n    return result[0]\n\n\n\nroot = TreeNode(10)\n\nroot.left = TreeNode(5, TreeNode(3, TreeNode(3), TreeNode(-2)), TreeNode(2, None, TreeNode(1)))\n\nroot.right = TreeNode(-3, None, TreeNode(11))",
    "notes": {},
    "tests": "assert pathSumIII(root, 8) == 3\n\nassert pathSumIII(TreeNode(5, TreeNode(4, TreeNode(11, TreeNode(7), TreeNode(2))), TreeNode(8, TreeNode(13), TreeNode(4, TreeNode(5), TreeNode(1)))), 22) == 3\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=437"
   },
   {
    "id": "07-67-count-good-nodes-in-binary-tree-full",
@@ -1133,7 +1224,8 @@
     "22": "All good: 3->1->3 (1<3 not good, 3 good); right: 4 good, 1 not good, 5 good → 4 good nodes"
    },
    "tests": "assert goodNodesFull(root) == 4\n\nassert goodNodesFull(TreeNode(3, TreeNode(3, TreeNode(4), TreeNode(2)))) == 3\n\nassert goodNodesFull(TreeNode(1)) == 1\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1448"
   },
   {
    "id": "07-68-distribute-coins-in-binary-tree",
@@ -1149,7 +1241,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef distributeCoins(root):\n\n    moves = [0]\n\n    def dfs(node):\n\n        if not node: return 0\n\n        left_excess = dfs(node.left)\n\n        right_excess = dfs(node.right)\n\n        moves[0] += abs(left_excess) + abs(right_excess)\n\n        return node.val + left_excess + right_excess - 1\n\n    dfs(root)\n\n    return moves[0]",
    "notes": {},
    "tests": "assert distributeCoins(TreeNode(3, TreeNode(0), TreeNode(0))) == 2\n\nassert distributeCoins(TreeNode(0, TreeNode(3), TreeNode(0))) == 3\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=979"
   },
   {
    "id": "07-69-lowest-common-ancestor-of-deepest-leaves",
@@ -1167,7 +1260,8 @@
     "10": "Returns (lca_candidate, max_depth)"
    },
    "tests": "assert lcaDeepestLeaves(root).val == 2\n\nassert lcaDeepestLeaves(TreeNode(1)).val == 1\n\nroot2 = TreeNode(0, TreeNode(1, None, TreeNode(2)))\n\nassert lcaDeepestLeaves(root2).val == 2\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1123"
   },
   {
    "id": "07-70-maximum-width-of-binary-tree-dfs",
@@ -1185,7 +1279,8 @@
     "6": "depth -> leftmost position"
    },
    "tests": "assert widthOfBinaryTree(root) == 4\n\nroot2 = TreeNode(1, TreeNode(3, TreeNode(5, TreeNode(6)), None), TreeNode(2, None, TreeNode(9, TreeNode(7))))\n\nassert widthOfBinaryTree(root2) == 7\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=662"
   },
   {
    "id": "07-71-pseudo-palindromic-paths-in-a-binary-tree",
@@ -1203,7 +1298,8 @@
     "16": "at most one bit set"
    },
    "tests": "assert pseudoPalindromicPaths(root) == 2\n\nroot2 = TreeNode(2, TreeNode(1, TreeNode(1), TreeNode(3, None, TreeNode(1))), TreeNode(1))\n\nassert pseudoPalindromicPaths(root2) == 1\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1457"
   },
   {
    "id": "07-72-maximum-difference-between-node-and-ancestor",
@@ -1219,7 +1315,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef maxAncestorDiff(root):\n\n    def dfs(node, lo, hi):\n\n        if not node:\n\n            return hi - lo\n\n        lo = min(lo, node.val)\n\n        hi = max(hi, node.val)\n\n        return max(dfs(node.left, lo, hi), dfs(node.right, lo, hi))\n\n    return dfs(root, root.val, root.val)\n\n\n\nroot = TreeNode(8, TreeNode(3, TreeNode(1), TreeNode(6, TreeNode(4), TreeNode(7))), TreeNode(10, None, TreeNode(14, TreeNode(13))))",
    "notes": {},
    "tests": "assert maxAncestorDiff(root) == 7\n\nroot2 = TreeNode(1, None, TreeNode(2, None, TreeNode(0, TreeNode(3))))\n\nassert maxAncestorDiff(root2) == 3\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1026"
   },
   {
    "id": "07-73-create-binary-tree-from-descriptions",
@@ -1235,7 +1332,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef createBinaryTree(descriptions):\n\n    nodes = {}\n\n    children = set()\n\n    for parent, child, is_left in descriptions:\n\n        if parent not in nodes: nodes[parent] = TreeNode(parent)\n\n        if child not in nodes: nodes[child] = TreeNode(child)\n\n        if is_left:\n\n            nodes[parent].left = nodes[child]\n\n        else:\n\n            nodes[parent].right = nodes[child]\n\n        children.add(child)\n\n    for val, node in nodes.items():\n\n        if val not in children:\n\n            return node\n\n    return None\n\n\n\ndef inorder(node):\n\n    if not node: return []\n\n    return inorder(node.left) + [node.val] + inorder(node.right)\n\n\n\ndesc = [[20,15,1],[20,17,0],[50,20,1],[50,80,0],[80,19,1]]\n\nroot = createBinaryTree(desc)",
    "notes": {},
    "tests": "assert root.val == 50\n\nassert inorder(root) == [15, 20, 17, 50, 19, 80]\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2196"
   },
   {
    "id": "07-74-amount-of-time-for-binary-tree-to-be-infected",
@@ -1251,7 +1349,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\nfrom collections import defaultdict, deque\n\n\n\ndef amountOfTime(root, start):\n\n    graph = defaultdict(list)\n\n    def build(node, parent):\n\n        if not node: return\n\n        if parent is not None:\n\n            graph[node.val].append(parent)\n\n            graph[parent].append(node.val)\n\n        build(node.left, node.val)\n\n        build(node.right, node.val)\n\n    build(root, None)\n\n    visited = {start}\n\n    queue = deque([start])\n\n    minutes = -1\n\n    while queue:\n\n        minutes += 1\n\n        for _ in range(len(queue)):\n\n            node = queue.popleft()\n\n            for nb in graph[node]:\n\n                if nb not in visited:\n\n                    visited.add(nb)\n\n                    queue.append(nb)\n\n    return minutes\n\n\n\nroot = TreeNode(1)\n\nroot.left = TreeNode(5, None, TreeNode(4, TreeNode(9), TreeNode(2)))\n\nroot.right = TreeNode(3, TreeNode(10), TreeNode(6))",
    "notes": {},
    "tests": "assert amountOfTime(root, 3) == 4\n\nassert amountOfTime(TreeNode(1), 1) == 0\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2385"
   },
   {
    "id": "07-75-step-by-step-directions-from-binary-tree-node-to-anoth",
@@ -1269,7 +1368,8 @@
     "34": "Remove LCA prefix"
    },
    "tests": "assert getDirections(root, 3, 6) == 'UURL'\n\nassert getDirections(root, 4, 3) == 'UULL'\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2096"
   },
   {
    "id": "07-76-find-a-corresponding-node-of-binary-tree-in-clone-of-t",
@@ -1287,7 +1387,8 @@
     "24": "node with val=4"
    },
    "tests": "assert result.val == 4\n\nassert result is not target_node  # different object\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1379"
   },
   {
    "id": "07-77-delete-nodes-and-return-forest",
@@ -1303,7 +1404,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef delNodes(root, to_delete):\n\n    delete_set = set(to_delete)\n\n    forest = []\n\n    def dfs(node, is_root):\n\n        if not node: return None\n\n        deleted = node.val in delete_set\n\n        if is_root and not deleted:\n\n            forest.append(node)\n\n        node.left = dfs(node.left, deleted)\n\n        node.right = dfs(node.right, deleted)\n\n        return None if deleted else node\n\n    dfs(root, True)\n\n    return forest\n\n\n\ndef collect_vals(roots):\n\n    all_vals = set()\n\n    def inorder(n):\n\n        if n: inorder(n.left); all_vals.add(n.val); inorder(n.right)\n\n    for r in roots: inorder(r)\n\n    return all_vals\n\n\n\nroot = TreeNode(1, TreeNode(2, TreeNode(4), TreeNode(5)), TreeNode(3, TreeNode(6), TreeNode(7)))\n\nforest = delNodes(root, [3, 5])",
    "notes": {},
    "tests": "assert len(forest) == 3\n\nassert collect_vals(forest) == {1, 2, 4, 6, 7}\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1110"
   },
   {
    "id": "07-78-count-nodes-with-the-highest-score",
@@ -1321,7 +1423,8 @@
     "20": "Postorder to compute sizes"
    },
    "tests": "assert countHighestScoreNodes([-1,2,0,2,0]) == 3\n\nassert countHighestScoreNodes([-1,2,0]) == 2\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2049"
   },
   {
    "id": "07-79-longest-zigzag-path-in-binary-tree",
@@ -1339,7 +1442,8 @@
     "20": "Tree: root->right->left->right (R,L,R = 3 edges)"
    },
    "tests": "assert longestZigZag(root) == 3\nsingle = TreeNode(1)\nassert longestZigZag(single) == 0\n# root->L->R->L = 3 edges\nroot2 = TreeNode(1, TreeNode(2, None, TreeNode(3, TreeNode(4))), None)\nassert longestZigZag(root2) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1372"
   },
   {
    "id": "07-80-sum-of-distances-in-tree-star-graph-simplified",
@@ -1357,7 +1461,8 @@
     "12": "subtree sizes"
    },
    "tests": "assert sumOfDistancesInTree(6, [[0,1],[0,2],[2,3],[2,4],[2,5]]) == [8,12,6,10,10,10]\n\nassert sumOfDistancesInTree(1, []) == [0]\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=834"
   },
   {
    "id": "07-81-maximum-product-of-splitted-binary-tree",
@@ -1373,7 +1478,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef maxProduct(root):\n\n    MOD = 10**9 + 7\n\n    subtree_sums = []\n\n    def get_sum(node):\n\n        if not node: return 0\n\n        s = node.val + get_sum(node.left) + get_sum(node.right)\n\n        subtree_sums.append(s)\n\n        return s\n\n    total = get_sum(root)\n\n    return max(s * (total - s) for s in subtree_sums) % MOD\n\n\n\nroot = TreeNode(1, TreeNode(2, TreeNode(4), TreeNode(5)), TreeNode(3, TreeNode(6)))",
    "notes": {},
    "tests": "assert maxProduct(root) == 110\n\nroot2 = TreeNode(1, TreeNode(2, TreeNode(3), TreeNode(4)), TreeNode(5, TreeNode(6)))\n\nassert maxProduct(root2) == 110\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1339"
   },
   {
    "id": "07-82-all-possible-full-binary-trees",
@@ -1389,7 +1495,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\nfrom functools import lru_cache\n\n\n\ndef allPossibleFBT(n):\n\n    @lru_cache(maxsize=None)\n\n    def dp(k):\n\n        if k == 1: return [TreeNode(0)]\n\n        if k % 2 == 0: return []\n\n        result = []\n\n        for left_count in range(1, k - 1, 2):\n\n            right_count = k - 1 - left_count\n\n            for l in dp(left_count):\n\n                for r in dp(right_count):\n\n                    root = TreeNode(0)\n\n                    root.left, root.right = l, r\n\n                    result.append(root)\n\n        return result\n\n    return dp(n)\n\n\n\ndef count_nodes(node):\n\n    if not node: return 0\n\n    return 1 + count_nodes(node.left) + count_nodes(node.right)\n\n\n\ntrees_7 = allPossibleFBT(7)",
    "notes": {},
    "tests": "assert len(trees_7) == 5\n\nassert all(count_nodes(t) == 7 for t in trees_7)\n\nassert len(allPossibleFBT(1)) == 1\n\nassert len(allPossibleFBT(4)) == 0  # even, impossible\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=894"
   },
   {
    "id": "07-83-minimum-time-to-collect-all-apples-in-a-tree",
@@ -1405,7 +1512,8 @@
    "solution": "from collections import defaultdict\n\n\n\ndef minTime(n, edges, hasApple):\n\n    graph = defaultdict(list)\n\n    for u, v in edges:\n\n        graph[u].append(v); graph[v].append(u)\n\n    def dfs(node, parent):\n\n        total = 0\n\n        for child in graph[node]:\n\n            if child == parent: continue\n\n            child_time = dfs(child, node)\n\n            if child_time > 0 or hasApple[child]:\n\n                total += child_time + 2\n\n        return total\n\n    return dfs(0, -1)\n\n\n\nedges = [[0,1],[0,2],[1,4],[1,5],[2,3],[2,6]]",
    "notes": {},
    "tests": "assert minTime(7, edges, [False,False,True,False,True,True,False]) == 8\n\nassert minTime(7, edges, [False,False,True,False,False,True,False]) == 6\n\nassert minTime(7, edges, [False,False,False,False,False,False,False]) == 0\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1443"
   },
   {
    "id": "07-84-number-of-ways-to-reorder-array-to-get-same-bst",
@@ -1421,7 +1529,8 @@
    "solution": "from math import comb\n\n\n\ndef numOfWaysFull(nums):\n\n    MOD = 10**9 + 7\n\n    def count(arr):\n\n        if len(arr) <= 2: return 1\n\n        root = arr[0]\n\n        left = [x for x in arr[1:] if x < root]\n\n        right = [x for x in arr[1:] if x > root]\n\n        ways = comb(len(left) + len(right), len(left))\n\n        return ways * count(left) * count(right) % MOD\n\n    return (count(nums) - 1) % MOD",
    "notes": {},
    "tests": "assert numOfWaysFull([2,1,3]) == 1\n\nassert numOfWaysFull([3,4,5,1,2]) == 5\n\nassert numOfWaysFull([1,2,3]) == 0\n\nassert numOfWaysFull([3,1,2,5,4,6]) == 19\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1569"
   },
   {
    "id": "07-85-binary-tree-maximum-path-sum-through-root",
@@ -1437,7 +1546,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef maxPathSumThroughRoot(root):\n\n    def max_gain(node):\n\n        if not node: return 0\n\n        left = max(0, max_gain(node.left))\n\n        right = max(0, max_gain(node.right))\n\n        return node.val + max(left, right)\n\n    if not root: return 0\n\n    left_gain = max(0, max_gain(root.left))\n\n    right_gain = max(0, max_gain(root.right))\n\n    return root.val + left_gain + right_gain",
    "notes": {},
    "tests": "assert maxPathSumThroughRoot(TreeNode(1, TreeNode(2), TreeNode(3))) == 6\n\n# Path: 2 -> 1 -> 3 = 6\n\nroot = TreeNode(-3, TreeNode(4), TreeNode(-1, None, TreeNode(5)))\n\nassert maxPathSumThroughRoot(root) == 5  # -3 + max(left=4, right=max(-1+5)=4) = -3+4+4=5\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "07-86-serialize-and-deserialize-bst",
@@ -1453,7 +1563,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\nfrom collections import deque\n\n\n\ndef serializeBST(root):\n\n    result = []\n\n    def preorder(node):\n\n        if node:\n\n            result.append(str(node.val))\n\n            preorder(node.left)\n\n            preorder(node.right)\n\n    preorder(root)\n\n    return ','.join(result)\n\n\n\ndef deserializeBST(data):\n\n    if not data: return None\n\n    vals = deque(int(x) for x in data.split(','))\n\n    def build(lo, hi):\n\n        if not vals or vals[0] < lo or vals[0] > hi:\n\n            return None\n\n        val = vals.popleft()\n\n        node = TreeNode(val)\n\n        node.left = build(lo, val)\n\n        node.right = build(val, hi)\n\n        return node\n\n    return build(float('-inf'), float('inf'))\n\n\n\ndef inorder(node):\n\n    if not node: return []\n\n    return inorder(node.left) + [node.val] + inorder(node.right)\n\n\n\nbst = TreeNode(4, TreeNode(2, TreeNode(1), TreeNode(3)), TreeNode(5))\n\nserialized = serializeBST(bst)\n\ndeserialized = deserializeBST(serialized)",
    "notes": {},
    "tests": "assert inorder(deserialized) == [1, 2, 3, 4, 5]\n\nassert deserializeBST('') is None\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=449"
   },
   {
    "id": "07-87-recover-binary-search-tree-with-morris-traversal",
@@ -1471,7 +1582,8 @@
     "36": "Adjacent swap: tree [3,1,2] -> inorder [1,3,2], fix -> [1,2,3]"
    },
    "tests": "assert inorder(root) == [1, 2, 3]\n# Non-adjacent swap: [6,3,4,1,5,2,7] -> 3 and 4 swapped to make invalid BST\nroot2 = TreeNode(3, TreeNode(1), TreeNode(4, TreeNode(2)))\nrecoverTreeMorris(root2)\nassert inorder(root2) == [1, 2, 3, 4]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=99"
   },
   {
    "id": "07-88-count-nodes-in-complete-binary-tree-o-log-n",
@@ -1490,7 +1602,8 @@
     "42": "Build complete binary tree with 6 nodes: [1,2,3,4,5,6]"
    },
    "tests": "assert countNodesLogSquared(root) == 6\n\nassert countNodesLogSquared(None) == 0\n\nassert countNodesLogSquared(TreeNode(1)) == 1\n\n# Perfect tree with 7 nodes\n\nperf = TreeNode(1, TreeNode(2, TreeNode(4), TreeNode(5)), TreeNode(3, TreeNode(6), TreeNode(7)))\n\nassert countNodesLogSquared(perf) == 7\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=222"
   },
   {
    "id": "07-89-construct-binary-search-tree-from-preorder-traversal",
@@ -1506,7 +1619,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef bstFromPreorder(preorder):\n\n    idx = [0]\n\n    def build(lo, hi):\n\n        if idx[0] >= len(preorder):\n\n            return None\n\n        val = preorder[idx[0]]\n\n        if val < lo or val > hi:\n\n            return None\n\n        idx[0] += 1\n\n        node = TreeNode(val)\n\n        node.left = build(lo, val)\n\n        node.right = build(val, hi)\n\n        return node\n\n    return build(float('-inf'), float('inf'))\n\n\n\ndef inorder(node):\n\n    if not node: return []\n\n    return inorder(node.left) + [node.val] + inorder(node.right)\n\n\n\nroot = bstFromPreorder([8,5,1,7,10,12])",
    "notes": {},
    "tests": "assert inorder(root) == [1,5,7,8,10,12]\n\nassert root.val == 8\n\nassert root.left.val == 5\n\nroot2 = bstFromPreorder([1,3])\n\nassert inorder(root2) == [1,3]\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1008"
   },
   {
    "id": "07-90-maximum-sum-of-any-subtree",
@@ -1522,7 +1636,8 @@
    "solution": "class TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef maxSubtreeSum(root):\n\n    best = [float('-inf')]\n\n    def dfs(node):\n\n        if not node: return 0\n\n        left = dfs(node.left)\n\n        right = dfs(node.right)\n\n        total = node.val + left + right\n\n        best[0] = max(best[0], total)\n\n        return total\n\n    dfs(root)\n\n    return best[0]\n\n\n\nroot = TreeNode(1, TreeNode(-2, TreeNode(4), TreeNode(5)), TreeNode(-3, TreeNode(6)))\n\n# Subtrees: 4, 5, -2+4+5=7, 6, -3+6=3, 1+7+3=11 -> max=11",
    "notes": {},
    "tests": "assert maxSubtreeSum(root) == 11\n\nroot2 = TreeNode(-1, TreeNode(-2), TreeNode(-3))\n\nassert maxSubtreeSum(root2) == -2  # largest single-node subtree\n\nassert maxSubtreeSum(TreeNode(5, TreeNode(3), TreeNode(-8, TreeNode(10)))) == 10\n\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   }
  ]
 }

@@ -3,6 +3,35 @@
  "slug": "linked-list-reversal",
  "name": "Linked List In-place Reversal",
  "note": null,
+ "about": {
+  "lead": "",
+  "sections": [
+   {
+    "heading": "What Is It?",
+    "body": "Reversing a linked list (or portion of it) **in-place** — without extra memory or array conversion. This is a fundamental technique that appears in many linked list problems."
+   },
+   {
+    "heading": "Iterative Reversal",
+    "body": "```python\ndef reverse(head):\n    prev, curr = None, head\n    while curr:\n        next_node = curr.next  # save next\n        curr.next = prev       # reverse pointer\n        prev = curr            # advance prev\n        curr = next_node       # advance curr\n    return prev  # new head\n```"
+   },
+   {
+    "heading": "Recursive Reversal",
+    "body": "```python\ndef reverseRecursive(head):\n    if not head or not head.next:\n        return head\n    new_head = reverseRecursive(head.next)\n    head.next.next = head  # reverse the link\n    head.next = None       # clear old link\n    return new_head\n```"
+   },
+   {
+    "heading": "Reverse a Sublist (positions m to n)",
+    "body": "```python\ndef reverseBetween(head, m, n):\n    dummy = ListNode(0, head)\n    prev = dummy\n    for _ in range(m - 1):   # move to node before sublist\n        prev = prev.next\n    curr = prev.next\n    for _ in range(n - m):   # reverse n-m times\n        next_node = curr.next\n        curr.next = next_node.next\n        next_node.next = prev.next\n        prev.next = next_node\n    return dummy.next\n```"
+   },
+   {
+    "heading": "K-Group Reversal Pattern",
+    "body": "```python\ndef reverseKGroup(head, k):\n    # Check if k nodes remain\n    # Reverse k nodes\n    # Recurse on the rest\n    # Connect reversed group to result of recursion\n```"
+   },
+   {
+    "heading": "Complexity",
+    "body": "| Operation | Time | Space |\n|-----------|------|-------|\n| Reverse entire list | O(n) | O(1) iterative / O(n) recursive |\n| Reverse sublist [m,n] | O(n) | O(1) |\n| Reverse k-groups | O(n) | O(n/k) recursive / O(1) iterative |\n| Find middle | O(n) | O(1) |"
+   }
+  ]
+ },
  "notebook": "06_Linked_List_Reversal.ipynb",
  "problems": [
   {
@@ -19,7 +48,8 @@
    "solution": "def reverseList(head):\n    prev, curr = None, head\n    while curr:\n        next_node = curr.next\n        curr.next = prev\n        prev = curr\n        curr = next_node\n    return prev",
    "notes": {},
    "tests": "assert to_list(reverseList(make_list([1,2,3,4,5]))) == [5,4,3,2,1]\nassert to_list(reverseList(make_list([1,2]))) == [2,1]\nassert to_list(reverseList(make_list([]))) == []\nassert to_list(reverseList(make_list([1]))) == [1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=206"
   },
   {
    "id": "06-02-reverse-linked-list-recursive",
@@ -35,7 +65,8 @@
    "solution": "def reverseListRecursive(head):\n    if not head or not head.next:\n        return head\n    new_head = reverseListRecursive(head.next)\n    head.next.next = head\n    head.next = None\n    return new_head",
    "notes": {},
    "tests": "assert to_list(reverseListRecursive(make_list([1,2,3,4,5]))) == [5,4,3,2,1]\nassert to_list(reverseListRecursive(make_list([1,2]))) == [2,1]\nassert to_list(reverseListRecursive(make_list([1]))) == [1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-03-reverse-string",
@@ -51,7 +82,8 @@
    "solution": "def reverseString(s):\n    left, right = 0, len(s) - 1\n    while left < right:\n        s[left], s[right] = s[right], s[left]\n        left += 1\n        right -= 1\n\ns1 = [\"h\",\"e\",\"l\",\"l\",\"o\"]\nreverseString(s1)",
    "notes": {},
    "tests": "assert s1 == [\"o\",\"l\",\"l\",\"e\",\"h\"]\n\ns2 = [\"H\",\"a\",\"n\",\"n\",\"a\",\"h\"]\nreverseString(s2)\nassert s2 == [\"h\",\"a\",\"n\",\"n\",\"a\",\"H\"]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=344"
   },
   {
    "id": "06-04-reverse-words-in-a-string-iii",
@@ -67,7 +99,8 @@
    "solution": "def reverseWordsIII(s):\n    return ' '.join(word[::-1] for word in s.split())",
    "notes": {},
    "tests": "assert reverseWordsIII(\"Let's take LeetCode contest\") == \"s'teL ekat edoCteeL tsetnoc\"\nassert reverseWordsIII(\"Let's take LeetCode contest\") == \"s'teL ekat edoCteeL tsetnoc\"\nassert reverseWordsIII(\"God Ding\") == \"doG gniD\"\nassert reverseWordsIII(\"a\") == \"a\"\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=557"
   },
   {
    "id": "06-05-reverse-only-letters",
@@ -83,7 +116,8 @@
    "solution": "def reverseOnlyLetters(s):\n    chars = list(s)\n    left, right = 0, len(chars) - 1\n    while left < right:\n        while left < right and not chars[left].isalpha():\n            left += 1\n        while left < right and not chars[right].isalpha():\n            right -= 1\n        chars[left], chars[right] = chars[right], chars[left]\n        left += 1\n        right -= 1\n    return ''.join(chars)",
    "notes": {},
    "tests": "assert reverseOnlyLetters(\"ab-cd\") == \"dc-ba\"\nassert reverseOnlyLetters(\"a-bC-dEf-ghIj\") == \"j-Ih-gfE-dCba\"\nassert reverseOnlyLetters(\"Test1ng-Leet=code-Q!\") == \"Qedo1ct-eeLg=ntse-T!\"\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=917"
   },
   {
    "id": "06-06-reverse-vowels-of-a-string",
@@ -99,7 +133,8 @@
    "solution": "def reverseVowels(s):\n    vowels = set('aeiouAEIOU')\n    chars = list(s)\n    left, right = 0, len(chars) - 1\n    while left < right:\n        while left < right and chars[left] not in vowels:\n            left += 1\n        while left < right and chars[right] not in vowels:\n            right -= 1\n        chars[left], chars[right] = chars[right], chars[left]\n        left += 1\n        right -= 1\n    return ''.join(chars)",
    "notes": {},
    "tests": "assert reverseVowels(\"hello\") == \"holle\"\nassert reverseVowels(\"leetcode\") == \"leotcede\"\nassert reverseVowels(\"aA\") == \"Aa\"\nassert reverseVowels(\".\") == \".\"\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=345"
   },
   {
    "id": "06-07-reverse-integer",
@@ -115,7 +150,8 @@
    "solution": "def reverse(x):\n    INT_MIN, INT_MAX = -2**31, 2**31 - 1\n    sign = -1 if x < 0 else 1\n    x = abs(x)\n    rev = 0\n    while x:\n        rev = rev * 10 + x % 10\n        x //= 10\n    rev *= sign\n    return rev if INT_MIN <= rev <= INT_MAX else 0",
    "notes": {},
    "tests": "assert reverse(123) == 321\nassert reverse(-123) == -321\nassert reverse(120) == 21\nassert reverse(0) == 0\nassert reverse(1534236469) == 0  # overflow\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=7"
   },
   {
    "id": "06-08-reverse-words-in-a-string",
@@ -131,7 +167,8 @@
    "solution": "def reverseWords(s):\n    return ' '.join(s.split()[::-1])",
    "notes": {},
    "tests": "assert reverseWords(\"the sky is blue\") == \"blue is sky the\"\nassert reverseWords(\"  hello world  \") == \"world hello\"\nassert reverseWords(\"a good   example\") == \"example good a\"\nassert reverseWords(\"  Bob    Loves  Alice   \") == \"Alice Loves Bob\"\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=151"
   },
   {
    "id": "06-09-reverse-bits",
@@ -147,7 +184,8 @@
    "solution": "def reverseBits(n):\n    result = 0\n    for _ in range(32):\n        result = (result << 1) | (n & 1)\n        n >>= 1\n    return result",
    "notes": {},
    "tests": "assert reverseBits(0b00000010100101000001111010011100) == 964176192\nassert reverseBits(0b11111111111111111111111111111101) == 3221225471\nassert reverseBits(0) == 0\nassert reverseBits(1) == 2147483648  # bit flipped to MSB\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=190"
   },
   {
    "id": "06-10-palindrome-linked-list",
@@ -167,7 +205,8 @@
     "14": "Compare"
    },
    "tests": "assert isPalindrome(make_list([1,2,2,1])) == True\nassert isPalindrome(make_list([1,2])) == False\nassert isPalindrome(make_list([1])) == True\nassert isPalindrome(make_list([1,2,3,2,1])) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=234"
   },
   {
    "id": "06-11-remove-duplicates-from-sorted-list",
@@ -183,7 +222,8 @@
    "solution": "def deleteDuplicates(head):\n    curr = head\n    while curr and curr.next:\n        if curr.val == curr.next.val:\n            curr.next = curr.next.next\n        else:\n            curr = curr.next\n    return head",
    "notes": {},
    "tests": "assert to_list(deleteDuplicates(make_list([1,1,2]))) == [1,2]\nassert to_list(deleteDuplicates(make_list([1,1,2,3,3]))) == [1,2,3]\nassert to_list(deleteDuplicates(make_list([1,2,3]))) == [1,2,3]\nassert to_list(deleteDuplicates(make_list([]))) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=83"
   },
   {
    "id": "06-12-merge-two-sorted-lists",
@@ -199,7 +239,8 @@
    "solution": "def mergeTwoLists(l1, l2):\n    dummy = ListNode(0)\n    curr = dummy\n    while l1 and l2:\n        if l1.val <= l2.val:\n            curr.next = l1\n            l1 = l1.next\n        else:\n            curr.next = l2\n            l2 = l2.next\n        curr = curr.next\n    curr.next = l1 or l2\n    return dummy.next",
    "notes": {},
    "tests": "assert to_list(mergeTwoLists(make_list([1,2,4]), make_list([1,3,4]))) == [1,1,2,3,4,4]\nassert to_list(mergeTwoLists(make_list([]), make_list([]))) == []\nassert to_list(mergeTwoLists(make_list([]), make_list([0]))) == [0]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=21"
   },
   {
    "id": "06-13-delete-node-in-linked-list",
@@ -218,7 +259,8 @@
     "6": "node with val=5"
    },
    "tests": "assert to_list(head) == [4,1,9]\n\n# Build 4->5->1->9, delete node with value 1\nhead2 = make_list([4,5,1,9])\nnode_to_delete2 = head2.next.next  # node with val=1\ndeleteNode(node_to_delete2)\nassert to_list(head2) == [4,5,9]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=237"
   },
   {
    "id": "06-14-remove-linked-list-elements",
@@ -234,7 +276,8 @@
    "solution": "def removeElements(head, val):\n    dummy = ListNode(0, head)\n    curr = dummy\n    while curr.next:\n        if curr.next.val == val:\n            curr.next = curr.next.next\n        else:\n            curr = curr.next\n    return dummy.next",
    "notes": {},
    "tests": "assert to_list(removeElements(make_list([1,2,6,3,4,5,6]), 6)) == [1,2,3,4,5]\nassert to_list(removeElements(make_list([]), 1)) == []\nassert to_list(removeElements(make_list([7,7,7,7]), 7)) == []\nassert to_list(removeElements(make_list([1,2,3,4]), 5)) == [1,2,3,4]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=203"
   },
   {
    "id": "06-15-middle-of-the-linked-list",
@@ -250,7 +293,8 @@
    "solution": "def middleNode(head):\n    slow = fast = head\n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n    return slow",
    "notes": {},
    "tests": "assert to_list(middleNode(make_list([1,2,3,4,5]))) == [3,4,5]\nassert to_list(middleNode(make_list([1,2,3,4,5,6]))) == [4,5,6]\nassert to_list(middleNode(make_list([1]))) == [1]\nassert to_list(middleNode(make_list([1,2]))) == [2]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=876"
   },
   {
    "id": "06-16-remove-nth-node-from-end",
@@ -270,7 +314,8 @@
     "8": "remove"
    },
    "tests": "assert to_list(removeNthFromEnd(make_list([1,2,3,4,5]), 2)) == [1,2,3,5]\nassert to_list(removeNthFromEnd(make_list([1]), 1)) == []\nassert to_list(removeNthFromEnd(make_list([1,2]), 1)) == [1]\nassert to_list(removeNthFromEnd(make_list([1,2]), 2)) == [2]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=19"
   },
   {
    "id": "06-17-convert-binary-number-in-linked-list-to-integer",
@@ -286,7 +331,8 @@
    "solution": "def getDecimalValue(head):\n    num = 0\n    while head:\n        num = num * 2 + head.val\n        head = head.next\n    return num",
    "notes": {},
    "tests": "assert getDecimalValue(make_list([1,0,1])) == 5\nassert getDecimalValue(make_list([0])) == 0\nassert getDecimalValue(make_list([1])) == 1\nassert getDecimalValue(make_list([1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1])) == 1073741825\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1290"
   },
   {
    "id": "06-18-swap-nodes-in-pairs",
@@ -304,7 +350,8 @@
     "9": "a is now the second node; advance past the pair"
    },
    "tests": "assert to_list(swapPairs(make_list([1,2,3,4]))) == [2,1,4,3]\nassert to_list(swapPairs(make_list([]))) == []\nassert to_list(swapPairs(make_list([1]))) == [1]\nassert to_list(swapPairs(make_list([1,2,3]))) == [2,1,3]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=24"
   },
   {
    "id": "06-19-intersection-of-two-linked-lists",
@@ -322,7 +369,8 @@
     "8": "Build: A: 4->1->8->4->5, B: 5->6->1->8->4->5 (intersect at node 8)"
    },
    "tests": "assert getIntersectionNode(a_head, b_head) is common\n\n# No intersection\nassert getIntersectionNode(make_list([1,2,3]), make_list([4,5])) is None\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=160"
   },
   {
    "id": "06-20-linked-list-cycle",
@@ -338,7 +386,8 @@
    "solution": "def hasCycle(head):\n    slow = fast = head\n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n        if slow is fast:\n            return True\n    return False",
    "notes": {},
    "tests": "# No cycle\nassert hasCycle(make_list([1,2,3,4])) == False\nassert hasCycle(make_list([])) == False\n\n# Build cycle: 3->2->0->-4 with -4 pointing back to 2\nhead = ListNode(3)\nn2 = ListNode(2)\nn0 = ListNode(0)\nn4 = ListNode(-4)\nhead.next = n2\nn2.next = n0\nn0.next = n4\nn4.next = n2  # cycle\nassert hasCycle(head) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=141"
   },
   {
    "id": "06-21-reverse-linked-list-ii",
@@ -354,7 +403,8 @@
    "solution": "def reverseBetween(head, left, right):\n    dummy = ListNode(0, head)\n    prev = dummy\n    for _ in range(left - 1):\n        prev = prev.next\n    curr = prev.next\n    for _ in range(right - left):\n        next_node = curr.next\n        curr.next = next_node.next\n        next_node.next = prev.next\n        prev.next = next_node\n    return dummy.next",
    "notes": {},
    "tests": "assert to_list(reverseBetween(make_list([1,2,3,4,5]), 2, 4)) == [1,4,3,2,5]\nassert to_list(reverseBetween(make_list([5]), 1, 1)) == [5]\nassert to_list(reverseBetween(make_list([1,2,3]), 1, 3)) == [3,2,1]\nassert to_list(reverseBetween(make_list([3,5]), 1, 2)) == [5,3]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=92"
   },
   {
    "id": "06-22-odd-even-linked-list",
@@ -370,7 +420,8 @@
    "solution": "def oddEvenList(head):\n    if not head:\n        return head\n    odd = head\n    even = head.next\n    even_head = even\n    while even and even.next:\n        odd.next = even.next\n        odd = odd.next\n        even.next = odd.next\n        even = even.next\n    odd.next = even_head\n    return head",
    "notes": {},
    "tests": "assert to_list(oddEvenList(make_list([1,2,3,4,5]))) == [1,3,5,2,4]\nassert to_list(oddEvenList(make_list([2,1,3,5,6,4,7]))) == [2,3,6,7,1,5,4]\nassert to_list(oddEvenList(make_list([1]))) == [1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=328"
   },
   {
    "id": "06-23-reorder-list",
@@ -390,7 +441,8 @@
     "14": "Step 3: merge"
    },
    "tests": "assert to_list(h) == [1,4,2,3]\n\nh2 = make_list([1,2,3,4,5])\nreorderList(h2)\nassert to_list(h2) == [1,5,2,4,3]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=143"
   },
   {
    "id": "06-24-rotate-list",
@@ -410,7 +462,8 @@
     "14": "Find new tail (n-k-1 steps from head)"
    },
    "tests": "assert to_list(rotateRight(make_list([1,2,3,4,5]), 2)) == [4,5,1,2,3]\nassert to_list(rotateRight(make_list([0,1,2]), 4)) == [2,0,1]\nassert to_list(rotateRight(make_list([1,2]), 0)) == [1,2]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=61"
   },
   {
    "id": "06-25-add-two-numbers",
@@ -426,7 +479,8 @@
    "solution": "def addTwoNumbers(l1, l2):\n    dummy = ListNode(0)\n    curr = dummy\n    carry = 0\n    while l1 or l2 or carry:\n        val = carry\n        if l1:\n            val += l1.val\n            l1 = l1.next\n        if l2:\n            val += l2.val\n            l2 = l2.next\n        carry, digit = divmod(val, 10)\n        curr.next = ListNode(digit)\n        curr = curr.next\n    return dummy.next",
    "notes": {},
    "tests": "assert to_list(addTwoNumbers(make_list([2,4,3]), make_list([5,6,4]))) == [7,0,8]\nassert to_list(addTwoNumbers(make_list([0]), make_list([0]))) == [0]\nassert to_list(addTwoNumbers(make_list([9,9,9,9,9,9,9]), make_list([9,9,9,9]))) == [8,9,9,9,0,0,0,1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2"
   },
   {
    "id": "06-26-add-two-numbers-ii",
@@ -442,7 +496,8 @@
    "solution": "def addTwoNumbersII(l1, l2):\n    s1, s2 = [], []\n    while l1:\n        s1.append(l1.val)\n        l1 = l1.next\n    while l2:\n        s2.append(l2.val)\n        l2 = l2.next\n    carry = 0\n    result = None\n    while s1 or s2 or carry:\n        val = carry\n        if s1: val += s1.pop()\n        if s2: val += s2.pop()\n        carry, digit = divmod(val, 10)\n        node = ListNode(digit)\n        node.next = result\n        result = node\n    return result",
    "notes": {},
    "tests": "assert to_list(addTwoNumbersII(make_list([7,2,4,3]), make_list([5,6,4]))) == [7,8,0,7]\nassert to_list(addTwoNumbersII(make_list([2,4,3]), make_list([5,6,4]))) == [8,0,7]\nassert to_list(addTwoNumbersII(make_list([0]), make_list([0]))) == [0]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=445"
   },
   {
    "id": "06-27-partition-list",
@@ -458,7 +513,8 @@
    "solution": "def partition(head, x):\n    less_dummy = ListNode(0)\n    greater_dummy = ListNode(0)\n    less = less_dummy\n    greater = greater_dummy\n    while head:\n        if head.val < x:\n            less.next = head\n            less = less.next\n        else:\n            greater.next = head\n            greater = greater.next\n        head = head.next\n    greater.next = None\n    less.next = greater_dummy.next\n    return less_dummy.next",
    "notes": {},
    "tests": "assert to_list(partition(make_list([1,4,3,2,5,2]), 3)) == [1,2,2,4,3,5]\nassert to_list(partition(make_list([2,1]), 2)) == [1,2]\nassert to_list(partition(make_list([1,1]), 2)) == [1,1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=86"
   },
   {
    "id": "06-28-sort-list",
@@ -479,7 +535,8 @@
     "14": "Merge"
    },
    "tests": "assert to_list(sortList(make_list([4,2,1,3]))) == [1,2,3,4]\nassert to_list(sortList(make_list([-1,5,3,4,0]))) == [-1,0,3,4,5]\nassert to_list(sortList(make_list([]))) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=148"
   },
   {
    "id": "06-29-copy-list-with-random-pointer",
@@ -499,7 +556,8 @@
     "26": "Build: [[7,null],[13,0],[11,4],[10,2],[1,0]]"
    },
    "tests": "assert copy.val == 7 and copy.random is None\nassert copy.next.val == 13 and copy.next.random.val == 7\nassert copy is not n1  # deep copy\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=138"
   },
   {
    "id": "06-30-remove-duplicates-from-sorted-list-ii",
@@ -519,7 +577,8 @@
     "10": "skip the last duplicate too"
    },
    "tests": "assert to_list(deleteDuplicatesII(make_list([1,2,3,3,4,4,5]))) == [1,2,5]\nassert to_list(deleteDuplicatesII(make_list([1,1,1,2,3]))) == [2,3]\nassert to_list(deleteDuplicatesII(make_list([1,1]))) == []\nassert to_list(deleteDuplicatesII(make_list([1,2,3]))) == [1,2,3]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=82"
   },
   {
    "id": "06-31-maximum-twin-sum-of-a-linked-list",
@@ -539,7 +598,8 @@
     "14": "Compare twins"
    },
    "tests": "assert pairSum(make_list([5,4,2,1])) == 6\nassert pairSum(make_list([4,2,2,3])) == 7\nassert pairSum(make_list([1,100000])) == 100001\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2130"
   },
   {
    "id": "06-32-delete-the-middle-node-of-a-linked-list",
@@ -555,7 +615,8 @@
    "solution": "def deleteMiddle(head):\n    if not head or not head.next:\n        return None\n    dummy = ListNode(0, head)\n    slow = dummy\n    fast = head\n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n    slow.next = slow.next.next\n    return dummy.next",
    "notes": {},
    "tests": "assert to_list(deleteMiddle(make_list([1,3,4,7,1,2,6]))) == [1,3,4,1,2,6]\nassert to_list(deleteMiddle(make_list([1,2,3,4]))) == [1,2,4]\nassert to_list(deleteMiddle(make_list([2,1]))) == [2]\nassert deleteMiddle(make_list([1])) is None\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2095"
   },
   {
    "id": "06-33-next-greater-node-in-linked-list",
@@ -573,7 +634,8 @@
     "3": "stores indices"
    },
    "tests": "assert nextLargerNodes(make_list([2,1,5])) == [5,5,0]\nassert nextLargerNodes(make_list([2,7,4,3,5])) == [7,0,5,5,0]\nassert nextLargerNodes(make_list([1,7,5,1,9,2,5,1])) == [7,9,9,9,0,5,0,0]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1019"
   },
   {
    "id": "06-34-swapping-nodes-in-a-linked-list",
@@ -593,7 +655,8 @@
     "12": "Swap values"
    },
    "tests": "assert to_list(swappingNodes(make_list([1,2,3,4,5]), 2)) == [1,4,3,2,5]\nassert to_list(swappingNodes(make_list([7,9,6,6,7,8,3,0,9,5]), 5)) == [7,9,6,6,8,7,3,0,9,5]\nassert to_list(swappingNodes(make_list([1,2]), 1)) == [2,1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1721"
   },
   {
    "id": "06-35-split-linked-list-in-parts",
@@ -611,7 +674,8 @@
     "2": "Count length"
    },
    "tests": "assert [to_list(p) for p in parts] == [[1],[2],[3],[],[]]\n\nparts2 = splitListToParts(make_list([1,2,3,4,5,6,7,8,9,10]), 3)\nassert [to_list(p) for p in parts2] == [[1,2,3,4],[5,6,7],[8,9,10]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=725"
   },
   {
    "id": "06-36-reverse-nodes-in-k-group",
@@ -633,7 +697,8 @@
     "20": "prev is the new head"
    },
    "tests": "assert to_list(reverseKGroup(make_list([1,2,3,4,5]), 2)) == [2,1,4,3,5]\nassert to_list(reverseKGroup(make_list([1,2,3,4,5]), 3)) == [3,2,1,4,5]\nassert to_list(reverseKGroup(make_list([1,2,3,4,5]), 1)) == [1,2,3,4,5]\nassert to_list(reverseKGroup(make_list([1]), 1)) == [1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=25"
   },
   {
    "id": "06-37-reverse-nodes-in-even-length-groups",
@@ -656,7 +721,8 @@
     "25": "Skip this group"
    },
    "tests": "assert to_list(reverseEvenLengthGroups(make_list([5,2,6,3,9,1,7,3,8,4]))) == [5,6,2,3,9,1,4,8,3,7]\nassert to_list(reverseEvenLengthGroups(make_list([1,1,0,6]))) == [1,0,1,6]\nassert to_list(reverseEvenLengthGroups(make_list([2,1]))) == [2,1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2074"
   },
   {
    "id": "06-38-merge-k-sorted-lists",
@@ -672,7 +738,8 @@
    "solution": "import heapq\n\ndef mergeKLists(lists):\n    heap = []\n    for i, node in enumerate(lists):\n        if node:\n            heapq.heappush(heap, (node.val, i, node))\n    dummy = ListNode(0)\n    curr = dummy\n    while heap:\n        val, i, node = heapq.heappop(heap)\n        curr.next = node\n        curr = curr.next\n        if node.next:\n            heapq.heappush(heap, (node.next.val, i, node.next))\n    return dummy.next\n\nl1 = make_list([1,4,5])\nl2 = make_list([1,3,4])\nl3 = make_list([2,6])",
    "notes": {},
    "tests": "assert to_list(mergeKLists([l1, l2, l3])) == [1,1,2,3,4,4,5,6]\nassert to_list(mergeKLists([])) == []\nassert to_list(mergeKLists([make_list([])])) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=23"
   },
   {
    "id": "06-39-lru-cache",
@@ -692,7 +759,8 @@
     "11": "dummy tail (least recent)"
    },
    "tests": "assert lru.get(1) == 1\nlru.put(3, 3)  # evicts key 2\nassert lru.get(2) == -1\nlru.put(4, 4)  # evicts key 1\nassert lru.get(1) == -1\nassert lru.get(3) == 3\nassert lru.get(4) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=146"
   },
   {
    "id": "06-40-remove-zero-sum-consecutive-nodes-from-linked-list",
@@ -712,7 +780,8 @@
     "13": "Second pass: skip zero-sum sections"
    },
    "tests": "assert to_list(removeZeroSumSublists(make_list([1,2,-3,3,1]))) == [3,1]\nassert to_list(removeZeroSumSublists(make_list([1,2,3,-3,4]))) == [1,2,4]\nassert to_list(removeZeroSumSublists(make_list([1,2,3,-3,-2]))) == [1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1171"
   },
   {
    "id": "06-41-flatten-binary-tree-to-linked-list",
@@ -731,7 +800,8 @@
     "15": "Connect"
    },
    "tests": "assert flat_to_list(root) == [1,2,3,4,5,6]\n\nroot2 = build_flat_tree([])\nflatten(root2)\nassert flat_to_list(root2) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=114"
   },
   {
    "id": "06-42-linked-list-in-binary-tree",
@@ -749,7 +819,8 @@
     "23": "Tree: 1->4->4->None (list), Tree: [1,4,4,null,2,2,null,1,null,6,8,null,null,null,null,1,3]"
    },
    "tests": "assert isSubPath(make_list([4,2,8]), root) == True\nassert isSubPath(make_list([1,4,2,6]), root) == True\nassert isSubPath(make_list([1,4,2,6,8]), root) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1367"
   },
   {
    "id": "06-43-all-o-1-data-structure-simplified",
@@ -769,7 +840,8 @@
     "12": "key -> bucket"
    },
    "tests": "assert ao.getMaxKey() == \"hello\"\nassert ao.getMinKey() == \"hello\"\nao.inc(\"leet\")\nassert ao.getMaxKey() == \"hello\"\nassert ao.getMinKey() == \"leet\"\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=432"
   },
   {
    "id": "06-44-sort-list-bottom-up-o-1-space",
@@ -788,7 +860,8 @@
     "45": "merge left and right"
    },
    "tests": "assert to_list(sortListBottomUp(make_list([4,2,1,3]))) == [1,2,3,4]\nassert to_list(sortListBottomUp(make_list([-1,5,3,4,0]))) == [-1,0,3,4,5]\nassert to_list(sortListBottomUp(make_list([1]))) == [1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=148"
   },
   {
    "id": "06-45-design-browser-history",
@@ -804,7 +877,8 @@
    "solution": "class BrowserHistory:\n    class Page:\n        def __init__(self, url):\n            self.url = url\n            self.prev = self.next = None\n    \n    def __init__(self, homepage):\n        self.curr = self.Page(homepage)\n    \n    def visit(self, url):\n        new = self.Page(url)\n        new.prev = self.curr\n        self.curr.next = new\n        self.curr = new\n    \n    def back(self, steps):\n        while steps > 0 and self.curr.prev:\n            self.curr = self.curr.prev\n            steps -= 1\n        return self.curr.url\n    \n    def forward(self, steps):\n        while steps > 0 and self.curr.next:\n            self.curr = self.curr.next\n            steps -= 1\n        return self.curr.url\n\nbh = BrowserHistory(\"leetcode.com\")\nbh.visit(\"google.com\")\nbh.visit(\"facebook.com\")\nbh.visit(\"youtube.com\")",
    "notes": {},
    "tests": "assert bh.back(1) == \"facebook.com\"\nassert bh.back(1) == \"google.com\"\nassert bh.forward(1) == \"facebook.com\"\nbh.visit(\"linkedin.com\")\nassert bh.forward(2) == \"linkedin.com\"  # forward history cleared\nassert bh.back(2) == \"google.com\"\nassert bh.back(7) == \"leetcode.com\"  # clamps at beginning\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1472"
   },
   {
    "id": "06-46-print-immutable-linked-list-in-reverse",
@@ -820,7 +894,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\ndef from_list(lst):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in lst:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next\n\ndef printReverse(head):\n    vals = []\n    cur = head\n    while cur:\n        vals.append(cur.val)\n        cur = cur.next\n    return vals[::-1]",
    "notes": {},
    "tests": "assert printReverse(from_list([1,2,3,4,5])) == [5,4,3,2,1]\nassert printReverse(from_list([1])) == [1]\nassert printReverse(from_list([])) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1265"
   },
   {
    "id": "06-47-find-intersection-using-length-difference",
@@ -838,7 +913,8 @@
     "38": "Build intersecting lists"
    },
    "tests": "assert getIntersectionNode(a, b) is shared\nassert getIntersectionNode(from_list([1,2,3]), from_list([4,5,6])) is None\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-48-reverse-a-prefix-position-1-to-k",
@@ -856,7 +932,8 @@
     "29": "head is now the tail of reversed prefix"
    },
    "tests": "assert to_list(reversePrefix(from_list([1,2,3,4,5]), 3)) == [3,2,1,4,5]\nassert to_list(reversePrefix(from_list([1,2,3]), 1)) == [1,2,3]\nassert to_list(reversePrefix(from_list([1,2,3]), 3)) == [3,2,1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-49-check-if-linked-list-length-is-even-or-odd",
@@ -872,7 +949,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\ndef from_list(lst):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in lst:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next\n\ndef evenOrOdd(head):\n    cur = head\n    while cur and cur.next:\n        cur = cur.next.next\n    return 'even' if cur is None else 'odd'",
    "notes": {},
    "tests": "assert evenOrOdd(from_list([1,2,3,4])) == 'even'\nassert evenOrOdd(from_list([1,2,3])) == 'odd'\nassert evenOrOdd(from_list([])) == 'even'\nassert evenOrOdd(from_list([1])) == 'odd'\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-50-find-the-node-before-the-tail",
@@ -888,7 +966,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\ndef from_list(lst):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in lst:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next\n\ndef nodeBeforeTail(head):\n    cur = head\n    while cur.next and cur.next.next:\n        cur = cur.next\n    return cur.val",
    "notes": {},
    "tests": "assert nodeBeforeTail(from_list([1,2,3,4,5])) == 4\nassert nodeBeforeTail(from_list([1,2])) == 1\nassert nodeBeforeTail(from_list([10,20,30])) == 20\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-51-create-linked-list-from-array",
@@ -906,7 +985,8 @@
     "21": "reuse our helper"
    },
    "tests": "assert to_list(createLinkedList([1,2,3,4,5])) == [1,2,3,4,5]\nassert to_list(createLinkedList([])) == []\nassert to_list(createLinkedList([42])) == [42]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-52-convert-linked-list-to-array",
@@ -924,7 +1004,8 @@
     "21": "reuse our helper"
    },
    "tests": "assert linkedListToArray(from_list([1,2,3])) == [1,2,3]\nassert linkedListToArray(from_list([])) == []\nassert linkedListToArray(from_list([7])) == [7]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-53-check-if-two-linked-lists-are-identical",
@@ -940,7 +1021,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\ndef from_list(lst):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in lst:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next\n\ndef areIdentical(h1, h2):\n    while h1 and h2:\n        if h1.val != h2.val:\n            return False\n        h1, h2 = h1.next, h2.next\n    return h1 is None and h2 is None",
    "notes": {},
    "tests": "assert areIdentical(from_list([1,2,3]), from_list([1,2,3])) == True\nassert areIdentical(from_list([1,2,3]), from_list([1,2,4])) == False\nassert areIdentical(from_list([1,2]), from_list([1,2,3])) == False\nassert areIdentical(from_list([]), from_list([])) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-54-find-middle-without-slow-fast-pointers",
@@ -956,7 +1038,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\ndef from_list(lst):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in lst:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next\n\ndef findMiddle(head):\n    n = 0\n    cur = head\n    while cur:\n        n += 1\n        cur = cur.next\n    cur = head\n    for _ in range(n // 2):\n        cur = cur.next\n    return cur.val",
    "notes": {},
    "tests": "assert findMiddle(from_list([1,2,3,4,5])) == 3\nassert findMiddle(from_list([1,2,3,4,5,6])) == 4\nassert findMiddle(from_list([1])) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-55-merge-alternate-nodes-of-two-lists",
@@ -972,7 +1055,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\ndef from_list(lst):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in lst:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next\n\ndef mergeAlternate(h1, h2):\n    dummy = ListNode(0)\n    cur = dummy\n    toggle = True\n    while h1 or h2:\n        if toggle and h1:\n            cur.next = h1; h1 = h1.next\n        elif not toggle and h2:\n            cur.next = h2; h2 = h2.next\n        elif h1:\n            cur.next = h1; h1 = h1.next\n        else:\n            cur.next = h2; h2 = h2.next\n        cur = cur.next\n        cur.next = None\n        toggle = not toggle\n    return dummy.next",
    "notes": {},
    "tests": "assert to_list(mergeAlternate(from_list([1,3,5]), from_list([2,4,6]))) == [1,2,3,4,5,6]\nassert to_list(mergeAlternate(from_list([1,2]), from_list([3,4,5,6]))) == [1,3,2,4,5,6]\nassert to_list(mergeAlternate(from_list([]), from_list([1,2]))) == [1,2]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-56-remove-all-duplicates-keep-none-in-sorted-list",
@@ -988,7 +1072,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\ndef from_list(lst):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in lst:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next\n\ndef deleteDuplicatesAll(head):\n    dummy = ListNode(0, head)\n    prev = dummy\n    cur = head\n    while cur:\n        if cur.next and cur.val == cur.next.val:\n            val = cur.val\n            while cur and cur.val == val:\n                cur = cur.next\n            prev.next = cur\n        else:\n            prev = cur\n            cur = cur.next\n    return dummy.next",
    "notes": {},
    "tests": "assert to_list(deleteDuplicatesAll(from_list([1,2,3,3,4,4,5]))) == [1,2,5]\nassert to_list(deleteDuplicatesAll(from_list([1,1,1,2,3]))) == [2,3]\nassert to_list(deleteDuplicatesAll(from_list([1,1,1]))) == []\nassert to_list(deleteDuplicatesAll(from_list([1,2,3]))) == [1,2,3]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-57-insert-node-in-sorted-linked-list",
@@ -1004,7 +1089,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\ndef from_list(lst):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in lst:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next\n\ndef insertSorted(head, val):\n    new_node = ListNode(val)\n    if not head or val <= head.val:\n        new_node.next = head\n        return new_node\n    cur = head\n    while cur.next and cur.next.val < val:\n        cur = cur.next\n    new_node.next = cur.next\n    cur.next = new_node\n    return head",
    "notes": {},
    "tests": "assert to_list(insertSorted(from_list([1,3,5,7]), 4)) == [1,3,4,5,7]\nassert to_list(insertSorted(from_list([1,3,5]), 0)) == [0,1,3,5]\nassert to_list(insertSorted(from_list([1,3,5]), 6)) == [1,3,5,6]\nassert to_list(insertSorted(from_list([]), 1)) == [1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-58-detect-circular-cyclic-linked-list",
@@ -1020,7 +1106,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\ndef from_list(lst):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in lst:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next\n\ndef hasCycle(head):\n    slow = fast = head\n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n        if slow is fast:\n            return True\n    return False",
    "notes": {},
    "tests": "# No cycle\nassert hasCycle(from_list([1,2,3,4,5])) == False\nassert hasCycle(from_list([])) == False\n# With cycle\nh = from_list([1,2,3,4])\n# Connect tail to second node\ntail = h\nwhile tail.next:\n    tail = tail.next\ntail.next = h.next  # cycle\nassert hasCycle(h) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-59-find-second-to-last-node",
@@ -1036,7 +1123,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\ndef from_list(lst):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in lst:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next\n\ndef secondToLast(head):\n    cur = head\n    while cur.next and cur.next.next:\n        cur = cur.next\n    return cur.val",
    "notes": {},
    "tests": "assert secondToLast(from_list([1,2,3,4,5])) == 4\nassert secondToLast(from_list([1,2])) == 1\nassert secondToLast(from_list([10,20,30])) == 20\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-60-move-last-node-to-front",
@@ -1055,7 +1143,8 @@
     "29": "new head"
    },
    "tests": "assert to_list(moveLastToFront(from_list([1,2,3,4,5]))) == [5,1,2,3,4]\nassert to_list(moveLastToFront(from_list([1,2]))) == [2,1]\nassert to_list(moveLastToFront(from_list([1]))) == [1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-61-move-first-node-to-end",
@@ -1071,7 +1160,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\ndef from_list(lst):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in lst:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next\n\ndef moveFirstToEnd(head):\n    if not head or not head.next:\n        return head\n    old_head = head\n    head = head.next\n    old_head.next = None\n    cur = head\n    while cur.next:\n        cur = cur.next\n    cur.next = old_head\n    return head",
    "notes": {},
    "tests": "assert to_list(moveFirstToEnd(from_list([1,2,3,4,5]))) == [2,3,4,5,1]\nassert to_list(moveFirstToEnd(from_list([1,2]))) == [2,1]\nassert to_list(moveFirstToEnd(from_list([1]))) == [1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-62-reverse-every-other-k-nodes",
@@ -1090,7 +1180,8 @@
     "38": "reverse this group"
    },
    "tests": "assert to_list(reverseEveryOtherK(from_list([1,2,3,4,5,6,7,8]), 2)) == [2,1,3,4,6,5,7,8]\nassert to_list(reverseEveryOtherK(from_list([1,2,3,4,5,6]), 3)) == [3,2,1,4,5,6]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-63-count-specific-value-occurrences-in-linked-list",
@@ -1106,7 +1197,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\ndef from_list(lst):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in lst:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next\n\ndef countValue(head, v):\n    count = 0\n    cur = head\n    while cur:\n        if cur.val == v:\n            count += 1\n        cur = cur.next\n    return count",
    "notes": {},
    "tests": "assert countValue(from_list([1,2,3,2,2,5]), 2) == 3\nassert countValue(from_list([1,1,1,1]), 1) == 4\nassert countValue(from_list([1,2,3]), 9) == 0\nassert countValue(from_list([]), 1) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-64-linked-list-cycle-detection-via-visited-set",
@@ -1122,7 +1214,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\ndef from_list(lst):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in lst:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next\n\ndef hasCycleHashSet(head):\n    visited = set()\n    cur = head\n    while cur:\n        if id(cur) in visited:\n            return True\n        visited.add(id(cur))\n        cur = cur.next\n    return False",
    "notes": {},
    "tests": "assert hasCycleHashSet(from_list([1,2,3,4,5])) == False\n# Create a cycle\nh = from_list([1,2,3])\ntail = h\nwhile tail.next:\n    tail = tail.next\ntail.next = h  # points back to head\nassert hasCycleHashSet(h) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-65-find-node-at-distance-k-from-end-count-approach",
@@ -1138,7 +1231,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\ndef from_list(lst):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in lst:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next\n\ndef kthFromEnd(head, k):\n    n = 0\n    cur = head\n    while cur:\n        n += 1\n        cur = cur.next\n    target = n - k\n    cur = head\n    for _ in range(target):\n        cur = cur.next\n    return cur.val",
    "notes": {},
    "tests": "assert kthFromEnd(from_list([1,2,3,4,5]), 1) == 5\nassert kthFromEnd(from_list([1,2,3,4,5]), 2) == 4\nassert kthFromEnd(from_list([1,2,3,4,5]), 5) == 1\nassert kthFromEnd(from_list([7]), 1) == 7\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-66-design-linked-list",
@@ -1154,7 +1248,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\ndef from_list(lst):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in lst:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next\n\nclass MyLinkedList:\n    def __init__(self):\n        self.dummy = ListNode(0)\n        self.size = 0\n\n    def get(self, index):\n        if index < 0 or index >= self.size:\n            return -1\n        cur = self.dummy.next\n        for _ in range(index):\n            cur = cur.next\n        return cur.val\n\n    def addAtHead(self, val):\n        node = ListNode(val, self.dummy.next)\n        self.dummy.next = node\n        self.size += 1\n\n    def addAtTail(self, val):\n        cur = self.dummy\n        while cur.next:\n            cur = cur.next\n        cur.next = ListNode(val)\n        self.size += 1\n\n    def addAtIndex(self, index, val):\n        if index > self.size:\n            return\n        cur = self.dummy\n        for _ in range(index):\n            cur = cur.next\n        cur.next = ListNode(val, cur.next)\n        self.size += 1\n\n    def deleteAtIndex(self, index):\n        if index < 0 or index >= self.size:\n            return\n        cur = self.dummy\n        for _ in range(index):\n            cur = cur.next\n        cur.next = cur.next.next\n        self.size -= 1\n\nll = MyLinkedList()\nll.addAtHead(1); ll.addAtTail(3); ll.addAtIndex(1, 2)",
    "notes": {},
    "tests": "assert ll.get(0) == 1\nassert ll.get(1) == 2\nassert ll.get(2) == 3\nll.deleteAtIndex(1)\nassert ll.get(1) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=707"
   },
   {
    "id": "06-67-convert-sorted-list-to-bst",
@@ -1173,7 +1268,8 @@
     "37": "cut left half"
    },
    "tests": "assert inorder(bst) == [-10,-3,0,5,9]\nbst2 = sortedListToBST(from_list([1,2,3,4,5]))\nassert inorder(bst2) == [1,2,3,4,5]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=109"
   },
   {
    "id": "06-68-flatten-multilevel-doubly-linked-list",
@@ -1192,7 +1288,8 @@
     "27": "Build: 1 <-> 2 <-> 3, with 2.child = 4 <-> 5"
    },
    "tests": "assert vals == [1,2,4,5,3]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=430"
   },
   {
    "id": "06-69-insert-into-sorted-circular-linked-list",
@@ -1212,7 +1309,8 @@
     "48": "Build circular list 1->3->5->1"
    },
    "tests": "assert sorted(vals) == [1,3,4,5]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=708"
   },
   {
    "id": "06-70-linked-list-random-node-reservoir-sampling",
@@ -1228,7 +1326,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\ndef from_list(lst):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in lst:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next\n\nimport random\n\nclass Solution:\n    def __init__(self, head):\n        self.head = head\n\n    def getRandom(self):\n        result = None\n        cur = self.head\n        i = 1\n        while cur:\n            if random.randint(1, i) == 1:\n                result = cur.val\n            cur = cur.next\n            i += 1\n        return result\n\nrandom.seed(42)\nsol = Solution(from_list([1,2,3,4,5]))\nresults = {sol.getRandom() for _ in range(1000)}",
    "notes": {},
    "tests": "assert results == {1,2,3,4,5}  # all values should appear\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=382"
   },
   {
    "id": "06-71-merge-nodes-in-between-zeros",
@@ -1246,7 +1345,8 @@
     "23": "skip leading 0"
    },
    "tests": "assert to_list(mergeNodes(from_list([0,3,1,0,4,5,2,0]))) == [4,11]\nassert to_list(mergeNodes(from_list([0,1,0,3,0,2,2,0]))) == [1,3,4]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2181"
   },
   {
    "id": "06-72-remove-nodes-from-linked-list",
@@ -1266,7 +1366,8 @@
     "36": "Reverse back"
    },
    "tests": "assert to_list(removeNodes(from_list([5,2,13,3,8]))) == [13,8]\nassert to_list(removeNodes(from_list([1,1,1,1]))) == [1,1,1,1]\nassert to_list(removeNodes(from_list([3,2,1]))) == [3,2,1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2487"
   },
   {
    "id": "06-73-double-a-number-represented-as-linked-list",
@@ -1287,7 +1388,8 @@
     "40": "Reverse back"
    },
    "tests": "assert to_list(doubleIt(from_list([1,8,9]))) == [3,7,8]\nassert to_list(doubleIt(from_list([9,9,9]))) == [1,9,9,8]\nassert to_list(doubleIt(from_list([0]))) == [0]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2816"
   },
   {
    "id": "06-74-insert-gcd-between-linked-list-nodes",
@@ -1303,7 +1405,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\ndef from_list(lst):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in lst:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next\n\nfrom math import gcd\n\ndef insertGreatestCommonDivisors(head):\n    cur = head\n    while cur and cur.next:\n        g = gcd(cur.val, cur.next.val)\n        new_node = ListNode(g, cur.next)\n        cur.next = new_node\n        cur = new_node.next\n    return head",
    "notes": {},
    "tests": "assert to_list(insertGreatestCommonDivisors(from_list([18,6,10,3]))) == [18,6,6,2,10,1,3]\nassert to_list(insertGreatestCommonDivisors(from_list([7]))) == [7]\nassert to_list(insertGreatestCommonDivisors(from_list([4,8]))) == [4,4,8]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2807"
   },
   {
    "id": "06-75-min-and-max-between-critical-points",
@@ -1319,7 +1422,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\ndef from_list(lst):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in lst:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next\n\ndef nodesBetweenCriticalPoints(head):\n    crits = []\n    prev = head\n    cur = head.next\n    idx = 1\n    while cur and cur.next:\n        if (cur.val > prev.val and cur.val > cur.next.val) or \\\n           (cur.val < prev.val and cur.val < cur.next.val):\n            crits.append(idx)\n        prev = cur\n        cur = cur.next\n        idx += 1\n    if len(crits) < 2:\n        return [-1, -1]\n    min_dist = min(crits[i+1]-crits[i] for i in range(len(crits)-1))\n    max_dist = crits[-1] - crits[0]\n    return [min_dist, max_dist]",
    "notes": {},
    "tests": "assert nodesBetweenCriticalPoints(from_list([3,1])) == [-1,-1]\nassert nodesBetweenCriticalPoints(from_list([5,3,1,2,5,1,2])) == [1,3]\nassert nodesBetweenCriticalPoints(from_list([1,3,2,2,3,2,2,2,7])) == [3,3]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2058"
   },
   {
    "id": "06-76-reverse-alternating-k-groups",
@@ -1335,7 +1439,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\ndef from_list(lst):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in lst:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next\n\ndef reverseAlternatingK(head, k):\n    dummy = ListNode(0, head)\n    prev_tail = dummy\n    cur = head\n    flip = True\n    while cur:\n        group_head = cur\n        group_end = cur\n        count = 1\n        while count < k and group_end.next:\n            group_end = group_end.next\n            count += 1\n        next_group = group_end.next\n        group_end.next = None\n        if flip:\n            p, c = None, group_head\n            while c:\n                n = c.next; c.next = p; p = c; c = n\n            prev_tail.next = p\n            group_head.next = next_group\n            prev_tail = group_head\n        else:\n            prev_tail.next = group_head\n            prev_tail = group_end\n            prev_tail.next = next_group\n        cur = next_group\n        flip = not flip\n    return dummy.next",
    "notes": {},
    "tests": "assert to_list(reverseAlternatingK(from_list([1,2,3,4,5,6,7,8,9,10]), 3)) == [3,2,1,4,5,6,9,8,7,10]\nassert to_list(reverseAlternatingK(from_list([1,2,3,4]), 2)) == [2,1,3,4]\nassert to_list(reverseAlternatingK(from_list([1]), 3)) == [1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-77-check-palindrome-linked-list-in-o-1-space",
@@ -1353,7 +1458,8 @@
     "40": "restore"
    },
    "tests": "assert isPalindrome(from_list([1,2,2,1])) == True\nassert isPalindrome(from_list([1,2])) == False\nassert isPalindrome(from_list([1,2,3,2,1])) == True\nassert isPalindrome(from_list([1])) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-78-rearrange-linked-list-all-negatives-first",
@@ -1369,7 +1475,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\ndef from_list(lst):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in lst:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next\n\ndef negativesFirst(head):\n    neg_dummy = ListNode(0)\n    pos_dummy = ListNode(0)\n    neg = neg_dummy\n    pos = pos_dummy\n    cur = head\n    while cur:\n        if cur.val < 0:\n            neg.next = cur; neg = neg.next\n        else:\n            pos.next = cur; pos = pos.next\n        cur = cur.next\n    pos.next = None\n    neg.next = pos_dummy.next\n    return neg_dummy.next",
    "notes": {},
    "tests": "assert to_list(negativesFirst(from_list([1,-2,3,-4,5]))) == [-2,-4,1,3,5]\nassert to_list(negativesFirst(from_list([-1,-2,-3]))) == [-1,-2,-3]\nassert to_list(negativesFirst(from_list([1,2,3]))) == [1,2,3]\nassert to_list(negativesFirst(from_list([]))) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-79-sort-linked-list-by-parity-even-values-first",
@@ -1385,7 +1492,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\ndef from_list(lst):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in lst:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next\n\ndef evenValuesFirst(head):\n    even_d = ListNode(0)\n    odd_d = ListNode(0)\n    ev, od = even_d, odd_d\n    cur = head\n    while cur:\n        nxt = cur.next\n        cur.next = None\n        if cur.val % 2 == 0:\n            ev.next = cur; ev = ev.next\n        else:\n            od.next = cur; od = od.next\n        cur = nxt\n    ev.next = odd_d.next\n    return even_d.next",
    "notes": {},
    "tests": "assert to_list(evenValuesFirst(from_list([1,2,3,4,5,6]))) == [2,4,6,1,3,5]\nassert to_list(evenValuesFirst(from_list([1,3,5]))) == [1,3,5]\nassert to_list(evenValuesFirst(from_list([2,4,6]))) == [2,4,6]\nassert to_list(evenValuesFirst(from_list([]))) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-80-find-min-and-max-number-of-nodes-between-critical-poin",
@@ -1401,7 +1509,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\ndef from_list(lst):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in lst:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next\n\ndef criticalPointsMinMax(head):\n    crits = []\n    prev = head\n    cur = head.next\n    idx = 1\n    while cur and cur.next:\n        p, n = prev.val, cur.next.val\n        if (cur.val > p and cur.val > n) or (cur.val < p and cur.val < n):\n            crits.append(idx)\n        prev = cur\n        cur = cur.next\n        idx += 1\n    if len(crits) < 2:\n        return [-1, -1]\n    min_d = min(crits[i+1]-crits[i] for i in range(len(crits)-1))\n    max_d = crits[-1] - crits[0]\n    return [min_d, max_d]",
    "notes": {},
    "tests": "assert criticalPointsMinMax(from_list([5,3,1,2,5,1,2])) == [1,3]\nassert criticalPointsMinMax(from_list([1,3,2,2,3,2,2,2,7])) == [3,3]\nassert criticalPointsMinMax(from_list([2,3,3,2])) == [-1,-1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-81-lfu-cache",
@@ -1421,7 +1530,8 @@
     "32": "evict LFU (then LRU)"
    },
    "tests": "assert lfu.get(1) == 1\nlfu.put(3, 3)             # evicts key 2\nassert lfu.get(2) == -1\nassert lfu.get(3) == 3\nlfu.put(4, 4)             # evicts key 1 (freq=2 vs 3's freq=2, but 1 was accessed earlier)\nassert lfu.get(1) == -1\nassert lfu.get(3) == 3\nassert lfu.get(4) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=460"
   },
   {
    "id": "06-82-reverse-nodes-in-k-group-with-remainder-reversed-too",
@@ -1439,7 +1549,8 @@
     "35": "Reverse this group"
    },
    "tests": "assert to_list(reverseKGroupAll(from_list([1,2,3,4,5]), 2)) == [2,1,4,3,5]\nassert to_list(reverseKGroupAll(from_list([1,2,3,4,5]), 3)) == [3,2,1,5,4]\nassert to_list(reverseKGroupAll(from_list([1,2,3,4,5,6]), 3)) == [3,2,1,6,5,4]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-83-clone-a-graph-adjacency-list-via-linked-lists",
@@ -1457,7 +1568,8 @@
     "22": "Build graph: 1--2, 2--3, 3--4, 4--1, 1--3"
    },
    "tests": "assert clone is not n1\nassert clone.val == 1\nassert len(clone.neighbors) == 2\nassert all(cn is not on for cn, on in zip(clone.neighbors, n1.neighbors))\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-84-flatten-binary-tree-to-linked-list-in-bfs-order",
@@ -1475,7 +1587,8 @@
     "26": "Build: root=1, left=2, right=3, 2.left=4, 2.right=5, 3.right=6"
    },
    "tests": "while cur:\n    vals.append(cur.val)\n    assert cur.left is None\n    cur = cur.right\nassert vals == [1,2,3,4,5,6]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-85-serialize-and-deserialize-linked-list-with-random-poin",
@@ -1493,7 +1606,8 @@
     "36": "Build: 1->2->3, with 1.random=3, 2.random=1, 3.random=None"
    },
    "tests": "assert vals == [1, 2, 3]\nassert head2.random.val == 3\nassert head2.next.random.val == 1\nassert head2.next.next.random is None\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-86-find-all-duplicate-subtrees-via-linked-list-hashing",
@@ -1514,7 +1628,8 @@
     "28": "4"
    },
    "tests": "assert dup_vals == [2, 4]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=652"
   },
   {
    "id": "06-87-implement-a-doubly-linked-list-deque",
@@ -1533,7 +1648,8 @@
     "8": "sentinel"
    },
    "tests": "assert dq.popLeft() == 1\nassert dq.popRight() == 3\ndq.appendLeft(0)\nassert dq.peekLeft() == 0\nassert dq.peekRight() == 2\nassert len(dq) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-88-implement-a-simplified-skip-list-2-levels",
@@ -1555,7 +1671,8 @@
     "36": "Coin flip for level 1"
    },
    "tests": "assert sl.search(2) == True\nassert sl.search(5) == False\nsl.erase(2)\nassert sl.search(2) == False\nassert sl.search(1) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-89-copy-list-with-random-and-next-pointers-in-o-1-space",
@@ -1576,7 +1693,8 @@
     "35": "Build: 1->2->3; 1.random=3, 2.random=1, 3.random=None"
    },
    "tests": "assert clone_head is not a\nassert clone_head.val == 1\nassert clone_head.random.val == 3\nassert clone_head.next.random.val == 1\nassert clone_head.next.next.random is None\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "06-90-merge-k-sorted-lists-divide-and-conquer",
@@ -1592,7 +1710,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\ndef from_list(lst):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in lst:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next\n\ndef mergeTwoLists(l1, l2):\n    dummy = ListNode(0)\n    cur = dummy\n    while l1 and l2:\n        if l1.val <= l2.val:\n            cur.next = l1; l1 = l1.next\n        else:\n            cur.next = l2; l2 = l2.next\n        cur = cur.next\n    cur.next = l1 or l2\n    return dummy.next\n\ndef mergeKLists(lists):\n    if not lists:\n        return None\n    while len(lists) > 1:\n        merged = []\n        for i in range(0, len(lists), 2):\n            l1 = lists[i]\n            l2 = lists[i+1] if i+1 < len(lists) else None\n            merged.append(mergeTwoLists(l1, l2))\n        lists = merged\n    return lists[0]",
    "notes": {},
    "tests": "assert to_list(mergeKLists([from_list([1,4,5]),from_list([1,3,4]),from_list([2,6])])) == [1,1,2,3,4,4,5,6]\nassert to_list(mergeKLists([])) == []\nassert to_list(mergeKLists([from_list([])])) == []\nassert to_list(mergeKLists([from_list([1]),from_list([2]),from_list([3])])) == [1,2,3]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   }
  ]
 }

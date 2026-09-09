@@ -36,6 +36,11 @@ ASIDE = re.compile(r"\s+(?:[\u2014\u2013-]{1,2}|,)\s+\S.*$")
 PARENTHETICAL = re.compile(r"\s*\(([^)]*)\)\s*$")
 TIERS = ["Easy", "Medium", "Hard"]
 PLAIN = re.compile(r"^\s*(\d+)\.\s")
+SECTION_SPLIT = re.compile(r"^##\s+(.+)$", re.M)
+# LeetCode has no canonical URL keyed by problem number, and a slug guessed
+# from the title is wrong often enough to matter -- 167 is not "two-sum-ii"
+# but "two-sum-ii-input-array-is-sorted". Searching by number always lands.
+LEETCODE = "https://leetcode.com/problemset/?search={}"
 
 
 def slugify(text):
@@ -133,6 +138,31 @@ def difficulty_of(heading, section, run):
     return (TIERS[run] if run < len(TIERS) else None), None
 
 
+def overview(nb):
+    """The explainer every notebook opens with, split into its sections.
+
+    Runs from the top of the notebook to the first problem: what the pattern
+    is, the signals that it applies, and the code templates. Returned as
+    {heading: body} so the page can lay the sections out rather than dumping
+    one wall of markdown.
+    """
+    blocks = []
+    for cell in nb["cells"]:
+        src = "".join(cell["source"])
+        if cell["cell_type"] == "code" or TAG in src:
+            break
+        if src.strip().strip("-"):
+            blocks.append(src)
+    text = "\n\n".join(blocks)
+    text = re.sub(r"^#\s+[^\n]*\n", "", text)          # drop the H1, it is the name
+    parts = SECTION_SPLIT.split(text)
+    lead = parts[0].strip().strip("-").strip()
+    sections = [{"heading": h.strip(), "body": b.strip().strip("-").strip()}
+                for h, b in zip(parts[1::2], parts[2::2], strict=True)
+                if b.strip().strip("-").strip()]
+    return {"lead": lead, "sections": sections}
+
+
 def pattern_name(nb, path):
     """The notebook's own H1, split into a name and its parenthetical aside.
 
@@ -159,6 +189,7 @@ def build():
         # never moves a URL that has already been shared.
         slug = slugify(path.split("_", 1)[1][:-6].replace("_", " "))
         name, note = pattern_name(nb, path)
+        about = overview(nb)
         problems, section, pending, order = [], None, None, 0
         run = -1          # which plain-numbered block we are in
 
@@ -213,11 +244,12 @@ def build():
                 "notes": {str(k): v for k, v in annotations(solution).items()},
                 "tests": tests,
                 "verified": sorted(defined & referenced),
+                "leetcodeUrl": LEETCODE.format(lc.group(1)) if lc else None,
             })
             pending = None
 
         patterns.append({"id": number, "slug": slug, "name": name, "note": note,
-                         "notebook": path, "problems": problems})
+                         "about": about, "notebook": path, "problems": problems})
 
     if unresolved:
         print(f"{len(unresolved)} problems have no resolvable difficulty:")

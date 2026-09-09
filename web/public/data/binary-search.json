@@ -3,6 +3,35 @@
  "slug": "binary-search",
  "name": "Binary Search",
  "note": "Core + Modified",
+ "about": {
+  "lead": "",
+  "sections": [
+   {
+    "heading": "What Is It?",
+    "body": "Binary search eliminates **half of the search space** per iteration. It requires the search space to be **sorted or monotonic** — meaning there's a clear condition that is false for one side and true for the other.\n\nInstead of scanning O(n), we repeatedly cut the range in half → **O(log n)**."
+   },
+   {
+    "heading": "When To Use",
+    "body": "Array is sorted (or can be treated as sorted)\n- Finding the **first/last** position of a value\n- Minimizing/maximizing a value where feasibility is monotonic\n- Answer lies in a **value range** (not necessarily an array index)"
+   },
+   {
+    "heading": "Three Core Templates",
+    "body": "### Template 1 — Exact Search\nUse when: you need to find the exact position of `target`.\n```python\ndef binary_search(arr, target):\n    left, right = 0, len(arr) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if arr[mid] == target: return mid\n        elif arr[mid] < target: left = mid + 1\n        else: right = mid - 1\n    return -1\n```\n\n### Template 2 — Left Bound (First True)\nUse when: you want the **leftmost** index where `arr[mid] >= target`.\n```python\ndef left_bound(arr, target):\n    left, right = 0, len(arr)\n    while left < right:\n        mid = (left + right) // 2\n        if arr[mid] < target: left = mid + 1\n        else: right = mid\n    return left\n```\n\n### Template 3 — Binary Search on Answer\nUse when: the answer is a **value** (not an index) and you can write a `feasible(mid)` function.\n```python\ndef bsearch_answer(lo, hi):\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if feasible(mid): hi = mid\n        else: lo = mid + 1\n    return lo\n```"
+   },
+   {
+    "heading": "Binary Search on the Answer",
+    "body": "Instead of searching an array, you search a **numeric range** `[lo, hi]`:\n1. Define `lo` = minimum possible answer, `hi` = maximum possible answer\n2. Write `feasible(mid)` → returns `True` if `mid` is a valid answer\n3. If `feasible` is: `False...False...True...True` → use `if feasible: hi = mid`\n4. If `feasible` is: `True...True...False...False` → use `if feasible: lo = mid + 1` (find last true)\n\nClassic examples: Koko eating bananas, ship packages in D days."
+   },
+   {
+    "heading": "Complexity",
+    "body": "| Operation | Time | Space |\n|-----------|------|-------|\n| Binary search on array | O(log n) | O(1) |\n| Binary search on answer | O(log(hi-lo) × feasible cost) | O(1) |\n| Recursive binary search | O(log n) | O(log n) stack |"
+   },
+   {
+    "heading": "Key Pitfalls",
+    "body": "**Off-by-one**: `left <= right` vs `left < right` — Template 1 uses `<=`, Templates 2/3 use `<`\n- **Infinite loop**: if `hi = mid` and `lo = mid`, use `mid = lo + (hi - lo) // 2`\n- **Right bound init**: Template 2 uses `right = len(arr)` (open right) not `len(arr)-1`\n- **Integer overflow**: use `mid = lo + (hi - lo) // 2` (Python ints don't overflow but good habit)\n\n---\n# Easy Problems (20)"
+   }
+  ]
+ },
  "notebook": "04_Binary_Search.ipynb",
  "problems": [
   {
@@ -19,7 +48,8 @@
    "solution": "def search(nums, target):\n    left, right = 0, len(nums) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if nums[mid] == target:\n            return mid\n        elif nums[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1",
    "notes": {},
    "tests": "assert search([-1,0,3,5,9,12], 9) == 4\nassert search([-1,0,3,5,9,12], 2) == -1\nassert search([5], 5) == 0\nassert search([5], 3) == -1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=704"
   },
   {
    "id": "04-02-search-insert-position",
@@ -37,7 +67,8 @@
    "tests": "assert searchInsert([1,3,5,6], 5) == 2\nassert searchInsert([1,3,5,6], 2) == 1\nassert searchInsert([1,3,5,6], 7) == 4\nassert searchInsert([1,3,5,6], 0) == 0\nprint(\"All tests passed!\")",
    "verified": [
     "searchInsert"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=35"
   },
   {
    "id": "04-03-first-bad-version",
@@ -53,7 +84,8 @@
    "solution": "def firstBadVersion(n, bad):\n    def isBadVersion(v):\n        return v >= bad\n    \n    left, right = 1, n\n    while left < right:\n        mid = (left + right) // 2\n        if isBadVersion(mid):\n            right = mid\n        else:\n            left = mid + 1\n    return left",
    "notes": {},
    "tests": "assert firstBadVersion(5, 4) == 4\nassert firstBadVersion(1, 1) == 1\nassert firstBadVersion(10, 1) == 1\nassert firstBadVersion(10, 10) == 10\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=278"
   },
   {
    "id": "04-04-sqrt-x-integer",
@@ -69,7 +101,8 @@
    "solution": "def mySqrt(x):\n    if x < 2:\n        return x\n    left, right = 1, x // 2\n    while left <= right:\n        mid = (left + right) // 2\n        if mid * mid == x:\n            return mid\n        elif mid * mid < x:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return right",
    "notes": {},
    "tests": "assert mySqrt(4) == 2\nassert mySqrt(8) == 2\nassert mySqrt(0) == 0\nassert mySqrt(1) == 1\nassert mySqrt(9) == 3\nassert mySqrt(100) == 10\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=69"
   },
   {
    "id": "04-05-guess-number-higher-or-lower",
@@ -85,7 +118,8 @@
    "solution": "def guessNumber(n, pick):\n    def guess(num):\n        if num > pick: return -1\n        elif num < pick: return 1\n        else: return 0\n    \n    left, right = 1, n\n    while left <= right:\n        mid = (left + right) // 2\n        result = guess(mid)\n        if result == 0:\n            return mid\n        elif result == 1:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1",
    "notes": {},
    "tests": "assert guessNumber(10, 6) == 6\nassert guessNumber(1, 1) == 1\nassert guessNumber(2, 1) == 1\nassert guessNumber(2, 2) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=374"
   },
   {
    "id": "04-06-valid-perfect-square",
@@ -101,7 +135,8 @@
    "solution": "def isPerfectSquare(num):\n    if num < 2:\n        return True\n    left, right = 2, num // 2\n    while left <= right:\n        mid = (left + right) // 2\n        sq = mid * mid\n        if sq == num:\n            return True\n        elif sq < num:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return False",
    "notes": {},
    "tests": "assert isPerfectSquare(16) == True\nassert isPerfectSquare(14) == False\nassert isPerfectSquare(1) == True\nassert isPerfectSquare(4) == True\nassert isPerfectSquare(9) == True\nassert isPerfectSquare(10) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=367"
   },
   {
    "id": "04-07-count-negative-numbers-in-sorted-matrix",
@@ -117,7 +152,8 @@
    "solution": "def countNegatives(grid):\n    count = 0\n    n = len(grid[0])\n    for row in grid:\n        left, right = 0, n\n        while left < right:\n            mid = (left + right) // 2\n            if row[mid] < 0:\n                right = mid\n            else:\n                left = mid + 1\n        count += n - left\n    return count",
    "notes": {},
    "tests": "assert countNegatives([[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]) == 8\nassert countNegatives([[3,2],[1,0]]) == 0\nassert countNegatives([[-1]]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1351"
   },
   {
    "id": "04-08-find-smallest-letter-greater-than-target",
@@ -133,7 +169,8 @@
    "solution": "def nextGreatestLetter(letters, target):\n    left, right = 0, len(letters)\n    while left < right:\n        mid = (left + right) // 2\n        if letters[mid] <= target:\n            left = mid + 1\n        else:\n            right = mid\n    return letters[left % len(letters)]",
    "notes": {},
    "tests": "assert nextGreatestLetter([\"c\",\"f\",\"j\"], \"a\") == \"c\"\nassert nextGreatestLetter([\"c\",\"f\",\"j\"], \"c\") == \"f\"\nassert nextGreatestLetter([\"c\",\"f\",\"j\"], \"j\") == \"c\"\nassert nextGreatestLetter([\"x\",\"x\",\"y\",\"y\"], \"x\") == \"y\"\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=744"
   },
   {
    "id": "04-09-kth-missing-positive-number",
@@ -153,7 +190,8 @@
     "11": "answer = left + k (k missing numbers after left numbers present)"
    },
    "tests": "assert findKthPositive([2,3,4,7,11], 5) == 9\nassert findKthPositive([1,2,3,4], 2) == 6\nassert findKthPositive([2], 1) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1539"
   },
   {
    "id": "04-10-special-array-with-x-elements-x",
@@ -171,7 +209,8 @@
     "7": "count of elements >= x"
    },
    "tests": "assert specialArray([3,5]) == 2\nassert specialArray([0,4,3,0,4]) == 3\nassert specialArray([3,6,7,7,0]) == -1\nassert specialArray([0,0]) == -1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1608"
   },
   {
    "id": "04-11-arranging-coins",
@@ -187,7 +226,8 @@
    "solution": "def arrangeCoins(n):\n    left, right = 1, n\n    while left <= right:\n        mid = (left + right) // 2\n        coins_used = mid * (mid + 1) // 2\n        if coins_used == n:\n            return mid\n        elif coins_used < n:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return right",
    "notes": {},
    "tests": "assert arrangeCoins(5) == 2\nassert arrangeCoins(8) == 3\nassert arrangeCoins(1) == 1\nassert arrangeCoins(6) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=441"
   },
   {
    "id": "04-12-search-a-2d-matrix",
@@ -203,7 +243,8 @@
    "solution": "def searchMatrix(matrix, target):\n    m, n = len(matrix), len(matrix[0])\n    left, right = 0, m * n - 1\n    while left <= right:\n        mid = (left + right) // 2\n        val = matrix[mid // n][mid % n]\n        if val == target:\n            return True\n        elif val < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return False",
    "notes": {},
    "tests": "assert searchMatrix([[1,3,5,7],[10,11,16,20],[23,30,34,60]], 3) == True\nassert searchMatrix([[1,3,5,7],[10,11,16,20],[23,30,34,60]], 13) == False\nassert searchMatrix([[1]], 1) == True\nassert searchMatrix([[1]], 2) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=74"
   },
   {
    "id": "04-13-single-element-in-a-sorted-array",
@@ -221,7 +262,8 @@
     "5": "mid^1: if mid is even -> mid+1, if mid is odd -> mid-1"
    },
    "tests": "assert singleNonDuplicate([1,1,2,3,3,4,4,8,8]) == 2\nassert singleNonDuplicate([3,3,7,7,10,11,11]) == 10\nassert singleNonDuplicate([1]) == 1\nassert singleNonDuplicate([1,1,2]) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=540"
   },
   {
    "id": "04-14-peak-index-in-a-mountain-array",
@@ -237,7 +279,8 @@
    "solution": "def peakIndexInMountainArray(arr):\n    left, right = 0, len(arr) - 1\n    while left < right:\n        mid = (left + right) // 2\n        if arr[mid] < arr[mid + 1]:\n            left = mid + 1\n        else:\n            right = mid\n    return left",
    "notes": {},
    "tests": "assert peakIndexInMountainArray([0,1,0]) == 1\nassert peakIndexInMountainArray([0,2,1,0]) == 1\nassert peakIndexInMountainArray([0,10,5,2]) == 1\nassert peakIndexInMountainArray([3,5,3,2,0]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=852"
   },
   {
    "id": "04-15-check-if-n-and-its-double-exist",
@@ -253,7 +296,8 @@
    "solution": "def checkIfExist(arr):\n    arr.sort()\n    n = len(arr)\n    for i, val in enumerate(arr):\n        target = val * 2\n        left, right = 0, n - 1\n        while left <= right:\n            mid = (left + right) // 2\n            if arr[mid] == target and mid != i:\n                return True\n            elif arr[mid] < target:\n                left = mid + 1\n            else:\n                right = mid - 1\n    return False",
    "notes": {},
    "tests": "assert checkIfExist([10,2,5,3]) == True\nassert checkIfExist([7,1,14,11]) == True\nassert checkIfExist([3,1,7,11]) == False\nassert checkIfExist([0,0]) == True\nassert checkIfExist([-2,0,10,-19,4,6,-8]) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1346"
   },
   {
    "id": "04-16-find-target-indices-after-sorting-array",
@@ -272,7 +316,8 @@
     "13": "find first index > target"
    },
    "tests": "assert targetIndices([1,2,5,2,3], 2) == [1,2]\nassert targetIndices([1,2,5,2,3], 3) == [3]\nassert targetIndices([1,2,5,2,3], 5) == [4]\nassert targetIndices([1,2,5,2,3], 4) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2089"
   },
   {
    "id": "04-17-find-the-distance-value-between-two-arrays",
@@ -291,7 +336,8 @@
     "9": "check if nearest element is within distance d"
    },
    "tests": "assert findTheDistanceValue([4,5,8], [10,9,1,8], 2) == 2\nassert findTheDistanceValue([1,4,2,3], [-4,-3,6,10,20,30], 3) == 2\nassert findTheDistanceValue([2,1,100,3], [-5,-2,10,-3,7], 6) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1385"
   },
   {
    "id": "04-18-minimum-absolute-difference",
@@ -307,7 +353,8 @@
    "solution": "def minimumAbsDifference(arr):\n    arr.sort()\n    min_diff = float('inf')\n    for i in range(len(arr) - 1):\n        min_diff = min(min_diff, arr[i+1] - arr[i])\n    result = []\n    for i in range(len(arr) - 1):\n        if arr[i+1] - arr[i] == min_diff:\n            result.append([arr[i], arr[i+1]])\n    return result",
    "notes": {},
    "tests": "assert minimumAbsDifference([4,2,1,3]) == [[1,2],[2,3],[3,4]]\nassert minimumAbsDifference([1,3,6,10,15]) == [[1,3]]\nassert minimumAbsDifference([3,8,-10,23,19,-4,-14,27]) == [[-14,-10],[19,23],[23,27]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1200"
   },
   {
    "id": "04-19-intersection-of-two-arrays-binary-search-version",
@@ -323,7 +370,8 @@
    "solution": "def intersection(nums1, nums2):\n    nums2.sort()\n    result = set()\n    for num in nums1:\n        left, right = 0, len(nums2) - 1\n        while left <= right:\n            mid = (left + right) // 2\n            if nums2[mid] == num:\n                result.add(num)\n                break\n            elif nums2[mid] < num:\n                left = mid + 1\n            else:\n                right = mid - 1\n    return sorted(result)",
    "notes": {},
    "tests": "assert intersection([1,2,2,1], [2,2]) == [2]\nassert intersection([4,9,5], [9,4,9,8,4]) == [4,9]\nassert intersection([1,2,3], [4,5,6]) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=349"
   },
   {
    "id": "04-20-is-subsequence-binary-search-version",
@@ -341,7 +389,8 @@
     "8": "we need index in t >= curr_pos"
    },
    "tests": "assert isSubsequence(\"abc\", \"ahbgdc\") == True\nassert isSubsequence(\"axc\", \"ahbgdc\") == False\nassert isSubsequence(\"\", \"ahbgdc\") == True\nassert isSubsequence(\"a\", \"a\") == True\nassert isSubsequence(\"b\", \"a\") == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=392"
   },
   {
    "id": "04-21-find-minimum-in-rotated-sorted-array",
@@ -357,7 +406,8 @@
    "solution": "def findMin(nums):\n    left, right = 0, len(nums) - 1\n    while left < right:\n        mid = (left + right) // 2\n        if nums[mid] > nums[right]:\n            left = mid + 1\n        else:\n            right = mid\n    return nums[left]",
    "notes": {},
    "tests": "assert findMin([3,4,5,1,2]) == 1\nassert findMin([4,5,6,7,0,1,2]) == 0\nassert findMin([11,13,15,17]) == 11\nassert findMin([2,1]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=153"
   },
   {
    "id": "04-22-search-in-rotated-sorted-array",
@@ -376,7 +426,8 @@
     "12": "right half is sorted"
    },
    "tests": "assert searchRotated([4,5,6,7,0,1,2], 0) == 4\nassert searchRotated([4,5,6,7,0,1,2], 3) == -1\nassert searchRotated([1], 0) == -1\nassert searchRotated([1,3], 3) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=33"
   },
   {
    "id": "04-23-find-peak-element",
@@ -392,7 +443,8 @@
    "solution": "def findPeakElement(nums):\n    left, right = 0, len(nums) - 1\n    while left < right:\n        mid = (left + right) // 2\n        if nums[mid] < nums[mid + 1]:\n            left = mid + 1\n        else:\n            right = mid\n    return left\n\ndef verify_peak(nums, idx):\n    n = len(nums)\n    left_ok = (idx == 0 or nums[idx] > nums[idx-1])\n    right_ok = (idx == n-1 or nums[idx] > nums[idx+1])\n    return left_ok and right_ok",
    "notes": {},
    "tests": "assert verify_peak([1,2,3,1], findPeakElement([1,2,3,1]))\nassert verify_peak([1,2,1,3,5,6,4], findPeakElement([1,2,1,3,5,6,4]))\nassert verify_peak([1], findPeakElement([1]))\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=162"
   },
   {
    "id": "04-24-koko-eating-bananas",
@@ -408,7 +460,8 @@
    "solution": "import math\n\ndef minEatingSpeed(piles, h):\n    def canFinish(speed):\n        return sum(math.ceil(p / speed) for p in piles) <= h\n    \n    left, right = 1, max(piles)\n    while left < right:\n        mid = (left + right) // 2\n        if canFinish(mid):\n            right = mid\n        else:\n            left = mid + 1\n    return left",
    "notes": {},
    "tests": "assert minEatingSpeed([3,6,7,11], 8) == 4\nassert minEatingSpeed([30,11,23,4,20], 5) == 30\nassert minEatingSpeed([30,11,23,4,20], 6) == 23\nassert minEatingSpeed([1000000000], 2) == 500000000\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=875"
   },
   {
    "id": "04-25-capacity-to-ship-packages-within-d-days",
@@ -424,7 +477,8 @@
    "solution": "def shipWithinDays(weights, days):\n    def canShip(capacity):\n        day_count, curr_load = 1, 0\n        for w in weights:\n            if curr_load + w > capacity:\n                day_count += 1\n                curr_load = 0\n            curr_load += w\n        return day_count <= days\n    \n    left, right = max(weights), sum(weights)\n    while left < right:\n        mid = (left + right) // 2\n        if canShip(mid):\n            right = mid\n        else:\n            left = mid + 1\n    return left",
    "notes": {},
    "tests": "assert shipWithinDays([1,2,3,4,5,6,7,8,9,10], 5) == 15\nassert shipWithinDays([3,2,2,4,1,4], 3) == 6\nassert shipWithinDays([1,2,3,1,1], 4) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1011"
   },
   {
    "id": "04-26-find-right-interval",
@@ -442,7 +496,8 @@
     "4": "sorted list of (start, original_index)"
    },
    "tests": "assert findRightInterval([[1,2]]) == [-1]\nassert findRightInterval([[3,4],[2,3],[1,2]]) == [-1,0,1]\nassert findRightInterval([[1,4],[2,3],[3,4]]) == [-1,2,-1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=436"
   },
   {
    "id": "04-27-time-based-key-value-store",
@@ -460,7 +515,8 @@
     "4": "key -> [(timestamp, value)]"
    },
    "tests": "assert tm.get(\"foo\", 1) == \"bar\"\nassert tm.get(\"foo\", 3) == \"bar\"\ntm.set(\"foo\", \"bar2\", 4)\nassert tm.get(\"foo\", 4) == \"bar2\"\nassert tm.get(\"foo\", 5) == \"bar2\"\nassert tm.get(\"foo\", 0) == \"\"\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=981"
   },
   {
    "id": "04-28-h-index-ii",
@@ -476,7 +532,8 @@
    "solution": "def hIndex(citations):\n    n = len(citations)\n    left, right = 0, n\n    while left < right:\n        mid = (left + right) // 2\n        if citations[mid] >= n - mid:\n            right = mid\n        else:\n            left = mid + 1\n    return n - left",
    "notes": {},
    "tests": "assert hIndex([0,1,3,5,6]) == 3\nassert hIndex([1,2,100]) == 2\nassert hIndex([0]) == 0\nassert hIndex([100]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=275"
   },
   {
    "id": "04-29-find-k-closest-elements",
@@ -492,7 +549,8 @@
    "solution": "def findClosestElements(arr, k, x):\n    left, right = 0, len(arr) - k\n    while left < right:\n        mid = (left + right) // 2\n        if x - arr[mid] > arr[mid + k] - x:\n            left = mid + 1\n        else:\n            right = mid\n    return arr[left:left + k]",
    "notes": {},
    "tests": "assert findClosestElements([1,2,3,4,5], 4, 3) == [1,2,3,4]\nassert findClosestElements([1,2,3,4,5], 4, -1) == [1,2,3,4]\nassert findClosestElements([1,2,3,4,5], 4, 10) == [2,3,4,5]\nassert findClosestElements([1,3,5,7,9], 2, 4) == [3,5]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=658"
   },
   {
    "id": "04-30-successful-pairs-of-spells-and-potions",
@@ -510,7 +568,8 @@
     "7": "need potion >= success / spell"
    },
    "tests": "assert successfulPairs([5,1,3], [1,2,3,4,5], 7) == [4,0,3]\nassert successfulPairs([3,1,2], [8,5,8], 16) == [2,0,2]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2300"
   },
   {
    "id": "04-31-minimum-number-of-days-to-make-m-bouquets",
@@ -526,7 +585,8 @@
    "solution": "def minDays(bloomDay, m, k):\n    if m * k > len(bloomDay):\n        return -1\n    \n    def canMake(day):\n        bouquets = consecutive = 0\n        for d in bloomDay:\n            if d <= day:\n                consecutive += 1\n                if consecutive == k:\n                    bouquets += 1\n                    consecutive = 0\n            else:\n                consecutive = 0\n        return bouquets >= m\n    \n    left, right = min(bloomDay), max(bloomDay)\n    while left < right:\n        mid = (left + right) // 2\n        if canMake(mid):\n            right = mid\n        else:\n            left = mid + 1\n    return left",
    "notes": {},
    "tests": "assert minDays([1,10,3,10,2], 3, 1) == 3\nassert minDays([1,10,3,10,2], 3, 2) == -1\nassert minDays([7,7,7,7,12,7,7], 2, 3) == 12\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1482"
   },
   {
    "id": "04-32-find-the-smallest-divisor-given-a-threshold",
@@ -542,7 +602,8 @@
    "solution": "import math\n\ndef smallestDivisor(nums, threshold):\n    def getSum(div):\n        return sum(math.ceil(n / div) for n in nums)\n    \n    left, right = 1, max(nums)\n    while left < right:\n        mid = (left + right) // 2\n        if getSum(mid) <= threshold:\n            right = mid\n        else:\n            left = mid + 1\n    return left",
    "notes": {},
    "tests": "assert smallestDivisor([1,2,5,9], 6) == 5\nassert smallestDivisor([44,22,33,11,1], 5) == 44\nassert smallestDivisor([2,3,5,7,11], 11) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1283"
   },
   {
    "id": "04-33-count-fair-pairs",
@@ -560,7 +621,8 @@
     "8": "find j in (i, n) where nums[j] in [lower-nums[i], upper-nums[i]]"
    },
    "tests": "assert countFairPairs([0,1,7,4,4,5], 3, 6) == 6\nassert countFairPairs([1,7,9,2,5], 11, 11) == 1\nassert countFairPairs([0,0,0,0], 0, 0) == 6\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2563"
   },
   {
    "id": "04-34-magnetic-force-between-two-balls",
@@ -578,7 +640,8 @@
     "16": "upper mid to avoid infinite loop"
    },
    "tests": "assert maxDistance([1,2,3,4,7], 3) == 3\nassert maxDistance([5,4,3,2,1,1000000000], 2) == 999999999\nassert maxDistance([1,2,3], 2) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1552"
   },
   {
    "id": "04-35-minimize-maximum-of-array",
@@ -597,7 +660,8 @@
     "6": "by only spreading excess to the left"
    },
    "tests": "assert minimizeArrayValue([3,7,1,6]) == 5\nassert minimizeArrayValue([10,1]) == 10\nassert minimizeArrayValue([3,1,1,1]) == 3\nassert minimizeArrayValue([0,0,0]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2439"
   },
   {
    "id": "04-36-median-of-two-sorted-arrays",
@@ -613,7 +677,8 @@
    "solution": "def findMedianSortedArrays(nums1, nums2):\n    if len(nums1) > len(nums2):\n        nums1, nums2 = nums2, nums1\n    m, n = len(nums1), len(nums2)\n    left, right = 0, m\n    \n    while left <= right:\n        i = (left + right) // 2\n        j = (m + n + 1) // 2 - i\n        \n        max_left1 = nums1[i-1] if i > 0 else float('-inf')\n        min_right1 = nums1[i] if i < m else float('inf')\n        max_left2 = nums2[j-1] if j > 0 else float('-inf')\n        min_right2 = nums2[j] if j < n else float('inf')\n        \n        if max_left1 <= min_right2 and max_left2 <= min_right1:\n            if (m + n) % 2 == 1:\n                return float(max(max_left1, max_left2))\n            else:\n                return (max(max_left1, max_left2) + min(min_right1, min_right2)) / 2\n        elif max_left1 > min_right2:\n            right = i - 1\n        else:\n            left = i + 1",
    "notes": {},
    "tests": "assert findMedianSortedArrays([1,3], [2]) == 2.0\nassert findMedianSortedArrays([1,2], [3,4]) == 2.5\nassert findMedianSortedArrays([0,0], [0,0]) == 0.0\nassert findMedianSortedArrays([], [1]) == 1.0\nassert findMedianSortedArrays([1,3], [2,4]) == 2.5\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=4"
   },
   {
    "id": "04-37-split-array-largest-sum",
@@ -629,7 +694,8 @@
    "solution": "def splitArray(nums, k):\n    def canSplit(max_sum):\n        parts, curr = 1, 0\n        for num in nums:\n            if curr + num > max_sum:\n                parts += 1\n                curr = 0\n            curr += num\n        return parts <= k\n    \n    left, right = max(nums), sum(nums)\n    while left < right:\n        mid = (left + right) // 2\n        if canSplit(mid):\n            right = mid\n        else:\n            left = mid + 1\n    return left",
    "notes": {},
    "tests": "assert splitArray([7,2,5,10,8], 2) == 18\nassert splitArray([1,2,3,4,5], 2) == 9\nassert splitArray([1,4,4], 3) == 4\nassert splitArray([1,2,3,4,5], 5) == 5\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=410"
   },
   {
    "id": "04-38-find-in-mountain-array",
@@ -649,7 +715,8 @@
     "24": "Step 3: search descending part [peak+1, n-1]"
    },
    "tests": "assert findInMountainArray(3, [1,2,3,4,5,3,1]) == 2\nassert findInMountainArray(3, [0,1,2,4,2,1]) == -1\nassert findInMountainArray(1, [0,1,2,4,2,1]) == 1\nassert findInMountainArray(5, [1,5,3]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1095"
   },
   {
    "id": "04-39-kth-smallest-element-in-a-sorted-matrix-binary-search",
@@ -665,7 +732,8 @@
    "solution": "def kthSmallest(matrix, k):\n    n = len(matrix)\n    \n    def countLessEqual(val):\n        count = 0\n        row, col = n - 1, 0\n        while row >= 0 and col < n:\n            if matrix[row][col] <= val:\n                count += row + 1\n                col += 1\n            else:\n                row -= 1\n        return count\n    \n    left, right = matrix[0][0], matrix[n-1][n-1]\n    while left < right:\n        mid = (left + right) // 2\n        if countLessEqual(mid) >= k:\n            right = mid\n        else:\n            left = mid + 1\n    return left",
    "notes": {},
    "tests": "assert kthSmallest([[1,5,9],[10,11,13],[12,13,15]], 8) == 13\nassert kthSmallest([[-5]], 1) == -5\nassert kthSmallest([[1,2],[3,3]], 2) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=378"
   },
   {
    "id": "04-40-find-k-th-smallest-pair-distance",
@@ -681,7 +749,8 @@
    "solution": "def smallestDistancePair(nums, k):\n    nums.sort()\n    n = len(nums)\n    \n    def countPairs(max_dist):\n        count = left = 0\n        for right in range(n):\n            while nums[right] - nums[left] > max_dist:\n                left += 1\n            count += right - left\n        return count\n    \n    left, right = 0, nums[-1] - nums[0]\n    while left < right:\n        mid = (left + right) // 2\n        if countPairs(mid) >= k:\n            right = mid\n        else:\n            left = mid + 1\n    return left",
    "notes": {},
    "tests": "assert smallestDistancePair([1,3,1], 1) == 0\nassert smallestDistancePair([1,1,1], 2) == 0\nassert smallestDistancePair([1,6,1], 3) == 5\nassert smallestDistancePair([1,2,3,4], 4) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=719"
   },
   {
    "id": "04-41-russian-doll-envelopes-lis-with-binary-search",
@@ -700,7 +769,8 @@
     "7": "LIS on heights using binary search"
    },
    "tests": "assert maxEnvelopes([[5,4],[6,4],[6,7],[2,3]]) == 3\nassert maxEnvelopes([[1,1],[1,1],[1,1]]) == 1\nassert maxEnvelopes([[1,2],[2,3],[3,4],[4,5]]) == 4\nassert maxEnvelopes([[2,3],[5,4],[6,7],[1,2],[3,5]]) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=354"
   },
   {
    "id": "04-42-aggressive-cows-classic-binary-search-on-answer",
@@ -718,7 +788,8 @@
     "16": "upper mid for \"find maximum\""
    },
    "tests": "assert aggressiveCows([1,2,8,4,9], 3) == 3\nassert aggressiveCows([1,2,3], 2) == 2\nassert aggressiveCows([1,2,4,8,9], 3) == 3\nassert aggressiveCows([0,3,4,7,10,9], 4) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "04-43-allocate-minimum-number-of-pages-classic-binary-search",
@@ -734,7 +805,8 @@
    "solution": "def allocateMinPages(books, m):\n    if m > len(books):\n        return -1\n    \n    def studentsNeeded(max_pages):\n        students = 1\n        curr = 0\n        for pages in books:\n            if curr + pages > max_pages:\n                students += 1\n                curr = 0\n            curr += pages\n        return students\n    \n    left, right = max(books), sum(books)\n    while left < right:\n        mid = (left + right) // 2\n        if studentsNeeded(mid) <= m:\n            right = mid\n        else:\n            left = mid + 1\n    return left",
    "notes": {},
    "tests": "assert allocateMinPages([12,34,67,90], 2) == 113\nassert allocateMinPages([10,20,30,40], 2) == 60\nassert allocateMinPages([10,20,30,40], 4) == 40\nassert allocateMinPages([5,17,100,11], 4) == 100\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "04-44-search-in-rotated-sorted-array-ii-with-duplicates",
@@ -754,7 +826,8 @@
     "15": "right half sorted"
    },
    "tests": "assert searchWithDuplicates([2,5,6,0,0,1,2], 0) == True\nassert searchWithDuplicates([2,5,6,0,0,1,2], 3) == False\nassert searchWithDuplicates([1,0,1,1,1], 0) == True\nassert searchWithDuplicates([1,1,1,1,1], 2) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=81"
   },
   {
    "id": "04-45-minimum-days-to-disconnect-island-simplified",
@@ -770,7 +843,8 @@
    "solution": "def minDaysToDisconnect(grid):\n    from collections import deque\n    import copy\n    \n    def count_islands(g):\n        rows, cols = len(g), len(g[0])\n        visited = [[False]*cols for _ in range(rows)]\n        count = 0\n        for r in range(rows):\n            for c in range(cols):\n                if g[r][c] == 1 and not visited[r][c]:\n                    count += 1\n                    queue = deque([(r, c)])\n                    visited[r][c] = True\n                    while queue:\n                        x, y = queue.popleft()\n                        for dx, dy in [(-1,0),(1,0),(0,-1),(0,1)]:\n                            nx, ny = x+dx, y+dy\n                            if 0<=nx<rows and 0<=ny<cols and g[nx][ny]==1 and not visited[nx][ny]:\n                                visited[nx][ny] = True\n                                queue.append((nx, ny))\n        return count\n    \n    if count_islands(grid) != 1:\n        return 0\n    \n    rows, cols = len(grid), len(grid[0])\n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == 1:\n                grid[r][c] = 0\n                if count_islands(grid) != 1:\n                    return 1\n                grid[r][c] = 1\n    return 2",
    "notes": {},
    "tests": "assert minDaysToDisconnect([[0,1,1,0],[0,1,1,0],[0,0,0,0]]) == 2\nassert minDaysToDisconnect([[1,1]]) == 2\nassert minDaysToDisconnect([[1,0,1,0]]) == 0\nassert minDaysToDisconnect([[1,1,0,1,1],[1,1,1,1,1],[1,1,0,1,1]]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1568"
   },
   {
    "id": "04-46-count-elements-with-strictly-smaller-and-greater-eleme",
@@ -786,7 +860,8 @@
    "solution": "def countElements(nums):\n    lo, hi = min(nums), max(nums)\n    return sum(1 for x in nums if lo < x < hi)",
    "notes": {},
    "tests": "assert countElements([11, 7, 2, 15]) == 2\nassert countElements([-3, 3, 3, 90]) == 2\nassert countElements([1, 1, 1]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2148"
   },
   {
    "id": "04-47-find-smallest-index-such-that-array-index-index",
@@ -802,7 +877,8 @@
    "solution": "def fixedPoint(nums):\n    lo, hi = 0, len(nums) - 1\n    ans = -1\n    while lo <= hi:\n        mid = (lo + hi) // 2\n        if nums[mid] == mid:\n            ans = mid\n            hi = mid - 1\n        elif nums[mid] < mid:\n            lo = mid + 1\n        else:\n            hi = mid - 1\n    return ans",
    "notes": {},
    "tests": "assert fixedPoint([-10, -5, 0, 3, 7]) == 3\nassert fixedPoint([0, 2, 5, 8, 17]) == 0\nassert fixedPoint([-10, -5, 3, 4, 7, 9]) == -1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1064"
   },
   {
    "id": "04-48-minimum-absolute-difference",
@@ -818,7 +894,8 @@
    "solution": "def minimumAbsDifference(arr):\n    arr.sort()\n    min_diff = min(arr[i+1] - arr[i] for i in range(len(arr)-1))\n    return [[arr[i], arr[i+1]] for i in range(len(arr)-1) if arr[i+1] - arr[i] == min_diff]",
    "notes": {},
    "tests": "assert minimumAbsDifference([4, 2, 1, 3]) == [[1,2],[2,3],[3,4]]\nassert minimumAbsDifference([1, 3, 6, 10, 15]) == [[1,3]]\nassert minimumAbsDifference([3, 8, -10, 23, 19, -4, -14, 27]) == [[-14,-10],[19,23],[23,27]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1200"
   },
   {
    "id": "04-49-floor-and-ceiling-in-sorted-array",
@@ -834,7 +911,8 @@
    "solution": "def floorCeiling(nums, target):\n    def floor_bs(arr, t):\n        lo, hi, ans = 0, len(arr)-1, -1\n        while lo <= hi:\n            mid = (lo + hi) // 2\n            if arr[mid] <= t:\n                ans = arr[mid]\n                lo = mid + 1\n            else:\n                hi = mid - 1\n        return ans\n\n    def ceil_bs(arr, t):\n        lo, hi, ans = 0, len(arr)-1, -1\n        while lo <= hi:\n            mid = (lo + hi) // 2\n            if arr[mid] >= t:\n                ans = arr[mid]\n                hi = mid - 1\n            else:\n                lo = mid + 1\n        return ans\n\n    return floor_bs(nums, target), ceil_bs(nums, target)",
    "notes": {},
    "tests": "assert floorCeiling([1, 2, 8, 10, 10, 12, 19], 5) == (2, 8)\nassert floorCeiling([1, 2, 8, 10, 10, 12, 19], 10) == (10, 10)\nassert floorCeiling([1, 2, 8, 10, 10, 12, 19], 0) == (-1, 1)\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "04-50-count-occurrences-of-element-in-sorted-array",
@@ -850,7 +928,8 @@
    "solution": "def countOccurrences(nums, target):\n    def first(arr, t):\n        lo, hi, ans = 0, len(arr)-1, -1\n        while lo <= hi:\n            mid = (lo + hi) // 2\n            if arr[mid] == t:\n                ans = mid\n                hi = mid - 1\n            elif arr[mid] < t:\n                lo = mid + 1\n            else:\n                hi = mid - 1\n        return ans\n\n    def last(arr, t):\n        lo, hi, ans = 0, len(arr)-1, -1\n        while lo <= hi:\n            mid = (lo + hi) // 2\n            if arr[mid] == t:\n                ans = mid\n                lo = mid + 1\n            elif arr[mid] < t:\n                lo = mid + 1\n            else:\n                hi = mid - 1\n        return ans\n\n    f = first(nums, target)\n    if f == -1:\n        return 0\n    return last(nums, target) - f + 1",
    "notes": {},
    "tests": "assert countOccurrences([1, 1, 2, 2, 2, 3, 3], 2) == 3\nassert countOccurrences([1, 1, 2, 2, 2, 3, 3], 4) == 0\nassert countOccurrences([5, 5, 5, 5], 5) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "04-51-first-and-last-position-of-element-in-sorted-array",
@@ -868,7 +947,8 @@
    "tests": "assert searchRange([5, 7, 7, 8, 8, 10], 8) == [3, 4]\nassert searchRange([5, 7, 7, 8, 8, 10], 6) == [-1, -1]\nassert searchRange([], 0) == [-1, -1]\nprint(\"All tests passed!\")",
    "verified": [
     "searchRange"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=34"
   },
   {
    "id": "04-52-left-most-occurrence-in-sorted-array",
@@ -884,7 +964,8 @@
    "solution": "def leftMostOccurrence(nums, target):\n    lo, hi, ans = 0, len(nums) - 1, -1\n    while lo <= hi:\n        mid = (lo + hi) // 2\n        if nums[mid] == target:\n            ans = mid\n            hi = mid - 1\n        elif nums[mid] < target:\n            lo = mid + 1\n        else:\n            hi = mid - 1\n    return ans",
    "notes": {},
    "tests": "assert leftMostOccurrence([1, 2, 2, 2, 3, 4], 2) == 1\nassert leftMostOccurrence([1, 2, 3, 4], 5) == -1\nassert leftMostOccurrence([3, 3, 3, 3], 3) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "04-53-right-most-occurrence-in-sorted-array",
@@ -900,7 +981,8 @@
    "solution": "def rightMostOccurrence(nums, target):\n    lo, hi, ans = 0, len(nums) - 1, -1\n    while lo <= hi:\n        mid = (lo + hi) // 2\n        if nums[mid] == target:\n            ans = mid\n            lo = mid + 1\n        elif nums[mid] < target:\n            lo = mid + 1\n        else:\n            hi = mid - 1\n    return ans",
    "notes": {},
    "tests": "assert rightMostOccurrence([1, 2, 2, 2, 3, 4], 2) == 3\nassert rightMostOccurrence([1, 2, 3, 4], 5) == -1\nassert rightMostOccurrence([3, 3, 3, 3], 3) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "04-54-check-if-perfect-square-without-sqrt",
@@ -916,7 +998,8 @@
    "solution": "def isPerfectSquareBS(n):\n    if n < 1:\n        return False\n    lo, hi = 1, n\n    while lo <= hi:\n        mid = (lo + hi) // 2\n        sq = mid * mid\n        if sq == n:\n            return True\n        elif sq < n:\n            lo = mid + 1\n        else:\n            hi = mid - 1\n    return False",
    "notes": {},
    "tests": "assert isPerfectSquareBS(16) == True\nassert isPerfectSquareBS(14) == False\nassert isPerfectSquareBS(1) == True\nassert isPerfectSquareBS(25) == True\nassert isPerfectSquareBS(26) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=367"
   },
   {
    "id": "04-55-find-gcd-of-array",
@@ -932,7 +1015,8 @@
    "solution": "from math import gcd\n\ndef findGCDArray(nums):\n    return gcd(min(nums), max(nums))",
    "notes": {},
    "tests": "assert findGCDArray([2, 5, 6, 9, 10]) == 2\nassert findGCDArray([7, 5, 6, 8, 3]) == 1\nassert findGCDArray([3, 3]) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1979"
   },
   {
    "id": "04-56-count-days-between-two-dates-simplified",
@@ -948,7 +1032,8 @@
    "solution": "def daysBetweenDates(date1, date2):\n    def is_leap(y):\n        return (y % 4 == 0 and y % 100 != 0) or (y % 400 == 0)\n\n    def days_from_epoch(year, month, day):\n        months = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]\n        total = (year - 1) * 365 + (year - 1) // 4 - (year - 1) // 100 + (year - 1) // 400\n        if is_leap(year):\n            months[2] = 29\n        total += sum(months[:month]) + day\n        return total\n\n    y1, m1, d1 = date1\n    y2, m2, d2 = date2\n    return abs(days_from_epoch(y1, m1, d1) - days_from_epoch(y2, m2, d2))",
    "notes": {},
    "tests": "assert daysBetweenDates((2019, 6, 29), (2019, 6, 30)) == 1\nassert daysBetweenDates((2020, 1, 15), (2019, 12, 31)) == 15\nassert daysBetweenDates((2021, 1, 1), (2021, 1, 1)) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "04-57-lower-bound-in-sorted-array",
@@ -964,7 +1049,8 @@
    "solution": "def lowerBound(nums, target):\n    lo, hi = 0, len(nums)\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if nums[mid] < target:\n            lo = mid + 1\n        else:\n            hi = mid\n    return lo",
    "notes": {},
    "tests": "assert lowerBound([1, 3, 5, 7, 9], 5) == 2\nassert lowerBound([1, 3, 5, 7, 9], 4) == 2\nassert lowerBound([1, 3, 5, 7, 9], 10) == 5\nassert lowerBound([1, 3, 5, 7, 9], 0) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "04-58-upper-bound-in-sorted-array",
@@ -980,7 +1066,8 @@
    "solution": "def upperBound(nums, target):\n    lo, hi = 0, len(nums)\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if nums[mid] <= target:\n            lo = mid + 1\n        else:\n            hi = mid\n    return lo",
    "notes": {},
    "tests": "assert upperBound([1, 3, 5, 7, 9], 5) == 3\nassert upperBound([1, 3, 5, 7, 9], 4) == 2\nassert upperBound([1, 3, 5, 7, 9], 9) == 5\nassert upperBound([1, 3, 5, 5, 5, 9], 5) == 5\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "04-59-find-minimum-in-rotated-array-no-duplicates-warmup",
@@ -996,7 +1083,8 @@
    "solution": "def findMinRotated(nums):\n    lo, hi = 0, len(nums) - 1\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if nums[mid] > nums[hi]:\n            lo = mid + 1\n        else:\n            hi = mid\n    return nums[lo]",
    "notes": {},
    "tests": "assert findMinRotated([3, 4, 5, 1, 2]) == 1\nassert findMinRotated([4, 5, 6, 7, 0, 1, 2]) == 0\nassert findMinRotated([11, 13, 15, 17]) == 11\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "04-60-search-in-nearly-sorted-array",
@@ -1012,7 +1100,8 @@
    "solution": "def searchNearlySorted(nums, target):\n    lo, hi = 0, len(nums) - 1\n    while lo <= hi:\n        mid = (lo + hi) // 2\n        if nums[mid] == target:\n            return mid\n        if mid - 1 >= lo and nums[mid - 1] == target:\n            return mid - 1\n        if mid + 1 <= hi and nums[mid + 1] == target:\n            return mid + 1\n        if mid - 1 >= lo and nums[mid - 1] < target:\n            lo = mid + 2\n        else:\n            hi = mid - 2\n    return -1",
    "notes": {},
    "tests": "assert searchNearlySorted([10, 3, 40, 20, 50, 80, 70], 40) == 2\nassert searchNearlySorted([10, 3, 40, 20, 50, 80, 70], 90) == -1\nassert searchNearlySorted([3, 10, 40, 20, 50, 80, 70], 10) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "04-61-find-element-in-infinite-sorted-array-exponential-bina",
@@ -1032,7 +1121,8 @@
     "17": "[0,3,6,...,198]"
    },
    "tests": "assert findInInfiniteArray(arr, 99) == 33\nassert findInInfiniteArray(arr, 100) == -1\nassert findInInfiniteArray(arr, 0) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "04-62-count-elements-in-range-lo-hi-in-sorted-array",
@@ -1048,7 +1138,8 @@
    "solution": "def countInRange(nums, lo, hi):\n    def lower_bound(arr, t):\n        l, r = 0, len(arr)\n        while l < r:\n            m = (l + r) // 2\n            if arr[m] < t: l = m + 1\n            else: r = m\n        return l\n\n    def upper_bound(arr, t):\n        l, r = 0, len(arr)\n        while l < r:\n            m = (l + r) // 2\n            if arr[m] <= t: l = m + 1\n            else: r = m\n        return l\n\n    return upper_bound(nums, hi) - lower_bound(nums, lo)",
    "notes": {},
    "tests": "assert countInRange([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3, 7) == 5\nassert countInRange([1, 2, 3, 4, 5], 6, 10) == 0\nassert countInRange([1, 1, 1, 2, 2, 3], 1, 2) == 5\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "04-63-binary-search-on-floating-point-answer-cube-root-to-6-",
@@ -1066,7 +1157,8 @@
     "2": "enough iterations for 1e-7 precision"
    },
    "tests": "assert abs(cubeRootBS(27) - 3.0) < 1e-5\nassert abs(cubeRootBS(8) - 2.0) < 1e-5\nassert abs(cubeRootBS(10) - 10**(1/3)) < 1e-5\nassert abs(cubeRootBS(1) - 1.0) < 1e-5\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "04-64-guess-the-word-binary-search-simulation",
@@ -1082,7 +1174,8 @@
    "solution": "def guessTheWord(candidates, secret):\n    guesses = 0\n    lo, hi = 0, len(candidates) - 1\n    while lo <= hi:\n        mid = (lo + hi) // 2\n        guesses += 1\n        if candidates[mid] == secret:\n            return guesses\n        elif candidates[mid] < secret:\n            lo = mid + 1\n        else:\n            hi = mid - 1\n    return -1\n\nimport math\ncandidates = list(range(1, 1025))\nguesses = guessTheWord(candidates, 512)",
    "notes": {},
    "tests": "assert guesses <= math.ceil(math.log2(len(candidates))) + 1\nassert guessTheWord([1, 5, 10, 15, 20], 10) <= 3\nassert guessTheWord([1, 5, 10, 15, 20], 99) == -1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "04-65-find-kth-positive-missing-number",
@@ -1098,7 +1191,8 @@
    "solution": "def findKthPositive(arr, k):\n    lo, hi = 0, len(arr)\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if arr[mid] - (mid + 1) >= k:\n            hi = mid\n        else:\n            lo = mid + 1\n    return lo + k",
    "notes": {},
    "tests": "assert findKthPositive([2, 3, 4, 7, 11], 5) == 9\nassert findKthPositive([1, 2, 3, 4], 2) == 6\nassert findKthPositive([1, 3], 1) == 2\nassert findKthPositive([5, 6, 7, 8], 1) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1539"
   },
   {
    "id": "04-66-search-a-2d-matrix-ii",
@@ -1114,7 +1208,8 @@
    "solution": "def searchMatrix2D(matrix, target):\n    if not matrix or not matrix[0]:\n        return False\n    row, col = 0, len(matrix[0]) - 1\n    while row < len(matrix) and col >= 0:\n        if matrix[row][col] == target:\n            return True\n        elif matrix[row][col] > target:\n            col -= 1\n        else:\n            row += 1\n    return False\n\nmat = [[1,4,7,11],[2,5,8,12],[3,6,9,16],[10,13,14,17]]",
    "notes": {},
    "tests": "assert searchMatrix2D(mat, 5) == True\nassert searchMatrix2D(mat, 20) == False\nassert searchMatrix2D([[1,2],[3,4]], 3) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=240"
   },
   {
    "id": "04-67-find-peak-element-2d",
@@ -1130,7 +1225,8 @@
    "solution": "def findPeakGrid(mat):\n    m, n = len(mat), len(mat[0])\n    lo, hi = 0, n - 1\n    while lo <= hi:\n        mid_col = (lo + hi) // 2\n        max_row = max(range(m), key=lambda r: mat[r][mid_col])\n        left  = mat[max_row][mid_col - 1] if mid_col > 0 else -1\n        right = mat[max_row][mid_col + 1] if mid_col < n - 1 else -1\n        if mat[max_row][mid_col] > left and mat[max_row][mid_col] > right:\n            return [max_row, mid_col]\n        elif left > mat[max_row][mid_col]:\n            hi = mid_col - 1\n        else:\n            lo = mid_col + 1\n    return [-1, -1]\n\nmat1 = [[1,4],[3,2]]\nr, c = findPeakGrid(mat1)\n_nb = [mat1[r+dr][c+dc] for dr,dc in [(-1,0),(1,0),(0,-1),(0,1)] if 0<=r+dr<2 and 0<=c+dc<2]",
    "notes": {},
    "tests": "assert all(mat1[r][c] > _x for _x in _nb)  # any peak is valid\nmat2 = [[10,20,15],[21,30,14],[7,16,32]]\nr, c = findPeakGrid(mat2)\nval = mat2[r][c]\nneighbors = [mat2[r+dr][c+dc] for dr,dc in [(-1,0),(1,0),(0,-1),(0,1)] if 0<=r+dr<3 and 0<=c+dc<3]\nassert all(val > n for n in neighbors)\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1901"
   },
   {
    "id": "04-68-random-pick-with-weight",
@@ -1146,7 +1242,8 @@
    "solution": "import random\n\nclass Solution528:\n    def __init__(self, w):\n        self.prefix = []\n        total = 0\n        for weight in w:\n            total += weight\n            self.prefix.append(total)\n        self.total = total\n\n    def pickIndex(self):\n        target = random.randint(1, self.total)\n        lo, hi = 0, len(self.prefix) - 1\n        while lo < hi:\n            mid = (lo + hi) // 2\n            if self.prefix[mid] < target:\n                lo = mid + 1\n            else:\n                hi = mid\n        return lo\n\nrandom.seed(42)\nsol = Solution528([1, 3])\nresults = [sol.pickIndex() for _ in range(4000)]",
    "notes": {},
    "tests": "# index 1 should appear ~75% of the time\nassert 0.65 < results.count(1) / 4000 < 0.85\n\nsol2 = Solution528([1])\nassert sol2.pickIndex() == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=528"
   },
   {
    "id": "04-69-maximum-value-at-a-given-index-in-a-bounded-array",
@@ -1166,7 +1263,8 @@
     "8": "goes down to 1, then pads with 1s"
    },
    "tests": "assert maxValue(4, 2, 6) == 2\nassert maxValue(6, 1, 10) == 3\nassert maxValue(3, 2, 18) == 7\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1802"
   },
   {
    "id": "04-70-minimum-speed-to-arrive-on-time",
@@ -1182,7 +1280,8 @@
    "solution": "import math\n\ndef minSpeedOnTime(dist, hour):\n    def feasible(speed):\n        total = sum(math.ceil(d / speed) for d in dist[:-1])\n        total += dist[-1] / speed\n        return total <= hour\n\n    if hour <= len(dist) - 1:\n        return -1\n    lo, hi = 1, 10**7\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if feasible(mid):\n            hi = mid\n        else:\n            lo = mid + 1\n    return lo if feasible(lo) else -1",
    "notes": {},
    "tests": "assert minSpeedOnTime([1, 3, 2], 6) == 1\nassert minSpeedOnTime([1, 3, 2], 2.7) == 3\nassert minSpeedOnTime([1, 3, 2], 1.9) == -1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1870"
   },
   {
    "id": "04-71-maximum-tastiness-of-candy-basket",
@@ -1198,7 +1297,8 @@
    "solution": "def maximumTastiness(price, k):\n    price.sort()\n\n    def can_pick(min_diff):\n        count = 1\n        last = price[0]\n        for p in price[1:]:\n            if p - last >= min_diff:\n                count += 1\n                last = p\n        return count >= k\n\n    lo, hi = 0, price[-1] - price[0]\n    while lo < hi:\n        mid = (lo + hi + 1) // 2\n        if can_pick(mid):\n            lo = mid\n        else:\n            hi = mid - 1\n    return lo",
    "notes": {},
    "tests": "assert maximumTastiness([13, 5, 1, 8, 21, 2], 3) == 8\nassert maximumTastiness([1, 3, 1], 2) == 2\nassert maximumTastiness([7, 7, 7, 7], 2) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2517"
   },
   {
    "id": "04-72-house-robber-iv-binary-search-on-answer",
@@ -1216,7 +1316,8 @@
     "7": "skip adjacent"
    },
    "tests": "assert minCapability([2, 3, 5, 9], 2) == 5\nassert minCapability([2, 7, 9, 3, 1], 2) == 2\nassert minCapability([1, 2, 3, 4, 5], 3) == 5\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2560"
   },
   {
    "id": "04-73-minimum-time-to-complete-trips",
@@ -1232,7 +1333,8 @@
    "solution": "def minimumTime(time, totalTrips):\n    def can_finish(t):\n        return sum(t // ti for ti in time) >= totalTrips\n\n    lo, hi = 1, min(time) * totalTrips\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if can_finish(mid):\n            hi = mid\n        else:\n            lo = mid + 1\n    return lo",
    "notes": {},
    "tests": "assert minimumTime([1, 2, 3], 5) == 3\nassert minimumTime([2], 1) == 2\nassert minimumTime([1], 10) == 10\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2187"
   },
   {
    "id": "04-74-kth-smallest-number-in-multiplication-table",
@@ -1248,7 +1350,8 @@
    "solution": "def findKthNumber(m, n, k):\n    def count_le(x):\n        return sum(min(x // i, n) for i in range(1, m + 1))\n\n    lo, hi = 1, m * n\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if count_le(mid) >= k:\n            hi = mid\n        else:\n            lo = mid + 1\n    return lo",
    "notes": {},
    "tests": "assert findKthNumber(3, 3, 5) == 3\nassert findKthNumber(2, 3, 6) == 6\nassert findKthNumber(1, 1, 1) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=668"
   },
   {
    "id": "04-75-reach-end-of-array-with-max-score",
@@ -1264,7 +1367,8 @@
    "solution": "def findMaximumScore(nums):\n    n = len(nums)\n    score = 0\n    max_val = 0\n    for i in range(n - 1):\n        max_val = max(max_val, nums[i])\n        score += max_val\n    return score",
    "notes": {},
    "tests": "assert findMaximumScore([1, 3, 1, 5]) == 7\nassert findMaximumScore([4, 3, 1, 3, 2]) == 16\nassert findMaximumScore([0, 0]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2918"
   },
   {
    "id": "04-76-median-of-two-sorted-arrays-find-kth-element-method",
@@ -1280,7 +1384,8 @@
    "solution": "def findMedianSortedArraysKth(nums1, nums2):\n    def find_kth(a, i, b, j, k):\n        if i >= len(a): return b[j + k - 1]\n        if j >= len(b): return a[i + k - 1]\n        if k == 1: return min(a[i], b[j])\n        half = k // 2\n        a_val = a[i + half - 1] if i + half - 1 < len(a) else float('inf')\n        b_val = b[j + half - 1] if j + half - 1 < len(b) else float('inf')\n        if a_val <= b_val:\n            return find_kth(a, i + half, b, j, k - half)\n        else:\n            return find_kth(a, i, b, j + half, k - half)\n\n    total = len(nums1) + len(nums2)\n    if total % 2 == 1:\n        return float(find_kth(nums1, 0, nums2, 0, total // 2 + 1))\n    else:\n        return (find_kth(nums1, 0, nums2, 0, total // 2) +\n                find_kth(nums1, 0, nums2, 0, total // 2 + 1)) / 2.0",
    "notes": {},
    "tests": "assert findMedianSortedArraysKth([1, 3], [2]) == 2.0\nassert findMedianSortedArraysKth([1, 2], [3, 4]) == 2.5\nassert findMedianSortedArraysKth([0, 0], [0, 0]) == 0.0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "04-77-count-negative-numbers-in-sorted-matrix-full-binary-se",
@@ -1296,7 +1401,8 @@
    "solution": "def countNegatives(grid):\n    m, n = len(grid), len(grid[0])\n    total = 0\n    for row in grid:\n        lo, hi = 0, n\n        while lo < hi:\n            mid = (lo + hi) // 2\n            if row[mid] < 0:\n                hi = mid\n            else:\n                lo = mid + 1\n        total += n - lo\n    return total",
    "notes": {},
    "tests": "assert countNegatives([[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]) == 8\nassert countNegatives([[3,2],[1,0]]) == 0\nassert countNegatives([[-1]]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "04-78-divide-chocolate-maximize-minimum-sweetness",
@@ -1312,7 +1418,8 @@
    "solution": "def maximizeMinSweetness(sweetness, k):\n    def can_split(min_sweet):\n        pieces = 0\n        current = 0\n        for s in sweetness:\n            current += s\n            if current >= min_sweet:\n                pieces += 1\n                current = 0\n        return pieces >= k + 1\n\n    lo, hi = min(sweetness), sum(sweetness) // (k + 1)\n    while lo < hi:\n        mid = (lo + hi + 1) // 2\n        if can_split(mid):\n            lo = mid\n        else:\n            hi = mid - 1\n    return lo",
    "notes": {},
    "tests": "assert maximizeMinSweetness([1, 2, 3, 4, 5, 6, 7, 8, 9], 5) == 6\nassert maximizeMinSweetness([5, 6, 7], 0) == 18\nassert maximizeMinSweetness([1, 2, 3], 1) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "04-79-minimize-max-distance-to-gas-station",
@@ -1330,7 +1437,8 @@
     "5": "ceiling - 1 = floor of gap/d"
    },
    "tests": "assert abs(result - 0.5) < 1e-4\nresult2 = minmaxGasDist([23, 24, 36, 39, 46, 56, 57, 65, 84, 98], 1)\nassert abs(result2 - 14.0) < 1e-4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=774"
   },
   {
    "id": "04-80-find-the-kth-largest-integer-in-array-via-binary-searc",
@@ -1346,7 +1454,8 @@
    "solution": "def kthLargestNumber(nums, k):\n    nums.sort(key=lambda x: (len(x), x), reverse=True)\n    return nums[k - 1]",
    "notes": {},
    "tests": "assert kthLargestNumber([\"3\",\"6\",\"7\",\"10\"], 4) == \"3\"\nassert kthLargestNumber([\"2\",\"21\",\"12\",\"1\"], 3) == \"2\"\nassert kthLargestNumber([\"0\",\"0\"], 2) == \"0\"\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1985"
   },
   {
    "id": "04-81-kth-smallest-element-in-a-bst-using-binary-search-on-v",
@@ -1364,7 +1473,8 @@
     "22": "Build BST: [3,1,4,null,2]"
    },
    "tests": "assert kthSmallestBST(root, 1) == 1\nassert kthSmallestBST(root, 2) == 2\nassert kthSmallestBST(root, 3) == 3\n# BST: [5,3,6,2,4]\nroot2 = TreeNode(5, TreeNode(3, TreeNode(2), TreeNode(4)), TreeNode(6))\nassert kthSmallestBST(root2, 3) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "04-82-find-k-th-smallest-pair-distance",
@@ -1380,7 +1490,8 @@
    "solution": "def smallestDistancePair(nums, k):\n    nums.sort()\n    n = len(nums)\n\n    def count_pairs(d):\n        count = left = 0\n        for right in range(n):\n            while nums[right] - nums[left] > d:\n                left += 1\n            count += right - left\n        return count\n\n    lo, hi = 0, nums[-1] - nums[0]\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if count_pairs(mid) >= k:\n            hi = mid\n        else:\n            lo = mid + 1\n    return lo",
    "notes": {},
    "tests": "assert smallestDistancePair([1, 3, 1], 1) == 0\nassert smallestDistancePair([1, 1, 1], 2) == 0\nassert smallestDistancePair([1, 6, 1], 3) == 5\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=719"
   },
   {
    "id": "04-83-binary-search-on-segment-trees-simplified-range-min-qu",
@@ -1399,7 +1510,8 @@
     "26": "binary search: find leftmost index of min in [l,r]"
    },
    "tests": "assert st.query_min(0, 7) == 1\nassert st.query_min(2, 5) == 1\nassert st.query_min(4, 7) == 2\nassert st.find_leftmost_min(0, 7) == 1  # first '1' is at index 1\nassert st.find_leftmost_min(2, 7) == 3  # second '1' is at index 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "04-84-count-pairs-with-xor-in-range",
@@ -1417,7 +1529,8 @@
     "2": "count pairs (i < j) with low <= nums[i] ^ nums[j] <= high"
    },
    "tests": "assert countPairs([1, 4, 2, 7], 2, 6) == 6\nassert countPairs([9, 8, 4, 2, 1], 5, 14) == 8\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1803"
   },
   {
    "id": "04-85-maximum-number-of-events-that-can-be-attended-via-bina",
@@ -1437,7 +1550,8 @@
     "20": "Attend the event ending soonest"
    },
    "tests": "assert maxEvents([[1,2],[2,3],[3,4]]) == 3\nassert maxEvents([[1,2],[2,3],[3,4],[1,2]]) == 4\nassert maxEvents([[1,4],[4,4],[2,2],[3,4],[1,1]]) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1353"
   },
   {
    "id": "04-86-minimum-number-of-days-to-make-m-bouquets-extended",
@@ -1453,7 +1567,8 @@
    "solution": "def minDaysBouquets(bloomDay, m, k):\n    if m * k > len(bloomDay):\n        return -1\n\n    def can_make(day):\n        bouquets = consecutive = 0\n        for d in bloomDay:\n            if d <= day:\n                consecutive += 1\n                if consecutive == k:\n                    bouquets += 1\n                    consecutive = 0\n            else:\n                consecutive = 0\n        return bouquets >= m\n\n    lo, hi = min(bloomDay), max(bloomDay)\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if can_make(mid):\n            hi = mid\n        else:\n            lo = mid + 1\n    return lo if can_make(lo) else -1",
    "notes": {},
    "tests": "assert minDaysBouquets([1,10,3,10,2], 3, 1) == 3\nassert minDaysBouquets([1,10,3,10,2], 3, 2) == -1\nassert minDaysBouquets([7,7,7,7,12,7,7], 2, 3) == 12\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1482"
   },
   {
    "id": "04-87-4sum-ii-binary-search-version",
@@ -1469,7 +1584,8 @@
    "solution": "import bisect\n\ndef fourSumCount(A, B, C, D):\n    ab = sorted(a + b for a in A for b in B)\n    count = 0\n    for c in C:\n        for d in D:\n            target = -(c + d)\n            lo = bisect.bisect_left(ab, target)\n            hi = bisect.bisect_right(ab, target)\n            count += hi - lo\n    return count",
    "notes": {},
    "tests": "assert fourSumCount([1,2],[-2,-1],[-1,2],[0,2]) == 2\nassert fourSumCount([0],[0],[0],[0]) == 1\nassert fourSumCount([-1,-1],[1,1],[0,0],[0,0]) == 16\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=454"
   },
   {
    "id": "04-88-kth-smallest-product-of-two-sorted-arrays",
@@ -1490,7 +1606,8 @@
     "36": "Use a direct O(m*n log(range)) approach"
    },
    "tests": "assert kthSmallestProduct([2, 5], [3, 4], 2) == 8\nassert kthSmallestProduct([-4, -2, 0, 3], [2, 4], 6) == 0\nassert kthSmallestProduct([-2, -1, 0, 1, 2], [-3, -1, 2, 4, 5], 3) == -6\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2040"
   },
   {
    "id": "04-89-minimum-cost-to-make-array-equalindrome",
@@ -1506,7 +1623,8 @@
    "solution": "def minimumCostEqualindrome(nums):\n    def is_palindrome(n):\n        s = str(n)\n        return s == s[::-1]\n\n    def cost(target):\n        return sum(abs(x - target) for x in nums)\n\n    def nearest_palindrome_floor(n):\n        x = n\n        while x > 0 and not is_palindrome(x):\n            x -= 1\n        return x\n\n    def nearest_palindrome_ceil(n):\n        x = n\n        while not is_palindrome(x):\n            x += 1\n        return x\n\n    nums_sorted = sorted(nums)\n    median = nums_sorted[len(nums_sorted) // 2]\n    p_floor = nearest_palindrome_floor(median)\n    p_ceil = nearest_palindrome_ceil(median)\n    return min(cost(p_floor), cost(p_ceil))",
    "notes": {},
    "tests": "assert minimumCostEqualindrome([1, 2, 3, 4, 5]) == 6\nassert minimumCostEqualindrome([10, 12, 13, 14, 15]) == 11\nassert minimumCostEqualindrome([22, 33, 44]) == 22\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2967"
   },
   {
    "id": "04-90-maximum-running-time-of-n-computers",
@@ -1522,7 +1640,8 @@
    "solution": "def maxRunTime(n, batteries):\n    def can_run(t):\n        return sum(min(b, t) for b in batteries) >= n * t\n\n    lo, hi = 1, sum(batteries) // n\n    while lo < hi:\n        mid = (lo + hi + 1) // 2\n        if can_run(mid):\n            lo = mid\n        else:\n            hi = mid - 1\n    return lo",
    "notes": {},
    "tests": "assert maxRunTime(2, [3, 3, 3]) == 4\nassert maxRunTime(2, [1, 1, 1, 1]) == 2\nassert maxRunTime(1, [5]) == 5\nassert maxRunTime(3, [10, 10, 3, 5]) == 8\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2141"
   }
  ]
 }

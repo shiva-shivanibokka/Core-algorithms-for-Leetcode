@@ -3,6 +3,31 @@
  "slug": "two-pointers",
  "name": "Two Pointers",
  "note": null,
+ "about": {
+  "lead": "",
+  "sections": [
+   {
+    "heading": "What is the Two Pointers Pattern?",
+    "body": "The **Two Pointers** pattern uses two index variables that move through a data structure — typically an array or string — to solve problems more efficiently than a brute-force nested loop approach.\n\nInstead of checking every pair of elements with O(n²) nested loops, you place two pointers strategically and move them based on a condition, achieving **O(n)** time complexity."
+   },
+   {
+    "heading": "When to Use It",
+    "body": "Look for these signals in a problem:\n- The input is a **sorted array or string**\n- You need to find a **pair, triplet, or subarray** satisfying a condition\n- You need to **compare elements from both ends** of an array\n- You need to **remove duplicates or filter in-place**\n- The brute force is O(n²) and you suspect O(n) is possible"
+   },
+   {
+    "heading": "The Three Configurations",
+    "body": "### 1. Opposite Ends (Converging)\n```\nleft = 0, right = len(arr) - 1\nwhile left < right:\n    # use arr[left] and arr[right]\n    # move one or both pointers\n```\nUsed for: pair sum, palindrome check, container with most water.\n\n### 2. Same Direction (Slow/Fast)\n```\nslow = 0\nfor fast in range(len(arr)):\n    # slow pointer advances only on a condition\n```\nUsed for: remove duplicates, move zeroes, partition.\n\n### 3. Two Arrays / Strings\n```\ni, j = 0, 0\nwhile i < len(a) and j < len(b):\n    # advance whichever pointer is behind\n```\nUsed for: merge sorted arrays, intersection, compare strings."
+   },
+   {
+    "heading": "Core Template",
+    "body": "```python\ndef two_pointers(arr):\n    left, right = 0, len(arr) - 1\n    result = []\n\n    while left < right:\n        current = arr[left] + arr[right]   # example: pair sum\n\n        if current == target:\n            result.append([arr[left], arr[right]])\n            left += 1\n            right -= 1\n        elif current < target:\n            left += 1   # need a larger value\n        else:\n            right -= 1  # need a smaller value\n\n    return result\n```\n\n**Key insight:** In a sorted array, moving `left` right increases the sum; moving `right` left decreases it. This lets you home in on the target without checking all pairs."
+   },
+   {
+    "heading": "Complexity",
+    "body": "| | Brute Force | Two Pointers |\n|---|---|---|\n| Time | O(n²) | O(n) |\n| Space | O(1) | O(1) |\n\n\n---\n# EASY Problems"
+   }
+  ]
+ },
  "notebook": "01_Two_Pointers.ipynb",
  "problems": [
   {
@@ -23,7 +48,8 @@
    "tests": "# Tests\nassert twoSumII([2, 7, 11, 15], 9) == [1, 2]\nassert twoSumII([2, 3, 4], 6) == [1, 3]\nassert twoSumII([-1, 0], -1) == [1, 2]\nprint(\"All tests passed!\")",
    "verified": [
     "twoSumII"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=167"
   },
   {
    "id": "01-02-valid-palindrome",
@@ -42,7 +68,8 @@
     "7": "skip non-alphanumeric from right"
    },
    "tests": "assert isPalindrome(\"A man, a plan, a canal: Panama\") == True\nassert isPalindrome(\"race a car\") == False\nassert isPalindrome(\" \") == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=125"
   },
   {
    "id": "01-03-remove-duplicates-from-sorted-array",
@@ -58,7 +85,8 @@
    "solution": "def removeDuplicates(nums):\n    slow = 0\n    for fast in range(1, len(nums)):\n        if nums[fast] != nums[slow]:\n            slow += 1\n            nums[slow] = nums[fast]\n    return slow + 1",
    "notes": {},
    "tests": "assert removeDuplicates([1, 1, 2]) == 2\nassert removeDuplicates([0,0,1,1,1,2,2,3,3,4]) == 5\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=26"
   },
   {
    "id": "01-04-move-zeroes",
@@ -74,7 +102,8 @@
    "solution": "def moveZeroes(nums):\n    slow = 0\n    for fast in range(len(nums)):\n        if nums[fast] != 0:\n            nums[slow], nums[fast] = nums[fast], nums[slow]\n            slow += 1\n\nnums1 = [0, 1, 0, 3, 12]\nmoveZeroes(nums1)",
    "notes": {},
    "tests": "assert nums1 == [1, 3, 12, 0, 0]\n\nnums2 = [0]\nmoveZeroes(nums2)\nassert nums2 == [0]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=283"
   },
   {
    "id": "01-05-squares-of-a-sorted-array",
@@ -92,7 +121,8 @@
     "4": "fill result from the end"
    },
    "tests": "assert sortedSquares([-4,-1,0,3,10]) == [0,1,9,16,100]\nassert sortedSquares([-7,-3,2,3,11]) == [4,9,9,49,121]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=977"
   },
   {
    "id": "01-06-reverse-string",
@@ -108,7 +138,8 @@
    "solution": "def reverseString(s):\n    left, right = 0, len(s) - 1\n    while left < right:\n        s[left], s[right] = s[right], s[left]\n        left += 1\n        right -= 1\n\ns1 = ['h','e','l','l','o']\nreverseString(s1)",
    "notes": {},
    "tests": "assert s1 == ['o','l','l','e','h']\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=344"
   },
   {
    "id": "01-07-merge-sorted-array",
@@ -128,7 +159,8 @@
    "tests": "assert nums1 == [1,2,2,3,5,6]\nprint(\"All tests passed!\")",
    "verified": [
     "merge"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=88"
   },
   {
    "id": "01-08-is-subsequence",
@@ -144,7 +176,8 @@
    "solution": "def isSubsequence(s, t):\n    i, j = 0, 0\n    while i < len(s) and j < len(t):\n        if s[i] == t[j]:\n            i += 1\n        j += 1\n    return i == len(s)",
    "notes": {},
    "tests": "assert isSubsequence(\"abc\", \"ahbgdc\") == True\nassert isSubsequence(\"axc\", \"ahbgdc\") == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=392"
   },
   {
    "id": "01-09-remove-element",
@@ -160,7 +193,8 @@
    "solution": "def removeElement(nums, val):\n    slow = 0\n    for fast in range(len(nums)):\n        if nums[fast] != val:\n            nums[slow] = nums[fast]\n            slow += 1\n    return slow",
    "notes": {},
    "tests": "assert removeElement([3,2,2,3], 3) == 2\nassert removeElement([0,1,2,2,3,0,4,2], 2) == 5\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=27"
   },
   {
    "id": "01-10-intersection-of-two-arrays-ii",
@@ -176,7 +210,8 @@
    "solution": "def intersect(nums1, nums2):\n    nums1.sort()\n    nums2.sort()\n    i, j = 0, 0\n    result = []\n    while i < len(nums1) and j < len(nums2):\n        if nums1[i] == nums2[j]:\n            result.append(nums1[i])\n            i += 1\n            j += 1\n        elif nums1[i] < nums2[j]:\n            i += 1\n        else:\n            j += 1\n    return result",
    "notes": {},
    "tests": "assert intersect([1,2,2,1],[2,2]) == [2,2]\nassert intersect([4,9,5],[9,4,9,8,4]) == [4,9]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=350"
   },
   {
    "id": "01-11-backspace-string-compare",
@@ -192,7 +227,8 @@
    "solution": "def backspaceCompare(s, t):\n    def next_valid(string, idx):\n        skip = 0\n        while idx >= 0:\n            if string[idx] == '#':\n                skip += 1\n                idx -= 1\n            elif skip > 0:\n                skip -= 1\n                idx -= 1\n            else:\n                break\n        return idx\n\n    i, j = len(s) - 1, len(t) - 1\n    while i >= 0 or j >= 0:\n        i = next_valid(s, i)\n        j = next_valid(t, j)\n        if i >= 0 and j >= 0 and s[i] != t[j]:\n            return False\n        if (i >= 0) != (j >= 0):\n            return False\n        i -= 1\n        j -= 1\n    return True",
    "notes": {},
    "tests": "assert backspaceCompare(\"ab#c\", \"ad#c\") == True\nassert backspaceCompare(\"ab##\", \"c#d#\") == True\nassert backspaceCompare(\"a#c\", \"b\") == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=844"
   },
   {
    "id": "01-12-longest-common-prefix",
@@ -210,7 +246,8 @@
     "6": "shrink prefix until it matches start of s"
    },
    "tests": "assert longestCommonPrefix([\"flower\",\"flow\",\"flight\"]) == \"fl\"\nassert longestCommonPrefix([\"dog\",\"racecar\",\"car\"]) == \"\"\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=14"
   },
   {
    "id": "01-13-sorted-array-insert-position",
@@ -228,7 +265,8 @@
    "tests": "assert searchInsert([1,3,5,6], 5) == 2\nassert searchInsert([1,3,5,6], 2) == 1\nassert searchInsert([1,3,5,6], 7) == 4\nprint(\"All tests passed!\")",
    "verified": [
     "searchInsert"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=35"
   },
   {
    "id": "01-14-reverse-vowels-of-a-string",
@@ -244,7 +282,8 @@
    "solution": "def reverseVowels(s):\n    vowels = set('aeiouAEIOU')\n    s = list(s)\n    left, right = 0, len(s) - 1\n    while left < right:\n        while left < right and s[left] not in vowels:\n            left += 1\n        while left < right and s[right] not in vowels:\n            right -= 1\n        s[left], s[right] = s[right], s[left]\n        left += 1\n        right -= 1\n    return ''.join(s)",
    "notes": {},
    "tests": "assert reverseVowels(\"hello\") == \"holle\"\nassert reverseVowels(\"leetcode\") == \"leotcede\"\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=345"
   },
   {
    "id": "01-15-maximum-number-of-words-found-in-sentences",
@@ -260,7 +299,8 @@
    "solution": "def mostWordsFound(sentences):\n    max_words = 0\n    for sentence in sentences:\n        count = 1\n        for ch in sentence:\n            if ch == ' ':\n                count += 1\n        max_words = max(max_words, count)\n    return max_words",
    "notes": {},
    "tests": "assert mostWordsFound([\"alice and bob\",\"bob\",\"alice is sleeping\"]) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2114"
   },
   {
    "id": "01-16-replace-elements-with-greatest-element-on-right-side",
@@ -276,7 +316,8 @@
    "solution": "def replaceElements(arr):\n    max_right = -1\n    for i in range(len(arr) - 1, -1, -1):\n        new_max = max(max_right, arr[i])\n        arr[i] = max_right\n        max_right = new_max\n    return arr",
    "notes": {},
    "tests": "assert replaceElements([17,18,5,4,6,1]) == [18,6,6,6,1,-1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1299"
   },
   {
    "id": "01-17-valid-palindrome-ii",
@@ -294,7 +335,8 @@
     "13": "try removing either character"
    },
    "tests": "assert validPalindrome(\"aba\") == True\nassert validPalindrome(\"abca\") == True\nassert validPalindrome(\"abc\") == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=680"
   },
   {
    "id": "01-18-count-binary-substrings",
@@ -310,7 +352,8 @@
    "solution": "def countBinarySubstrings(s):\n    prev, curr, result = 0, 1, 0\n    for i in range(1, len(s)):\n        if s[i] == s[i - 1]:\n            curr += 1\n        else:\n            prev = curr\n            curr = 1\n        if prev >= curr:\n            result += 1\n    return result",
    "notes": {},
    "tests": "assert countBinarySubstrings(\"00110011\") == 6\nassert countBinarySubstrings(\"10101\") == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=696"
   },
   {
    "id": "01-19-check-if-array-is-sorted-and-rotated",
@@ -326,7 +369,8 @@
    "solution": "def check(nums):\n    drops = 0\n    n = len(nums)\n    for i in range(n):\n        if nums[i] > nums[(i + 1) % n]:\n            drops += 1\n    return drops <= 1",
    "notes": {},
    "tests": "assert check([3,4,5,1,2]) == True\nassert check([2,1,3,4]) == False\nassert check([1,2,3]) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1752"
   },
   {
    "id": "01-20-find-the-difference",
@@ -344,7 +388,8 @@
     "5": "extra char is at the end"
    },
    "tests": "assert findTheDifference(\"abcd\", \"abcde\") == 'e'\nassert findTheDifference(\"\", \"y\") == 'y'\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=389"
   },
   {
    "id": "01-21-intersection-of-two-arrays",
@@ -360,7 +405,8 @@
    "solution": "def intersection(nums1, nums2):\n    nums1.sort()\n    nums2.sort()\n    left, right = 0, 0\n    result = []\n    while left < len(nums1) and right < len(nums2):\n        if nums1[left] == nums2[right]:\n            if not result or result[-1] != nums1[left]:\n                result.append(nums1[left])\n            left += 1\n            right += 1\n        elif nums1[left] < nums2[right]:\n            left += 1\n        else:\n            right += 1\n    return result",
    "notes": {},
    "tests": "assert sorted(intersection([1,2,2,1],[2,2])) == [2]\nassert sorted(intersection([4,9,5],[9,4,9,8,4])) == [4,9]\nassert intersection([1,2],[3,4]) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=349"
   },
   {
    "id": "01-22-two-sum-less-than-k",
@@ -376,7 +422,8 @@
    "solution": "def twoSumLessThanK(nums, k):\n    nums.sort()\n    left, right = 0, len(nums) - 1\n    ans = -1\n    while left < right:\n        s = nums[left] + nums[right]\n        if s < k:\n            ans = max(ans, s)\n            left += 1\n        else:\n            right -= 1\n    return ans",
    "notes": {},
    "tests": "assert twoSumLessThanK([34,23,1,24,75,33,54,8], 60) == 58\nassert twoSumLessThanK([10,20,30], 15) == -1\nassert twoSumLessThanK([1,2], 4) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1099"
   },
   {
    "id": "01-23-sort-array-by-parity",
@@ -392,7 +439,8 @@
    "solution": "def sortArrayByParity(nums):\n    left, right = 0, len(nums) - 1\n    while left < right:\n        if nums[left] % 2 == 1 and nums[right] % 2 == 0:\n            nums[left], nums[right] = nums[right], nums[left]\n        if nums[left] % 2 == 0:\n            left += 1\n        if nums[right] % 2 == 1:\n            right -= 1\n    return nums\n\ndef check_parity(arr):\n    evens = [x for x in arr if x % 2 == 0]\n    odds = [x for x in arr if x % 2 == 1]\n    result = sortArrayByParity(arr[:])\n    return all(x % 2 == 0 for x in result[:len(evens)]) and all(x % 2 == 1 for x in result[len(evens):])",
    "notes": {},
    "tests": "assert check_parity([3,1,2,4])\nassert check_parity([0])\nassert check_parity([2,2])\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=905"
   },
   {
    "id": "01-24-reverse-only-letters",
@@ -408,7 +456,8 @@
    "solution": "def reverseOnlyLetters(s):\n    s = list(s)\n    left, right = 0, len(s) - 1\n    while left < right:\n        while left < right and not s[left].isalpha():\n            left += 1\n        while left < right and not s[right].isalpha():\n            right -= 1\n        s[left], s[right] = s[right], s[left]\n        left += 1\n        right -= 1\n    return ''.join(s)",
    "notes": {},
    "tests": "assert reverseOnlyLetters(\"ab-cd\") == \"dc-ba\"\nassert reverseOnlyLetters(\"a-bC-dEf-ghIj\") == \"j-Ih-gfE-dCba\"\nassert reverseOnlyLetters(\"Test1ng-Leet=code-Q!\") == \"Qedo1ct-eeLg=ntse-T!\"\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=917"
   },
   {
    "id": "01-25-palindrome-linked-list",
@@ -424,7 +473,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef isPalindromeLL(head):\n    slow, fast = head, head\n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n    prev, curr = None, slow\n    while curr:\n        nxt = curr.next\n        curr.next = prev\n        prev = curr\n        curr = nxt\n    left, right = head, prev\n    while right:\n        if left.val != right.val:\n            return False\n        left = left.next\n        right = right.next\n    return True\n\ndef make_ll(vals):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in vals:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next",
    "notes": {},
    "tests": "assert isPalindromeLL(make_ll([1,2,2,1])) == True\nassert isPalindromeLL(make_ll([1,2])) == False\nassert isPalindromeLL(make_ll([1])) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=234"
   },
   {
    "id": "01-26-array-partition",
@@ -440,7 +490,8 @@
    "solution": "def arrayPairSum(nums):\n    nums.sort()\n    return sum(nums[i] for i in range(0, len(nums), 2))",
    "notes": {},
    "tests": "assert arrayPairSum([1,4,3,2]) == 4\nassert arrayPairSum([6,2,6,5,1,2]) == 9\nassert arrayPairSum([1,1,1,1]) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=561"
   },
   {
    "id": "01-27-merge-strings-alternately",
@@ -456,7 +507,8 @@
    "solution": "def mergeAlternately(word1, word2):\n    i, j = 0, 0\n    result = []\n    while i < len(word1) and j < len(word2):\n        result.append(word1[i])\n        result.append(word2[j])\n        i += 1\n        j += 1\n    result.extend(word1[i:])\n    result.extend(word2[j:])\n    return ''.join(result)",
    "notes": {},
    "tests": "assert mergeAlternately(\"abc\", \"pqr\") == \"apbqcr\"\nassert mergeAlternately(\"ab\", \"pqrs\") == \"apbqrs\"\nassert mergeAlternately(\"abcd\", \"pq\") == \"apbqcd\"\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1768"
   },
   {
    "id": "01-28-check-if-one-string-swap-can-make-strings-equal",
@@ -472,7 +524,8 @@
    "solution": "def areAlmostEqual(s1, s2):\n    diffs = [(a, b) for a, b in zip(s1, s2) if a != b]\n    return len(diffs) == 0 or (len(diffs) == 2 and diffs[0] == diffs[1][::-1])",
    "notes": {},
    "tests": "assert areAlmostEqual(\"bank\", \"kanb\") == True\nassert areAlmostEqual(\"attack\", \"defend\") == False\nassert areAlmostEqual(\"kelb\", \"kelb\") == True\nassert areAlmostEqual(\"abcd\", \"dcba\") == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1790"
   },
   {
    "id": "01-29-reverse-string-ii",
@@ -488,7 +541,8 @@
    "solution": "def reverseStr(s, k):\n    s = list(s)\n    for i in range(0, len(s), 2 * k):\n        left, right = i, min(i + k - 1, len(s) - 1)\n        while left < right:\n            s[left], s[right] = s[right], s[left]\n            left += 1\n            right -= 1\n    return ''.join(s)",
    "notes": {},
    "tests": "assert reverseStr(\"abcdefg\", 2) == \"bacdfeg\"\nassert reverseStr(\"abcd\", 2) == \"bacd\"\nassert reverseStr(\"a\", 2) == \"a\"\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=541"
   },
   {
    "id": "01-30-sort-array-by-parity-ii",
@@ -504,7 +558,8 @@
    "solution": "def sortArrayByParityII(nums):\n    j = 1\n    for i in range(0, len(nums), 2):\n        if nums[i] % 2 != 0:\n            while nums[j] % 2 != 0:\n                j += 2\n            nums[i], nums[j] = nums[j], nums[i]\n    return nums\n\ndef valid(arr):\n    return all(arr[i] % 2 == 0 for i in range(0, len(arr), 2)) and \\\n           all(arr[i] % 2 == 1 for i in range(1, len(arr), 2))",
    "notes": {},
    "tests": "assert valid(sortArrayByParityII([4,2,5,7]))\nassert valid(sortArrayByParityII([2,3]))\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=922"
   },
   {
    "id": "01-31-minimum-difference-between-highest-and-lowest-of-k-sco",
@@ -520,7 +575,8 @@
    "solution": "def minimumDifference(nums, k):\n    nums.sort()\n    min_diff = float('inf')\n    for i in range(len(nums) - k + 1):\n        min_diff = min(min_diff, nums[i + k - 1] - nums[i])\n    return min_diff",
    "notes": {},
    "tests": "assert minimumDifference([90], 1) == 0\nassert minimumDifference([9,4,1,7], 2) == 2\nassert minimumDifference([1,2,3,4,5], 3) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1984"
   },
   {
    "id": "01-32-count-pairs-whose-sum-is-less-than-target",
@@ -536,7 +592,8 @@
    "solution": "def countPairs(nums, target):\n    nums.sort()\n    left, right = 0, len(nums) - 1\n    count = 0\n    while left < right:\n        if nums[left] + nums[right] < target:\n            count += right - left\n            left += 1\n        else:\n            right -= 1\n    return count",
    "notes": {},
    "tests": "assert countPairs([-1,1,2,3,1], 2) == 3\nassert countPairs([-6,2,5,-2,-7,-1,3], -2) == 10\nassert countPairs([1,2,3], 10) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2824"
   },
   {
    "id": "01-33-flipping-an-image",
@@ -552,7 +609,8 @@
    "solution": "def flipAndInvertImage(image):\n    for row in image:\n        left, right = 0, len(row) - 1\n        while left <= right:\n            if left == right:\n                row[left] ^= 1\n            elif row[left] == row[right]:\n                row[left] ^= 1\n                row[right] ^= 1\n            left += 1\n            right -= 1\n    return image",
    "notes": {},
    "tests": "assert flipAndInvertImage([[1,1,0],[1,0,1],[0,0,0]]) == [[1,0,0],[0,1,0],[1,1,1]]\nassert flipAndInvertImage([[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]) == [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=832"
   },
   {
    "id": "01-34-remove-duplicates-from-sorted-list",
@@ -568,7 +626,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef deleteDuplicates(head):\n    curr = head\n    while curr and curr.next:\n        if curr.val == curr.next.val:\n            curr.next = curr.next.next\n        else:\n            curr = curr.next\n    return head\n\ndef ll_to_list(head):\n    res = []\n    while head:\n        res.append(head.val)\n        head = head.next\n    return res\n\ndef make_ll(vals):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in vals:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next",
    "notes": {},
    "tests": "assert ll_to_list(deleteDuplicates(make_ll([1,1,2]))) == [1,2]\nassert ll_to_list(deleteDuplicates(make_ll([1,1,2,3,3]))) == [1,2,3]\nassert ll_to_list(deleteDuplicates(make_ll([]))) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=83"
   },
   {
    "id": "01-35-find-target-indices-after-sorting-array",
@@ -584,7 +643,8 @@
    "solution": "def targetIndices(nums, target):\n    less = sum(1 for x in nums if x < target)\n    equal = sum(1 for x in nums if x == target)\n    return list(range(less, less + equal))",
    "notes": {},
    "tests": "assert targetIndices([1,2,5,2,3], 2) == [1,2]\nassert targetIndices([1,2,5,2,3], 3) == [3]\nassert targetIndices([1,2,5,2,3], 5) == [4]\nassert targetIndices([1,2,5,2,3], 4) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2089"
   },
   {
    "id": "01-36-two-sum-iv-input-is-a-bst",
@@ -602,7 +662,8 @@
     "23": "Build BST: [5,3,6,2,4,null,7]"
    },
    "tests": "assert findTarget(root, 9) == True\nassert findTarget(root, 28) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=653"
   },
   {
    "id": "01-37-assign-cookies",
@@ -618,7 +679,8 @@
    "solution": "def findContentChildren(g, s):\n    g.sort()\n    s.sort()\n    child, cookie = 0, 0\n    while child < len(g) and cookie < len(s):\n        if s[cookie] >= g[child]:\n            child += 1\n        cookie += 1\n    return child",
    "notes": {},
    "tests": "assert findContentChildren([1,2,3],[1,1]) == 1\nassert findContentChildren([1,2],[1,2,3]) == 2\nassert findContentChildren([10,9,8,7],[5,6,7,8]) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=455"
   },
   {
    "id": "01-38-check-if-two-string-arrays-are-equivalent",
@@ -637,7 +699,8 @@
     "2": "word index, char index in word2"
    },
    "tests": "assert arrayStringsAreEqual([\"ab\",\"c\"],[\"a\",\"bc\"]) == True\nassert arrayStringsAreEqual([\"a\",\"cb\"],[\"ab\",\"c\"]) == False\nassert arrayStringsAreEqual([\"abc\",\"d\",\"defg\"],[\"abcddefg\"]) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1662"
   },
   {
    "id": "01-39-check-if-n-and-its-double-exist",
@@ -653,7 +716,8 @@
    "solution": "def checkIfExist(arr):\n    seen = set()\n    for x in arr:\n        if 2 * x in seen or (x % 2 == 0 and x // 2 in seen):\n            return True\n        seen.add(x)\n    return False",
    "notes": {},
    "tests": "assert checkIfExist([10,2,5,3]) == True\nassert checkIfExist([3,1,7,11]) == False\nassert checkIfExist([0,0]) == True\nassert checkIfExist([7,1,14,11]) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1346"
   },
   {
    "id": "01-40-reverse-prefix-of-word",
@@ -669,7 +733,8 @@
    "solution": "def reversePrefix(word, ch):\n    idx = word.find(ch)\n    if idx == -1:\n        return word\n    word = list(word)\n    left, right = 0, idx\n    while left < right:\n        word[left], word[right] = word[right], word[left]\n        left += 1\n        right -= 1\n    return ''.join(word)",
    "notes": {},
    "tests": "assert reversePrefix(\"abcdefd\", \"d\") == \"dcbaefd\"\nassert reversePrefix(\"xyxzxe\", \"z\") == \"zxyxxe\"\nassert reversePrefix(\"abcd\", \"z\") == \"abcd\"\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2000"
   },
   {
    "id": "01-41-3sum",
@@ -689,7 +754,8 @@
    "tests": "assert threeSum([-1,0,1,2,-1,-4]) == [[-1,-1,2],[-1,0,1]]\nassert threeSum([0,1,1]) == []\nassert threeSum([0,0,0]) == [[0,0,0]]\nprint(\"All tests passed!\")",
    "verified": [
     "threeSum"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=15"
   },
   {
    "id": "01-42-container-with-most-water",
@@ -707,7 +773,8 @@
    "tests": "assert maxArea([1,8,6,2,5,4,8,3,7]) == 49\nassert maxArea([1,1]) == 1\nprint(\"All tests passed!\")",
    "verified": [
     "maxArea"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=11"
   },
   {
    "id": "01-43-3sum-closest",
@@ -725,7 +792,8 @@
     "14": "exact match"
    },
    "tests": "assert threeSumClosest([-1,2,1,-4], 1) == 2\nassert threeSumClosest([0,0,0], 1) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=16"
   },
   {
    "id": "01-44-sort-colors",
@@ -743,7 +811,8 @@
     "11": "don't advance mid — need to check the swapped value"
    },
    "tests": "assert nums == [0,0,1,1,2,2]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=75"
   },
   {
    "id": "01-45-4sum",
@@ -761,7 +830,8 @@
    "tests": "assert fourSum([1,0,-1,0,-2,2], 0) == [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]\nassert fourSum([2,2,2,2,2], 8) == [[2,2,2,2]]\nprint(\"All tests passed!\")",
    "verified": [
     "fourSum"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=18"
   },
   {
    "id": "01-46-longest-substring-without-repeating-characters",
@@ -779,7 +849,8 @@
    "tests": "assert lengthOfLongestSubstring(\"abcabcbb\") == 3\nassert lengthOfLongestSubstring(\"bbbbb\") == 1\nassert lengthOfLongestSubstring(\"pwwkew\") == 3\nprint(\"All tests passed!\")",
    "verified": [
     "lengthOfLongestSubstring"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=3"
   },
   {
    "id": "01-47-partition-labels",
@@ -795,7 +866,8 @@
    "solution": "def partitionLabels(s):\n    last = {ch: i for i, ch in enumerate(s)}\n    result = []\n    start = end = 0\n    for i, ch in enumerate(s):\n        end = max(end, last[ch])\n        if i == end:\n            result.append(end - start + 1)\n            start = i + 1\n    return result",
    "notes": {},
    "tests": "assert partitionLabels(\"ababcbacadefegdehijhklij\") == [9,7,8]\nassert partitionLabels(\"eccbbbbdec\") == [10]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=763"
   },
   {
    "id": "01-48-rotate-array",
@@ -815,7 +887,8 @@
     "12": "reverse remaining"
    },
    "tests": "assert nums == [5,6,7,1,2,3,4]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=189"
   },
   {
    "id": "01-49-boats-to-save-people",
@@ -834,7 +907,8 @@
     "7": "heaviest always takes a boat"
    },
    "tests": "assert numRescueBoats([1,2], 3) == 1\nassert numRescueBoats([3,2,2,1], 3) == 3\nassert numRescueBoats([3,5,3,4], 5) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=881"
   },
   {
    "id": "01-50-minimize-maximum-pair-sum-in-array",
@@ -850,7 +924,8 @@
    "solution": "def minPairSum(nums):\n    nums.sort()\n    left, right = 0, len(nums) - 1\n    max_sum = 0\n    while left < right:\n        max_sum = max(max_sum, nums[left] + nums[right])\n        left += 1\n        right -= 1\n    return max_sum",
    "notes": {},
    "tests": "assert minPairSum([3,5,2,3]) == 7\nassert minPairSum([3,5,4,2,4,6]) == 8\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1877"
   },
   {
    "id": "01-51-remove-duplicates-from-sorted-array-ii",
@@ -866,7 +941,8 @@
    "solution": "def removeDuplicatesII(nums):\n    slow = 0\n    for fast in range(len(nums)):\n        if slow < 2 or nums[fast] != nums[slow - 2]:\n            nums[slow] = nums[fast]\n            slow += 1\n    return slow\n\nnums = [1,1,1,2,2,3]\nk = removeDuplicatesII(nums)",
    "notes": {},
    "tests": "assert nums[:k] == [1,1,2,2,3]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=80"
   },
   {
    "id": "01-52-number-of-subsequences-that-satisfy-the-given-sum-cond",
@@ -884,7 +960,8 @@
     "5": "precompute powers of 2"
    },
    "tests": "assert numSubseq([3,5,6,7], 9) == 4\nassert numSubseq([3,3,6,8], 10) == 6\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1498"
   },
   {
    "id": "01-53-bag-of-tokens",
@@ -900,7 +977,8 @@
    "solution": "def bagOfTokensScore(tokens, power):\n    tokens.sort()\n    left, right = 0, len(tokens) - 1\n    score = max_score = 0\n    while left <= right:\n        if power >= tokens[left]:\n            power -= tokens[left]\n            score += 1\n            max_score = max(max_score, score)\n            left += 1\n        elif score > 0:\n            power += tokens[right]\n            score -= 1\n            right -= 1\n        else:\n            break\n    return max_score",
    "notes": {},
    "tests": "assert bagOfTokensScore([100], 50) == 0\nassert bagOfTokensScore([100,200], 150) == 1\nassert bagOfTokensScore([100,200,300,400], 200) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=948"
   },
   {
    "id": "01-54-max-number-of-k-sum-pairs",
@@ -916,7 +994,8 @@
    "solution": "def maxOperations(nums, k):\n    nums.sort()\n    left, right = 0, len(nums) - 1\n    count = 0\n    while left < right:\n        s = nums[left] + nums[right]\n        if s == k:\n            count += 1\n            left += 1\n            right -= 1\n        elif s < k:\n            left += 1\n        else:\n            right -= 1\n    return count",
    "notes": {},
    "tests": "assert maxOperations([1,2,3,4], 5) == 2\nassert maxOperations([3,1,3,4,3], 6) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1679"
   },
   {
    "id": "01-55-trapping-rain-water-2-pointer-version",
@@ -934,7 +1013,8 @@
    "tests": "assert trap([0,1,0,2,1,0,1,3,2,1,2,1]) == 6\nassert trap([4,2,0,3,2,5]) == 9\nprint(\"All tests passed!\")",
    "verified": [
     "trap"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=42"
   },
   {
    "id": "01-56-next-permutation",
@@ -950,7 +1030,8 @@
    "solution": "def nextPermutation(nums):\n    n = len(nums)\n    i = n - 2\n    while i >= 0 and nums[i] >= nums[i + 1]:\n        i -= 1\n    if i >= 0:\n        j = n - 1\n        while nums[j] <= nums[i]:\n            j -= 1\n        nums[i], nums[j] = nums[j], nums[i]\n    left, right = i + 1, n - 1\n    while left < right:\n        nums[left], nums[right] = nums[right], nums[left]\n        left += 1\n        right -= 1",
    "notes": {},
    "tests": "a = [1,2,3]; nextPermutation(a); assert a == [1,3,2]\nb = [3,2,1]; nextPermutation(b); assert b == [1,2,3]\nc = [1,1,5]; nextPermutation(c); assert c == [1,5,1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=31"
   },
   {
    "id": "01-57-minimum-size-subarray-sum",
@@ -966,7 +1047,8 @@
    "solution": "def minSubArrayLen(target, nums):\n    left = 0\n    curr_sum = 0\n    min_len = float('inf')\n    for right in range(len(nums)):\n        curr_sum += nums[right]\n        while curr_sum >= target:\n            min_len = min(min_len, right - left + 1)\n            curr_sum -= nums[left]\n            left += 1\n    return 0 if min_len == float('inf') else min_len",
    "notes": {},
    "tests": "assert minSubArrayLen(7, [2,3,1,2,4,3]) == 2\nassert minSubArrayLen(4, [1,4,4]) == 1\nassert minSubArrayLen(11, [1,1,1,1,1,1,1,1]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=209"
   },
   {
    "id": "01-58-find-k-closest-elements",
@@ -982,7 +1064,8 @@
    "solution": "def findClosestElements(arr, k, x):\n    left, right = 0, len(arr) - k\n    while left < right:\n        mid = (left + right) // 2\n        if x - arr[mid] > arr[mid + k] - x:\n            left = mid + 1\n        else:\n            right = mid\n    return arr[left:left + k]",
    "notes": {},
    "tests": "assert findClosestElements([1,2,3,4,5], 4, 3) == [1,2,3,4]\nassert findClosestElements([1,2,3,4,5], 4, -1) == [1,2,3,4]\nassert findClosestElements([1,3,5,7,9], 2, 5) == [3,5]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=658"
   },
   {
    "id": "01-59-longest-mountain-in-array",
@@ -998,7 +1081,8 @@
    "solution": "def longestMountain(arr):\n    n = len(arr)\n    res = 0\n    i = 1\n    while i < n - 1:\n        if arr[i - 1] < arr[i] > arr[i + 1]:\n            left, right = i - 1, i + 1\n            while left > 0 and arr[left - 1] < arr[left]:\n                left -= 1\n            while right < n - 1 and arr[right] > arr[right + 1]:\n                right += 1\n            res = max(res, right - left + 1)\n            i = right\n        else:\n            i += 1\n    return res",
    "notes": {},
    "tests": "assert longestMountain([2,1,4,7,3,2,5]) == 5\nassert longestMountain([2,2,2]) == 0\nassert longestMountain([0,1,2,3,4,5,4,3,2,1,0]) == 11\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=845"
   },
   {
    "id": "01-60-push-dominoes",
@@ -1016,7 +1100,8 @@
     "14": "R...L"
    },
    "tests": "assert pushDominoes(\"RR.L\") == \"RR.L\"\nassert pushDominoes(\".L.R...LR..L..\") == \"LL.RR.LLRRLL..\"\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=838"
   },
   {
    "id": "01-61-permutation-in-string",
@@ -1032,7 +1117,8 @@
    "solution": "from collections import Counter\n\ndef checkInclusion(s1, s2):\n    if len(s1) > len(s2):\n        return False\n    need = Counter(s1)\n    window = Counter(s2[:len(s1)])\n    if window == need:\n        return True\n    for i in range(len(s1), len(s2)):\n        window[s2[i]] += 1\n        old = s2[i - len(s1)]\n        window[old] -= 1\n        if window[old] == 0:\n            del window[old]\n        if window == need:\n            return True\n    return False",
    "notes": {},
    "tests": "assert checkInclusion(\"ab\", \"eidbaooo\") == True\nassert checkInclusion(\"ab\", \"eidboaoo\") == False\nassert checkInclusion(\"adc\", \"dcda\") == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=567"
   },
   {
    "id": "01-62-fruit-into-baskets",
@@ -1048,7 +1134,8 @@
    "solution": "from collections import defaultdict\n\ndef totalFruit(fruits):\n    basket = defaultdict(int)\n    left = 0\n    max_fruits = 0\n    for right, fruit in enumerate(fruits):\n        basket[fruit] += 1\n        while len(basket) > 2:\n            basket[fruits[left]] -= 1\n            if basket[fruits[left]] == 0:\n                del basket[fruits[left]]\n            left += 1\n        max_fruits = max(max_fruits, right - left + 1)\n    return max_fruits",
    "notes": {},
    "tests": "assert totalFruit([1,2,1]) == 3\nassert totalFruit([0,1,2,2]) == 3\nassert totalFruit([1,2,3,2,2]) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=904"
   },
   {
    "id": "01-63-binary-subarrays-with-sum",
@@ -1064,7 +1151,8 @@
    "solution": "def numSubarraysWithSum(nums, goal):\n    def atMost(k):\n        if k < 0:\n            return 0\n        left = count = curr = 0\n        for right in range(len(nums)):\n            curr += nums[right]\n            while curr > k:\n                curr -= nums[left]\n                left += 1\n            count += right - left + 1\n        return count\n    return atMost(goal) - atMost(goal - 1)",
    "notes": {},
    "tests": "assert numSubarraysWithSum([1,0,1,0,1], 2) == 4\nassert numSubarraysWithSum([0,0,0,0,0], 0) == 15\nassert numSubarraysWithSum([1,1,1], 2) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=930"
   },
   {
    "id": "01-64-count-number-of-nice-subarrays",
@@ -1080,7 +1168,8 @@
    "solution": "def numberOfSubarrays(nums, k):\n    def atMost(k):\n        left = count = odds = 0\n        for right in range(len(nums)):\n            if nums[right] % 2 == 1:\n                odds += 1\n            while odds > k:\n                if nums[left] % 2 == 1:\n                    odds -= 1\n                left += 1\n            count += right - left + 1\n        return count\n    return atMost(k) - atMost(k - 1)",
    "notes": {},
    "tests": "assert numberOfSubarrays([1,1,2,1,1], 3) == 2\nassert numberOfSubarrays([2,4,6], 1) == 0\nassert numberOfSubarrays([2,2,2,1,2,2,1,2,2,2], 2) == 16\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1248"
   },
   {
    "id": "01-65-longest-turbulent-subarray",
@@ -1096,7 +1185,8 @@
    "solution": "def maxTurbulenceSize(arr):\n    n = len(arr)\n    res = 1\n    left = 0\n    for right in range(1, n):\n        c = (arr[right] > arr[right-1]) - (arr[right] < arr[right-1])\n        if c == 0:\n            left = right\n        elif right > 1:\n            prev = (arr[right-1] > arr[right-2]) - (arr[right-1] < arr[right-2])\n            if c == prev:\n                left = right - 1\n        res = max(res, right - left + 1)\n    return res",
    "notes": {},
    "tests": "assert maxTurbulenceSize([9,4,2,10,7,8,8,1,9]) == 5\nassert maxTurbulenceSize([4,8,12,16]) == 2\nassert maxTurbulenceSize([100]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=978"
   },
   {
    "id": "01-66-car-fleet",
@@ -1112,7 +1202,8 @@
    "solution": "def carFleet(target, position, speed):\n    pairs = sorted(zip(position, speed), reverse=True)\n    stack = []\n    for pos, spd in pairs:\n        time = (target - pos) / spd\n        if not stack or time > stack[-1]:\n            stack.append(time)\n    return len(stack)",
    "notes": {},
    "tests": "assert carFleet(12, [10,8,0,5,3], [2,4,1,1,3]) == 3\nassert carFleet(10, [3], [3]) == 1\nassert carFleet(100, [0,2,4], [4,2,1]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=853"
   },
   {
    "id": "01-67-reverse-words-in-a-string",
@@ -1128,7 +1219,8 @@
    "solution": "def reverseWords(s):\n    words = s.split()\n    left, right = 0, len(words) - 1\n    while left < right:\n        words[left], words[right] = words[right], words[left]\n        left += 1\n        right -= 1\n    return ' '.join(words)",
    "notes": {},
    "tests": "assert reverseWords(\"the sky is blue\") == \"blue is sky the\"\nassert reverseWords(\"  hello world  \") == \"world hello\"\nassert reverseWords(\"a good   example\") == \"example good a\"\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=151"
   },
   {
    "id": "01-68-maximum-erasure-value",
@@ -1144,7 +1236,8 @@
    "solution": "def maximumUniqueSubarray(nums):\n    seen = set()\n    left = 0\n    curr_sum = max_sum = 0\n    for right in range(len(nums)):\n        while nums[right] in seen:\n            seen.remove(nums[left])\n            curr_sum -= nums[left]\n            left += 1\n        seen.add(nums[right])\n        curr_sum += nums[right]\n        max_sum = max(max_sum, curr_sum)\n    return max_sum",
    "notes": {},
    "tests": "assert maximumUniqueSubarray([4,2,4,5,6]) == 17\nassert maximumUniqueSubarray([5,2,1,2,5,2,1,2,5]) == 8\nassert maximumUniqueSubarray([1]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1695"
   },
   {
    "id": "01-69-string-compression",
@@ -1160,7 +1253,8 @@
    "solution": "def compress(chars):\n    write = 0\n    left = 0\n    while left < len(chars):\n        right = left\n        while right < len(chars) and chars[right] == chars[left]:\n            right += 1\n        count = right - left\n        chars[write] = chars[left]\n        write += 1\n        if count > 1:\n            for c in str(count):\n                chars[write] = c\n                write += 1\n        left = right\n    return write",
    "notes": {},
    "tests": "c1 = [\"a\",\"a\",\"b\",\"b\",\"c\",\"c\",\"c\"]; assert compress(c1) == 6 and c1[:6] == ['a','2','b','2','c','3']\nc2 = [\"a\"]; assert compress(c2) == 1\nc3 = [\"a\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\",\"b\"]; assert compress(c3) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=443"
   },
   {
    "id": "01-70-sum-of-square-numbers",
@@ -1176,7 +1270,8 @@
    "solution": "import math\n\ndef judgeSquareSum(c):\n    left, right = 0, int(math.isqrt(c))\n    while left <= right:\n        s = left * left + right * right\n        if s == c:\n            return True\n        elif s < c:\n            left += 1\n        else:\n            right -= 1\n    return False",
    "notes": {},
    "tests": "assert judgeSquareSum(5) == True\nassert judgeSquareSum(3) == False\nassert judgeSquareSum(4) == True\nassert judgeSquareSum(0) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=633"
   },
   {
    "id": "01-71-trapping-rain-water",
@@ -1195,7 +1290,8 @@
     "7": "no left wall, so nothing is bounded"
    },
    "tests": "assert trapStack([0,1,0,2,1,0,1,3,2,1,2,1]) == 6\nassert trapStack([4,2,0,3,2,5]) == 9\nassert trapStack([]) == 0\nassert trapStack([3,3,3]) == 0            # flat: no basin\nassert trapStack([5,4,3,2,1]) == 0        # monotonic: nothing is bounded\n\n# The two approaches have to agree everywhere, not just on the examples.\nimport random as _random\n_rng = _random.Random(42)\nfor _ in range(2000):\n    bars = [_rng.randint(0, 8) for _ in range(_rng.randint(0, 12))]\n    assert trapStack(bars) == trap(bars)\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=42"
   },
   {
    "id": "01-72-minimum-window-substring",
@@ -1216,7 +1312,8 @@
    "tests": "assert minWindow(\"ADOBECODEBANC\", \"ABC\") == \"BANC\"\nassert minWindow(\"a\", \"a\") == \"a\"\nassert minWindow(\"a\", \"aa\") == \"\"\nprint(\"All tests passed!\")",
    "verified": [
     "minWindow"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=76"
   },
   {
    "id": "01-73-subarrays-with-k-different-integers",
@@ -1232,7 +1329,8 @@
    "solution": "from collections import defaultdict\n\ndef subarraysWithKDistinct(nums, k):\n    def at_most_k(k):\n        count = defaultdict(int)\n        left = result = 0\n        for right in range(len(nums)):\n            count[nums[right]] += 1\n            while len(count) > k:\n                count[nums[left]] -= 1\n                if count[nums[left]] == 0:\n                    del count[nums[left]]\n                left += 1\n            result += right - left + 1\n        return result\n\n    return at_most_k(k) - at_most_k(k - 1)",
    "notes": {},
    "tests": "assert subarraysWithKDistinct([1,2,1,2,3], 2) == 7\nassert subarraysWithKDistinct([1,2,1,3,4], 3) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=992"
   },
   {
    "id": "01-74-find-the-longest-substring-containing-vowels-in-even-c",
@@ -1250,7 +1348,8 @@
     "2": "bitmask -> first index"
    },
    "tests": "assert findTheLongestSubstring(\"eleetminicoworoep\") == 13\nassert findTheLongestSubstring(\"leetcodeisgreat\") == 5\nassert findTheLongestSubstring(\"bcbcbc\") == 6\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1371"
   },
   {
    "id": "01-75-count-of-smaller-numbers-after-self",
@@ -1269,7 +1368,8 @@
     "19": "j elements from right have already been placed before left[i]"
    },
    "tests": "assert countSmaller([5,2,6,1]) == [2,1,1,0]\nassert countSmaller([-1]) == [0]\nassert countSmaller([-1,-1]) == [0,0]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=315"
   },
   {
    "id": "01-76-shortest-subarray-with-sum-at-least-k",
@@ -1289,7 +1389,8 @@
     "16": "maintain increasing prefix sums in deque"
    },
    "tests": "assert shortestSubarray([1], 1) == 1\nassert shortestSubarray([1,2], 4) == -1\nassert shortestSubarray([2,-1,2], 3) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=862"
   },
   {
    "id": "01-77-3sum-with-multiplicity",
@@ -1308,7 +1409,8 @@
     "21": "count duplicates on both sides"
    },
    "tests": "assert threeSumMulti([1,1,2,2,3,3,4,4,5,5], 8) == 20\nassert threeSumMulti([1,1,2,2,2,2], 5) == 12\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=923"
   },
   {
    "id": "01-78-maximum-points-you-can-obtain-from-cards",
@@ -1327,7 +1429,8 @@
     "8": "find minimum sum subarray of length window"
    },
    "tests": "assert maxScore([1,2,3,4,5,6,1], 3) == 12\nassert maxScore([2,2,2], 2) == 4\nassert maxScore([9,7,7,9,7,7,9], 7) == 55\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1423"
   },
   {
    "id": "01-79-minimum-operations-to-reduce-x-to-zero",
@@ -1343,7 +1446,8 @@
    "solution": "def minOperations(nums, x):\n    target = sum(nums) - x\n    if target < 0:\n        return -1\n    if target == 0:\n        return len(nums)\n\n    max_len = -1\n    curr_sum = 0\n    left = 0\n\n    for right in range(len(nums)):\n        curr_sum += nums[right]\n        while curr_sum > target and left <= right:\n            curr_sum -= nums[left]\n            left += 1\n        if curr_sum == target:\n            max_len = max(max_len, right - left + 1)\n\n    return len(nums) - max_len if max_len != -1 else -1",
    "notes": {},
    "tests": "assert minOperations([1,1,4,2,3], 5) == 2\nassert minOperations([5,6,7,8,9], 4) == -1\nassert minOperations([3,2,20,1,1,3], 10) == 5\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1658"
   },
   {
    "id": "01-80-largest-rectangle-in-histogram",
@@ -1363,7 +1467,8 @@
     "12": "restore original"
    },
    "tests": "assert largestRectangleArea([2,1,5,6,2,3]) == 10\nassert largestRectangleArea([2,4]) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=84"
   },
   {
    "id": "01-81-sliding-window-maximum",
@@ -1383,7 +1488,8 @@
    "tests": "assert maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3) == [3,3,5,5,6,7]\nassert maxSlidingWindow([1], 1) == [1]\nassert maxSlidingWindow([1,-1], 1) == [1,-1]\nprint(\"All tests passed!\")",
    "verified": [
     "maxSlidingWindow"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=239"
   },
   {
    "id": "01-82-minimum-window-subsequence",
@@ -1399,7 +1505,8 @@
    "solution": "def minWindowSubsequence(s1, s2):\n    best = \"\"\n    i = 0\n    while i < len(s1):\n        j = 0\n        while i < len(s1) and j < len(s2):\n            if s1[i] == s2[j]:\n                j += 1\n            i += 1\n        if j < len(s2):\n            break\n        end = i\n        j -= 1\n        i -= 1\n        while j >= 0:\n            if s1[i] == s2[j]:\n                j -= 1\n            i -= 1\n        i += 1\n        window = s1[i:end]\n        if not best or len(window) < len(best):\n            best = window\n        i += 1\n    return best",
    "notes": {},
    "tests": "assert minWindowSubsequence(\"abcdebdde\", \"bde\") == \"bcde\"\nassert minWindowSubsequence(\"jmeqksfrsdcmsiwvaovztaqenprpvnbstl\", \"u\") == \"\"\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=727"
   },
   {
    "id": "01-83-substring-with-concatenation-of-all-words",
@@ -1415,7 +1522,8 @@
    "solution": "from collections import Counter\n\ndef findSubstring(s, words):\n    if not s or not words: return []\n    word_len = len(words[0])\n    num_words = len(words)\n    total_len = word_len * num_words\n    word_count = Counter(words)\n    result = []\n    for offset in range(word_len):\n        left = offset\n        window = Counter()\n        matched = 0\n        for right in range(offset, len(s) - word_len + 1, word_len):\n            w = s[right:right + word_len]\n            if w in word_count:\n                window[w] += 1\n                matched += 1\n                while window[w] > word_count[w]:\n                    drop = s[left:left + word_len]\n                    window[drop] -= 1\n                    matched -= 1\n                    left += word_len\n                if matched == num_words:\n                    result.append(left)\n                    drop = s[left:left + word_len]\n                    window[drop] -= 1\n                    matched -= 1\n                    left += word_len\n            else:\n                window.clear()\n                matched = 0\n                left = right + word_len\n    return sorted(result)",
    "notes": {},
    "tests": "assert findSubstring(\"barfoothefoobarman\", [\"foo\",\"bar\"]) == [0,9]\nassert findSubstring(\"wordgoodgoodgoodbestword\", [\"word\",\"good\",\"best\",\"word\"]) == []\nassert findSubstring(\"barfoofoobarthefoobarman\", [\"bar\",\"foo\",\"the\"]) == [6,9,12]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=30"
   },
   {
    "id": "01-84-reverse-pairs",
@@ -1431,7 +1539,8 @@
    "solution": "def reversePairs(nums):\n    def mergeSort(arr):\n        if len(arr) <= 1:\n            return arr, 0\n        mid = len(arr) // 2\n        left, lc = mergeSort(arr[:mid])\n        right, rc = mergeSort(arr[mid:])\n        count = lc + rc\n        j = 0\n        for val in left:\n            while j < len(right) and val > 2 * right[j]:\n                j += 1\n            count += j\n        merged, i, k = [], 0, 0\n        while i < len(left) and k < len(right):\n            if left[i] <= right[k]:\n                merged.append(left[i]); i += 1\n            else:\n                merged.append(right[k]); k += 1\n        merged.extend(left[i:])\n        merged.extend(right[k:])\n        return merged, count\n    _, total = mergeSort(nums)\n    return total",
    "notes": {},
    "tests": "assert reversePairs([1,3,2,3,1]) == 2\nassert reversePairs([2,4,3,5,1]) == 3\nassert reversePairs([]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=493"
   },
   {
    "id": "01-85-minimum-operations-to-make-a-subsequence",
@@ -1447,7 +1556,8 @@
    "solution": "from bisect import bisect_left\n\ndef minOperations(target, arr):\n    pos = {v: i for i, v in enumerate(target)}\n    filtered = [pos[x] for x in arr if x in pos]\n    tails = []\n    for x in filtered:\n        idx = bisect_left(tails, x)\n        if idx == len(tails):\n            tails.append(x)\n        else:\n            tails[idx] = x\n    return len(target) - len(tails)",
    "notes": {},
    "tests": "assert minOperations([5,1,3], [9,4,2,3,4]) == 2\nassert minOperations([6,4,8,1,3,2], [4,7,6,2,3,8,6,1]) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1713"
   },
   {
    "id": "01-86-minimum-number-of-k-consecutive-bit-flips",
@@ -1463,7 +1573,8 @@
    "solution": "def minKBitFlips(nums, k):\n    n = len(nums)\n    flip = [0] * n\n    flipped = 0\n    res = 0\n    for i in range(n):\n        if i >= k:\n            flipped ^= flip[i - k]\n        if nums[i] ^ flipped == 0:\n            if i + k > n:\n                return -1\n            flip[i] = 1\n            flipped ^= 1\n            res += 1\n    return res",
    "notes": {},
    "tests": "assert minKBitFlips([0,1,0], 1) == 2\nassert minKBitFlips([1,1,0], 2) == -1\nassert minKBitFlips([0,0,0,1,0,1,1,0], 3) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=995"
   },
   {
    "id": "01-87-count-subarrays-with-fixed-bounds",
@@ -1479,7 +1590,8 @@
    "solution": "def countSubarrays(nums, minK, maxK):\n    res = 0\n    bad = min_pos = max_pos = -1\n    for i, x in enumerate(nums):\n        if x < minK or x > maxK:\n            bad = i\n        if x == minK:\n            min_pos = i\n        if x == maxK:\n            max_pos = i\n        res += max(0, min(min_pos, max_pos) - bad)\n    return res",
    "notes": {},
    "tests": "assert countSubarrays([1,3,5,2,7,5], 1, 5) == 2\nassert countSubarrays([1,1,1,1], 1, 1) == 10\nassert countSubarrays([2,1,2,1,2], 1, 2) == 10\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2444"
   },
   {
    "id": "01-88-minimum-number-of-operations-to-make-array-continuous",
@@ -1495,7 +1607,8 @@
    "solution": "def minOperations(nums):\n    n = len(nums)\n    unique = sorted(set(nums))\n    res = n\n    j = 0\n    for i, x in enumerate(unique):\n        while j < len(unique) and unique[j] < x + n:\n            j += 1\n        res = min(res, n - (j - i))\n    return res",
    "notes": {},
    "tests": "assert minOperations([4,2,5,3]) == 0\nassert minOperations([1,2,3,5,6]) == 1\nassert minOperations([1,10,100,1000]) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2009"
   },
   {
    "id": "01-89-reverse-nodes-in-k-group",
@@ -1511,7 +1624,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef reverseKGroup(head, k):\n    dummy = ListNode(0)\n    dummy.next = head\n    prev_group = dummy\n    while True:\n        kth = prev_group\n        for _ in range(k):\n            kth = kth.next\n            if not kth:\n                return dummy.next\n        group_start = prev_group.next\n        prev, curr = kth.next, group_start\n        for _ in range(k):\n            nxt = curr.next\n            curr.next = prev\n            prev = curr\n            curr = nxt\n        prev_group.next = kth\n        group_start.next = curr\n        prev_group = group_start\n\ndef make_ll(vals):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in vals: cur.next = ListNode(v); cur = cur.next\n    return dummy.next\n\ndef ll_to_list(head):\n    res = []\n    while head: res.append(head.val); head = head.next\n    return res",
    "notes": {},
    "tests": "assert ll_to_list(reverseKGroup(make_ll([1,2,3,4,5]), 2)) == [2,1,4,3,5]\nassert ll_to_list(reverseKGroup(make_ll([1,2,3,4,5]), 3)) == [3,2,1,4,5]\nassert ll_to_list(reverseKGroup(make_ll([1,2]), 1)) == [1,2]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=25"
   },
   {
    "id": "01-90-last-substring-in-lexicographical-order",
@@ -1527,7 +1641,8 @@
    "solution": "def lastSubstring(s):\n    i, j, k = 0, 1, 0\n    n = len(s)\n    while j + k < n:\n        if s[i + k] == s[j + k]:\n            k += 1\n        elif s[i + k] > s[j + k]:\n            j = j + k + 1\n            k = 0\n        else:\n            i = i + k + 1\n            k = 0\n            if i >= j:\n                j = i + 1\n    return s[i:]",
    "notes": {},
    "tests": "assert lastSubstring(\"abab\") == \"bab\"\nassert lastSubstring(\"leetcode\") == \"tcode\"\nassert lastSubstring(\"z\") == \"z\"\nassert lastSubstring(\"cacacb\") == \"cb\"\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1163"
   }
  ]
 }

@@ -3,6 +3,27 @@
  "slug": "top-k-elements",
  "name": "Top K Elements",
  "note": "Heap",
+ "about": {
+  "lead": "",
+  "sections": [
+   {
+    "heading": "Pattern Overview",
+    "body": "The **Top K Elements** pattern uses a **heap (priority queue)** to efficiently find the k largest/smallest elements, or elements ranked by a custom key.\n\n### Python Heap Facts\n- `heapq` is a **min-heap** by default\n- For max-heap behavior: negate values (`heapq.heappush(h, -val)`)\n- `heapq.heappush(h, x)` — O(log n)\n- `heapq.heappop(h)` — O(log n), returns smallest\n- `heapq.nlargest(k, iterable)` / `heapq.nsmallest(k, iterable)` — O(n log k)"
+   },
+   {
+    "heading": "Three Core Templates",
+    "body": "### Pattern 1: Top K Largest using min-heap of size k\n```python\nimport heapq\n\ndef top_k_largest(nums, k):\n    heap = []\n    for n in nums:\n        heapq.heappush(heap, n)\n        if len(heap) > k:\n            heapq.heappop(heap)  # remove smallest\n    return list(heap)  # smallest of the k largest is heap[0]\n```\n\n### Pattern 2: Kth Largest\n```python\ndef kth_largest(nums, k):\n    return heapq.nlargest(k, nums)[-1]\n```\n\n### Pattern 3: Custom key (e.g., by frequency)\n```python\nimport collections\ndef top_k_frequent(nums, k):\n    freq = collections.Counter(nums)\n    return heapq.nlargest(k, freq.keys(), key=freq.get)\n```"
+   },
+   {
+    "heading": "Complexity Comparison",
+    "body": "| Method | Time | Space | Best for |\n|--------|------|-------|----------|\n| Sort all | O(n log n) | O(n) | Small n or need full sort |\n| Heap of size k | O(n log k) | O(k) | Large n, streaming |\n| heapify + k pops | O(n + k log n) | O(n) | Already have all data |\n| QuickSelect | O(n) avg | O(1) | Single kth element |"
+   },
+   {
+    "heading": "When to Use",
+    "body": "| Signal | Pattern |\n|--------|---------|\n| \"k largest/smallest\" | Min-heap of size k |\n| \"k most/least frequent\" | Custom key heap |\n| \"median of stream\" | Two-heap (max + min) |\n| \"merge k sorted lists\" | Min-heap with (val, list_idx) |"
+   }
+  ]
+ },
  "notebook": "11_Top_K_Elements.ipynb",
  "problems": [
   {
@@ -19,7 +40,8 @@
    "solution": "class KthLargest:\n    def __init__(self, k, nums):\n        self.k = k\n        self.heap = []\n        for n in nums:\n            self.add(n)\n    def add(self, val):\n        heapq.heappush(self.heap, val)\n        if len(self.heap) > self.k:\n            heapq.heappop(self.heap)\n        return self.heap[0]\n\nkl = KthLargest(3, [4,5,8,2])",
    "notes": {},
    "tests": "assert kl.add(3) == 4\nassert kl.add(5) == 5\nassert kl.add(10) == 5\nassert kl.add(9) == 8\nassert kl.add(4) == 8\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=703"
   },
   {
    "id": "11-02-last-stone-weight",
@@ -35,7 +57,8 @@
    "solution": "def lastStoneWeight(stones):\n    heap = [-s for s in stones]\n    heapq.heapify(heap)\n    while len(heap) > 1:\n        a = -heapq.heappop(heap)\n        b = -heapq.heappop(heap)\n        if a != b:\n            heapq.heappush(heap, -(a - b))\n    return -heap[0] if heap else 0",
    "notes": {},
    "tests": "assert lastStoneWeight([2,7,4,1,8,1]) == 1\nassert lastStoneWeight([1]) == 1\nassert lastStoneWeight([2,2]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1046"
   },
   {
    "id": "11-03-k-closest-points-to-origin",
@@ -51,7 +74,8 @@
    "solution": "def kClosest(points, k):\n    return heapq.nsmallest(k, points, key=lambda p: p[0]**2 + p[1]**2)",
    "notes": {},
    "tests": "assert sorted(kClosest([[1,3],[-2,2]], 1)) == [[-2,2]]\nassert len(kClosest([[3,3],[5,-1],[-2,4]], 2)) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=973"
   },
   {
    "id": "11-04-take-gifts-from-the-richest-pile",
@@ -67,7 +91,8 @@
    "solution": "import math\n\ndef pickGifts(gifts, k):\n    heap = [-g for g in gifts]\n    heapq.heapify(heap)\n    for _ in range(k):\n        top = -heapq.heappop(heap)\n        heapq.heappush(heap, -int(math.sqrt(top)))\n    return -sum(heap)",
    "notes": {},
    "tests": "assert pickGifts([25,64,9,4,100], 4) == 29\nassert pickGifts([1,1,1,1], 4) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2558"
   },
   {
    "id": "11-05-minimum-cost-of-buying-candies-with-discount",
@@ -83,7 +108,8 @@
    "solution": "def minimumCost(cost):\n    cost.sort(reverse=True)\n    return sum(cost[i] for i in range(len(cost)) if (i+1) % 3 != 0)",
    "notes": {},
    "tests": "assert minimumCost([1,2,3]) == 5\nassert minimumCost([6,5,7,9,2,2]) == 23\nassert minimumCost([5,5]) == 10\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2144"
   },
   {
    "id": "11-06-maximum-product-of-two-elements-in-an-array",
@@ -99,7 +125,8 @@
    "solution": "def maxProduct(nums):\n    a, b = heapq.nlargest(2, nums)\n    return (a-1) * (b-1)",
    "notes": {},
    "tests": "assert maxProduct([3,4,5,2]) == 12\nassert maxProduct([1,5,4,5]) == 16\nassert maxProduct([3,7]) == 12\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1464"
   },
   {
    "id": "11-07-find-subsequence-of-length-k-with-the-largest-sum",
@@ -115,7 +142,8 @@
    "solution": "def maxSubsequence(nums, k):\n    indexed = heapq.nlargest(k, enumerate(nums), key=lambda x: x[1])\n    indexed.sort()\n    return [v for _, v in indexed]",
    "notes": {},
    "tests": "assert maxSubsequence([2,1,3,3], 2) == [3,3]\nassert maxSubsequence([-1,-2,3,4], 3) == [-1,3,4]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2099"
   },
   {
    "id": "11-08-find-the-kth-largest-integer-in-the-array",
@@ -133,7 +161,8 @@
     "2": "Use (length, value) as sort key for numeric string comparison"
    },
    "tests": "assert kthLargestNumber([\"3\",\"6\",\"7\",\"10\"], 4) == \"3\"\nassert kthLargestNumber([\"2\",\"21\",\"12\",\"1\"], 3) == \"2\"\nassert kthLargestNumber([\"0\",\"0\"], 2) == \"0\"\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1985"
   },
   {
    "id": "11-09-minimum-operations-to-halve-array-sum",
@@ -149,7 +178,8 @@
    "solution": "def halveArray(nums):\n    total = sum(nums)\n    target = total / 2\n    heap = [-n for n in nums]\n    heapq.heapify(heap)\n    ops = 0\n    reduced = 0.0\n    while reduced < target:\n        top = -heapq.heappop(heap)\n        half = top / 2\n        reduced += half\n        heapq.heappush(heap, -half)\n        ops += 1\n    return ops",
    "notes": {},
    "tests": "assert halveArray([5,19,8,1]) == 3\nassert halveArray([3,8,20]) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2208"
   },
   {
    "id": "11-10-remove-stones-to-minimize-the-total",
@@ -165,7 +195,8 @@
    "solution": "def minStoneSum(piles, k):\n    heap = [-p for p in piles]\n    heapq.heapify(heap)\n    for _ in range(k):\n        top = -heapq.heappop(heap)\n        top -= top // 2\n        heapq.heappush(heap, -top)\n    return -sum(heap)",
    "notes": {},
    "tests": "assert minStoneSum([5,4,9], 2) == 12\nassert minStoneSum([4,3,6,7], 3) == 12\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1962"
   },
   {
    "id": "11-11-reducing-dishes",
@@ -181,7 +212,8 @@
    "solution": "def maxSatisfaction(satisfaction):\n    satisfaction.sort()\n    total = 0\n    running = 0\n    for s in reversed(satisfaction):\n        running += s\n        if running <= 0: break\n        total += running\n    return total",
    "notes": {},
    "tests": "assert maxSatisfaction([-1,-8,0,5,-9]) == 14\nassert maxSatisfaction([4,3,2]) == 20\nassert maxSatisfaction([-1,-4,-5]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1402"
   },
   {
    "id": "11-12-reorganize-string",
@@ -197,7 +229,8 @@
    "solution": "def reorganizeString(s):\n    freq = Counter(s)\n    heap = [(-cnt, ch) for ch, cnt in freq.items()]\n    heapq.heapify(heap)\n    result = []\n    prev_cnt, prev_ch = 0, ''\n    while heap:\n        cnt, ch = heapq.heappop(heap)\n        result.append(ch)\n        if prev_cnt < 0:\n            heapq.heappush(heap, (prev_cnt, prev_ch))\n        prev_cnt, prev_ch = cnt + 1, ch\n    res = \"\".join(result)\n    return res if len(res) == len(s) else \"\"",
    "notes": {},
    "tests": "assert reorganizeString(\"aab\") in [\"aba\"]\nassert reorganizeString(\"aaab\") == \"\"\nassert len(reorganizeString(\"aabb\")) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=767"
   },
   {
    "id": "11-13-top-k-frequent-words",
@@ -215,7 +248,8 @@
     "3": "heapq.nlargest with tuple key: higher freq first, then alphabetical"
    },
    "tests": "assert topKFrequent([\"i\",\"love\",\"leetcode\",\"i\",\"love\",\"coding\"],2) == [\"i\",\"love\"]\nassert topKFrequent([\"the\",\"day\",\"is\",\"sunny\",\"the\",\"the\",\"the\",\"sunny\",\"is\",\"is\"],4) == [\"the\",\"is\",\"sunny\",\"day\"]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=692"
   },
   {
    "id": "11-14-minimum-cost-to-connect-sticks",
@@ -231,7 +265,8 @@
    "solution": "def connectSticks(sticks):\n    heapq.heapify(sticks)\n    total = 0\n    while len(sticks) > 1:\n        a = heapq.heappop(sticks)\n        b = heapq.heappop(sticks)\n        total += a + b\n        heapq.heappush(sticks, a + b)\n    return total",
    "notes": {},
    "tests": "assert connectSticks([2,4,3]) == 14\nassert connectSticks([1,8,3,5]) == 30\nassert connectSticks([5]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1167"
   },
   {
    "id": "11-15-the-k-weakest-rows-in-a-matrix",
@@ -247,7 +282,8 @@
    "solution": "import bisect\n\ndef kWeakestRows(mat, k):\n    strengths = [(sum(row), i) for i, row in enumerate(mat)]\n    return [i for _, i in heapq.nsmallest(k, strengths)]",
    "notes": {},
    "tests": "assert kWeakestRows([[1,1,0,0,0],[1,1,1,1,0],[1,0,0,0,0],[1,1,0,0,0],[1,1,1,1,1]], 3) == [2,0,3]\nassert kWeakestRows([[1,0,0,0],[1,1,1,1],[1,0,0,0],[1,0,0,0]], 2) == [0,2]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1337"
   },
   {
    "id": "11-16-furthest-building-you-can-reach",
@@ -265,7 +301,8 @@
     "1": "min-heap of climbs where we used a ladder"
    },
    "tests": "assert furthestBuilding([4,2,7,6,9,14,12], 5, 1) == 4\nassert furthestBuilding([4,12,2,7,3,18,20,3,19], 10, 2) == 7\nassert furthestBuilding([14,3,19,3], 17, 0) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1642"
   },
   {
    "id": "11-17-maximum-units-on-a-truck",
@@ -281,7 +318,8 @@
    "solution": "def maximumUnits(boxTypes, truckSize):\n    boxTypes.sort(key=lambda x: -x[1])\n    total = 0\n    for boxes, units in boxTypes:\n        take = min(boxes, truckSize)\n        total += take * units\n        truckSize -= take\n        if truckSize == 0: break\n    return total",
    "notes": {},
    "tests": "assert maximumUnits([[1,3],[2,2],[3,1]], 4) == 8\nassert maximumUnits([[5,10],[2,5],[4,7],[3,9]], 10) == 91\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1710"
   },
   {
    "id": "11-18-sort-array-by-frequency",
@@ -297,7 +335,8 @@
    "solution": "def frequencySort2(nums):\n    freq = Counter(nums)\n    return sorted(nums, key=lambda x: (freq[x], -x))",
    "notes": {},
    "tests": "assert frequencySort2([1,1,2,2,2,3]) == [3,1,1,2,2,2]\nassert frequencySort2([2,3,1,3,2]) == [1,3,3,2,2]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1636"
   },
   {
    "id": "11-19-find-k-pairs-with-smallest-sums-easy-version",
@@ -313,7 +352,8 @@
    "solution": "def kSmallestPairs(nums1, nums2, k):\n    if not nums1 or not nums2: return []\n    heap = [(nums1[i] + nums2[0], i, 0) for i in range(min(k, len(nums1)))]\n    heapq.heapify(heap)\n    result = []\n    while heap and len(result) < k:\n        s, i, j = heapq.heappop(heap)\n        result.append([nums1[i], nums2[j]])\n        if j + 1 < len(nums2):\n            heapq.heappush(heap, (nums1[i] + nums2[j+1], i, j+1))\n    return result",
    "notes": {},
    "tests": "assert kSmallestPairs([1,7,11],[2,4,6],3) == [[1,2],[1,4],[1,6]]\nassert kSmallestPairs([1,1,2],[1,2,3],2) == [[1,1],[1,1]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=373"
   },
   {
    "id": "11-20-find-kth-smallest-largest-using-heap",
@@ -329,7 +369,8 @@
    "solution": "def findKthLargest(nums, k):\n    heap = []\n    for n in nums:\n        heapq.heappush(heap, n)\n        if len(heap) > k:\n            heapq.heappop(heap)\n    return heap[0]",
    "notes": {},
    "tests": "assert findKthLargest([3,2,1,5,6,4], 2) == 5\nassert findKthLargest([3,2,3,1,2,4,5,5,6], 4) == 4\nassert findKthLargest([1], 1) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "11-21-top-k-frequent-elements",
@@ -345,7 +386,8 @@
    "solution": "def topKFrequentElements(nums, k):\n    freq = Counter(nums)\n    return heapq.nlargest(k, freq.keys(), key=freq.get)",
    "notes": {},
    "tests": "assert set(topKFrequentElements([1,1,1,2,2,3], 2)) == {1, 2}\nassert topKFrequentElements([1], 1) == [1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=347"
   },
   {
    "id": "11-22-kth-largest-element-in-an-array",
@@ -361,7 +403,8 @@
    "solution": "def findKthLargestFull(nums, k):\n    heap = []\n    for n in nums:\n        heapq.heappush(heap, n)\n        if len(heap) > k:\n            heapq.heappop(heap)\n    return heap[0]",
    "notes": {},
    "tests": "assert findKthLargestFull([3,2,1,5,6,4], 2) == 5\nassert findKthLargestFull([3,2,3,1,2,4,5,5,6], 4) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=215"
   },
   {
    "id": "11-23-task-scheduler",
@@ -380,7 +423,8 @@
     "11": "decrement count"
    },
    "tests": "assert leastInterval([\"A\",\"A\",\"A\",\"B\",\"B\",\"B\"], 2) == 8\nassert leastInterval([\"A\",\"C\",\"A\",\"B\",\"D\",\"B\"], 1) == 6\nassert leastInterval([\"A\",\"A\",\"A\",\"B\",\"B\",\"B\"], 0) == 6\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=621"
   },
   {
    "id": "11-24-reorganize-string-full",
@@ -396,7 +440,8 @@
    "solution": "def reorganizeStringFull(s):\n    freq = Counter(s)\n    if max(freq.values()) > (len(s) + 1) // 2:\n        return \"\"\n    heap = [(-cnt, ch) for ch, cnt in freq.items()]\n    heapq.heapify(heap)\n    result = []\n    prev_cnt, prev_ch = 0, ''\n    while heap:\n        cnt, ch = heapq.heappop(heap)\n        result.append(ch)\n        if prev_cnt < 0:\n            heapq.heappush(heap, (prev_cnt, prev_ch))\n        prev_cnt, prev_ch = cnt + 1, ch\n    return \"\".join(result)\n\nres = reorganizeStringFull(\"aab\")",
    "notes": {},
    "tests": "assert res and res[0] != res[1]\nassert reorganizeStringFull(\"aaab\") == \"\"\nres2 = reorganizeStringFull(\"aabb\")\nassert all(res2[i] != res2[i+1] for i in range(len(res2)-1))\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=767"
   },
   {
    "id": "11-25-find-k-pairs-with-smallest-sums-full",
@@ -412,7 +457,8 @@
    "solution": "def kSmallestPairsFull(nums1, nums2, k):\n    if not nums1 or not nums2: return []\n    heap = [(nums1[i] + nums2[0], i, 0) for i in range(min(k, len(nums1)))]\n    heapq.heapify(heap)\n    result = []\n    while heap and len(result) < k:\n        s, i, j = heapq.heappop(heap)\n        result.append([nums1[i], nums2[j]])\n        if j + 1 < len(nums2):\n            heapq.heappush(heap, (nums1[i] + nums2[j+1], i, j+1))\n    return result",
    "notes": {},
    "tests": "assert kSmallestPairsFull([1,7,11],[2,4,6],3) == [[1,2],[1,4],[1,6]]\nassert len(kSmallestPairsFull([1,2],[3],3)) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=373"
   },
   {
    "id": "11-26-kth-smallest-element-in-a-sorted-matrix",
@@ -428,7 +474,8 @@
    "solution": "def kthSmallest(matrix, k):\n    n = len(matrix)\n    heap = [(matrix[r][0], r, 0) for r in range(n)]\n    heapq.heapify(heap)\n    for _ in range(k):\n        val, r, c = heapq.heappop(heap)\n        if c + 1 < n:\n            heapq.heappush(heap, (matrix[r][c+1], r, c+1))\n    return val",
    "notes": {},
    "tests": "assert kthSmallest([[1,5,9],[10,11,13],[12,13,15]], 8) == 13\nassert kthSmallest([[-5]], 1) == -5\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=378"
   },
   {
    "id": "11-27-ipo",
@@ -447,7 +494,8 @@
     "7": "Unlock all projects we can afford"
    },
    "tests": "assert findMaximizedCapital(2, 0, [1,2,3], [0,1,1]) == 4\nassert findMaximizedCapital(3, 0, [1,2,3], [0,1,2]) == 6\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=502"
   },
   {
    "id": "11-28-maximum-subsequence-score",
@@ -463,7 +511,8 @@
    "solution": "def maxScore(nums1, nums2, k):\n    pairs = sorted(zip(nums1, nums2), key=lambda x: -x[1])\n    heap = []\n    cur_sum = 0\n    best = 0\n    for n1, n2 in pairs:\n        heapq.heappush(heap, n1)\n        cur_sum += n1\n        if len(heap) > k:\n            cur_sum -= heapq.heappop(heap)\n        if len(heap) == k:\n            best = max(best, cur_sum * n2)\n    return best",
    "notes": {},
    "tests": "assert maxScore([1,3,3,2],[2,1,3,4],3) == 12\nassert maxScore([4,2,3,1,1],[7,5,10,9,6],1) == 30\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2542"
   },
   {
    "id": "11-29-minimum-cost-to-hire-k-workers",
@@ -482,7 +531,8 @@
     "9": "remove largest quality"
    },
    "tests": "assert abs(mincostToHireWorkers([10,20,5],[70,50,30],2) - 105.0) < 1e-5\nassert abs(mincostToHireWorkers([3,1,10,10,1],[4,8,2,2,7],3) - 30.666666666666664) < 1e-5\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=857"
   },
   {
    "id": "11-30-meeting-rooms-iii",
@@ -501,7 +551,8 @@
     "8": "Free up rooms whose meetings have ended"
    },
    "tests": "assert mostBooked(2, [[0,10],[1,5],[2,7],[3,4]]) == 0\nassert mostBooked(3, [[1,20],[2,10],[3,5],[4,9],[6,8]]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2402"
   },
   {
    "id": "11-31-car-pooling-with-heap",
@@ -519,7 +570,8 @@
     "2": "(end, passengers)"
    },
    "tests": "assert carPooling([[2,1,5],[3,3,7]], 4) == False\nassert carPooling([[2,1,5],[3,3,7]], 5) == True\nassert carPooling([[3,2,7],[3,7,9],[8,3,9]], 11) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1094"
   },
   {
    "id": "11-32-minimum-number-of-refueling-stops",
@@ -537,7 +589,8 @@
     "1": "max-heap (negate fuel)"
    },
    "tests": "assert minRefuelStops(1, 1, []) == 0\nassert minRefuelStops(100, 10, [[10,100]]) == 1\nassert minRefuelStops(100, 10, [[10,60],[20,30],[30,30],[60,40]]) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=871"
   },
   {
    "id": "11-33-smallest-range-covering-elements-from-k-lists",
@@ -553,7 +606,8 @@
    "solution": "def smallestRange(nums):\n    heap = [(row[0], i, 0) for i, row in enumerate(nums)]\n    heapq.heapify(heap)\n    cur_max = max(row[0] for row in nums)\n    best = [float(\"-inf\"), float(\"inf\")]\n    while heap:\n        cur_min, i, j = heapq.heappop(heap)\n        if cur_max - cur_min < best[1] - best[0]:\n            best = [cur_min, cur_max]\n        if j + 1 == len(nums[i]): break\n        nxt = nums[i][j+1]\n        cur_max = max(cur_max, nxt)\n        heapq.heappush(heap, (nxt, i, j+1))\n    return best",
    "notes": {},
    "tests": "assert smallestRange([[4,10,15,24,26],[0,9,12,20],[5,18,22,30]]) == [20,24]\nassert smallestRange([[1,2,3],[1,2,3],[1,2,3]]) == [1,1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=632"
   },
   {
    "id": "11-34-find-median-from-data-stream-partial",
@@ -572,7 +626,8 @@
     "3": "min-heap (upper half)"
    },
    "tests": "assert mf.findMedian() == 1.5\nmf.addNum(3)\nassert mf.findMedian() == 2.0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=295"
   },
   {
    "id": "11-35-merge-k-sorted-lists-heap-approach",
@@ -588,7 +643,8 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef mergeKLists(lists):\n    heap = []\n    for i, node in enumerate(lists):\n        if node:\n            heapq.heappush(heap, (node.val, i, node))\n    dummy = ListNode(0)\n    cur = dummy\n    while heap:\n        val, i, node = heapq.heappop(heap)\n        cur.next = node\n        cur = cur.next\n        if node.next:\n            heapq.heappush(heap, (node.next.val, i, node.next))\n    return dummy.next\n\ndef to_list(node):\n    res = []\n    while node: res.append(node.val); node = node.next\n    return res\n\ndef from_list(lst):\n    if not lst: return None\n    head = ListNode(lst[0])\n    cur = head\n    for v in lst[1:]: cur.next = ListNode(v); cur = cur.next\n    return head\n\nl1 = from_list([1,4,5])\nl2 = from_list([1,3,4])\nl3 = from_list([2,6])",
    "notes": {},
    "tests": "assert to_list(mergeKLists([l1,l2,l3])) == [1,1,2,3,4,4,5,6]\nassert mergeKLists([]) is None\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=23"
   },
   {
    "id": "11-36-find-median-from-data-stream",
@@ -607,7 +663,8 @@
     "3": "min-heap"
    },
    "tests": "assert mf.findMedian() == 5.0\nmf2 = MedianFinderFull()\nmf2.addNum(1); mf2.addNum(2)\nassert mf2.findMedian() == 1.5\nmf2.addNum(3)\nassert mf2.findMedian() == 2.0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=295"
   },
   {
    "id": "11-37-sliding-window-median",
@@ -623,7 +680,8 @@
    "solution": "import sortedcontainers\n\ndef medianSlidingWindow(nums, k):\n    \"\"\"Sliding window median using SortedList for O(n log k) time.\"\"\"\n    sl = sortedcontainers.SortedList()\n    result = []\n    for i, n in enumerate(nums):\n        sl.add(n)\n        if i >= k:\n            sl.remove(nums[i - k])\n        if i >= k - 1:\n            if k % 2 == 1:\n                result.append(float(sl[k // 2]))\n            else:\n                result.append((sl[k // 2 - 1] + sl[k // 2]) / 2.0)\n    return result",
    "notes": {},
    "tests": "assert medianSlidingWindow([1,3,-1,-3,5,3,6,7], 3) == [1.0,-1.0,-1.0,3.0,5.0,6.0]\nassert medianSlidingWindow([1,2], 1) == [1.0,2.0]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=480"
   },
   {
    "id": "11-38-ipo-full",
@@ -639,7 +697,8 @@
    "solution": "def findMaximizedCapitalFull(k, w, profits, capital):\n    projects = sorted(zip(capital, profits))\n    available = []\n    i = 0\n    for _ in range(k):\n        while i < len(projects) and projects[i][0] <= w:\n            heapq.heappush(available, -projects[i][1])\n            i += 1\n        if not available: break\n        w += -heapq.heappop(available)\n    return w",
    "notes": {},
    "tests": "assert findMaximizedCapitalFull(2, 0, [1,2,3], [0,1,1]) == 4\nassert findMaximizedCapitalFull(3, 0, [1,2,3], [0,1,2]) == 6\nassert findMaximizedCapitalFull(1, 0, [1,2,3], [1,1,2]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=502"
   },
   {
    "id": "11-39-minimum-cost-to-hire-k-workers-full",
@@ -657,7 +716,8 @@
     "3": "max-heap of quality (negated)"
    },
    "tests": "assert abs(mincostToHireWorkersFull([10,20,5],[70,50,30],2) - 105.0) < 1e-5\nassert abs(mincostToHireWorkersFull([3,1,10,10,1],[4,8,2,2,7],3) - 30.666666666666664) < 1e-5\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=857"
   },
   {
    "id": "11-40-the-skyline-problem",
@@ -686,7 +746,8 @@
     "29": "reach the top."
    },
    "tests": "assert getSkyline(buildings) == expected\nassert getSkylineHeap(buildings) == expected\nassert getSkyline([[0,2,3],[2,5,3]]) == [[0,3],[5,0]]      # touching, same height\nassert getSkyline([[1,2,1],[1,2,2],[1,2,3]]) == [[1,3],[2,0]]  # nested, same span\nassert getSkyline([]) == []\nassert getSkyline([[0,1,5]]) == [[0,5],[1,0]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=218"
   },
   {
    "id": "11-41-maximum-performance-of-a-team",
@@ -702,7 +763,8 @@
    "solution": "def maxPerformance(n, speed, efficiency, k):\n    MOD = 10**9 + 7\n    engineers = sorted(zip(efficiency, speed), reverse=True)\n    heap = []\n    speed_sum = 0\n    best = 0\n    for eff, spd in engineers:\n        heapq.heappush(heap, spd)\n        speed_sum += spd\n        if len(heap) > k:\n            speed_sum -= heapq.heappop(heap)\n        best = max(best, speed_sum * eff)\n    return best % MOD",
    "notes": {},
    "tests": "assert maxPerformance(6, [2,10,3,1,5,8], [5,4,3,9,7,2], 2) == 60\nassert maxPerformance(6, [2,10,3,1,5,8], [5,4,3,9,7,2], 3) == 68\nassert maxPerformance(6, [2,10,3,1,5,8], [5,4,3,9,7,2], 4) == 72\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1383"
   },
   {
    "id": "11-42-smallest-range-covering-elements-from-k-lists-full",
@@ -718,7 +780,8 @@
    "solution": "def smallestRangeFull(nums):\n    heap = [(row[0], i, 0) for i, row in enumerate(nums)]\n    heapq.heapify(heap)\n    cur_max = max(row[0] for row in nums)\n    best_lo, best_hi = float(\"-inf\"), float(\"inf\")\n    while len(heap) == len(nums):\n        cur_min, i, j = heapq.heappop(heap)\n        if cur_max - cur_min < best_hi - best_lo:\n            best_lo, best_hi = cur_min, cur_max\n        if j + 1 < len(nums[i]):\n            nxt = nums[i][j+1]\n            cur_max = max(cur_max, nxt)\n            heapq.heappush(heap, (nxt, i, j+1))\n        else:\n            break\n    return [best_lo, best_hi]",
    "notes": {},
    "tests": "assert smallestRangeFull([[4,10,15,24,26],[0,9,12,20],[5,18,22,30]]) == [20,24]\nassert smallestRangeFull([[1,2,3],[1,2,3],[1,2,3]]) == [1,1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=632"
   },
   {
    "id": "11-43-merge-k-sorted-lists-full",
@@ -734,7 +797,8 @@
    "solution": "def mergeKListsFull(lists):\n    heap = []\n    for i, node in enumerate(lists):\n        if node:\n            heapq.heappush(heap, (node.val, i, node))\n    dummy = ListNode(0)\n    cur = dummy\n    while heap:\n        val, i, node = heapq.heappop(heap)\n        cur.next = node\n        cur = cur.next\n        if node.next:\n            heapq.heappush(heap, (node.next.val, i, node.next))\n    return dummy.next\n\nl1 = from_list([1,4,5])\nl2 = from_list([1,3,4])\nl3 = from_list([2,6])",
    "notes": {},
    "tests": "assert to_list(mergeKListsFull([l1,l2,l3])) == [1,1,2,3,4,4,5,6]\nassert mergeKListsFull([]) is None\nassert to_list(mergeKListsFull([from_list([])])) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=23"
   },
   {
    "id": "11-44-minimum-number-of-refueling-stops-full",
@@ -752,7 +816,8 @@
     "1": "max-heap (negate fuel)"
    },
    "tests": "assert minRefuelStopsFull(1, 1, []) == 0\nassert minRefuelStopsFull(100, 10, [[10,100]]) == 1\nassert minRefuelStopsFull(100, 10, [[10,60],[20,30],[30,30],[60,40]]) == 2\nassert minRefuelStopsFull(100, 10, [[10,60],[20,30],[30,30],[60,40],[90,60]]) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=871"
   },
   {
    "id": "11-45-find-the-kth-smallest-sum-of-a-matrix-with-sorted-rows",
@@ -770,7 +835,8 @@
     "2": "Merge two sorted arrays keeping only k smallest sums"
    },
    "tests": "assert kthSmallest_matrix([[1,3,11],[2,4,6]], 5) == 7\nassert kthSmallest_matrix([[1,3,11],[2,4,6]], 9) == 17\nassert kthSmallest_matrix([[1,10,10],[1,4,5],[2,3,6]], 7) == 9\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1439"
   },
   {
    "id": "11-46-kth-smallest-element-in-sorted-matrix-heap-warmup",
@@ -786,7 +852,8 @@
    "solution": "import heapq\n\ndef kthSmallestMatrix(matrix, k):\n    n = len(matrix)\n    heap = [(matrix[0][0], 0, 0)]\n    visited = {(0, 0)}\n    for _ in range(k - 1):\n        val, r, c = heapq.heappop(heap)\n        for nr, nc in [(r+1, c), (r, c+1)]:\n            if nr < n and nc < n and (nr, nc) not in visited:\n                heapq.heappush(heap, (matrix[nr][nc], nr, nc))\n                visited.add((nr, nc))\n    return heapq.heappop(heap)[0]",
    "notes": {},
    "tests": "assert kthSmallestMatrix([[1,5,9],[10,11,13],[12,13,15]], 8) == 13\nassert kthSmallestMatrix([[1,2],[1,3]], 2) == 1\nassert kthSmallestMatrix([[-5]], 1) == -5\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=378"
   },
   {
    "id": "11-47-find-median-from-running-stream-step-by-step",
@@ -805,7 +872,8 @@
     "4": "min-heap"
    },
    "tests": "assert running_medians([1]) == [1]\nassert running_medians([1, 2]) == [1, 1.5]\nassert running_medians([5, 3, 8]) == [5, 4.0, 5]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=295"
   },
   {
    "id": "11-48-sort-characters-by-frequency",
@@ -821,7 +889,8 @@
    "solution": "import heapq\nfrom collections import Counter\n\ndef frequencySort(s):\n    freq = Counter(s)\n    heap = [(-cnt, ch) for ch, cnt in freq.items()]\n    heapq.heapify(heap)\n    result = []\n    while heap:\n        cnt, ch = heapq.heappop(heap)\n        result.append(ch * (-cnt))\n    return ''.join(result)",
    "notes": {},
    "tests": "assert frequencySort('tree') in ('eert', 'eetr')\nassert frequencySort('cccaaa') in ('cccaaa', 'aaaccc')\nassert frequencySort('Aabb') in ('bbaA', 'bbAa')\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=451"
   },
   {
    "id": "11-49-relative-sort-array",
@@ -837,7 +906,8 @@
    "solution": "def relativeSortArray(arr1, arr2):\n    rank = {v: i for i, v in enumerate(arr2)}\n    return sorted(arr1, key=lambda x: (rank[x], 0) if x in rank else (len(arr2), x))",
    "notes": {},
    "tests": "assert relativeSortArray([2,3,1,3,2,4,6,7,9,2,19], [2,1,4,3,9,6]) == [2,2,2,1,4,3,3,9,6,7,19]\nassert relativeSortArray([28,6,22,8,44,17], [22,28,8,6]) == [22,28,8,6,17,44]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1122"
   },
   {
    "id": "11-50-maximum-bags-with-full-capacity-of-rocks",
@@ -853,7 +923,8 @@
    "solution": "def maximumBags(capacity, rocks, additionalRocks):\n    space = sorted(c - r for c, r in zip(capacity, rocks))\n    count = 0\n    for s in space:\n        if additionalRocks >= s:\n            additionalRocks -= s\n            count += 1\n        else:\n            break\n    return count",
    "notes": {},
    "tests": "assert maximumBags([2,3,4,5], [1,2,4,4], 2) == 3\nassert maximumBags([10,2,2], [2,2,0], 100) == 3\nassert maximumBags([5], [3], 1) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2279"
   },
   {
    "id": "11-51-minimum-cost-to-move-chips-to-same-position",
@@ -869,7 +940,8 @@
    "solution": "def minCostChips(position):\n    odd = sum(1 for p in position if p % 2 == 1)\n    even = len(position) - odd\n    return min(odd, even)",
    "notes": {},
    "tests": "assert minCostChips([1,2,3]) == 1\nassert minCostChips([2,2,2,3,3]) == 2\nassert minCostChips([1,1000000000]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1217"
   },
   {
    "id": "11-52-minimum-number-of-moves-to-seat-everyone",
@@ -885,7 +957,8 @@
    "solution": "def minMovesToSeat(seats, students):\n    return sum(abs(s - t) for s, t in zip(sorted(seats), sorted(students)))",
    "notes": {},
    "tests": "assert minMovesToSeat([3,1,5], [2,7,4]) == 4\nassert minMovesToSeat([4,1,5,9], [1,3,2,6]) == 7\nassert minMovesToSeat([2,2,6,6], [1,3,2,6]) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2037"
   },
   {
    "id": "11-53-find-the-kth-largest-sum-of-a-subarray-small-n-brute-f",
@@ -903,7 +976,8 @@
     "3": "min-heap of size k"
    },
    "tests": "assert kthLargestSubarraySum([3, -1, 4, 1], 3) == 5\nassert kthLargestSubarraySum([1, 2, 3], 2) == 5\nassert kthLargestSubarraySum([-1, -2, -3], 1) == -1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "11-54-least-number-of-unique-integers-after-k-removals",
@@ -919,7 +993,8 @@
    "solution": "from collections import Counter\n\ndef findLeastNumOfUniqueInts(arr, k):\n    freq = sorted(Counter(arr).values())\n    unique = len(freq)\n    for f in freq:\n        if k >= f:\n            k -= f\n            unique -= 1\n        else:\n            break\n    return unique",
    "notes": {},
    "tests": "assert findLeastNumOfUniqueInts([5,5,4], 1) == 1\nassert findLeastNumOfUniqueInts([4,3,1,1,3,3,2], 3) == 2\nassert findLeastNumOfUniqueInts([1], 1) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1481"
   },
   {
    "id": "11-55-minimum-number-of-pushes-to-type-word",
@@ -935,7 +1010,8 @@
    "solution": "from collections import Counter\n\ndef minimumPushes(word):\n    freq = sorted(Counter(word).values(), reverse=True)\n    total = 0\n    for i, f in enumerate(freq):\n        total += f * (i // 8 + 1)\n    return total",
    "notes": {},
    "tests": "assert minimumPushes('abcde') == 5\nassert minimumPushes('xyzxyzxyzxyz') == 12\nassert minimumPushes('aabbccddeeffgghhiiiiii') == 24\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=3014"
   },
   {
    "id": "11-56-sort-array-by-parity",
@@ -951,7 +1027,8 @@
    "solution": "def sortArrayByParity(nums):\n    l, r = 0, len(nums) - 1\n    while l < r:\n        if nums[l] % 2 > nums[r] % 2:\n            nums[l], nums[r] = nums[r], nums[l]\n        if nums[l] % 2 == 0: l += 1\n        if nums[r] % 2 == 1: r -= 1\n    return nums\n\nres = sortArrayByParity([3,1,2,4])",
    "notes": {},
    "tests": "assert all(res[i] % 2 == 0 for i in range(res.index(next(x for x in res if x%2!=0))))\nassert sortArrayByParity([0]) == [0]\nassert sortArrayByParity([2,4,6]) == [2,4,6]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=905"
   },
   {
    "id": "11-57-sort-array-by-parity-ii",
@@ -970,7 +1047,8 @@
     "4": "even index has odd number"
    },
    "tests": "assert all(res[i] % 2 == i % 2 for i in range(len(res)))\nres2 = sortArrayByParityII([2,3])\nassert all(res2[i] % 2 == i % 2 for i in range(len(res2)))\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=922"
   },
   {
    "id": "11-58-rank-teams-by-votes",
@@ -986,7 +1064,8 @@
    "solution": "def rankTeams(votes):\n    n = len(votes[0])\n    score = {t: [0]*n for t in votes[0]}\n    for vote in votes:\n        for rank, team in enumerate(vote):\n            score[team][rank] += 1\n    return ''.join(sorted(votes[0], key=lambda t: (score[t], [-ord(t)]), reverse=True))",
    "notes": {},
    "tests": "assert rankTeams(['ABC','ACB','ABC','ACB','ACB']) == 'ACB'\nassert rankTeams(['WXYZ','XYZW']) == 'XWYZ'\nassert rankTeams(['ZMNAGUEDSJYLBOPHRQICWFXTVK']) == 'ZMNAGUEDSJYLBOPHRQICWFXTVK'\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1366"
   },
   {
    "id": "11-59-maximum-number-of-coins-you-can-get",
@@ -1004,7 +1083,8 @@
     "4": "second from end in each triplet"
    },
    "tests": "assert maxCoins([2,4,1,2,7,8]) == 9\nassert maxCoins([2,4,5]) == 4\nassert maxCoins([9,8,7,6,5,1,2,3,4]) == 18\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1561"
   },
   {
    "id": "11-60-largest-perimeter-triangle",
@@ -1020,7 +1100,8 @@
    "solution": "def largestPerimeter(nums):\n    nums.sort(reverse=True)\n    for i in range(len(nums) - 2):\n        if nums[i] < nums[i+1] + nums[i+2]:\n            return nums[i] + nums[i+1] + nums[i+2]\n    return 0",
    "notes": {},
    "tests": "assert largestPerimeter([2,1,2]) == 5\nassert largestPerimeter([1,2,1,10]) == 0\nassert largestPerimeter([3,6,2,3]) == 8\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=976"
   },
   {
    "id": "11-61-minimum-subsequence-in-non-increasing-order",
@@ -1036,7 +1117,8 @@
    "solution": "def minSubsequence(nums):\n    nums.sort(reverse=True)\n    total = sum(nums)\n    picked = 0\n    result = []\n    for n in nums:\n        picked += n\n        result.append(n)\n        if picked > total - picked:\n            break\n    return result",
    "notes": {},
    "tests": "assert minSubsequence([4,3,10,9,8]) == [10,9]\nassert minSubsequence([4,4,7,6,7]) == [7,7,6]\nassert minSubsequence([6]) == [6]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1403"
   },
   {
    "id": "11-62-how-many-numbers-are-smaller-than-the-current-number",
@@ -1052,7 +1134,8 @@
    "solution": "import bisect\n\ndef smallerNumbersThanCurrent(nums):\n    sorted_nums = sorted(nums)\n    return [bisect.bisect_left(sorted_nums, n) for n in nums]",
    "notes": {},
    "tests": "assert smallerNumbersThanCurrent([8,1,2,2,3]) == [4,0,1,1,3]\nassert smallerNumbersThanCurrent([6,5,4,8]) == [2,1,0,3]\nassert smallerNumbersThanCurrent([7,7,7,7]) == [0,0,0,0]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1365"
   },
   {
    "id": "11-63-maximum-product-of-three-numbers",
@@ -1068,7 +1151,8 @@
    "solution": "def maximumProduct(nums):\n    nums.sort()\n    return max(nums[-1]*nums[-2]*nums[-3], nums[0]*nums[1]*nums[-1])",
    "notes": {},
    "tests": "assert maximumProduct([1,2,3]) == 6\nassert maximumProduct([1,2,3,4]) == 24\nassert maximumProduct([-1,-2,-3]) == -6\nassert maximumProduct([-4,-3,-2,-1,60]) == 720\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=628"
   },
   {
    "id": "11-64-third-largest-number-heap-approach",
@@ -1084,7 +1168,8 @@
    "solution": "import heapq\n\ndef thirdMax(nums):\n    heap = list(set(nums))\n    heapq.heapify(heap)\n    while len(heap) > 3:\n        heapq.heappop(heap)\n    if len(heap) < 3:\n        return max(heap)\n    return heap[0]",
    "notes": {},
    "tests": "assert thirdMax([3,2,1]) == 1\nassert thirdMax([1,2]) == 2\nassert thirdMax([2,2,3,1]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=414"
   },
   {
    "id": "11-65-find-n-unique-integers-sum-up-to-zero",
@@ -1100,7 +1185,8 @@
    "solution": "def sumZero(n):\n    result = list(range(1, n))\n    result.append(-sum(result))\n    return result",
    "notes": {},
    "tests": "for n in [1, 2, 3, 5]:\n    res = sumZero(n)\n    assert len(res) == n\n    assert len(set(res)) == n\n    assert sum(res) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1304"
   },
   {
    "id": "11-66-kth-largest-element-in-an-array-quickselect",
@@ -1118,7 +1204,8 @@
     "3": "kth largest = target-th smallest (0-indexed)"
    },
    "tests": "assert findKthLargest_qs([3,2,1,5,6,4], 2) == 5\nassert findKthLargest_qs([3,2,3,1,2,4,5,5,6], 4) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=215"
   },
   {
    "id": "11-67-k-closest-points-to-origin-quickselect-version",
@@ -1134,7 +1221,8 @@
    "solution": "import random\n\ndef kClosest_qs(points, k):\n    def dist(p): return p[0]**2 + p[1]**2\n\n    def quickselect(l, r):\n        if l >= r: return\n        pivot_i = random.randint(l, r)\n        points[pivot_i], points[r] = points[r], points[pivot_i]\n        pivot_d = dist(points[r])\n        store = l\n        for i in range(l, r):\n            if dist(points[i]) <= pivot_d:\n                points[store], points[i] = points[i], points[store]\n                store += 1\n        points[store], points[r] = points[r], points[store]\n        if store == k: return\n        elif store < k: quickselect(store + 1, r)\n        else: quickselect(l, store - 1)\n\n    quickselect(0, len(points) - 1)\n    return points[:k]\n\nres = kClosest_qs([[1,3],[-2,2]], 1)",
    "notes": {},
    "tests": "assert res == [[-2,2]] or dist_sq(res[0]) <= dist_sq([1,3])\ndef dist_sq(p): return p[0]**2+p[1]**2\nres2 = kClosest_qs([[3,3],[5,-1],[-2,4]], 2)\nassert all(dist_sq(p) <= dist_sq([5,-1]) for p in res2)\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=973"
   },
   {
    "id": "11-68-find-k-th-largest-xor-coordinate-value",
@@ -1150,7 +1238,8 @@
    "solution": "import heapq\n\ndef kthLargestXOR(matrix, k):\n    m, n = len(matrix), len(matrix[0])\n    xor = [[0]*n for _ in range(m)]\n    heap = []\n    for i in range(m):\n        for j in range(n):\n            xor[i][j] = matrix[i][j]\n            if i > 0: xor[i][j] ^= xor[i-1][j]\n            if j > 0: xor[i][j] ^= xor[i][j-1]\n            if i > 0 and j > 0: xor[i][j] ^= xor[i-1][j-1]\n            heapq.heappush(heap, xor[i][j])\n            if len(heap) > k:\n                heapq.heappop(heap)\n    return heap[0]",
    "notes": {},
    "tests": "assert kthLargestXOR([[5,2],[1,6]], 1) == 7\nassert kthLargestXOR([[5,2],[1,6]], 2) == 5\nassert kthLargestXOR([[5,2],[1,6]], 3) == 4\nassert kthLargestXOR([[5,2],[1,6]], 4) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1738"
   },
   {
    "id": "11-69-maximum-average-pass-ratio",
@@ -1166,7 +1255,8 @@
    "solution": "import heapq\n\ndef maxAverageRatio(classes, extraStudents):\n    def gain(p, t):\n        return (p + 1) / (t + 1) - p / t\n\n    heap = [(-gain(p, t), p, t) for p, t in classes]\n    heapq.heapify(heap)\n\n    for _ in range(extraStudents):\n        g, p, t = heapq.heappop(heap)\n        p += 1; t += 1\n        heapq.heappush(heap, (-gain(p, t), p, t))\n\n    return sum(p / t for _, p, t in heap) / len(heap)\n\nresult = maxAverageRatio([[1,2],[3,5],[2,2]], 2)",
    "notes": {},
    "tests": "assert abs(result - 0.78333) < 1e-4\nresult2 = maxAverageRatio([[2,4],[3,9],[4,5],[2,10]], 4)\nassert abs(result2 - 0.53485) < 1e-4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1792"
   },
   {
    "id": "11-70-reduce-array-size-to-the-half",
@@ -1182,7 +1272,8 @@
    "solution": "from collections import Counter\n\ndef minSetSize(arr):\n    target = len(arr) // 2\n    freqs = sorted(Counter(arr).values(), reverse=True)\n    removed = 0\n    count = 0\n    for f in freqs:\n        removed += f\n        count += 1\n        if removed >= target:\n            return count\n    return count",
    "notes": {},
    "tests": "assert minSetSize([3,3,3,3,5,5,5,2,2,7]) == 2\nassert minSetSize([7,7,7,7,7,7]) == 1\nassert minSetSize([1,9]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1338"
   },
   {
    "id": "11-71-minimum-cost-to-hire-k-workers-variant-different-scori",
@@ -1201,7 +1292,8 @@
     "12": "pop largest (negated smallest)"
    },
    "tests": "assert abs(mincostHireWorkers_variant([10,20,5], [70,50,30], 2) - 105.0) < 1e-5\nassert abs(mincostHireWorkers_variant([3,1,10,10,1], [4,8,2,2,7], 3) - 30.66667) < 1e-4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "11-72-find-k-closest-elements-heap-approach",
@@ -1219,7 +1311,8 @@
     "3": "max-heap: (-dist, -val) for tie-breaking"
    },
    "tests": "assert findClosestElements([1,2,3,4,5], 4, 3) == [1,2,3,4]\nassert findClosestElements([1,2,3,4,5], 4, -1) == [1,2,3,4]\nassert findClosestElements([1,3,7,8,9], 3, 5) == [3,7,8]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=658"
   },
   {
    "id": "11-73-top-k-frequent-elements-bucket-sort-version",
@@ -1235,7 +1328,8 @@
    "solution": "from collections import Counter\n\ndef topKFrequent_bucket(nums, k):\n    freq = Counter(nums)\n    buckets = [[] for _ in range(len(nums) + 1)]\n    for num, cnt in freq.items():\n        buckets[cnt].append(num)\n    result = []\n    for i in range(len(buckets) - 1, 0, -1):\n        result.extend(buckets[i])\n        if len(result) >= k:\n            break\n    return result[:k]",
    "notes": {},
    "tests": "assert set(topKFrequent_bucket([1,1,1,2,2,3], 2)) == {1, 2}\nassert topKFrequent_bucket([1], 1) == [1]\nassert set(topKFrequent_bucket([4,4,4,3,3,2], 2)) == {4, 3}\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=347"
   },
   {
    "id": "11-74-maximum-score-from-removing-substrings-heap-greedy",
@@ -1251,7 +1345,8 @@
    "solution": "def maximumGain(s, x, y):\n    def remove(s, pair, score):\n        stack = []\n        total = 0\n        for c in s:\n            if stack and stack[-1] == pair[0] and c == pair[1]:\n                stack.pop()\n                total += score\n            else:\n                stack.append(c)\n        return ''.join(stack), total\n\n    if x >= y:\n        s, score1 = remove(s, 'ab', x)\n        s, score2 = remove(s, 'ba', y)\n    else:\n        s, score1 = remove(s, 'ba', y)\n        s, score2 = remove(s, 'ab', x)\n    return score1 + score2",
    "notes": {},
    "tests": "assert maximumGain('cdbcbbaaabab', 4, 5) == 19\nassert maximumGain('aabbaaxybbaabb', 5, 4) == 20\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1717"
   },
   {
    "id": "11-75-longest-happy-string-greedy-heap",
@@ -1267,7 +1362,8 @@
    "solution": "import heapq\n\ndef longestDiverseString(a, b, c):\n    heap = []\n    for cnt, ch in [(-a, 'a'), (-b, 'b'), (-c, 'c')]:\n        if cnt < 0:\n            heapq.heappush(heap, (cnt, ch))\n    result = []\n    while heap:\n        cnt1, ch1 = heapq.heappop(heap)\n        if len(result) >= 2 and result[-1] == result[-2] == ch1:\n            if not heap: break\n            cnt2, ch2 = heapq.heappop(heap)\n            result.append(ch2)\n            cnt2 += 1\n            if cnt2 < 0: heapq.heappush(heap, (cnt2, ch2))\n            heapq.heappush(heap, (cnt1, ch1))\n        else:\n            result.append(ch1)\n            cnt1 += 1\n            if cnt1 < 0: heapq.heappush(heap, (cnt1, ch1))\n    res = ''.join(result)\n    return res\n\nres = longestDiverseString(1, 1, 7)",
    "notes": {},
    "tests": "assert 'ccc' not in res and 'aaa' not in res and 'bbb' not in res\nres2 = longestDiverseString(7, 1, 0)\nassert 'aaa' not in res2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1405"
   },
   {
    "id": "11-76-process-tasks-using-servers",
@@ -1286,7 +1382,8 @@
     "9": "Free up servers"
    },
    "tests": "assert assignTasks([3,3,2], [1,2,3,2,1,2]) == [2,2,0,2,1,2]\nassert assignTasks([5,1,4,3,2], [2,1,2,4,5,2,1]) == [1,4,1,4,1,3,2]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1882"
   },
   {
    "id": "11-77-single-threaded-cpu",
@@ -1304,7 +1401,8 @@
     "19": "jump to next task's enqueue time"
    },
    "tests": "assert getOrder([[1,2],[2,4],[3,2],[4,1]]) == [0,2,3,1]\nassert getOrder([[7,10],[7,12],[7,5],[7,4],[7,2]]) == [4,3,2,0,1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1834"
   },
   {
    "id": "11-78-maximum-performance-of-a-team-revisit",
@@ -1322,7 +1420,8 @@
     "5": "min-heap on speed"
    },
    "tests": "assert maxPerformance(6, [2,10,3,1,5,8], [5,4,3,9,7,2], 2) == 60\nassert maxPerformance(6, [2,10,3,1,5,8], [5,4,3,9,7,2], 3) == 68\nassert maxPerformance(6, [2,10,3,1,5,8], [5,4,3,9,7,2], 4) == 72\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1383"
   },
   {
    "id": "11-79-find-median-from-data-stream-two-heaps-detailed-walkth",
@@ -1343,7 +1442,8 @@
     "12": "Keep lo >= hi in size"
    },
    "tests": "assert mf.findMedian() == 1.5\nmf.addNum(3)\nassert mf.findMedian() == 2.0\nmf.addNum(4); mf.addNum(5)\nassert mf.findMedian() == 3.0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=295"
   },
   {
    "id": "11-80-ugly-number-ii-min-heap-approach",
@@ -1359,7 +1459,8 @@
    "solution": "import heapq\n\ndef nthUglyNumber(n):\n    heap = [1]\n    seen = {1}\n    val = 1\n    for _ in range(n):\n        val = heapq.heappop(heap)\n        for f in [2, 3, 5]:\n            nxt = val * f\n            if nxt not in seen:\n                seen.add(nxt)\n                heapq.heappush(heap, nxt)\n    return val",
    "notes": {},
    "tests": "assert nthUglyNumber(1) == 1\nassert nthUglyNumber(10) == 12\nassert nthUglyNumber(15) == 24\nassert nthUglyNumber(1690) == 2123366400\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=264"
   },
   {
    "id": "11-81-find-median-from-data-stream-with-deletes-extended",
@@ -1378,7 +1479,8 @@
     "6": "min-heap"
    },
    "tests": "assert mfd.findMedian() == 3.0\nmfd.deleteNum(3)\nassert mfd.findMedian() == 3.0\nmfd.deleteNum(1)\nassert mfd.findMedian() == 4.0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "11-82-rearrange-string-k-distance-apart",
@@ -1396,7 +1498,8 @@
     "8": "(cnt, ch, available_at)"
    },
    "tests": "assert res != '' and valid_k(res, 3) and sorted(res) == sorted('aabbcc')\nassert rearrangeString('aaabc', 3) == ''\nassert rearrangeString('aaadbbcc', 2) != '' or True  # may vary\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=358"
   },
   {
    "id": "11-83-task-scheduler-ii",
@@ -1412,7 +1515,8 @@
    "solution": "def taskSchedulerII(tasks, space):\n    next_avail = {}\n    day = 0\n    for task in tasks:\n        day += 1\n        if task in next_avail:\n            day = max(day, next_avail[task])\n        next_avail[task] = day + space + 1\n    return day",
    "notes": {},
    "tests": "assert taskSchedulerII([1,2,1,2,3,1], 3) == 9\nassert taskSchedulerII([1,2,3,4,5], 5) == 5\nassert taskSchedulerII([1,2,1], 2) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2365"
   },
   {
    "id": "11-84-maximum-profit-in-job-scheduling-heap-dp",
@@ -1431,7 +1535,8 @@
     "8": "Pop all jobs that ended before current job starts"
    },
    "tests": "assert jobScheduling([1,2,3,3], [3,4,5,6], [50,10,40,70]) == 120\nassert jobScheduling([1,2,3,4,6], [3,5,10,6,9], [20,20,100,70,60]) == 150\nassert jobScheduling([1,1,1], [2,3,4], [5,6,4]) == 6\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1235"
   },
   {
    "id": "11-85-minimum-cost-to-connect-sticks-extended-k-way-merge",
@@ -1449,7 +1554,8 @@
     "5": "Pad so (len-1) is divisible by (k-1)"
    },
    "tests": "# k=2 standard case\nassert connectSticksK([2,4,3], 2) == 14\nassert connectSticksK([1,8,3,5], 2) == 30\n# k=3 case\nassert connectSticksK([1,2,3,4,5], 3) == 21\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1167"
   },
   {
    "id": "11-86-smallest-range-covering-elements-from-k-lists-full",
@@ -1467,7 +1573,8 @@
     "3": "(val, list_idx, elem_idx)"
    },
    "tests": "assert smallestRange([[4,10,15,24,26],[0,9,12,20],[5,18,22,30]]) == [20,24]\nassert smallestRange([[1,2,3],[1,2,3],[1,2,3]]) == [1,1]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=632"
   },
   {
    "id": "11-87-kth-smallest-number-in-multiplication-table-binary-sea",
@@ -1483,7 +1590,8 @@
    "solution": "def findKthNumber(m, n, k):\n    def count_le(x):\n        return sum(min(x // i, n) for i in range(1, m + 1))\n\n    lo, hi = 1, m * n\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if count_le(mid) >= k:\n            hi = mid\n        else:\n            lo = mid + 1\n    return lo",
    "notes": {},
    "tests": "assert findKthNumber(3, 3, 5) == 3\nassert findKthNumber(2, 3, 6) == 6\nassert findKthNumber(3, 3, 9) == 9\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=668"
   },
   {
    "id": "11-88-k-pairs-with-smallest-sums-extended-all-pairs-from-k-l",
@@ -1499,7 +1607,8 @@
    "solution": "import heapq\n\ndef kSmallestPairsKLists(lists, p):\n    if not lists or not all(lists): return []\n    k = len(lists)\n    start = tuple(0 for _ in range(k))\n    init_sum = sum(lists[i][0] for i in range(k))\n    heap = [(init_sum, start)]\n    visited = {start}\n    result = []\n    while heap and len(result) < p:\n        s, indices = heapq.heappop(heap)\n        result.append([lists[i][indices[i]] for i in range(k)])\n        for d in range(k):\n            ni = list(indices)\n            ni[d] += 1\n            if ni[d] < len(lists[d]):\n                nkey = tuple(ni)\n                if nkey not in visited:\n                    visited.add(nkey)\n                    nsum = sum(lists[i][ni[i]] for i in range(k))\n                    heapq.heappush(heap, (nsum, nkey))\n    return result\n\nres = kSmallestPairsKLists([[1,3,5],[2,4,6]], 3)\nsums = [sum(x) for x in res]",
    "notes": {},
    "tests": "assert sums == sorted(sums) and sums[0] == 3\nres2 = kSmallestPairsKLists([[1,2],[1,2],[1,2]], 4)\nassert all(sum(x) <= sum(y) for x, y in zip(res2, res2[1:]))\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "11-89-maximum-frequency-stack-full",
@@ -1517,7 +1626,8 @@
     "5": "freq -> stack of elements"
    },
    "tests": "assert fs.pop() == 5\nassert fs.pop() == 7\nassert fs.pop() == 5\nassert fs.pop() == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=895"
   },
   {
    "id": "11-90-find-the-k-th-character-in-string-game-ii",
@@ -1538,7 +1648,8 @@
     "8": "complement if op=1"
    },
    "tests": "assert kthCharacter(5, [0, 0, 0]) == 'a'  # all copies\nassert kthCharacter(10, [0, 1, 0]) == 'b'  # one flip encountered\nassert kthCharacter(3, [0]) == 'a'\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=3307"
   }
  ]
 }

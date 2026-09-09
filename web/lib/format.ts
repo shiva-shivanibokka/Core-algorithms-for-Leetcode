@@ -116,9 +116,9 @@ const escapeHtml = (s: string) =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c] as string);
 
 /**
- * The notebooks' markdown, reduced to the four things they actually use:
- * bold, inline code, italics, and dash bullets. Escaped first, so a heading
- * that happens to contain a `<` is text and not markup.
+ * The notebooks' markdown, reduced to what they actually use: sub-headings,
+ * bold, inline code, italics, dash bullets, and fenced code blocks. Escaped
+ * first, so a heading that happens to contain a `<` is text and not markup.
  */
 export function formatProse(markdown: string): string {
   const inline = (s: string) =>
@@ -129,16 +129,45 @@ export function formatProse(markdown: string): string {
 
   const html: string[] = [];
   let list: string[] = [];
+  let fence: string[] | null = null;
 
   const closeList = () => {
     if (list.length) html.push(`<ul>${list.map((li) => `<li>${li}</li>`).join("")}</ul>`);
     list = [];
   };
 
+  // Templates and ASCII diagrams are the point of these sections, so a fenced
+  // block keeps its whitespace exactly rather than being reflowed as prose.
+  const closeFence = () => {
+    if (fence) {
+      html.push(`<pre class="snippet"><code>${escapeHtml(fence.join("\n"))}</code></pre>`);
+      fence = null;
+    }
+  };
+
   for (const raw of markdown.split("\n")) {
+    if (raw.trimStart().startsWith("```")) {
+      if (fence) closeFence();
+      else {
+        closeList();
+        fence = [];
+      }
+      continue;
+    }
+    if (fence) {
+      fence.push(raw);
+      continue;
+    }
+
     const line = raw.trim();
-    if (!line) {
+    if (!line || line === "---") {
       closeList();
+      continue;
+    }
+    const heading = line.match(/^(#{3,6})\s+(.*)$/);
+    if (heading) {
+      closeList();
+      html.push(`<h4>${inline(heading[2])}</h4>`);
       continue;
     }
     const bullet = line.match(/^[-*]\s+(.*)$/);
@@ -150,5 +179,6 @@ export function formatProse(markdown: string): string {
     }
   }
   closeList();
+  closeFence();
   return html.join("");
 }

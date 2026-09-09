@@ -3,6 +3,31 @@
  "slug": "subsets-backtracking",
  "name": "Subsets & Backtracking",
  "note": null,
+ "about": {
+  "lead": "",
+  "sections": [
+   {
+    "heading": "Pattern Overview",
+    "body": "**Backtracking** = DFS with pruning. Explore all choices, undo (backtrack) when done with a branch.\n\n### Core Idea\n```\nChoose → Explore → Unchoose\n```"
+   },
+   {
+    "heading": "Three Core Templates",
+    "body": "### Template 1: Subsets / Combinations\n```python\ndef backtrack(start, current, result):\n    result.append(list(current))      # record state (subset)\n    for i in range(start, len(nums)):\n        current.append(nums[i])       # choose\n        backtrack(i+1, current, result)  # explore\n        current.pop()                 # unchoose (backtrack)\n```\n\n### Template 2: Permutations\n```python\ndef backtrack(current, used, result):\n    if len(current) == len(nums):\n        result.append(list(current)); return\n    for i in range(len(nums)):\n        if used[i]: continue\n        used[i] = True\n        current.append(nums[i])\n        backtrack(current, used, result)\n        current.pop()\n        used[i] = False\n```\n\n### Template 3: Constraint Satisfaction (e.g., N-Queens)\n```python\ndef backtrack(row, board):\n    if row == n: result.append(copy(board)); return\n    for col in range(n):\n        if is_valid(board, row, col):\n            place(board, row, col)\n            backtrack(row+1, board)\n            remove(board, row, col)\n```"
+   },
+   {
+    "heading": "Decision Tree Visualization (Subsets of [1,2,3])",
+    "body": "```\n                    []\n         /           |           \\\n       [1]          [2]          [3]\n      /    \\          \\\n   [1,2]  [1,3]      [2,3]\n     |\n  [1,2,3]\n```"
+   },
+   {
+    "heading": "Pruning Strategies",
+    "body": "| Strategy | When | How |\n|----------|------|-----|\n| Sort input | Duplicates, constraints | Sort before backtrack |\n| Skip duplicates | Duplicate elements | `if i > start and nums[i] == nums[i-1]: continue` |\n| Constraint prune | Sum/target | `if sum > target: break` (after sorting) |\n| Visited array | Permutations | `used[]` array |"
+   },
+   {
+    "heading": "Complexity",
+    "body": "| Problem Type | Time | Space |\n|-------------|------|-------|\n| Subsets | O(2^n) | O(n) |\n| Permutations | O(n!) | O(n) |\n| Combinations | O(C(n,k)) | O(k) |"
+   }
+  ]
+ },
  "notebook": "12_Subsets_Backtracking.ipynb",
  "problems": [
   {
@@ -21,7 +46,8 @@
    "tests": "assert len(res) == 8\nassert [] in res\nassert [1,2,3] in res\nassert [1,2] in res\nprint(\"All tests passed!\")",
    "verified": [
     "subsets"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=78"
   },
   {
    "id": "12-02-subsets-ii-with-duplicates",
@@ -39,7 +65,8 @@
     "7": "skip duplicate"
    },
    "tests": "assert len(res) == 6\nassert [2] in res\nassert [2,2] in res\nassert res.count([2]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=90"
   },
   {
    "id": "12-03-combinations",
@@ -55,7 +82,8 @@
    "solution": "def combine(n, k):\n    result = []\n    def backtrack(start, curr):\n        if len(curr) == k:\n            result.append(list(curr)); return\n        for i in range(start, n+1):\n            curr.append(i)\n            backtrack(i+1, curr)\n            curr.pop()\n    backtrack(1, [])\n    return result\n\nres = combine(4, 2)",
    "notes": {},
    "tests": "assert len(res) == 6\nassert [1,2] in res\nassert [3,4] in res\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=77"
   },
   {
    "id": "12-04-letter-combinations-of-a-phone-number",
@@ -71,7 +99,8 @@
    "solution": "def letterCombinations(digits):\n    if not digits: return []\n    phone = {\n        '2':'abc','3':'def','4':'ghi','5':'jkl',\n        '6':'mno','7':'pqrs','8':'tuv','9':'wxyz'\n    }\n    result = []\n    def backtrack(idx, curr):\n        if idx == len(digits):\n            result.append(curr); return\n        for c in phone[digits[idx]]:\n            backtrack(idx+1, curr+c)\n    backtrack(0, \"\")\n    return result",
    "notes": {},
    "tests": "assert set(letterCombinations(\"23\")) == {\"ad\",\"ae\",\"af\",\"bd\",\"be\",\"bf\",\"cd\",\"ce\",\"cf\"}\nassert letterCombinations(\"\") == []\nassert len(letterCombinations(\"9\")) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=17"
   },
   {
    "id": "12-05-generate-parentheses-easy-version-count",
@@ -87,7 +116,8 @@
    "solution": "def countParentheses(n):\n    dp = [0] * (n+1)\n    dp[0] = 1\n    for i in range(1, n+1):\n        for j in range(i):\n            dp[i] += dp[j] * dp[i-1-j]\n    return dp[n]",
    "notes": {},
    "tests": "assert countParentheses(0) == 1\nassert countParentheses(1) == 1\nassert countParentheses(3) == 5\nassert countParentheses(4) == 14\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-06-binary-watch",
@@ -103,7 +133,8 @@
    "solution": "def readBinaryWatch(num):\n    result = []\n    for h in range(12):\n        for m in range(60):\n            if bin(h).count('1') + bin(m).count('1') == num:\n                result.append(f\"{h}:{m:02d}\")\n    return result\n\nres = readBinaryWatch(1)",
    "notes": {},
    "tests": "assert \"0:01\" in res and \"0:02\" in res and \"1:00\" in res\nassert len(res) == 10\nres2 = readBinaryWatch(9)\nassert res2 == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=401"
   },
   {
    "id": "12-07-letter-case-permutation",
@@ -119,7 +150,8 @@
    "solution": "def letterCasePermutation(s):\n    result = []\n    def backtrack(i, curr):\n        if i == len(s):\n            result.append(curr); return\n        if s[i].isalpha():\n            backtrack(i+1, curr + s[i].lower())\n            backtrack(i+1, curr + s[i].upper())\n        else:\n            backtrack(i+1, curr + s[i])\n    backtrack(0, \"\")\n    return result\n\nres = letterCasePermutation(\"a1b2\")",
    "notes": {},
    "tests": "assert set(res) == {\"a1b2\",\"a1B2\",\"A1b2\",\"A1B2\"}\nres2 = letterCasePermutation(\"3z4\")\nassert len(res2) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=784"
   },
   {
    "id": "12-08-all-paths-from-source-to-target",
@@ -135,7 +167,8 @@
    "solution": "def allPathsSourceTarget(graph):\n    n = len(graph)\n    result = []\n    def dfs(node, path):\n        if node == n-1:\n            result.append(list(path)); return\n        for nei in graph[node]:\n            path.append(nei)\n            dfs(nei, path)\n            path.pop()\n    dfs(0, [0])\n    return result",
    "notes": {},
    "tests": "assert allPathsSourceTarget([[1,2],[3],[3],[]]) == [[0,1,3],[0,2,3]]\nassert allPathsSourceTarget([[4,3,1],[3,2,4],[3],[4],[]]) == [[0,4],[0,3,4],[0,1,3,4],[0,1,2,3,4],[0,1,4]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=797"
   },
   {
    "id": "12-09-combination-sum-iii",
@@ -151,7 +184,8 @@
    "solution": "def combinationSum3(k, n):\n    result = []\n    def backtrack(start, curr, remaining):\n        if len(curr) == k and remaining == 0:\n            result.append(list(curr)); return\n        if len(curr) == k or remaining <= 0: return\n        for i in range(start, 10):\n            curr.append(i)\n            backtrack(i+1, curr, remaining-i)\n            curr.pop()\n    backtrack(1, [], n)\n    return result",
    "notes": {},
    "tests": "assert combinationSum3(3, 7) == [[1,2,4]]\nassert combinationSum3(3, 9) == [[1,2,6],[1,3,5],[2,3,4]]\nassert combinationSum3(4, 1) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=216"
   },
   {
    "id": "12-10-count-distinct-subsets-with-sum-target",
@@ -167,7 +201,8 @@
    "solution": "def countSubsetsWithSum(nums, target):\n    count = [0]\n    def backtrack(start, curr_sum):\n        if curr_sum == target:\n            count[0] += 1\n        if curr_sum >= target: return\n        for i in range(start, len(nums)):\n            backtrack(i+1, curr_sum + nums[i])\n    backtrack(0, 0)\n    return count[0]",
    "notes": {},
    "tests": "assert countSubsetsWithSum([1,2,3,4,5], 5) == 3   # {5},{1,4},{2,3}\nassert countSubsetsWithSum([1,1,2,3], 4) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-11-find-k-sum-subsets",
@@ -183,7 +218,8 @@
    "solution": "def kSumSubsets(nums, k):\n    result = []\n    def backtrack(start, curr):\n        if len(curr) == k:\n            result.append(list(curr)); return\n        remaining = k - len(curr)\n        for i in range(start, len(nums) - remaining + 1):\n            curr.append(nums[i])\n            backtrack(i+1, curr)\n            curr.pop()\n    backtrack(0, [])\n    return result\n\nres = kSumSubsets([1,2,3,4], 2)",
    "notes": {},
    "tests": "assert len(res) == 6\nassert [1,2] in res\nassert [3,4] in res\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-12-power-set-same-as-subsets",
@@ -199,7 +235,8 @@
    "solution": "def powerSet(nums):\n    n = len(nums)\n    result = []\n    for mask in range(1 << n):\n        subset = [nums[i] for i in range(n) if mask & (1 << i)]\n        result.append(subset)\n    return result\n\nres = powerSet([1,2,3])",
    "notes": {},
    "tests": "assert len(res) == 8\nassert [] in res\nassert [1,2,3] in res\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-13-restore-ip-addresses-simplified",
@@ -217,7 +254,8 @@
     "10": "no leading zeros"
    },
    "tests": "assert \"255.255.11.135\" in res and \"255.255.111.35\" in res\nassert restoreIpAddresses(\"0000\") == [\"0.0.0.0\"]\nassert restoreIpAddresses(\"101023\") != []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=93"
   },
   {
    "id": "12-14-palindrome-partitioning-simplified",
@@ -233,7 +271,8 @@
    "solution": "def partition(s):\n    result = []\n    def is_pal(x): return x == x[::-1]\n    def backtrack(start, curr):\n        if start == len(s):\n            result.append(list(curr)); return\n        for end in range(start+1, len(s)+1):\n            sub = s[start:end]\n            if is_pal(sub):\n                curr.append(sub)\n                backtrack(end, curr)\n                curr.pop()\n    backtrack(0, [])\n    return result",
    "notes": {},
    "tests": "assert [[\"a\",\"a\",\"b\"]] == partition(\"aab\") or [[\"aa\",\"b\"]] == partition(\"aab\") or True\nres = partition(\"aab\")\nassert [\"aa\",\"b\"] in res and [\"a\",\"a\",\"b\"] in res\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=131"
   },
   {
    "id": "12-15-gray-code",
@@ -249,7 +288,8 @@
    "solution": "def grayCode(n):\n    return [i ^ (i >> 1) for i in range(1 << n)]",
    "notes": {},
    "tests": "assert grayCode(1) == [0,1]\nassert grayCode(2) == [0,1,3,2]\nassert len(grayCode(3)) == 8\n# Check adjacent differ by 1 bit\nres = grayCode(3)\nfor i in range(len(res)-1):\n    diff = res[i] ^ res[i+1]\n    assert diff & (diff-1) == 0  # power of 2 = 1 bit difference\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=89"
   },
   {
    "id": "12-16-unique-binary-search-trees-count",
@@ -265,7 +305,8 @@
    "solution": "def numTrees(n):\n    dp = [0] * (n+1)\n    dp[0] = 1\n    for i in range(1, n+1):\n        for j in range(i):\n            dp[i] += dp[j] * dp[i-1-j]\n    return dp[n]",
    "notes": {},
    "tests": "assert numTrees(1) == 1\nassert numTrees(2) == 2\nassert numTrees(3) == 5\nassert numTrees(4) == 14\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=96"
   },
   {
    "id": "12-17-beautiful-arrangement-simplified",
@@ -281,7 +322,8 @@
    "solution": "def countArrangement(n):\n    count = [0]\n    used = [False] * (n+1)\n    def backtrack(pos):\n        if pos > n:\n            count[0] += 1; return\n        for num in range(1, n+1):\n            if not used[num] and (num % pos == 0 or pos % num == 0):\n                used[num] = True\n                backtrack(pos+1)\n                used[num] = False\n    backtrack(1)\n    return count[0]",
    "notes": {},
    "tests": "assert countArrangement(1) == 1\nassert countArrangement(2) == 2\nassert countArrangement(3) == 3\nassert countArrangement(4) == 8\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=526"
   },
   {
    "id": "12-18-different-ways-to-add-parentheses-simplified",
@@ -297,7 +339,8 @@
    "solution": "def diffWaysToCompute(expression):\n    results = []\n    for i, c in enumerate(expression):\n        if c in \"+-*\":\n            left = diffWaysToCompute(expression[:i])\n            right = diffWaysToCompute(expression[i+1:])\n            for l in left:\n                for r in right:\n                    if c == '+': results.append(l+r)\n                    elif c == '-': results.append(l-r)\n                    else: results.append(l*r)\n    if not results:\n        results.append(int(expression))\n    return results",
    "notes": {},
    "tests": "assert sorted(diffWaysToCompute(\"2-1-1\")) == [0, 2]\nassert sorted(diffWaysToCompute(\"2*3-4*5\")) == [-34,-14,-10,-10,10]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=241"
   },
   {
    "id": "12-19-find-all-anagrams-backtracking-perspective",
@@ -313,7 +356,8 @@
    "solution": "def findAnagrams(s):\n    chars = sorted(s)\n    result = []\n    used = [False] * len(chars)\n    def backtrack(curr):\n        if len(curr) == len(chars):\n            result.append(\"\".join(curr)); return\n        for i in range(len(chars)):\n            if used[i]: continue\n            if i > 0 and chars[i] == chars[i-1] and not used[i-1]: continue\n            used[i] = True\n            curr.append(chars[i])\n            backtrack(curr)\n            curr.pop()\n            used[i] = False\n    backtrack([])\n    return result\n\nres = findAnagrams(\"abc\")",
    "notes": {},
    "tests": "assert len(res) == 6\nassert \"abc\" in res and \"cba\" in res\n\nres2 = findAnagrams(\"aab\")\nassert len(res2) == 3\nassert \"aab\" in res2 and \"aba\" in res2 and \"baa\" in res2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-20-count-number-of-texts-simplified",
@@ -329,7 +373,8 @@
    "solution": "def countTexts(pressedKeys):\n    MOD = 10**9 + 7\n    n = len(pressedKeys)\n    dp = [0] * (n+1)\n    dp[0] = 1\n    for i in range(1, n+1):\n        dp[i] = dp[i-1]\n        if i >= 2 and pressedKeys[i-1] == pressedKeys[i-2]:\n            dp[i] = (dp[i] + dp[i-2]) % MOD\n            if i >= 3 and pressedKeys[i-1] == pressedKeys[i-3]:\n                dp[i] = (dp[i] + dp[i-3]) % MOD\n                if pressedKeys[i-1] in '79' and i >= 4 and pressedKeys[i-1] == pressedKeys[i-4]:\n                    dp[i] = (dp[i] + dp[i-4]) % MOD\n    return dp[n]",
    "notes": {},
    "tests": "assert countTexts(\"22233\") == 8\nassert countTexts(\"222222222222222222222222222222222222\") == 82876089\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2266"
   },
   {
    "id": "12-21-combination-sum",
@@ -349,7 +394,8 @@
    "tests": "assert [2,2,3] in combinationSum([2,3,6,7], 7)\nassert [7] in combinationSum([2,3,6,7], 7)\nassert combinationSum([2], 1) == []\nprint(\"All tests passed!\")",
    "verified": [
     "combinationSum"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=39"
   },
   {
    "id": "12-22-combination-sum-ii",
@@ -365,7 +411,8 @@
    "solution": "def combinationSum2(candidates, target):\n    candidates.sort()\n    result = []\n    def backtrack(start, curr, remaining):\n        if remaining == 0:\n            result.append(list(curr)); return\n        for i in range(start, len(candidates)):\n            if candidates[i] > remaining: break\n            if i > start and candidates[i] == candidates[i-1]: continue\n            curr.append(candidates[i])\n            backtrack(i+1, curr, remaining - candidates[i])\n            curr.pop()\n    backtrack(0, [], target)\n    return result\n\nres = combinationSum2([10,1,2,7,6,1,5], 8)",
    "notes": {},
    "tests": "assert [1,1,6] in res and [1,2,5] in res and [1,7] in res and [2,6] in res\nres2 = combinationSum2([2,5,2,1,2], 5)\nassert [1,2,2] in res2 and [5] in res2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=40"
   },
   {
    "id": "12-23-permutations",
@@ -383,7 +430,8 @@
    "tests": "assert len(res) == 6\nassert [1,2,3] in res and [3,2,1] in res\nprint(\"All tests passed!\")",
    "verified": [
     "permute"
-   ]
+   ],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=46"
   },
   {
    "id": "12-24-permutations-ii-with-duplicates",
@@ -399,7 +447,8 @@
    "solution": "def permuteUnique(nums):\n    nums.sort()\n    result = []\n    used = [False] * len(nums)\n    def backtrack(curr):\n        if len(curr) == len(nums):\n            result.append(list(curr)); return\n        for i in range(len(nums)):\n            if used[i]: continue\n            if i > 0 and nums[i] == nums[i-1] and not used[i-1]: continue\n            used[i] = True\n            curr.append(nums[i])\n            backtrack(curr)\n            curr.pop()\n            used[i] = False\n    backtrack([])\n    return result\n\nres = permuteUnique([1,1,2])",
    "notes": {},
    "tests": "assert len(res) == 3\nassert [1,1,2] in res and [1,2,1] in res and [2,1,1] in res\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=47"
   },
   {
    "id": "12-25-word-search",
@@ -418,7 +467,8 @@
     "10": "unmark"
    },
    "tests": "assert exist([[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], \"ABCCED\") == True\nassert exist([[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], \"SEE\") == True\nassert exist([[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], \"ABCB\") == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=79"
   },
   {
    "id": "12-26-palindrome-partitioning-full",
@@ -436,7 +486,8 @@
     "3": "Precompute palindrome table"
    },
    "tests": "assert [\"aa\",\"b\"] in res and [\"a\",\"a\",\"b\"] in res\nres2 = partitionFull(\"a\")\nassert res2 == [[\"a\"]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=131"
   },
   {
    "id": "12-27-generate-parentheses",
@@ -452,7 +503,8 @@
    "solution": "def generateParenthesis(n):\n    result = []\n    def backtrack(curr, open_cnt, close_cnt):\n        if len(curr) == 2*n:\n            result.append(curr); return\n        if open_cnt < n:\n            backtrack(curr+'(', open_cnt+1, close_cnt)\n        if close_cnt < open_cnt:\n            backtrack(curr+')', open_cnt, close_cnt+1)\n    backtrack(\"\", 0, 0)\n    return result\n\nres = generateParenthesis(3)",
    "notes": {},
    "tests": "assert len(res) == 5\nassert \"((()))\" in res and \"(()())\" in res\nres1 = generateParenthesis(1)\nassert res1 == [\"()\"]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=22"
   },
   {
    "id": "12-28-letter-combinations-of-a-phone-number-full",
@@ -468,7 +520,8 @@
    "solution": "def letterCombinationsFull(digits):\n    if not digits: return []\n    phone = {'2':'abc','3':'def','4':'ghi','5':'jkl',\n             '6':'mno','7':'pqrs','8':'tuv','9':'wxyz'}\n    result = []\n    def backtrack(idx, curr):\n        if idx == len(digits):\n            result.append(curr); return\n        for c in phone[digits[idx]]:\n            backtrack(idx+1, curr+c)\n    backtrack(0, \"\")\n    return result",
    "notes": {},
    "tests": "assert set(letterCombinationsFull(\"23\")) == {\"ad\",\"ae\",\"af\",\"bd\",\"be\",\"bf\",\"cd\",\"ce\",\"cf\"}\nassert letterCombinationsFull(\"\") == []\nassert len(letterCombinationsFull(\"79\")) == 16\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=17"
   },
   {
    "id": "12-29-n-queens-simplified",
@@ -484,7 +537,8 @@
    "solution": "def solveNQueensOne(n):\n    \"\"\"Return one valid N-Queens solution.\"\"\"\n    cols = set(); diag1 = set(); diag2 = set()\n    board = [['.']*n for _ in range(n)]\n    result = [None]\n    def backtrack(row):\n        if result[0]: return\n        if row == n:\n            result[0] = [\"\".join(r) for r in board]; return\n        for col in range(n):\n            if col in cols or (row-col) in diag1 or (row+col) in diag2:\n                continue\n            cols.add(col); diag1.add(row-col); diag2.add(row+col)\n            board[row][col] = 'Q'\n            backtrack(row+1)\n            cols.remove(col); diag1.remove(row-col); diag2.remove(row+col)\n            board[row][col] = '.'\n    backtrack(0)\n    return result[0]\n\nsol = solveNQueensOne(4)",
    "notes": {},
    "tests": "assert sol is not None and len(sol) == 4\n# Verify no two queens in same col/row/diag\npositions = [(r, sol[r].index('Q')) for r in range(4)]\ncols = [c for _,c in positions]\nassert len(set(cols)) == 4  # all different columns\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=51"
   },
   {
    "id": "12-30-sudoku-solver-simplified",
@@ -500,7 +554,8 @@
    "solution": "def solveSudoku(board):\n    def is_valid(r, c, num):\n        ch = str(num)\n        if ch in board[r]: return False\n        if any(board[i][c] == ch for i in range(9)): return False\n        br, bc = 3*(r//3), 3*(c//3)\n        for i in range(br, br+3):\n            for j in range(bc, bc+3):\n                if board[i][j] == ch: return False\n        return True\n    def backtrack():\n        for r in range(9):\n            for c in range(9):\n                if board[r][c] == '.':\n                    for num in range(1, 10):\n                        if is_valid(r, c, num):\n                            board[r][c] = str(num)\n                            if backtrack(): return True\n                            board[r][c] = '.'\n                    return False\n        return True\n    backtrack()\n\nboard = [\n    [\"5\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"],\n    [\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"],\n    [\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"],\n    [\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"],\n    [\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"],\n    [\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"],\n    [\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"],\n    [\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"],\n    [\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]\n]\nsolveSudoku(board)",
    "notes": {},
    "tests": "assert board[0] == [\"5\",\"3\",\"4\",\"6\",\"7\",\"8\",\"9\",\"1\",\"2\"]\nassert board[4] == [\"4\",\"2\",\"6\",\"8\",\"5\",\"3\",\"7\",\"9\",\"1\"]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=37"
   },
   {
    "id": "12-31-target-sum-backtracking-version",
@@ -516,7 +571,8 @@
    "solution": "def findTargetSumWays(nums, target):\n    count = [0]\n    def backtrack(idx, curr_sum):\n        if idx == len(nums):\n            if curr_sum == target: count[0] += 1\n            return\n        backtrack(idx+1, curr_sum + nums[idx])\n        backtrack(idx+1, curr_sum - nums[idx])\n    backtrack(0, 0)\n    return count[0]",
    "notes": {},
    "tests": "assert findTargetSumWays([1,1,1,1,1], 3) == 5\nassert findTargetSumWays([1], 1) == 1\nassert findTargetSumWays([1], 2) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=494"
   },
   {
    "id": "12-32-restore-ip-addresses-full",
@@ -532,7 +588,8 @@
    "solution": "def restoreIpAddressesFull(s):\n    result = []\n    def backtrack(start, parts):\n        if len(parts) == 4:\n            if start == len(s): result.append(\".\".join(parts))\n            return\n        for length in range(1, 4):\n            if start + length > len(s): break\n            seg = s[start:start+length]\n            if len(seg) > 1 and seg[0] == '0': break\n            if int(seg) > 255: break\n            backtrack(start+length, parts+[seg])\n    backtrack(0, [])\n    return result\n\nres = restoreIpAddressesFull(\"25525511135\")",
    "notes": {},
    "tests": "assert \"255.255.11.135\" in res and \"255.255.111.35\" in res\nassert len(restoreIpAddressesFull(\"0000\")) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=93"
   },
   {
    "id": "12-33-find-unique-binary-string",
@@ -550,7 +607,8 @@
     "2": "Cantor's diagonal: flip ith char of ith string"
    },
    "tests": "assert findDifferentBinaryString([\"01\",\"10\"]) not in [\"01\",\"10\"]\nassert findDifferentBinaryString([\"00\",\"01\"]) not in [\"00\",\"01\"]\nassert findDifferentBinaryString([\"111\",\"011\",\"001\"]) not in [\"111\",\"011\",\"001\"]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1980"
   },
   {
    "id": "12-34-beautiful-arrangement-full",
@@ -566,7 +624,8 @@
    "solution": "def countArrangementFull(n):\n    count = [0]\n    used = [False] * (n+1)\n    def backtrack(pos):\n        if pos > n:\n            count[0] += 1; return\n        for num in range(1, n+1):\n            if not used[num] and (num % pos == 0 or pos % num == 0):\n                used[num] = True\n                backtrack(pos+1)\n                used[num] = False\n    backtrack(1)\n    return count[0]",
    "notes": {},
    "tests": "assert countArrangementFull(1) == 1\nassert countArrangementFull(2) == 2\nassert countArrangementFull(3) == 3\nassert countArrangementFull(6) == 36\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=526"
   },
   {
    "id": "12-35-subsets-full-all-variants",
@@ -582,7 +641,8 @@
    "solution": "def subsetsAll(nums):\n    \"\"\"All subsets including with duplicates.\"\"\"\n    nums.sort()\n    result = []\n    def backtrack(start, curr):\n        result.append(list(curr))\n        for i in range(start, len(nums)):\n            if i > start and nums[i] == nums[i-1]: continue\n            curr.append(nums[i])\n            backtrack(i+1, curr)\n            curr.pop()\n    backtrack(0, [])\n    return result\n\nres = subsetsAll([1,2,2])",
    "notes": {},
    "tests": "assert len(res) == 6\nassert [2] in res\nassert [2,2] in res\nassert res.count([2]) == 1\n\n# Bitmask approach for unique (no dups)\ndef subsetsDistinct(nums):\n    n = len(nums)\n    seen = set()\n    result = []\n    for mask in range(1 << n):\n        sub = tuple(sorted(nums[i] for i in range(n) if mask & (1<<i)))\n        if sub not in seen:\n            seen.add(sub)\n            result.append(list(sub))\n    return result\n\nres2 = subsetsDistinct([1,2,2])\nassert len(res2) == 6\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=90"
   },
   {
    "id": "12-36-n-queens-full",
@@ -598,7 +658,8 @@
    "solution": "def solveNQueens(n):\n    cols = set(); diag1 = set(); diag2 = set()\n    board = [['.']*n for _ in range(n)]\n    result = []\n    def backtrack(row):\n        if row == n:\n            result.append([\"\".join(r) for r in board]); return\n        for col in range(n):\n            if col in cols or (row-col) in diag1 or (row+col) in diag2:\n                continue\n            cols.add(col); diag1.add(row-col); diag2.add(row+col)\n            board[row][col] = 'Q'\n            backtrack(row+1)\n            cols.remove(col); diag1.remove(row-col); diag2.remove(row+col)\n            board[row][col] = '.'\n    backtrack(0)\n    return result\n\nres = solveNQueens(4)",
    "notes": {},
    "tests": "assert len(res) == 2\nres8 = solveNQueens(8)\nassert len(res8) == 92\n# Validate one solution\nsol = res[0]\npositions = [(r, sol[r].index('Q')) for r in range(4)]\ncols_used = set(c for _,c in positions)\nassert len(cols_used) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=51"
   },
   {
    "id": "12-37-sudoku-solver-full",
@@ -614,7 +675,8 @@
    "solution": "def solveSudokuFull(board):\n    rows = [set() for _ in range(9)]\n    cols = [set() for _ in range(9)]\n    boxes = [set() for _ in range(9)]\n    empty = []\n    for r in range(9):\n        for c in range(9):\n            if board[r][c] != '.':\n                d = board[r][c]\n                rows[r].add(d); cols[c].add(d)\n                boxes[(r//3)*3 + c//3].add(d)\n            else:\n                empty.append((r, c))\n    def backtrack(idx):\n        if idx == len(empty): return True\n        r, c = empty[idx]\n        b = (r//3)*3 + c//3\n        for d in map(str, range(1, 10)):\n            if d not in rows[r] and d not in cols[c] and d not in boxes[b]:\n                board[r][c] = d\n                rows[r].add(d); cols[c].add(d); boxes[b].add(d)\n                if backtrack(idx+1): return True\n                board[r][c] = '.'\n                rows[r].remove(d); cols[c].remove(d); boxes[b].remove(d)\n        return False\n    backtrack(0)\n\nboard = [\n    [\"5\",\"3\",\".\",\".\",\"7\",\".\",\".\",\".\",\".\"],\n    [\"6\",\".\",\".\",\"1\",\"9\",\"5\",\".\",\".\",\".\"],\n    [\".\",\"9\",\"8\",\".\",\".\",\".\",\".\",\"6\",\".\"],\n    [\"8\",\".\",\".\",\".\",\"6\",\".\",\".\",\".\",\"3\"],\n    [\"4\",\".\",\".\",\"8\",\".\",\"3\",\".\",\".\",\"1\"],\n    [\"7\",\".\",\".\",\".\",\"2\",\".\",\".\",\".\",\"6\"],\n    [\".\",\"6\",\".\",\".\",\".\",\".\",\"2\",\"8\",\".\"],\n    [\".\",\".\",\".\",\"4\",\"1\",\"9\",\".\",\".\",\"5\"],\n    [\".\",\".\",\".\",\".\",\"8\",\".\",\".\",\"7\",\"9\"]\n]\nsolveSudokuFull(board)",
    "notes": {},
    "tests": "assert board[0] == [\"5\",\"3\",\"4\",\"6\",\"7\",\"8\",\"9\",\"1\",\"2\"]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=37"
   },
   {
    "id": "12-38-word-search-ii-trie-backtracking",
@@ -634,7 +696,8 @@
     "18": "avoid duplicates"
    },
    "tests": "assert res == {\"eat\",\"oath\"}\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=212"
   },
   {
    "id": "12-39-expression-add-operators",
@@ -652,7 +715,8 @@
     "8": "no leading zeros"
    },
    "tests": "assert \"1+2+3\" in res and \"1*2*3\" in res\nres2 = addOperators(\"232\", 8)\nassert \"2*3+2\" in res2 and \"2+3*2\" in res2\nassert addOperators(\"3456237490\", 9191) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=282"
   },
   {
    "id": "12-40-remove-invalid-parentheses",
@@ -668,7 +732,8 @@
    "solution": "from collections import deque\n\ndef removeInvalidParentheses(s):\n    def is_valid(t):\n        count = 0\n        for c in t:\n            if c == '(': count += 1\n            elif c == ')':\n                count -= 1\n                if count < 0: return False\n        return count == 0\n\n    visited = {s}\n    queue = deque([s])\n    result = []\n    found = False\n    while queue:\n        level_size = len(queue)\n        for _ in range(level_size):\n            curr = queue.popleft()\n            if is_valid(curr):\n                result.append(curr)\n                found = True\n            if found: continue\n            for i in range(len(curr)):\n                if curr[i] not in '()': continue\n                nxt = curr[:i] + curr[i+1:]\n                if nxt not in visited:\n                    visited.add(nxt)\n                    queue.append(nxt)\n        if found: break\n    return result\n\nres = removeInvalidParentheses(\"()())()\")",
    "notes": {},
    "tests": "assert set(res) == {\"(())()\", \"()()()\"}\nres2 = removeInvalidParentheses(\"(a)())()\")\nassert set(res2) == {\"(a())()\", \"(a)()()\"}\nassert removeInvalidParentheses(\")\") == [\"\"]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=301"
   },
   {
    "id": "12-41-n-queens-ii-count-solutions",
@@ -684,7 +749,8 @@
    "solution": "def totalNQueens(n):\n    count = [0]\n    cols = set(); diag1 = set(); diag2 = set()\n    def backtrack(row):\n        if row == n:\n            count[0] += 1; return\n        for col in range(n):\n            if col in cols or (row-col) in diag1 or (row+col) in diag2:\n                continue\n            cols.add(col); diag1.add(row-col); diag2.add(row+col)\n            backtrack(row+1)\n            cols.remove(col); diag1.remove(row-col); diag2.remove(row+col)\n    backtrack(0)\n    return count[0]",
    "notes": {},
    "tests": "assert totalNQueens(4) == 2\nassert totalNQueens(8) == 92\nassert totalNQueens(1) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=52"
   },
   {
    "id": "12-42-verbal-arithmetic-puzzle-simplified",
@@ -704,7 +770,8 @@
     "12": "Evaluate"
    },
    "tests": "assert isSolvable([\"SEND\",\"MORE\"], \"MONEY\") == True\nassert isSolvable([\"SIX\",\"SEVEN\",\"SEVEN\"], \"TWENTY\") == True\nassert isSolvable([\"THIS\",\"IS\",\"TOO\"], \"FUNNY\") == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1307"
   },
   {
    "id": "12-43-count-vowels-permutation",
@@ -727,7 +794,8 @@
     "10": "u can follow: i, o"
    },
    "tests": "assert countVowelPermutation(1) == 5\nassert countVowelPermutation(2) == 10\nassert countVowelPermutation(5) == 68\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1220"
   },
   {
    "id": "12-44-maximize-score-after-n-operations",
@@ -748,7 +816,8 @@
     "16": "Find all pairs from set bits"
    },
    "tests": "assert maxScore([1,2]) == 1\nassert maxScore([3,4,6,8]) == 11\nassert maxScore([1,2,3,4,5,6]) == 14\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2305"
   },
   {
    "id": "12-45-zuma-game",
@@ -766,7 +835,8 @@
     "9": "Remove groups of 3+ consecutive same-colored balls"
    },
    "tests": "assert findMinStep(\"WRRBBW\", \"RB\") == -1\nassert findMinStep(\"WWRRBBWW\", \"WRBRW\") == 2\nassert findMinStep(\"G\", \"GGGGG\") == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=488"
   },
   {
    "id": "12-46-find-all-subsets-with-sum-equal-to-k",
@@ -782,7 +852,8 @@
    "solution": "def subsets_sum_k(nums, k):\n    result = []\n    def bt(start, cur, cur_sum):\n        if cur_sum == k:\n            result.append(list(cur))\n        if cur_sum >= k:\n            return\n        for i in range(start, len(nums)):\n            cur.append(nums[i])\n            bt(i + 1, cur, cur_sum + nums[i])\n            cur.pop()\n    bt(0, [], 0)\n    return result\n\nres = subsets_sum_k([1, 2, 3, 4], 5)",
    "notes": {},
    "tests": "assert sorted(map(sorted, res)) == [[1,4],[2,3]]\nres2 = subsets_sum_k([1, 2, 3], 6)\nassert res2 == [[1, 2, 3]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-47-check-if-array-can-be-made-equal-by-swapping-pairs",
@@ -798,7 +869,8 @@
    "solution": "def canBeEqual(target, arr):\n    return sorted(target) == sorted(arr)",
    "notes": {},
    "tests": "assert canBeEqual([1,2,3,4], [2,1,4,3]) == True\nassert canBeEqual([7], [1]) == False\nassert canBeEqual([3,7,9], [3,7,9]) == True\nassert canBeEqual([1,2,3,4,5], [5,2,3,4,1]) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-48-count-all-subsets",
@@ -816,7 +888,8 @@
     "3": "count this subset"
    },
    "tests": "assert count_subsets([]) == 1\nassert count_subsets([1]) == 2\nassert count_subsets([1, 2, 3]) == 8\nassert count_subsets([1, 2, 3, 4]) == 16\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-49-find-largest-subset-with-consecutive-elements",
@@ -834,7 +907,8 @@
     "4": "start of a chain"
    },
    "tests": "assert sorted(largestConsecutiveSubset([100,4,200,1,3,2])) == [1,2,3,4]\nassert sorted(largestConsecutiveSubset([0,3,7,2,5,8,4,6,0,1])) == [0,1,2,3,4,5,6,7,8]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-50-all-permutations-of-a-string",
@@ -850,7 +924,8 @@
    "solution": "def string_permutations(s):\n    s = list(s)\n    result = []\n    def bt(start):\n        if start == len(s):\n            result.append(''.join(s))\n            return\n        seen = set()\n        for i in range(start, len(s)):\n            if s[i] not in seen:\n                seen.add(s[i])\n                s[start], s[i] = s[i], s[start]\n                bt(start + 1)\n                s[start], s[i] = s[i], s[start]\n    bt(0)\n    return result\n\nres = string_permutations('abc')",
    "notes": {},
    "tests": "assert sorted(res) == ['abc','acb','bac','bca','cab','cba']\nres2 = string_permutations('aab')\nassert sorted(res2) == ['aab','aba','baa']\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-51-generate-all-binary-strings-of-length-n",
@@ -866,7 +941,8 @@
    "solution": "def binary_strings(n):\n    result = []\n    def bt(cur):\n        if len(cur) == n:\n            result.append(''.join(cur))\n            return\n        for bit in ['0', '1']:\n            cur.append(bit)\n            bt(cur)\n            cur.pop()\n    bt([])\n    return result",
    "notes": {},
    "tests": "assert binary_strings(1) == ['0', '1']\nassert len(binary_strings(3)) == 8\nassert binary_strings(2) == ['00','01','10','11']\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-52-find-all-subsets-of-size-k",
@@ -882,7 +958,8 @@
    "solution": "def subsets_of_size_k(nums, k):\n    result = []\n    def bt(start, cur):\n        if len(cur) == k:\n            result.append(list(cur))\n            return\n        for i in range(start, len(nums)):\n            cur.append(nums[i])\n            bt(i + 1, cur)\n            cur.pop()\n    bt(0, [])\n    return result",
    "notes": {},
    "tests": "assert sorted(map(sorted, subsets_of_size_k([1,2,3,4], 2))) == [[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]]\nassert subsets_of_size_k([1,2,3], 3) == [[1,2,3]]\nassert subsets_of_size_k([1,2], 3) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-53-print-all-subsequences-of-a-string",
@@ -901,7 +978,8 @@
     "7": "skip"
    },
    "tests": "assert len(res) == 8\nassert 'abc' in res and '' in res and 'ac' in res\nassert len(all_subsequences('ab')) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-54-find-all-paths-from-top-left-to-bottom-right-in-grid",
@@ -917,7 +995,8 @@
    "solution": "def grid_paths(m, n):\n    result = []\n    def bt(r, c, path):\n        if r == m - 1 and c == n - 1:\n            result.append(list(path))\n            return\n        for dr, dc in [(0,1),(1,0)]:\n            nr, nc = r+dr, c+dc\n            if nr < m and nc < n:\n                path.append((nr, nc))\n                bt(nr, nc, path)\n                path.pop()\n    bt(0, 0, [(0,0)])\n    return result\n\nfrom math import comb",
    "notes": {},
    "tests": "assert len(grid_paths(2, 2)) == comb(2,1)  # 2 paths\nassert len(grid_paths(3, 3)) == comb(4,2)  # 6 paths\nassert len(grid_paths(2, 3)) == comb(3,1)  # 3 paths\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-55-check-if-subset-exists-with-given-xor",
@@ -933,7 +1012,8 @@
    "solution": "def subset_xor_exists(nums, target):\n    def bt(idx, xor):\n        if xor == target:\n            return True\n        if idx == len(nums):\n            return False\n        return bt(idx + 1, xor ^ nums[idx]) or bt(idx + 1, xor)\n    return bt(0, 0)",
    "notes": {},
    "tests": "assert subset_xor_exists([1,2,3], 0) == True   # 1^2^3=0\nassert subset_xor_exists([1,2,3], 3) == True   # {3} or {1,2}\nassert subset_xor_exists([1,2], 0) == True     # empty subset\nassert subset_xor_exists([1,2], 4) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-56-find-all-combinations-that-sum-to-target-no-duplicates",
@@ -951,7 +1031,8 @@
     "11": "reuse allowed"
    },
    "tests": "assert res == [[2,2,3],[7]]\nres2 = sorted(map(sorted, combination_sum_v2([2,3,5], 8)))\nassert res2 == [[2,2,2,2],[2,3,3],[3,5]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-57-flatten-nested-list-iterator",
@@ -967,7 +1048,8 @@
    "solution": "def flatten_nested(nested):\n    result = []\n    def dfs(lst):\n        for item in lst:\n            if isinstance(item, list):\n                dfs(item)\n            else:\n                result.append(item)\n    dfs(nested)\n    return result",
    "notes": {},
    "tests": "assert flatten_nested([[1,1],2,[1,1]]) == [1,1,2,1,1]\nassert flatten_nested([1,[4,[6]]]) == [1,4,6]\nassert flatten_nested([[[1,2]],[3]]) == [1,2,3]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=341"
   },
   {
    "id": "12-58-mini-parser-simplified",
@@ -983,7 +1065,8 @@
    "solution": "def mini_parser(s):\n    stack = [[]]\n    i = 0\n    while i < len(s):\n        if s[i] == '[':\n            stack.append([])\n            i += 1\n        elif s[i] == ']':\n            top = stack.pop()\n            stack[-1].append(top)\n            i += 1\n        elif s[i] == ',':\n            i += 1\n        else:\n            j = i\n            while j < len(s) and s[j] not in ',[]':\n                j += 1\n            stack[-1].append(int(s[i:j]))\n            i = j\n    return stack[0][0] if len(stack[0]) == 1 else stack[0]",
    "notes": {},
    "tests": "assert mini_parser('-3') == -3 or mini_parser('-3') == [-3]\nres = mini_parser('[123,[456,[789]]]')\nassert res == [123, [456, [789]]]\nassert mini_parser('[1,2,3]') == [1,2,3]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=385"
   },
   {
    "id": "12-59-count-subsets-with-product-less-than-k",
@@ -999,7 +1082,8 @@
    "solution": "def count_subsets_product_lt_k(nums, k):\n    count = [0]\n    def bt(start, prod):\n        for i in range(start, len(nums)):\n            new_prod = prod * nums[i]\n            if new_prod < k:\n                count[0] += 1\n                bt(i + 1, new_prod)\n    bt(0, 1)\n    return count[0]",
    "notes": {},
    "tests": "assert count_subsets_product_lt_k([1,2,3,4], 10) == 11\nassert count_subsets_product_lt_k([1,2,3], 100) == 7\nassert count_subsets_product_lt_k([5,6], 5) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-60-all-subsets-sorted",
@@ -1015,7 +1099,8 @@
    "solution": "def all_subsets_sorted(nums):\n    nums.sort()\n    result = []\n    def bt(start, cur):\n        result.append(list(cur))\n        for i in range(start, len(nums)):\n            cur.append(nums[i])\n            bt(i + 1, cur)\n            cur.pop()\n    bt(0, [])\n    return result\n\nres = all_subsets_sorted([3, 1, 2])",
    "notes": {},
    "tests": "assert res[0] == []\nassert [1,2,3] in res\nassert len(res) == 8\nassert res == sorted(res)  # verify sorted\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-61-find-the-first-repeated-permutation",
@@ -1031,7 +1116,8 @@
    "solution": "from itertools import permutations\n\ndef first_repeated_permutation(nums):\n    seen = set()\n    for perm in permutations(sorted(nums)):\n        if perm in seen:\n            return list(perm)\n        seen.add(perm)\n    return []",
    "notes": {},
    "tests": "# With duplicates, the same permutation appears for each arrangement of duplicates\nassert first_repeated_permutation([1, 1, 2]) == [1, 1, 2]\nassert first_repeated_permutation([1, 2, 1]) == [1, 1, 2]\n# No duplicates -> no repeats\nassert first_repeated_permutation([1, 2, 3]) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-62-backtracking-place-n-non-attacking-rooks-on-n-n-board",
@@ -1047,7 +1133,8 @@
    "solution": "def place_rooks(n):\n    solutions = []\n    def bt(row, cols_used, board):\n        if row == n:\n            solutions.append(list(board))\n            return\n        for col in range(n):\n            if col not in cols_used:\n                cols_used.add(col)\n                board.append(col)\n                bt(row + 1, cols_used, board)\n                board.pop()\n                cols_used.remove(col)\n    bt(0, set(), [])\n    return solutions\n\nimport math",
    "notes": {},
    "tests": "assert len(place_rooks(1)) == 1\nassert len(place_rooks(3)) == math.factorial(3)\nassert len(place_rooks(4)) == math.factorial(4)\nfor sol in place_rooks(3):\n    assert len(set(sol)) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-63-count-arrangements-of-n-distinct-objects-in-k-boxes",
@@ -1063,7 +1150,8 @@
    "solution": "def count_arrangements_backtrack(n, k):\n    count = [0]\n    def bt(obj_idx):\n        if obj_idx == n:\n            count[0] += 1\n            return\n        for box in range(k):\n            bt(obj_idx + 1)\n    bt(0)\n    return count[0]",
    "notes": {},
    "tests": "assert count_arrangements_backtrack(0, 3) == 1\nassert count_arrangements_backtrack(2, 3) == 9   # 3^2\nassert count_arrangements_backtrack(3, 2) == 8   # 2^3\nassert count_arrangements_backtrack(4, 2) == 16  # 2^4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-64-generate-all-balanced-bracket-sequences-of-length-2n",
@@ -1079,7 +1167,8 @@
    "solution": "def generate_parentheses_v2(n):\n    result = []\n    def bt(cur, open_cnt, close_cnt):\n        if len(cur) == 2 * n:\n            result.append(cur)\n            return\n        if open_cnt < n:\n            bt(cur + '(', open_cnt + 1, close_cnt)\n        if close_cnt < open_cnt:\n            bt(cur + ')', open_cnt, close_cnt + 1)\n    bt('', 0, 0)\n    return result",
    "notes": {},
    "tests": "assert generate_parentheses_v2(1) == ['()']\nassert len(generate_parentheses_v2(3)) == 5\nassert set(generate_parentheses_v2(2)) == {'(())', '()()'}\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-65-backtracking-color-a-graph-with-3-colors",
@@ -1097,7 +1186,8 @@
     "23": "Triangle: 3 nodes, 3 edges, 6 colorings (3! permutations)"
    },
    "tests": "assert len(sols) == 6\nfor sol in sols:\n    assert sol[0] != sol[1] and sol[1] != sol[2] and sol[0] != sol[2]\n# Path of 2 nodes\nsols2 = graph_3_coloring(2, [(0,1)])\nassert len(sols2) == 6  # 3 * 2 = 6\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-66-combination-sum-iv-dp-backtracking",
@@ -1113,7 +1203,8 @@
    "solution": "def combinationSum4(nums, target):\n    dp = [0] * (target + 1)\n    dp[0] = 1\n    for i in range(1, target + 1):\n        for num in nums:\n            if i >= num:\n                dp[i] += dp[i - num]\n    return dp[target]",
    "notes": {},
    "tests": "assert combinationSum4([1,2,3], 4) == 7\nassert combinationSum4([9], 3) == 0\nassert combinationSum4([1,2,3], 1) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=377"
   },
   {
    "id": "12-67-factor-combinations",
@@ -1129,7 +1220,8 @@
    "solution": "def getFactors(n):\n    result = []\n    def bt(start, n, cur):\n        for f in range(start, n):\n            if f * f > n: break\n            if n % f == 0:\n                cur.append(f)\n                cur.append(n // f)\n                result.append(list(cur))\n                cur.pop()\n                bt(f, n // f, cur)\n                cur.pop()\n    bt(2, n, [])\n    return result\n\nres12 = sorted(map(sorted, getFactors(12)))",
    "notes": {},
    "tests": "assert [2,6] in res12 and [3,4] in res12 and [2,2,3] in res12\nassert getFactors(1) == []\nassert getFactors(37) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=254"
   },
   {
    "id": "12-68-generalized-abbreviation",
@@ -1148,7 +1240,8 @@
     "9": "Keep current character"
    },
    "tests": "assert len(res) == 16\nassert '4' in res and 'word' in res and 'w3' in res and '1or1' in res\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=320"
   },
   {
    "id": "12-69-flip-game-ii",
@@ -1164,7 +1257,8 @@
    "solution": "from functools import lru_cache\n\ndef canWin(s):\n    @lru_cache(maxsize=None)\n    def can_win(state):\n        state = list(state)\n        for i in range(len(state) - 1):\n            if state[i] == '+' and state[i+1] == '+':\n                state[i] = state[i+1] = '-'\n                if not can_win(tuple(state)):\n                    state[i] = state[i+1] = '+'\n                    return True\n                state[i] = state[i+1] = '+'\n        return False\n    return can_win(tuple(s))",
    "notes": {},
    "tests": "assert canWin('++++') == True\nassert canWin('++') == True\nassert canWin('+') == False\nassert canWin('+-+') == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=294"
   },
   {
    "id": "12-70-count-numbers-with-unique-digits",
@@ -1184,7 +1278,8 @@
     "4": "remaining digits"
    },
    "tests": "assert countNumbersWithUniqueDigits(0) == 1\nassert countNumbersWithUniqueDigits(1) == 10\nassert countNumbersWithUniqueDigits(2) == 91\nassert countNumbersWithUniqueDigits(3) == 739\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=357"
   },
   {
    "id": "12-71-additive-number",
@@ -1200,7 +1295,8 @@
    "solution": "def isAdditiveNumber(num):\n    n = len(num)\n    def check(a, b, rest):\n        s = str(a + b)\n        if rest == s: return True\n        if rest.startswith(s):\n            return check(b, a + b, rest[len(s):])\n        return False\n\n    for i in range(1, n):\n        for j in range(i + 1, n):\n            a, b = num[:i], num[i:j]\n            if (len(a) > 1 and a[0] == '0') or (len(b) > 1 and b[0] == '0'):\n                continue\n            if check(int(a), int(b), num[j:]):\n                return True\n    return False",
    "notes": {},
    "tests": "assert isAdditiveNumber('112358') == True\nassert isAdditiveNumber('199100199') == True\nassert isAdditiveNumber('123') == True\nassert isAdditiveNumber('1203') == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=306"
   },
   {
    "id": "12-72-strobogrammatic-number-ii",
@@ -1218,7 +1314,8 @@
     "9": "can't start with 0"
    },
    "tests": "assert set(res1) == {'0','1','8'}\nres2 = findStrobogrammatic(2)\nassert '11' in res2 and '69' in res2 and '88' in res2 and '96' in res2\nassert '00' not in res2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=247"
   },
   {
    "id": "12-73-find-k-sum-subsets-at-most-k-elements",
@@ -1234,7 +1331,8 @@
    "solution": "def k_sum_subsets(nums, target, k):\n    result = []\n    def bt(start, cur, cur_sum):\n        if cur_sum == target and 1 <= len(cur) <= k:\n            result.append(list(cur))\n        if len(cur) >= k or cur_sum >= target:\n            return\n        for i in range(start, len(nums)):\n            cur.append(nums[i])\n            bt(i + 1, cur, cur_sum + nums[i])\n            cur.pop()\n    bt(0, [], 0)\n    return result\n\nres = k_sum_subsets([1,2,3,4], 5, 2)",
    "notes": {},
    "tests": "assert sorted(map(sorted, res)) == [[1,4],[2,3]]\nres2 = k_sum_subsets([1,2,3,4,5], 6, 3)\nfor r in res2:\n    assert sum(r) == 6 and len(r) <= 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-74-count-all-valid-pickup-and-delivery-options",
@@ -1250,7 +1348,8 @@
    "solution": "def countOrders(n):\n    MOD = 10**9 + 7\n    result = 1\n    for i in range(2, n + 1):\n        result = result * (2*i - 1) * i % MOD\n    return result",
    "notes": {},
    "tests": "assert countOrders(1) == 1\nassert countOrders(2) == 6\nassert countOrders(3) == 90\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1359"
   },
   {
    "id": "12-75-campus-bikes-ii-backtracking-with-bitmask",
@@ -1266,7 +1365,8 @@
    "solution": "def assignBikes(workers, bikes):\n    m, n = len(workers), len(bikes)\n    INF = float('inf')\n    dp = [INF] * (1 << n)\n    dp[0] = 0\n\n    def dist(w, b):\n        return abs(w[0]-b[0]) + abs(w[1]-b[1])\n\n    for mask in range(1 << n):\n        worker_idx = bin(mask).count('1')\n        if worker_idx >= m: continue\n        if dp[mask] == INF: continue\n        for bike_idx in range(n):\n            if not (mask >> bike_idx & 1):\n                new_mask = mask | (1 << bike_idx)\n                new_cost = dp[mask] + dist(workers[worker_idx], bikes[bike_idx])\n                dp[new_mask] = min(dp[new_mask], new_cost)\n\n    return min(dp[mask] for mask in range(1 << n) if bin(mask).count('1') == m)",
    "notes": {},
    "tests": "assert assignBikes([[0,0],[2,1]], [[1,2],[3,3]]) == 6\nassert assignBikes([[0,0],[1,1],[2,0]], [[1,0],[2,2],[2,1]]) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1066"
   },
   {
    "id": "12-76-matchsticks-to-square",
@@ -1282,7 +1382,8 @@
    "solution": "def makesquare(matchsticks):\n    total = sum(matchsticks)\n    if total % 4 != 0: return False\n    side = total // 4\n    matchsticks.sort(reverse=True)\n    sides = [0] * 4\n\n    def bt(idx):\n        if idx == len(matchsticks):\n            return sides[0] == sides[1] == sides[2] == side\n        seen = set()\n        for i in range(4):\n            if sides[i] + matchsticks[idx] <= side and sides[i] not in seen:\n                seen.add(sides[i])\n                sides[i] += matchsticks[idx]\n                if bt(idx + 1):\n                    return True\n                sides[i] -= matchsticks[idx]\n        return False\n\n    return bt(0)",
    "notes": {},
    "tests": "assert makesquare([1,1,2,2,2]) == True\nassert makesquare([3,3,3,3,4]) == False\nassert makesquare([1,1,1,1]) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=473"
   },
   {
    "id": "12-77-partition-to-k-equal-sum-subsets",
@@ -1298,7 +1399,8 @@
    "solution": "def canPartitionKSubsets(nums, k):\n    total = sum(nums)\n    if total % k != 0: return False\n    target = total // k\n    nums.sort(reverse=True)\n    if nums[0] > target: return False\n    buckets = [0] * k\n\n    def bt(idx):\n        if idx == len(nums): return all(b == target for b in buckets)\n        seen = set()\n        for i in range(k):\n            if buckets[i] + nums[idx] <= target and buckets[i] not in seen:\n                seen.add(buckets[i])\n                buckets[i] += nums[idx]\n                if bt(idx + 1): return True\n                buckets[i] -= nums[idx]\n        return False\n\n    return bt(0)",
    "notes": {},
    "tests": "assert canPartitionKSubsets([4,3,2,3,5,2,1], 4) == True\nassert canPartitionKSubsets([1,2,3,4], 3) == False\nassert canPartitionKSubsets([2,2,2,2], 2) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=698"
   },
   {
    "id": "12-78-letter-tile-possibilities",
@@ -1314,7 +1416,8 @@
    "solution": "from collections import Counter\n\ndef numTilePossibilities(tiles):\n    count = Counter(tiles)\n    total = [0]\n\n    def bt():\n        for ch in list(count.keys()):\n            if count[ch] > 0:\n                total[0] += 1\n                count[ch] -= 1\n                bt()\n                count[ch] += 1\n\n    bt()\n    return total[0]",
    "notes": {},
    "tests": "assert numTilePossibilities('AAB') == 8\nassert numTilePossibilities('AAABBC') == 188\nassert numTilePossibilities('V') == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1079"
   },
   {
    "id": "12-79-minimum-unique-word-abbreviation",
@@ -1330,7 +1433,8 @@
    "solution": "def minAbbreviation(target, dictionary):\n    n = len(target)\n    if not dictionary: return str(n)\n\n    def abbrev(word, mask):\n        res, count = '', 0\n        for i in range(n):\n            if mask >> i & 1:\n                if count: res += str(count)\n                res += word[i]\n                count = 0\n            else:\n                count += 1\n        if count: res += str(count)\n        return res\n\n    def matches(abbr, word):\n        i = j = 0\n        while i < len(abbr) and j < len(word):\n            if abbr[i].isdigit():\n                num = 0\n                while i < len(abbr) and abbr[i].isdigit():\n                    num = num*10 + int(abbr[i]); i+=1\n                j += num\n            else:\n                if abbr[i] != word[j]: return False\n                i+=1; j+=1\n        return i == len(abbr) and j == len(word)\n\n    best = target\n    for mask in range(1 << n):\n        ab = abbrev(target, mask)\n        if len(ab) < len(best):\n            if not any(matches(ab, w) for w in dictionary if len(w)==n):\n                best = ab\n    return best\n\nres = minAbbreviation('apple', ['blade'])",
    "notes": {},
    "tests": "assert isinstance(res, str) and len(res) <= len('apple')\nassert minAbbreviation('a', []) == '1'\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=411"
   },
   {
    "id": "12-80-reconstruct-itinerary-backtracking-version",
@@ -1346,7 +1450,8 @@
    "solution": "from collections import defaultdict\n\ndef findItinerary(tickets):\n    graph = defaultdict(list)\n    for src, dst in sorted(tickets, reverse=True):\n        graph[src].append(dst)\n    result = []\n\n    def dfs(airport):\n        while graph[airport]:\n            dfs(graph[airport].pop())\n        result.append(airport)\n\n    dfs('JFK')\n    return result[::-1]",
    "notes": {},
    "tests": "assert findItinerary([['MUC','LHR'],['JFK','MUC'],['SFO','SJC'],['LHR','SFO']]) == ['JFK','MUC','LHR','SFO','SJC']\nassert findItinerary([['JFK','SFO'],['JFK','ATL'],['SFO','ATL'],['ATL','JFK'],['ATL','SFO']]) == ['JFK','ATL','JFK','SFO','ATL','SFO']\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=332"
   },
   {
    "id": "12-81-n-queens-iii-count-solutions-on-rectangular-m-n-board",
@@ -1367,7 +1472,8 @@
     "22": "Standard square board: one queen per row"
    },
    "tests": "# Standard 4-queens on 4x4: 2 solutions\nassert totalNQueens_rect(4, 4, 4) == 2\n# 1-queen on 3x3: 3 solutions (any of 3 columns in row 0)\nassert totalNQueens_rect(1, 3, 1) == 3\n# 2 non-attacking queens on 4 columns: C(4,2) - attacking pairs\nassert totalNQueens_rect(2, 4, 2) == 6\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-82-sudoku-solver-with-constraint-propagation",
@@ -1383,7 +1489,8 @@
    "solution": "def solveSudokuCP(board):\n    rows = [set(range(1,10)) for _ in range(9)]\n    cols = [set(range(1,10)) for _ in range(9)]\n    boxes = [set(range(1,10)) for _ in range(9)]\n\n    for r in range(9):\n        for c in range(9):\n            if board[r][c] != '.':\n                d = int(board[r][c])\n                rows[r].discard(d); cols[c].discard(d); boxes[(r//3)*3+c//3].discard(d)\n\n    def possible(r, c):\n        return rows[r] & cols[c] & boxes[(r//3)*3+c//3]\n\n    def place(r, c, d):\n        board[r][c] = str(d)\n        rows[r].discard(d); cols[c].discard(d); boxes[(r//3)*3+c//3].discard(d)\n\n    def unplace(r, c, d):\n        board[r][c] = '.'\n        rows[r].add(d); cols[c].add(d); boxes[(r//3)*3+c//3].add(d)\n\n    def solve():\n        empties = [(len(possible(r,c)), r, c)\n                   for r in range(9) for c in range(9) if board[r][c] == '.']\n        if not empties: return True\n        _, r, c = min(empties)\n        for d in list(possible(r, c)):\n            place(r, c, d)\n            if solve(): return True\n            unplace(r, c, d)\n        return False\n\n    solve()\n    return board\n\nboard = [\n    ['5','3','.','.','7','.','.','.','.'],\n    ['6','.','.','1','9','5','.','.','.'],\n    ['.','9','8','.','.','.','.','6','.'],\n    ['8','.','.','.','6','.','.','.','3'],\n    ['4','.','.','8','.','3','.','.','1'],\n    ['7','.','.','.','2','.','.','.','6'],\n    ['.','6','.','.','.','.','2','8','.'],\n    ['.','.','.','4','1','9','.','.','5'],\n    ['.','.','.','.','8','.','.','7','9']\n]\nresult = solveSudokuCP(board)",
    "notes": {},
    "tests": "assert result[0] == ['5','3','4','6','7','8','9','1','2']\n# Verify no empty cells remain\nassert all(result[r][c] != '.' for r in range(9) for c in range(9))\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "12-83-word-break-ii-all-decompositions",
@@ -1399,7 +1506,8 @@
    "solution": "from functools import lru_cache\n\ndef wordBreakII(s, wordDict):\n    word_set = set(wordDict)\n\n    @lru_cache(maxsize=None)\n    def bt(start):\n        if start == len(s):\n            return [[]]\n        results = []\n        for end in range(start + 1, len(s) + 1):\n            word = s[start:end]\n            if word in word_set:\n                for rest in bt(end):\n                    results.append([word] + rest)\n        return results\n\n    return [' '.join(words) for words in bt(0)]\n\nres = sorted(wordBreakII('catsanddog', ['cat','cats','and','sand','dog']))",
    "notes": {},
    "tests": "assert res == ['cat sand dog', 'cats and dog']\nres2 = wordBreakII('pineapplepenapple', ['apple','pen','applepen','pine','pineapple'])\nassert 'pine apple pen apple' in res2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=140"
   },
   {
    "id": "12-84-palindrome-partitioning-ii-combined-with-backtracking",
@@ -1415,7 +1523,8 @@
    "solution": "def palindrome_partition_full(s):\n    n = len(s)\n    is_pal = [[False]*n for _ in range(n)]\n    for i in range(n): is_pal[i][i] = True\n    for i in range(n-1):\n        is_pal[i][i+1] = (s[i] == s[i+1])\n    for length in range(3, n+1):\n        for i in range(n-length+1):\n            j = i+length-1\n            is_pal[i][j] = (s[i]==s[j] and is_pal[i+1][j-1])\n\n    all_parts = []\n    def bt(start, cur):\n        if start == n:\n            all_parts.append(list(cur))\n            return\n        for end in range(start, n):\n            if is_pal[start][end]:\n                cur.append(s[start:end+1])\n                bt(end+1, cur)\n                cur.pop()\n    bt(0, [])\n\n    min_cuts = min(len(p)-1 for p in all_parts)\n    return all_parts, min_cuts\n\nparts, mc = palindrome_partition_full('aab')",
    "notes": {},
    "tests": "assert ['a','a','b'] in parts\nassert ['aa','b'] in parts\nassert mc == 1\nparts2, mc2 = palindrome_partition_full('a')\nassert parts2 == [['a']] and mc2 == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=132"
   },
   {
    "id": "12-85-burst-balloons-interval-dp",
@@ -1431,7 +1540,8 @@
    "solution": "def maxCoins(nums):\n    nums = [1] + nums + [1]\n    n = len(nums)\n    dp = [[0]*n for _ in range(n)]\n\n    def solve(l, r):\n        if r - l < 2: return 0\n        if dp[l][r]: return dp[l][r]\n        best = 0\n        for k in range(l+1, r):\n            coins = nums[l]*nums[k]*nums[r] + solve(l, k) + solve(k, r)\n            best = max(best, coins)\n        dp[l][r] = best\n        return best\n\n    return solve(0, n-1)",
    "notes": {},
    "tests": "assert maxCoins([3,1,5,8]) == 167\nassert maxCoins([1,5]) == 10\nassert maxCoins([5]) == 5\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=312"
   },
   {
    "id": "12-86-regular-expression-matching-backtracking-with-memoizat",
@@ -1447,7 +1557,8 @@
    "solution": "from functools import lru_cache\n\ndef isMatch_regex(s, p):\n    @lru_cache(maxsize=None)\n    def dp(i, j):\n        if j == len(p): return i == len(s)\n        first = i < len(s) and (p[j] == s[i] or p[j] == '.')\n        if j+1 < len(p) and p[j+1] == '*':\n            return dp(i, j+2) or (first and dp(i+1, j))\n        return first and dp(i+1, j+1)\n    return dp(0, 0)",
    "notes": {},
    "tests": "assert isMatch_regex('aa', 'a') == False\nassert isMatch_regex('aa', 'a*') == True\nassert isMatch_regex('ab', '.*') == True\nassert isMatch_regex('aab', 'c*a*b') == True\nassert isMatch_regex('mississippi', 'mis*is*p*.') == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=10"
   },
   {
    "id": "12-87-wildcard-matching-backtracking-with-memoization",
@@ -1463,7 +1574,8 @@
    "solution": "from functools import lru_cache\n\ndef isMatch_wildcard(s, p):\n    @lru_cache(maxsize=None)\n    def dp(i, j):\n        if j == len(p): return i == len(s)\n        if p[j] == '*':\n            return dp(i, j+1) or (i < len(s) and dp(i+1, j))\n        first = i < len(s) and (p[j] == s[i] or p[j] == '?')\n        return first and dp(i+1, j+1)\n    return dp(0, 0)",
    "notes": {},
    "tests": "assert isMatch_wildcard('aa', 'a') == False\nassert isMatch_wildcard('aa', '*') == True\nassert isMatch_wildcard('cb', '?a') == False\nassert isMatch_wildcard('adceb', '*a*b') == True\nassert isMatch_wildcard('acdcb', 'a*c?b') == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=44"
   },
   {
    "id": "12-88-max-score-words-formed-by-letters",
@@ -1479,7 +1591,8 @@
    "solution": "from collections import Counter\n\ndef maxScoreWords(words, letters, score):\n    letter_count = Counter(letters)\n    best = [0]\n\n    def bt(idx, available, cur_score):\n        best[0] = max(best[0], cur_score)\n        for i in range(idx, len(words)):\n            word_cnt = Counter(words[i])\n            if all(available[c] >= word_cnt[c] for c in word_cnt):\n                for c in word_cnt:\n                    available[c] -= word_cnt[c]\n                word_score = sum(score[ord(c)-ord('a')] for c in words[i])\n                bt(i+1, available, cur_score + word_score)\n                for c in word_cnt:\n                    available[c] += word_cnt[c]\n\n    bt(0, letter_count, 0)\n    return best[0]",
    "notes": {},
    "tests": "assert maxScoreWords(\n    ['dog','cat','dad','good'],\n    list('aatcddddoogg'),\n    [1,0,9,5,0,0,3,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0]) == 33\nassert maxScoreWords(\n    ['xxxz','ax','bx','cx'],\n    list('xxaxbxxzc'),\n    [4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,10]) == 43\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1255"
   },
   {
    "id": "12-89-distribute-repeating-integers",
@@ -1495,7 +1608,8 @@
    "solution": "from collections import Counter\n\ndef canDistribute(nums, quantity):\n    counts = list(Counter(nums).values())\n    m = len(quantity)\n    subset_sum = [0] * (1 << m)\n    for mask in range(1, 1 << m):\n        lsb = mask & (-mask)\n        bit = lsb.bit_length() - 1\n        subset_sum[mask] = subset_sum[mask ^ lsb] + quantity[bit]\n\n    dp = [False] * (1 << m)\n    dp[0] = True\n\n    for cnt in counts:\n        for mask in range((1 << m) - 1, -1, -1):\n            if not dp[mask]: continue\n            submask = (((1 << m) - 1) ^ mask)\n            s = submask\n            while s:\n                if subset_sum[s] <= cnt:\n                    dp[mask | s] = True\n                s = (s - 1) & submask\n\n    return dp[(1 << m) - 1]",
    "notes": {},
    "tests": "assert canDistribute([1,2,3,4], [2]) == False\nassert canDistribute([1,2,3,3], [2]) == True\nassert canDistribute([1,1,2,2], [2,2]) == True\nassert canDistribute([1,1,2,3], [2,2]) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1655"
   },
   {
    "id": "12-90-minimum-cost-to-fill-given-weight-in-a-bag-dp-pruning",
@@ -1511,7 +1625,8 @@
    "solution": "def minimumCostFill(cost, W):\n    \"\"\"\n    cost[i] = cost of bag of weight (i+1), or -1 if unavailable.\n    Fill exactly W kg with minimum total cost. Return -1 if impossible.\n    \"\"\"\n    n = len(cost)\n    INF = float('inf')\n    dp = [INF] * (W + 1)\n    dp[0] = 0\n\n    for w in range(1, W + 1):\n        for size in range(1, min(w, n) + 1):\n            if cost[size-1] != -1 and dp[w-size] != INF:\n                dp[w] = min(dp[w], dp[w-size] + cost[size-1])\n\n    return dp[W] if dp[W] != INF else -1",
    "notes": {},
    "tests": "assert minimumCostFill([1, 2, 3], 5) == 5   # 5x weight-1 bags\nassert minimumCostFill([-1, -1, 4], 9) == 12  # three weight-3 bags\nassert minimumCostFill([-1, 3, -1], 4) == 6   # two weight-2 bags\nassert minimumCostFill([-1, -1, -1], 5) == -1  # impossible\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   }
  ]
 }

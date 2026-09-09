@@ -21,6 +21,14 @@ export interface Problem {
   tests: string;
   /** function names in this cell that stress_test.py checks against a reference */
   verified: string[];
+  /** LeetCode's own page for this problem, searched by number */
+  leetcodeUrl: string | null;
+}
+
+/** The explainer a notebook opens with, split into its sections. */
+export interface About {
+  lead: string;
+  sections: { heading: string; body: string }[];
 }
 
 export interface Pattern {
@@ -29,6 +37,7 @@ export interface Pattern {
   name: string;
   /** the parenthetical from the notebook heading, e.g. "Floyd's Cycle Detection" */
   note: string | null;
+  about: About;
   notebook: string;
   problems: Problem[];
 }

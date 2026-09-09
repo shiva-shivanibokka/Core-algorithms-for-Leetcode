@@ -3,6 +3,43 @@
  "slug": "graph-dfs-bfs",
  "name": "Graph DFS & BFS",
  "note": null,
+ "about": {
+  "lead": "",
+  "sections": [
+   {
+    "heading": "Graphs vs Trees",
+    "body": "Trees are a special case of graphs (connected, acyclic, directed). Graphs can have **cycles**, so we must track a `visited` set to avoid infinite loops."
+   },
+   {
+    "heading": "Graph Representations",
+    "body": "| Representation | Best For | Space |\n|---|---|---|\n| Adjacency List | Sparse graphs | O(V + E) |\n| Adjacency Matrix | Dense graphs, O(1) edge lookup | O(V^2) |\n| Implicit (grid) | 2D grids | O(1) extra |"
+   },
+   {
+    "heading": "DFS Template (Recursive)",
+    "body": "```python\n# Graph DFS (recursive)\ndef dfs(node, graph, visited):\n    visited.add(node)\n    for neighbor in graph[node]:\n        if neighbor not in visited:\n            dfs(neighbor, graph, visited)\n```"
+   },
+   {
+    "heading": "DFS Template (Iterative with Stack)",
+    "body": "```python\ndef dfs_iterative(start, graph):\n    visited = set()\n    stack = [start]\n    while stack:\n        node = stack.pop()\n        if node in visited: continue\n        visited.add(node)\n        for neighbor in graph[node]:\n            if neighbor not in visited:\n                stack.append(neighbor)\n```"
+   },
+   {
+    "heading": "BFS Template",
+    "body": "```python\nfrom collections import deque\ndef bfs(start, graph):\n    visited = {start}\n    queue = deque([start])\n    while queue:\n        node = queue.popleft()\n        for neighbor in graph[node]:\n            if neighbor not in visited:\n                visited.add(neighbor)\n                queue.append(neighbor)\n```"
+   },
+   {
+    "heading": "Grid Traversal Template",
+    "body": "```python\nDIRS = [(0,1),(0,-1),(1,0),(-1,0)]\ndef grid_dfs(grid, r, c, visited):\n    visited.add((r, c))\n    for dr, dc in DIRS:\n        nr, nc = r+dr, c+dc\n        if 0<=nr<len(grid) and 0<=nc<len(grid[0]) and (nr,nc) not in visited:\n            grid_dfs(grid, nr, nc, visited)\n```"
+   },
+   {
+    "heading": "Connected Components Pattern",
+    "body": "Iterate over all nodes. If a node hasn't been visited, start a new DFS/BFS from it — this discovers one full connected component."
+   },
+   {
+    "heading": "Complexity",
+    "body": "| | DFS | BFS |\n|---|---|---|\n| Time | O(V + E) | O(V + E) |\n| Space | O(V) — recursion stack / visited | O(V) — queue + visited |\n\nFor grid problems: V = rows * cols, E = 4 * rows * cols → O(rows * cols)\n\n# EASY Problems"
+   }
+  ]
+ },
  "notebook": "09_Graph_DFS_BFS.ipynb",
  "problems": [
   {
@@ -21,7 +58,8 @@
     "6": "mark visited"
    },
    "tests": "assert numIslands([[\"1\",\"1\",\"1\",\"1\",\"0\"],[\"1\",\"1\",\"0\",\"1\",\"0\"],[\"1\",\"1\",\"0\",\"0\",\"0\"],[\"0\",\"0\",\"0\",\"0\",\"0\"]]) == 1\nassert numIslands([[\"1\",\"1\",\"0\",\"0\",\"0\"],[\"1\",\"1\",\"0\",\"0\",\"0\"],[\"0\",\"0\",\"1\",\"0\",\"0\"],[\"0\",\"0\",\"0\",\"1\",\"1\"]]) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=200"
   },
   {
    "id": "09-02-flood-fill",
@@ -37,7 +75,8 @@
    "solution": "def floodFill(image, sr, sc, color):\n    original = image[sr][sc]\n    if original == color: return image\n    rows, cols = len(image), len(image[0])\n    \n    def dfs(r, c):\n        if r < 0 or r >= rows or c < 0 or c >= cols or image[r][c] != original: return\n        image[r][c] = color\n        dfs(r+1,c); dfs(r-1,c); dfs(r,c+1); dfs(r,c-1)\n    \n    dfs(sr, sc)\n    return image",
    "notes": {},
    "tests": "assert floodFill([[1,1,1],[1,1,0],[1,0,1]], 1, 1, 2) == [[2,2,2],[2,2,0],[2,0,1]]\nassert floodFill([[0,0,0],[0,0,0]], 0, 0, 0) == [[0,0,0],[0,0,0]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=733"
   },
   {
    "id": "09-03-max-area-of-island",
@@ -53,7 +92,8 @@
    "solution": "def maxAreaOfIsland(grid):\n    rows, cols = len(grid), len(grid[0])\n    \n    def dfs(r, c):\n        if r < 0 or r >= rows or c < 0 or c >= cols or grid[r][c] != 1: return 0\n        grid[r][c] = 0\n        return 1 + dfs(r+1,c) + dfs(r-1,c) + dfs(r,c+1) + dfs(r,c-1)\n    \n    return max(dfs(r, c) for r in range(rows) for c in range(cols))",
    "notes": {},
    "tests": "assert maxAreaOfIsland([[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]]) == 6\nassert maxAreaOfIsland([[0,0,0,0,0,0,0,0]]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=695"
   },
   {
    "id": "09-04-island-perimeter",
@@ -69,7 +109,8 @@
    "solution": "def islandPerimeter(grid):\n    rows, cols = len(grid), len(grid[0])\n    perimeter = 0\n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == 1:\n                for dr, dc in [(0,1),(0,-1),(1,0),(-1,0)]:\n                    nr, nc = r+dr, c+dc\n                    if nr < 0 or nr >= rows or nc < 0 or nc >= cols or grid[nr][nc] == 0:\n                        perimeter += 1\n    return perimeter",
    "notes": {},
    "tests": "assert islandPerimeter([[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]]) == 16\nassert islandPerimeter([[1]]) == 4\nassert islandPerimeter([[1,0]]) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=463"
   },
   {
    "id": "09-05-find-if-path-exists-in-graph",
@@ -85,7 +126,8 @@
    "solution": "from collections import deque, defaultdict\n\ndef validPath(n, edges, source, destination):\n    if source == destination: return True\n    graph = defaultdict(list)\n    for u, v in edges:\n        graph[u].append(v)\n        graph[v].append(u)\n    visited = {source}\n    queue = deque([source])\n    while queue:\n        node = queue.popleft()\n        for neighbor in graph[node]:\n            if neighbor == destination: return True\n            if neighbor not in visited:\n                visited.add(neighbor)\n                queue.append(neighbor)\n    return False",
    "notes": {},
    "tests": "assert validPath(3, [[0,1],[1,2],[2,0]], 0, 2) == True\nassert validPath(6, [[0,1],[0,2],[3,5],[5,4],[4,3]], 0, 5) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1971"
   },
   {
    "id": "09-06-count-sub-islands",
@@ -103,7 +145,8 @@
     "8": "Must run all 4 DFS calls to mark the full island"
    },
    "tests": "assert countSubIslands(g1, g2) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1905"
   },
   {
    "id": "09-07-number-of-provinces",
@@ -119,7 +162,8 @@
    "solution": "def findCircleNum(isConnected):\n    n = len(isConnected)\n    visited = set()\n    \n    def dfs(city):\n        visited.add(city)\n        for neighbor in range(n):\n            if isConnected[city][neighbor] == 1 and neighbor not in visited:\n                dfs(neighbor)\n    \n    provinces = 0\n    for city in range(n):\n        if city not in visited:\n            dfs(city)\n            provinces += 1\n    return provinces",
    "notes": {},
    "tests": "assert findCircleNum([[1,1,0],[1,1,0],[0,0,1]]) == 2\nassert findCircleNum([[1,0,0],[0,1,0],[0,0,1]]) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=547"
   },
   {
    "id": "09-08-find-the-town-judge",
@@ -135,7 +179,8 @@
    "solution": "def findJudge(n, trust):\n    in_deg = [0] * (n + 1)\n    out_deg = [0] * (n + 1)\n    for a, b in trust:\n        out_deg[a] += 1\n        in_deg[b] += 1\n    for i in range(1, n + 1):\n        if in_deg[i] == n - 1 and out_deg[i] == 0:\n            return i\n    return -1",
    "notes": {},
    "tests": "assert findJudge(2, [[1,2]]) == 2\nassert findJudge(3, [[1,3],[2,3]]) == 3\nassert findJudge(3, [[1,3],[2,3],[3,1]]) == -1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=997"
   },
   {
    "id": "09-09-destination-city",
@@ -151,7 +196,8 @@
    "solution": "def destCity(paths):\n    sources = {path[0] for path in paths}\n    for path in paths:\n        if path[1] not in sources:\n            return path[1]\n    return \"\"",
    "notes": {},
    "tests": "assert destCity([[\"London\",\"New York\"],[\"New York\",\"Lima\"],[\"Lima\",\"Sao Paulo\"]]) == \"Sao Paulo\"\nassert destCity([[\"B\",\"C\"],[\"D\",\"B\"],[\"C\",\"A\"]]) == \"A\"\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1436"
   },
   {
    "id": "09-10-keys-and-rooms",
@@ -167,7 +213,8 @@
    "solution": "def canVisitAllRooms(rooms):\n    visited = set()\n    stack = [0]\n    while stack:\n        room = stack.pop()\n        if room in visited: continue\n        visited.add(room)\n        for key in rooms[room]:\n            if key not in visited:\n                stack.append(key)\n    return len(visited) == len(rooms)",
    "notes": {},
    "tests": "assert canVisitAllRooms([[1],[2],[3],[]]) == True\nassert canVisitAllRooms([[1,3],[3,0,1],[2],[0]]) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=841"
   },
   {
    "id": "09-11-reachable-nodes-with-restrictions",
@@ -183,7 +230,8 @@
    "solution": "def reachableNodes(n, edges, restricted):\n    graph = defaultdict(list)\n    for u, v in edges:\n        graph[u].append(v)\n        graph[v].append(u)\n    blocked = set(restricted)\n    visited = {0}\n    queue = deque([0])\n    while queue:\n        node = queue.popleft()\n        for neighbor in graph[node]:\n            if neighbor not in visited and neighbor not in blocked:\n                visited.add(neighbor)\n                queue.append(neighbor)\n    return len(visited)",
    "notes": {},
    "tests": "assert reachableNodes(7, [[0,1],[1,2],[3,1],[4,0],[0,5],[5,6]], [4,5]) == 4\nassert reachableNodes(7, [[0,1],[0,2],[0,5],[0,4],[3,2],[6,5]], [4,2,1]) == 3\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2368"
   },
   {
    "id": "09-12-count-unreachable-pairs-of-nodes-in-an-undirected-grap",
@@ -199,7 +247,8 @@
    "solution": "def countPairs(n, edges):\n    graph = defaultdict(list)\n    for u, v in edges:\n        graph[u].append(v)\n        graph[v].append(u)\n    visited = set()\n    component_sizes = []\n    for start in range(n):\n        if start not in visited:\n            size = 0\n            queue = deque([start])\n            visited.add(start)\n            while queue:\n                node = queue.popleft()\n                size += 1\n                for neighbor in graph[node]:\n                    if neighbor not in visited:\n                        visited.add(neighbor)\n                        queue.append(neighbor)\n            component_sizes.append(size)\n    result = 0\n    remaining = n\n    for size in component_sizes:\n        remaining -= size\n        result += size * remaining\n    return result",
    "notes": {},
    "tests": "assert countPairs(3, [[0,1],[0,2],[1,2]]) == 0\nassert countPairs(7, [[0,2],[0,5],[2,4],[1,6],[5,4]]) == 14\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2316"
   },
   {
    "id": "09-13-check-if-there-is-a-valid-path-in-a-grid-simplified",
@@ -219,7 +268,8 @@
     "7": "(dr, dc, out_dir, in_dir)"
    },
    "tests": "assert hasValidPath([[2,4,3],[6,5,2]]) == True\nassert hasValidPath([[1,2,1],[1,2,1]]) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1391"
   },
   {
    "id": "09-14-minimum-number-of-vertices-to-reach-all-nodes",
@@ -235,7 +285,8 @@
    "solution": "def findSmallestSetOfVertices(n, edges):\n    has_incoming = set(v for _, v in edges)\n    return [i for i in range(n) if i not in has_incoming]",
    "notes": {},
    "tests": "assert sorted(findSmallestSetOfVertices(6, [[0,1],[0,2],[2,5],[3,4],[4,2]])) == [0,3]\nassert sorted(findSmallestSetOfVertices(5, [[0,1],[2,1],[3,1],[1,4],[2,4]])) == [0,2,3]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1557"
   },
   {
    "id": "09-15-find-center-of-star-graph",
@@ -253,7 +304,8 @@
     "2": "The center appears in both edge[0] and edge[1]"
    },
    "tests": "assert findCenter([[1,2],[2,3],[4,2]]) == 2\nassert findCenter([[1,2],[5,1],[1,3],[1,4]]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1791"
   },
   {
    "id": "09-16-maximum-total-importance-of-roads",
@@ -269,7 +321,8 @@
    "solution": "def maximumImportance(n, roads):\n    degree = [0] * n\n    for u, v in roads:\n        degree[u] += 1\n        degree[v] += 1\n    degree.sort()\n    return sum(val * (i + 1) for i, val in enumerate(degree))",
    "notes": {},
    "tests": "assert maximumImportance(5, [[0,1],[1,2],[2,3],[0,2],[1,3],[2,4]]) == 43\nassert maximumImportance(5, [[0,3],[2,4],[1,3]]) == 20\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2285"
   },
   {
    "id": "09-17-minimum-number-of-operations-to-move-all-balls-to-each",
@@ -285,7 +338,8 @@
    "solution": "def minOperations(boxes):\n    n = len(boxes)\n    answer = [0] * n\n    balls, ops = 0, 0\n    for i in range(n):\n        answer[i] += ops\n        balls += int(boxes[i])\n        ops += balls\n    balls, ops = 0, 0\n    for i in range(n-1, -1, -1):\n        answer[i] += ops\n        balls += int(boxes[i])\n        ops += balls\n    return answer",
    "notes": {},
    "tests": "assert minOperations(\"110\") == [1,1,3]\nassert minOperations(\"001011\") == [11,8,5,4,3,4]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1769"
   },
   {
    "id": "09-18-count-number-of-texts",
@@ -301,7 +355,8 @@
    "solution": "def countTexts(pressedKeys):\n    MOD = 10**9 + 7\n    n = len(pressedKeys)\n    dp = [0] * (n + 1)\n    dp[0] = 1\n    for i in range(1, n + 1):\n        dp[i] = dp[i-1]\n        if i >= 2 and pressedKeys[i-1] == pressedKeys[i-2]:\n            dp[i] = (dp[i] + dp[i-2]) % MOD\n        if i >= 3 and pressedKeys[i-1] == pressedKeys[i-2] == pressedKeys[i-3]:\n            dp[i] = (dp[i] + dp[i-3]) % MOD\n        if i >= 4 and pressedKeys[i-1] in '79' and pressedKeys[i-1] == pressedKeys[i-2] == pressedKeys[i-3] == pressedKeys[i-4]:\n            dp[i] = (dp[i] + dp[i-4]) % MOD\n    return dp[n]",
    "notes": {},
    "tests": "assert countTexts(\"22233\") == 8\nassert countTexts(\"222222222222222222222222222222222222\") == 82876089\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2266"
   },
   {
    "id": "09-19-find-closest-node-to-given-two-nodes",
@@ -317,7 +372,8 @@
    "solution": "def closestMeetingNode(edges, node1, node2):\n    def get_dist(start):\n        dist = {}\n        d = 0\n        while start != -1 and start not in dist:\n            dist[start] = d\n            d += 1\n            start = edges[start]\n        return dist\n    \n    dist1 = get_dist(node1)\n    dist2 = get_dist(node2)\n    best_node, best_dist = -1, float('inf')\n    for node in dist1:\n        if node in dist2:\n            d = max(dist1[node], dist2[node])\n            if d < best_dist or (d == best_dist and node < best_node):\n                best_dist = d\n                best_node = node\n    return best_node",
    "notes": {},
    "tests": "assert closestMeetingNode([2,2,3,-1], 0, 1) == 2\nassert closestMeetingNode([1,2,-1], 0, 2) == 2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2359"
   },
   {
    "id": "09-20-clone-graph-basic-version",
@@ -333,7 +389,8 @@
    "solution": "class GraphNode:\n    def __init__(self, val=0, neighbors=None):\n        self.val = val\n        self.neighbors = neighbors if neighbors else []\n\ndef cloneGraphBasic(node):\n    if not node: return None\n    clones = {node: GraphNode(node.val)}\n    queue = deque([node])\n    while queue:\n        curr = queue.popleft()\n        for neighbor in curr.neighbors:\n            if neighbor not in clones:\n                clones[neighbor] = GraphNode(neighbor.val)\n                queue.append(neighbor)\n            clones[curr].neighbors.append(clones[neighbor])\n    return clones[node]\n\nn1 = GraphNode(1); n2 = GraphNode(2); n3 = GraphNode(3); n4 = GraphNode(4)\nn1.neighbors = [n2, n4]; n2.neighbors = [n1, n3]; n3.neighbors = [n2, n4]; n4.neighbors = [n1, n3]\nclone = cloneGraphBasic(n1)",
    "notes": {},
    "tests": "assert clone is not n1\nassert clone.val == 1\nassert len(clone.neighbors) == 2\nassert clone.neighbors[0] is not n2\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=133"
   },
   {
    "id": "09-21-clone-graph-full-solution",
@@ -349,7 +406,8 @@
    "solution": "def cloneGraph(node):\n    if not node: return None\n    old_to_new = {}\n    def dfs(n):\n        if n in old_to_new: return old_to_new[n]\n        copy = GraphNode(n.val)\n        old_to_new[n] = copy\n        for neighbor in n.neighbors:\n            copy.neighbors.append(dfs(neighbor))\n        return copy\n    return dfs(node)\n\nn1 = GraphNode(1); n2 = GraphNode(2); n3 = GraphNode(3); n4 = GraphNode(4)\nn1.neighbors = [n2, n4]; n2.neighbors = [n1, n3]; n3.neighbors = [n2, n4]; n4.neighbors = [n1, n3]\nclone = cloneGraph(n1)",
    "notes": {},
    "tests": "assert clone is not n1\nassert clone.val == 1\nassert clone.neighbors[0].val == 2\nassert clone.neighbors[0] is not n2\n# Verify deep clone: neighbors of clone's neighbor should also be clones\nassert clone.neighbors[0].neighbors[0] is clone\nassert cloneGraph(None) is None\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=133"
   },
   {
    "id": "09-22-course-schedule-cycle-detection-with-dfs",
@@ -369,7 +427,8 @@
     "8": "already processed"
    },
    "tests": "assert canFinishDFS(2, [[1,0]]) == True\nassert canFinishDFS(2, [[1,0],[0,1]]) == False\nassert canFinishDFS(4, [[1,0],[2,0],[3,1],[3,2]]) == True\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=207"
   },
   {
    "id": "09-23-number-of-connected-components-in-undirected-graph",
@@ -385,7 +444,8 @@
    "solution": "def countComponents(n, edges):\n    graph = defaultdict(list)\n    for u, v in edges:\n        graph[u].append(v)\n        graph[v].append(u)\n    visited = set()\n    components = 0\n    for start in range(n):\n        if start not in visited:\n            components += 1\n            queue = deque([start])\n            visited.add(start)\n            while queue:\n                node = queue.popleft()\n                for neighbor in graph[node]:\n                    if neighbor not in visited:\n                        visited.add(neighbor)\n                        queue.append(neighbor)\n    return components",
    "notes": {},
    "tests": "assert countComponents(5, [[0,1],[1,2],[3,4]]) == 2\nassert countComponents(5, [[0,1],[1,2],[2,3],[3,4]]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=323"
   },
   {
    "id": "09-24-pacific-atlantic-water-flow",
@@ -401,7 +461,8 @@
    "solution": "def pacificAtlantic(heights):\n    rows, cols = len(heights), len(heights[0])\n    def bfs(starts):\n        visited = set(starts)\n        queue = deque(starts)\n        while queue:\n            r, c = queue.popleft()\n            for dr, dc in [(0,1),(0,-1),(1,0),(-1,0)]:\n                nr, nc = r+dr, c+dc\n                if 0<=nr<rows and 0<=nc<cols and (nr,nc) not in visited and heights[nr][nc] >= heights[r][c]:\n                    visited.add((nr,nc))\n                    queue.append((nr,nc))\n        return visited\n    pacific_starts = [(r,0) for r in range(rows)] + [(0,c) for c in range(1, cols)]\n    atlantic_starts = [(r,cols-1) for r in range(rows)] + [(rows-1,c) for c in range(cols-1)]\n    pac = bfs(pacific_starts)\n    atl = bfs(atlantic_starts)\n    return sorted([list(cell) for cell in pac & atl])\n\nresult = pacificAtlantic([[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,1,1,2,4]])",
    "notes": {},
    "tests": "assert [0,4] in result and [1,3] in result and [1,4] in result\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=417"
   },
   {
    "id": "09-25-surrounded-regions",
@@ -421,7 +482,8 @@
     "15": "Flip"
    },
    "tests": "assert board == [[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"X\",\"X\",\"X\"],[\"X\",\"O\",\"X\",\"X\"]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=130"
   },
   {
    "id": "09-26-rotting-oranges",
@@ -437,7 +499,8 @@
    "solution": "def orangesRottingMedium(grid):\n    rows, cols = len(grid), len(grid[0])\n    fresh = sum(grid[r][c] == 1 for r in range(rows) for c in range(cols))\n    queue = deque((r,c,0) for r in range(rows) for c in range(cols) if grid[r][c]==2)\n    if fresh == 0: return 0\n    time = 0\n    while queue:\n        r, c, t = queue.popleft()\n        for dr, dc in [(0,1),(0,-1),(1,0),(-1,0)]:\n            nr, nc = r+dr, c+dc\n            if 0<=nr<rows and 0<=nc<cols and grid[nr][nc]==1:\n                grid[nr][nc]=2; fresh-=1; time=t+1\n                queue.append((nr,nc,t+1))\n    return time if fresh==0 else -1",
    "notes": {},
    "tests": "assert orangesRottingMedium([[2,1,1],[1,1,0],[0,1,1]]) == 4\nassert orangesRottingMedium([[2,1,1],[0,1,1],[1,0,1]]) == -1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=994"
   },
   {
    "id": "09-27-word-ladder",
@@ -453,7 +516,8 @@
    "solution": "def wordLadder(beginWord, endWord, wordList):\n    word_set = set(wordList)\n    if endWord not in word_set: return 0\n    queue = deque([(beginWord, 1)])\n    visited = {beginWord}\n    while queue:\n        word, length = queue.popleft()\n        for i in range(len(word)):\n            for c in 'abcdefghijklmnopqrstuvwxyz':\n                nw = word[:i] + c + word[i+1:]\n                if nw == endWord: return length + 1\n                if nw in word_set and nw not in visited:\n                    visited.add(nw)\n                    queue.append((nw, length+1))\n    return 0",
    "notes": {},
    "tests": "assert wordLadder(\"hit\", \"cog\", [\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]) == 5\nassert wordLadder(\"hit\", \"cog\", [\"hot\",\"dot\",\"dog\",\"lot\",\"log\"]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=127"
   },
   {
    "id": "09-28-01-matrix",
@@ -469,7 +533,8 @@
    "solution": "def updateMatrixMedium(mat):\n    rows, cols = len(mat), len(mat[0])\n    dist = [[float('inf')]*cols for _ in range(rows)]\n    queue = deque()\n    for r in range(rows):\n        for c in range(cols):\n            if mat[r][c]==0: dist[r][c]=0; queue.append((r,c))\n    while queue:\n        r, c = queue.popleft()\n        for dr, dc in [(0,1),(0,-1),(1,0),(-1,0)]:\n            nr, nc = r+dr, c+dc\n            if 0<=nr<rows and 0<=nc<cols and dist[nr][nc]>dist[r][c]+1:\n                dist[nr][nc]=dist[r][c]+1; queue.append((nr,nc))\n    return dist",
    "notes": {},
    "tests": "assert updateMatrixMedium([[0,0,0],[0,1,0],[1,1,1]]) == [[0,0,0],[0,1,0],[1,2,1]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=542"
   },
   {
    "id": "09-29-shortest-path-in-binary-matrix",
@@ -487,7 +552,8 @@
     "5": "mark visited"
    },
    "tests": "assert shortestPathBinaryMatrix([[0,1],[1,0]]) == 2\nassert shortestPathBinaryMatrix([[0,0,0],[1,1,0],[1,1,0]]) == 4\nassert shortestPathBinaryMatrix([[1,0,0],[1,1,0],[1,1,0]]) == -1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1091"
   },
   {
    "id": "09-30-graph-valid-tree",
@@ -503,7 +569,8 @@
    "solution": "def validTree(n, edges):\n    if len(edges) != n - 1: return False\n    graph = defaultdict(list)\n    for u, v in edges:\n        graph[u].append(v)\n        graph[v].append(u)\n    visited = {0}\n    queue = deque([0])\n    while queue:\n        node = queue.popleft()\n        for neighbor in graph[node]:\n            if neighbor not in visited:\n                visited.add(neighbor)\n                queue.append(neighbor)\n    return len(visited) == n",
    "notes": {},
    "tests": "assert validTree(5, [[0,1],[0,2],[0,3],[1,4]]) == True\nassert validTree(5, [[0,1],[1,2],[2,3],[1,3],[1,4]]) == False\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=261"
   },
   {
    "id": "09-31-redundant-connection",
@@ -519,7 +586,8 @@
    "solution": "def findRedundantConnection(edges):\n    parent = list(range(len(edges) + 1))\n    rank = [0] * (len(edges) + 1)\n    \n    def find(x):\n        while parent[x] != x:\n            parent[x] = parent[parent[x]]\n            x = parent[x]\n        return x\n    \n    def union(x, y):\n        px, py = find(x), find(y)\n        if px == py: return False\n        if rank[px] < rank[py]: px, py = py, px\n        parent[py] = px\n        if rank[px] == rank[py]: rank[px] += 1\n        return True\n    \n    for u, v in edges:\n        if not union(u, v): return [u, v]\n    return []",
    "notes": {},
    "tests": "assert findRedundantConnection([[1,2],[1,3],[2,3]]) == [2,3]\nassert findRedundantConnection([[1,2],[2,3],[3,4],[1,4],[1,5]]) == [1,4]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=684"
   },
   {
    "id": "09-32-evaluate-division",
@@ -535,7 +603,8 @@
    "solution": "def calcEquation(equations, values, queries):\n    graph = defaultdict(dict)\n    for (a, b), val in zip(equations, values):\n        graph[a][b] = val\n        graph[b][a] = 1.0 / val\n    \n    def bfs(src, dst):\n        if src not in graph or dst not in graph: return -1.0\n        if src == dst: return 1.0\n        visited = {src}\n        queue = deque([(src, 1.0)])\n        while queue:\n            node, prod = queue.popleft()\n            if node == dst: return prod\n            for neighbor, weight in graph[node].items():\n                if neighbor not in visited:\n                    visited.add(neighbor)\n                    queue.append((neighbor, prod * weight))\n        return -1.0\n    \n    return [bfs(c, d) for c, d in queries]\n\nres = calcEquation([[\"a\",\"b\"],[\"b\",\"c\"]], [2.0,3.0], [[\"a\",\"c\"],[\"b\",\"a\"],[\"a\",\"e\"],[\"a\",\"a\"],[\"x\",\"x\"]])",
    "notes": {},
    "tests": "assert abs(res[0] - 6.0) < 1e-9\nassert abs(res[1] - 0.5) < 1e-9\nassert res[2] == -1.0\nassert res[3] == 1.0\nassert res[4] == -1.0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=399"
   },
   {
    "id": "09-33-time-needed-to-inform-all-employees",
@@ -551,7 +620,8 @@
    "solution": "def numOfMinutesMedium(n, headID, manager, informTime):\n    subordinates = defaultdict(list)\n    for emp, mgr in enumerate(manager):\n        if mgr != -1: subordinates[mgr].append(emp)\n    queue = deque([(headID, 0)])\n    max_time = 0\n    while queue:\n        emp, t = queue.popleft()\n        max_time = max(max_time, t)\n        for sub in subordinates[emp]:\n            queue.append((sub, t + informTime[emp]))\n    return max_time",
    "notes": {},
    "tests": "assert numOfMinutesMedium(6, 2, [2,2,-1,2,2,2], [0,0,1,0,0,0]) == 1\nassert numOfMinutesMedium(7, 6, [1,2,3,4,5,6,-1], [0,6,5,4,3,2,1]) == 21\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1376"
   },
   {
    "id": "09-34-number-of-enclaves",
@@ -567,7 +637,8 @@
    "solution": "def numEnclaves(grid):\n    rows, cols = len(grid), len(grid[0])\n    \n    def dfs(r, c):\n        if r<0 or r>=rows or c<0 or c>=cols or grid[r][c]!=1: return\n        grid[r][c] = 0\n        dfs(r+1,c); dfs(r-1,c); dfs(r,c+1); dfs(r,c-1)\n    \n    for r in range(rows):\n        dfs(r, 0); dfs(r, cols-1)\n    for c in range(cols):\n        dfs(0, c); dfs(rows-1, c)\n    return sum(grid[r][c] for r in range(rows) for c in range(cols))",
    "notes": {},
    "tests": "assert numEnclaves([[0,0,0,0],[1,0,1,0],[0,1,1,0],[0,0,0,0]]) == 3\nassert numEnclaves([[0,1,1,0],[0,0,1,0],[0,0,1,0],[0,0,0,0]]) == 0\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1020"
   },
   {
    "id": "09-35-as-far-from-land-as-possible",
@@ -583,7 +654,8 @@
    "solution": "def maxDistance(grid):\n    n = len(grid)\n    queue = deque((r,c) for r in range(n) for c in range(n) if grid[r][c]==1)\n    if len(queue) == n*n or len(queue) == 0: return -1\n    dist = -1\n    while queue:\n        r, c = queue.popleft()\n        for dr, dc in [(0,1),(0,-1),(1,0),(-1,0)]:\n            nr, nc = r+dr, c+dc\n            if 0<=nr<n and 0<=nc<n and grid[nr][nc]==0:\n                grid[nr][nc] = grid[r][c] + 1\n                dist = max(dist, grid[nr][nc] - 1)\n                queue.append((nr,nc))\n    return dist",
    "notes": {},
    "tests": "assert maxDistance([[1,0,1],[0,0,0],[1,0,1]]) == 2\nassert maxDistance([[1,0,0],[0,0,0],[0,0,0]]) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1162"
   },
   {
    "id": "09-36-word-ladder-ii",
@@ -599,7 +671,8 @@
    "solution": "def findLaddersHard(beginWord, endWord, wordList):\n    word_set = set(wordList)\n    if endWord not in word_set: return []\n    parents = defaultdict(set)\n    current = {beginWord}\n    found = False\n    while current and not found:\n        word_set -= current\n        nxt = set()\n        for word in current:\n            for i in range(len(word)):\n                for c in 'abcdefghijklmnopqrstuvwxyz':\n                    nw = word[:i]+c+word[i+1:]\n                    if nw in word_set:\n                        nxt.add(nw)\n                        parents[nw].add(word)\n                        if nw == endWord: found = True\n        current = nxt\n    if not found: return []\n    result = []\n    def backtrack(word, path):\n        if word == beginWord: result.append(path[::-1]); return\n        for p in parents[word]: backtrack(p, path+[p])\n    backtrack(endWord, [endWord])\n    return result\n\nres = findLaddersHard(\"hit\", \"cog\", [\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"])",
    "notes": {},
    "tests": "assert sorted(res) == sorted([[\"hit\",\"hot\",\"dot\",\"dog\",\"cog\"],[\"hit\",\"hot\",\"lot\",\"log\",\"cog\"]])\nassert findLaddersHard(\"hit\", \"cog\", [\"hot\",\"dot\",\"dog\",\"lot\",\"log\"]) == []\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=126"
   },
   {
    "id": "09-37-alien-dictionary",
@@ -618,7 +691,8 @@
     "8": "invalid"
    },
    "tests": "assert res == \"wertf\" or len(res) == 5  # valid topological order\nassert alienOrder([\"z\",\"x\"]) in [\"zx\"]\nassert alienOrder([\"z\",\"x\",\"z\"]) == \"\"\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=269"
   },
   {
    "id": "09-38-critical-connections-in-a-network-tarjan-s-bridges",
@@ -634,7 +708,8 @@
    "solution": "def criticalConnections(n, connections):\n    graph = defaultdict(list)\n    for u, v in connections:\n        graph[u].append(v)\n        graph[v].append(u)\n    disc = [-1] * n\n    low = [0] * n\n    timer = [0]\n    result = []\n    \n    def dfs(node, parent):\n        disc[node] = low[node] = timer[0]\n        timer[0] += 1\n        for neighbor in graph[node]:\n            if neighbor == parent: continue\n            if disc[neighbor] == -1:\n                dfs(neighbor, node)\n                low[node] = min(low[node], low[neighbor])\n                if low[neighbor] > disc[node]:\n                    result.append([node, neighbor])\n            else:\n                low[node] = min(low[node], disc[neighbor])\n    \n    dfs(0, -1)\n    return result\n\nres = criticalConnections(4, [[0,1],[1,2],[2,0],[1,3]])",
    "notes": {},
    "tests": "assert sorted(map(sorted, res)) == [[1,3]]\nres2 = criticalConnections(2, [[0,1]])\nassert sorted(map(sorted, res2)) == [[0,1]]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1192"
   },
   {
    "id": "09-39-shortest-path-visiting-all-nodes",
@@ -650,7 +725,8 @@
    "solution": "def shortestPathLength(graph):\n    n = len(graph)\n    if n == 1: return 0\n    full_mask = (1 << n) - 1\n    queue = deque((i, 1<<i, 0) for i in range(n))\n    visited = {(i, 1<<i) for i in range(n)}\n    while queue:\n        node, mask, dist = queue.popleft()\n        for neighbor in graph[node]:\n            new_mask = mask | (1 << neighbor)\n            if new_mask == full_mask: return dist + 1\n            if (neighbor, new_mask) not in visited:\n                visited.add((neighbor, new_mask))\n                queue.append((neighbor, new_mask, dist+1))\n    return 0",
    "notes": {},
    "tests": "assert shortestPathLength([[1,2,3],[0],[0],[0]]) == 4\nassert shortestPathLength([[1],[0,2,4],[1,3,4],[2],[1,2]]) == 4\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=847"
   },
   {
    "id": "09-40-reconstruct-itinerary",
@@ -666,7 +742,8 @@
    "solution": "def findItinerary(tickets):\n    graph = defaultdict(list)\n    for src, dst in sorted(tickets, reverse=True):\n        graph[src].append(dst)\n    result = []\n    stack = ['JFK']\n    while stack:\n        while graph[stack[-1]]:\n            stack.append(graph[stack[-1]].pop())\n        result.append(stack.pop())\n    return result[::-1]",
    "notes": {},
    "tests": "assert findItinerary([[\"MUC\",\"LHR\"],[\"JFK\",\"MUC\"],[\"SFO\",\"SJC\"],[\"LHR\",\"SFO\"]]) == [\"JFK\",\"MUC\",\"LHR\",\"SFO\",\"SJC\"]\nassert findItinerary([[\"JFK\",\"SFO\"],[\"JFK\",\"ATL\"],[\"SFO\",\"ATL\"],[\"ATL\",\"JFK\"],[\"ATL\",\"SFO\"]]) == [\"JFK\",\"ATL\",\"JFK\",\"SFO\",\"ATL\",\"SFO\"]\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=332"
   },
   {
    "id": "09-41-number-of-ways-to-arrive-at-destination",
@@ -684,7 +761,8 @@
     "12": "(dist, node)"
    },
    "tests": "assert countPaths(7, [[0,6,7],[0,1,2],[1,2,3],[1,3,3],[6,3,3],[3,5,1],[6,5,1],[2,5,1],[0,4,5],[4,6,2]]) == 4\nassert countPaths(2, [[1,0,10]]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1976"
   },
   {
    "id": "09-42-swim-in-rising-water",
@@ -700,7 +778,8 @@
    "solution": "def swimInWaterHard(grid):\n    n = len(grid)\n    heap = [(grid[0][0], 0, 0)]\n    visited = set()\n    while heap:\n        t, r, c = heapq.heappop(heap)\n        if (r,c) in visited: continue\n        visited.add((r,c))\n        if r==n-1 and c==n-1: return t\n        for dr, dc in [(0,1),(0,-1),(1,0),(-1,0)]:\n            nr, nc = r+dr, c+dc\n            if 0<=nr<n and 0<=nc<n and (nr,nc) not in visited:\n                heapq.heappush(heap, (max(t, grid[nr][nc]), nr, nc))\n    return -1",
    "notes": {},
    "tests": "assert swimInWaterHard([[0,2],[1,3]]) == 3\nassert swimInWaterHard([[0,1,2,3,4],[24,23,22,21,5],[12,13,14,15,16],[11,17,18,19,20],[10,9,8,7,6]]) == 16\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=778"
   },
   {
    "id": "09-43-bus-routes",
@@ -716,7 +795,8 @@
    "solution": "def numBusesHard(routes, source, target):\n    if source == target: return 0\n    stop_to_routes = defaultdict(set)\n    for i, route in enumerate(routes):\n        for stop in route: stop_to_routes[stop].add(i)\n    visited_stops = {source}\n    visited_routes = set()\n    queue = deque([source])\n    buses = 0\n    while queue:\n        buses += 1\n        for _ in range(len(queue)):\n            stop = queue.popleft()\n            for ri in stop_to_routes[stop]:\n                if ri in visited_routes: continue\n                visited_routes.add(ri)\n                for ns in routes[ri]:\n                    if ns == target: return buses\n                    if ns not in visited_stops:\n                        visited_stops.add(ns)\n                        queue.append(ns)\n    return -1",
    "notes": {},
    "tests": "assert numBusesHard([[1,2,7],[3,6,7]], 1, 6) == 2\nassert numBusesHard([[7,12],[4,5,15],[6],[15,19],[9,12,13]], 15, 12) == -1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=815"
   },
   {
    "id": "09-44-remove-boxes-simplified",
@@ -736,7 +816,8 @@
     "12": "Try merging with a later matching box"
    },
    "tests": "assert removeBoxes([1,3,2,2,2,3,4,3,1]) == 23\nassert removeBoxes([1,1,1]) == 9\nassert removeBoxes([1]) == 1\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=546"
   },
   {
    "id": "09-45-minimum-cost-to-connect-all-points-prim-s-algorithm",
@@ -754,7 +835,8 @@
     "6": "(cost, node)"
    },
    "tests": "assert minCostConnectPoints([[0,0],[2,2],[3,10],[5,2],[7,0]]) == 20\nassert minCostConnectPoints([[3,12],[-2,5],[-4,1]]) == 18\nprint(\"All tests passed!\")",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1584"
   },
   {
    "id": "09-46-find-if-path-exists-in-graph-bfs-version",
@@ -770,7 +852,8 @@
    "solution": "from collections import deque, defaultdict\n\ndef validPathBFS(n, edges, source, destination):\n    if source == destination: return True\n    graph = defaultdict(list)\n    for u, v in edges:\n        graph[u].append(v); graph[v].append(u)\n    visited = {source}\n    queue = deque([source])\n    while queue:\n        node = queue.popleft()\n        for nei in graph[node]:\n            if nei == destination: return True\n            if nei not in visited:\n                visited.add(nei); queue.append(nei)\n    return False",
    "notes": {},
    "tests": "assert validPathBFS(3, [[0,1],[1,2],[2,0]], 0, 2) == True\nassert validPathBFS(6, [[0,1],[0,2],[3,5],[5,4],[4,3]], 0, 5) == False\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1971"
   },
   {
    "id": "09-47-count-connected-components-undirected-graph",
@@ -786,7 +869,8 @@
    "solution": "def countComponents(n, edges):\n    graph = defaultdict(list)\n    for u, v in edges:\n        graph[u].append(v); graph[v].append(u)\n    visited = set()\n    def dfs(node):\n        visited.add(node)\n        for nei in graph[node]:\n            if nei not in visited: dfs(nei)\n    count = 0\n    for i in range(n):\n        if i not in visited:\n            dfs(i); count += 1\n    return count",
    "notes": {},
    "tests": "assert countComponents(5, [[0,1],[1,2],[3,4]]) == 2\nassert countComponents(5, [[0,1],[1,2],[2,3],[3,4]]) == 1\nassert countComponents(4, []) == 4\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "09-48-count-components-in-undirected-graph-union-find",
@@ -802,7 +886,8 @@
    "solution": "def countComponentsUF(n, edges):\n    parent = list(range(n))\n    def find(x):\n        while parent[x] != x:\n            parent[x] = parent[parent[x]]; x = parent[x]\n        return x\n    for u, v in edges:\n        parent[find(u)] = find(v)\n    return len({find(i) for i in range(n)})",
    "notes": {},
    "tests": "assert countComponentsUF(5, [[0,1],[1,2],[3,4]]) == 2\nassert countComponentsUF(5, [[0,1],[1,2],[2,3],[3,4]]) == 1\nassert countComponentsUF(4, []) == 4\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "09-49-find-the-celebrity-in-out-degree-logic",
@@ -818,7 +903,8 @@
    "solution": "def findCelebrity(n, knows_matrix):\n    def knows(a, b): return knows_matrix[a][b] == 1\n    candidate = 0\n    for i in range(1, n):\n        if knows(candidate, i): candidate = i\n    for i in range(n):\n        if i == candidate: continue\n        if knows(candidate, i) or not knows(i, candidate): return -1\n    return candidate\n\nm1 = [[0,1,0],[0,0,0],[0,1,0]]",
    "notes": {},
    "tests": "assert findCelebrity(3, m1) == 1\nm2 = [[0,1],[1,0]]\nassert findCelebrity(2, m2) == -1\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=277"
   },
   {
    "id": "09-50-minimum-number-of-vertices-to-reach-all-nodes-revisit",
@@ -834,7 +920,8 @@
    "solution": "def findSmallestSetOfVertices(n, edges):\n    has_incoming = set(v for _, v in edges)\n    return [i for i in range(n) if i not in has_incoming]",
    "notes": {},
    "tests": "assert sorted(findSmallestSetOfVertices(6, [[0,1],[0,2],[2,5],[3,4],[4,2]])) == [0,3]\nassert sorted(findSmallestSetOfVertices(5, [[0,1],[2,1],[3,1],[1,4],[2,4]])) == [0,2,3]\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1557"
   },
   {
    "id": "09-51-check-if-graph-is-bipartite-bfs-coloring",
@@ -850,7 +937,8 @@
    "solution": "def isBipartite(graph):\n    n = len(graph)\n    color = [-1] * n\n    for start in range(n):\n        if color[start] != -1: continue\n        queue = deque([start]); color[start] = 0\n        while queue:\n            node = queue.popleft()\n            for nei in graph[node]:\n                if color[nei] == -1:\n                    color[nei] = 1 - color[node]; queue.append(nei)\n                elif color[nei] == color[node]: return False\n    return True",
    "notes": {},
    "tests": "assert isBipartite([[1,3],[0,2],[1,3],[0,2]]) == True\nassert isBipartite([[1,2,3],[0,2],[0,1,3],[0,2]]) == False\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=785"
   },
   {
    "id": "09-52-find-if-directed-graph-has-a-cycle",
@@ -866,7 +954,8 @@
    "solution": "def hasCycleDirected(n, edges):\n    graph = defaultdict(list)\n    for u, v in edges: graph[u].append(v)\n    color = [0] * n\n    def dfs(node):\n        color[node] = 1\n        for nei in graph[node]:\n            if color[nei] == 1: return True\n            if color[nei] == 0 and dfs(nei): return True\n        color[node] = 2\n        return False\n    return any(dfs(i) for i in range(n) if color[i] == 0)",
    "notes": {},
    "tests": "assert hasCycleDirected(4, [[0,1],[1,2],[2,3],[3,1]]) == True\nassert hasCycleDirected(4, [[0,1],[1,2],[2,3]]) == False\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "09-53-depth-of-each-node-from-source-bfs-levels",
@@ -882,7 +971,8 @@
    "solution": "def bfsDepths(n, edges, source):\n    graph = defaultdict(list)\n    for u, v in edges:\n        graph[u].append(v); graph[v].append(u)\n    dist = {source: 0}\n    queue = deque([source])\n    while queue:\n        node = queue.popleft()\n        for nei in graph[node]:\n            if nei not in dist:\n                dist[nei] = dist[node] + 1; queue.append(nei)\n    return dist",
    "notes": {},
    "tests": "assert bfsDepths(5, [[0,1],[0,2],[1,3],[1,4]], 0) == {0:0,1:1,2:1,3:2,4:2}\nassert bfsDepths(4, [[0,1],[1,2],[2,3]], 0) == {0:0,1:1,2:2,3:3}\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "09-54-count-nodes-at-distance-k-from-source",
@@ -898,7 +988,8 @@
    "solution": "def countNodesAtDistK(n, edges, source, k):\n    graph = defaultdict(list)\n    for u, v in edges:\n        graph[u].append(v); graph[v].append(u)\n    dist = {source: 0}\n    queue = deque([source])\n    while queue:\n        node = queue.popleft()\n        for nei in graph[node]:\n            if nei not in dist:\n                dist[nei] = dist[node] + 1; queue.append(nei)\n    return sum(1 for d in dist.values() if d == k)",
    "notes": {},
    "tests": "assert countNodesAtDistK(5, [[0,1],[0,2],[1,3],[1,4]], 0, 2) == 2\nassert countNodesAtDistK(4, [[0,1],[1,2],[2,3]], 0, 2) == 1\nassert countNodesAtDistK(4, [[0,1],[1,2],[2,3]], 0, 5) == 0\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "09-55-find-all-nodes-reachable-from-source",
@@ -914,7 +1005,8 @@
    "solution": "def reachableNodes(n, edges, source):\n    graph = defaultdict(list)\n    for u, v in edges: graph[u].append(v)\n    visited = {source}\n    queue = deque([source])\n    while queue:\n        node = queue.popleft()\n        for nei in graph[node]:\n            if nei not in visited:\n                visited.add(nei); queue.append(nei)\n    return sorted(visited)",
    "notes": {},
    "tests": "assert reachableNodes(5, [[0,1],[0,2],[1,3],[3,4]], 0) == [0,1,2,3,4]\nassert reachableNodes(5, [[0,1],[2,3]], 2) == [2,3]\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "09-56-check-if-all-nodes-reachable-from-node-0",
@@ -930,7 +1022,8 @@
    "solution": "def allReachableFrom0(n, edges):\n    graph = defaultdict(list)\n    for u, v in edges: graph[u].append(v)\n    visited = {0}\n    queue = deque([0])\n    while queue:\n        node = queue.popleft()\n        for nei in graph[node]:\n            if nei not in visited:\n                visited.add(nei); queue.append(nei)\n    return len(visited) == n",
    "notes": {},
    "tests": "assert allReachableFrom0(4, [[0,1],[0,2],[1,3],[2,3]]) == True\nassert allReachableFrom0(4, [[0,1],[2,3]]) == False\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "09-57-bidirectional-check-path-from-a-to-b-and-b-to-a",
@@ -946,7 +1039,8 @@
    "solution": "def bidirectionalReachable(n, edges, a, b):\n    fwd = defaultdict(list); rev = defaultdict(list)\n    for u, v in edges:\n        fwd[u].append(v); rev[v].append(u)\n    def bfs(graph, start, target):\n        visited = {start}; queue = deque([start])\n        while queue:\n            node = queue.popleft()\n            if node == target: return True\n            for nei in graph[node]:\n                if nei not in visited:\n                    visited.add(nei); queue.append(nei)\n        return False\n    return bfs(fwd, a, b) and bfs(fwd, b, a)",
    "notes": {},
    "tests": "assert bidirectionalReachable(4, [[0,1],[1,2],[2,0],[0,3]], 0, 2) == True\nassert bidirectionalReachable(4, [[0,1],[1,2],[2,0],[0,3]], 0, 3) == False\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "09-58-find-isolated-nodes-nodes-with-no-edges",
@@ -962,7 +1056,8 @@
    "solution": "def findIsolatedNodes(n, edges):\n    connected = set(u for e in edges for u in e)\n    return [i for i in range(n) if i not in connected]",
    "notes": {},
    "tests": "assert findIsolatedNodes(5, [[0,1],[2,3]]) == [4]\nassert findIsolatedNodes(4, []) == [0,1,2,3]\nassert findIsolatedNodes(3, [[0,1],[1,2],[0,2]]) == []\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "09-59-count-edges-in-a-connected-component",
@@ -978,7 +1073,8 @@
    "solution": "def countEdgesInComponent(n, edges, start):\n    graph = defaultdict(list)\n    for u, v in edges:\n        graph[u].append(v); graph[v].append(u)\n    visited = {start}\n    queue = deque([start])\n    edge_count = 0\n    while queue:\n        node = queue.popleft()\n        for nei in graph[node]:\n            edge_count += 1\n            if nei not in visited:\n                visited.add(nei); queue.append(nei)\n    return edge_count // 2",
    "notes": {},
    "tests": "assert countEdgesInComponent(5, [[0,1],[1,2],[2,0],[3,4]], 0) == 3\nassert countEdgesInComponent(5, [[0,1],[1,2],[2,0],[3,4]], 3) == 1\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "09-60-find-the-largest-connected-component-by-value-simplifi",
@@ -994,7 +1090,8 @@
    "solution": "from collections import Counter\n\ndef largestComponentSize(nums):\n    parent = {}\n    def find(x):\n        parent.setdefault(x, x)\n        while parent[x] != x:\n            parent[x] = parent.setdefault(parent[x], parent[x])\n            x = parent[x]\n        return x\n    def union(a, b): parent[find(a)] = find(b)\n    for num in nums:\n        d, n = 2, num\n        while d * d <= n:\n            if n % d == 0:\n                union(num, d)\n                while n % d == 0: n //= d\n            d += 1\n        if n > 1: union(num, n)\n    return max(Counter(find(x) for x in nums).values())",
    "notes": {},
    "tests": "assert largestComponentSize([4,6,15,35]) == 4\nassert largestComponentSize([20,50,9,63]) == 2\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=952"
   },
   {
    "id": "09-61-minimum-cost-to-connect-all-points-kruskal-s-algorithm",
@@ -1010,7 +1107,8 @@
    "solution": "def minCostConnectPointsKruskal(points):\n    n = len(points)\n    edges = sorted((abs(points[i][0]-points[j][0])+abs(points[i][1]-points[j][1]),i,j)\n                   for i in range(n) for j in range(i+1,n))\n    parent = list(range(n))\n    def find(x):\n        while parent[x] != x:\n            parent[x] = parent[parent[x]]; x = parent[x]\n        return x\n    total = 0\n    for dist, u, v in edges:\n        ru, rv = find(u), find(v)\n        if ru != rv:\n            parent[ru] = rv; total += dist\n    return total",
    "notes": {},
    "tests": "assert minCostConnectPointsKruskal([[0,0],[2,2],[3,10],[5,2],[7,0]]) == 20\nassert minCostConnectPointsKruskal([[3,12],[-2,5],[-4,1]]) == 18\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1584"
   },
   {
    "id": "09-62-count-components-after-removing-a-node",
@@ -1026,7 +1124,8 @@
    "solution": "def countComponentsAfterRemoval(n, edges, remove):\n    graph = defaultdict(list)\n    for u, v in edges:\n        if u != remove and v != remove:\n            graph[u].append(v); graph[v].append(u)\n    visited = {remove}\n    count = 0\n    for i in range(n):\n        if i not in visited:\n            visited.add(i)\n            queue = deque([i])\n            while queue:\n                node = queue.popleft()\n                for nei in graph[node]:\n                    if nei not in visited:\n                        visited.add(nei); queue.append(nei)\n            count += 1\n    return count",
    "notes": {},
    "tests": "assert countComponentsAfterRemoval(4, [[0,1],[1,2],[2,3]], 1) == 2\nassert countComponentsAfterRemoval(4, [[0,1],[0,2],[0,3]], 0) == 3\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "09-63-graph-has-path-of-length-exactly-k",
@@ -1042,7 +1141,8 @@
    "solution": "def hasPathLengthK(n, edges, source, dest, k):\n    graph = defaultdict(list)\n    for u, v in edges:\n        graph[u].append(v); graph[v].append(u)\n    def dfs(node, steps):\n        if steps == 0: return node == dest\n        return any(dfs(nei, steps-1) for nei in graph[node])\n    return dfs(source, k)",
    "notes": {},
    "tests": "assert hasPathLengthK(4, [[0,1],[1,2],[2,3]], 0, 3, 3) == True\nassert hasPathLengthK(4, [[0,1],[1,2],[2,3]], 0, 3, 2) == False\nassert hasPathLengthK(3, [[0,1],[1,2]], 0, 2, 4) == True\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "09-64-find-all-paths-from-source-to-target",
@@ -1058,7 +1158,8 @@
    "solution": "def allPathsSourceTarget(graph):\n    target = len(graph) - 1\n    result = []\n    def dfs(node, path):\n        if node == target:\n            result.append(list(path)); return\n        for nei in graph[node]:\n            path.append(nei); dfs(nei, path); path.pop()\n    dfs(0, [0])\n    return result\n\nres = allPathsSourceTarget([[1,2],[3],[3],[]])",
    "notes": {},
    "tests": "assert sorted(res) == sorted([[0,1,3],[0,2,3]])\nres2 = allPathsSourceTarget([[4,3,1],[3,2,4],[3],[4],[]])\nassert [0,4] in res2 and [0,3,4] in res2\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=797"
   },
   {
    "id": "09-65-check-if-two-nodes-are-in-the-same-connected-component",
@@ -1074,7 +1175,8 @@
    "solution": "def sameComponent(n, edges, a, b):\n    parent = list(range(n))\n    def find(x):\n        while parent[x] != x:\n            parent[x] = parent[parent[x]]; x = parent[x]\n        return x\n    for u, v in edges: parent[find(u)] = find(v)\n    return find(a) == find(b)",
    "notes": {},
    "tests": "assert sameComponent(5, [[0,1],[1,2],[3,4]], 0, 2) == True\nassert sameComponent(5, [[0,1],[1,2],[3,4]], 0, 3) == False\nassert sameComponent(5, [[0,1],[1,2],[3,4]], 3, 4) == True\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "09-66-number-of-distinct-islands",
@@ -1092,7 +1194,8 @@
     "9": "backtrack marker"
    },
    "tests": "assert numDistinctIslands(g1) == 1\ng2 = [[1,1,0,1,1],[1,0,0,0,0],[0,0,0,0,1],[1,1,0,1,1]]\nassert numDistinctIslands(g2) == 3\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=694"
   },
   {
    "id": "09-67-longest-increasing-path-in-a-matrix",
@@ -1108,7 +1211,8 @@
    "solution": "def longestIncreasingPath(matrix):\n    if not matrix: return 0\n    rows, cols = len(matrix), len(matrix[0])\n    memo = {}\n    def dfs(r, c):\n        if (r,c) in memo: return memo[(r,c)]\n        best = 1\n        for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:\n            nr, nc = r+dr, c+dc\n            if 0<=nr<rows and 0<=nc<cols and matrix[nr][nc] > matrix[r][c]:\n                best = max(best, 1+dfs(nr,nc))\n        memo[(r,c)] = best\n        return best\n    return max(dfs(r,c) for r in range(rows) for c in range(cols))",
    "notes": {},
    "tests": "assert longestIncreasingPath([[9,9,4],[6,6,8],[2,1,1]]) == 4\nassert longestIncreasingPath([[3,4,5],[3,2,6],[2,2,1]]) == 4\nassert longestIncreasingPath([[1]]) == 1\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=329"
   },
   {
    "id": "09-68-max-area-of-island-4-directional-bfs-variant",
@@ -1124,7 +1228,8 @@
    "solution": "def maxAreaOfIslandBFS(grid):\n    rows, cols = len(grid), len(grid[0])\n    visited = set(); max_area = 0\n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == 1 and (r,c) not in visited:\n                area = 0; queue = deque([(r,c)]); visited.add((r,c))\n                while queue:\n                    cr, cc = queue.popleft(); area += 1\n                    for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:\n                        nr, nc = cr+dr, cc+dc\n                        if 0<=nr<rows and 0<=nc<cols and grid[nr][nc]==1 and (nr,nc) not in visited:\n                            visited.add((nr,nc)); queue.append((nr,nc))\n                max_area = max(max_area, area)\n    return max_area\n\ng = [[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],\n     [0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],\n     [0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],\n     [0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]]",
    "notes": {},
    "tests": "assert maxAreaOfIslandBFS(g) == 6\nassert maxAreaOfIslandBFS([[0,0,0,0,0,0,0,0]]) == 0\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "09-69-count-sub-islands-detailed-dfs",
@@ -1140,7 +1245,8 @@
    "solution": "def countSubIslands(grid1, grid2):\n    rows, cols = len(grid2), len(grid2[0])\n    visited = set()\n    def dfs(r, c):\n        if r<0 or r>=rows or c<0 or c>=cols: return True\n        if grid2[r][c] == 0 or (r,c) in visited: return True\n        visited.add((r,c))\n        is_sub = grid1[r][c] == 1\n        for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:\n            is_sub = dfs(r+dr, c+dc) and is_sub\n        return is_sub\n    count = 0\n    for r in range(rows):\n        for c in range(cols):\n            if grid2[r][c] == 1 and (r,c) not in visited:\n                if dfs(r,c): count += 1\n    return count\n\ng1 = [[1,1,1,0,0],[0,1,1,1,1],[0,0,0,0,0],[1,0,0,0,0],[1,1,0,1,1]]\ng2 = [[1,1,1,0,0],[0,0,1,1,1],[0,1,0,0,0],[1,0,1,1,0],[0,1,0,1,0]]",
    "notes": {},
    "tests": "assert countSubIslands(g1, g2) == 3\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1905"
   },
   {
    "id": "09-70-shortest-path-in-a-weighted-graph-dijkstra",
@@ -1156,7 +1262,8 @@
    "solution": "import heapq\n\ndef networkDelayTime(times, n, k):\n    graph = defaultdict(list)\n    for u, v, w in times: graph[u].append((v,w))\n    dist = {k: 0}; heap = [(0, k)]\n    while heap:\n        d, node = heapq.heappop(heap)\n        if d > dist.get(node, float('inf')): continue\n        for nei, w in graph[node]:\n            nd = d + w\n            if nd < dist.get(nei, float('inf')):\n                dist[nei] = nd; heapq.heappush(heap, (nd, nei))\n    return max(dist.values()) if len(dist) == n else -1",
    "notes": {},
    "tests": "assert networkDelayTime([[2,1,1],[2,3,1],[3,4,1]], 4, 2) == 2\nassert networkDelayTime([[1,2,1]], 2, 1) == 1\nassert networkDelayTime([[1,2,1]], 2, 2) == -1\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=743"
   },
   {
    "id": "09-71-number-of-islands-ii-union-find-online",
@@ -1172,7 +1279,8 @@
    "solution": "def numIslands2(m, n, positions):\n    parent = {}; count = [0]\n    def find(x):\n        while parent[x] != x:\n            parent[x] = parent[parent[x]]; x = parent[x]\n        return x\n    def union(a, b):\n        ra, rb = find(a), find(b)\n        if ra != rb: parent[ra] = rb; count[0] -= 1\n    result = []\n    for r, c in positions:\n        if (r,c) in parent: result.append(count[0]); continue\n        parent[(r,c)] = (r,c); count[0] += 1\n        for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:\n            nr, nc = r+dr, c+dc\n            if (nr,nc) in parent: union((r,c),(nr,nc))\n        result.append(count[0])\n    return result",
    "notes": {},
    "tests": "assert numIslands2(3, 3, [[0,0],[0,1],[1,2],[2,1],[1,1]]) == [1,1,2,3,1]\nassert numIslands2(1, 1, [[0,0]]) == [1]\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=305"
   },
   {
    "id": "09-72-minimum-spanning-tree-kruskal-s-full",
@@ -1188,7 +1296,8 @@
    "solution": "def minCostMST(points):\n    n = len(points)\n    parent = list(range(n)); rank = [0]*n\n    def find(x):\n        while parent[x]!=x: parent[x]=parent[parent[x]]; x=parent[x]\n        return x\n    def union(a, b):\n        ra, rb = find(a), find(b)\n        if ra==rb: return False\n        if rank[ra]<rank[rb]: ra,rb=rb,ra\n        parent[rb]=ra\n        if rank[ra]==rank[rb]: rank[ra]+=1\n        return True\n    edges = sorted((abs(points[i][0]-points[j][0])+abs(points[i][1]-points[j][1]),i,j)\n                   for i in range(n) for j in range(i+1,n))\n    total = used = 0\n    for d, u, v in edges:\n        if union(u,v): total+=d; used+=1\n        if used==n-1: break\n    return total",
    "notes": {},
    "tests": "assert minCostMST([[0,0],[2,2],[3,10],[5,2],[7,0]]) == 20\nassert minCostMST([[3,12],[-2,5],[-4,1]]) == 18\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1584"
   },
   {
    "id": "09-73-bipartite-graph-check-full",
@@ -1206,7 +1315,8 @@
     "8": "self-loop"
    },
    "tests": "assert isBipartiteFull([[1,3],[0,2],[1,3],[0,2]]) == True\nassert isBipartiteFull([[1,2,3],[0,2],[0,1,3],[0,2]]) == False\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=785"
   },
   {
    "id": "09-74-find-eventual-safe-states-dfs-coloring",
@@ -1224,7 +1334,8 @@
     "2": "0=unvisited, 1=in-stack, 2=safe"
    },
    "tests": "assert eventualSafeNodes([[1,2],[2,3],[5],[0],[5],[],[]]) == [2,4,5,6]\nassert eventualSafeNodes([[1,2,3,4],[1,2],[3,4],[0,4],[]]) == [4]\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=802"
   },
   {
    "id": "09-75-jump-game-iv-bfs",
@@ -1240,7 +1351,8 @@
    "solution": "def minJumps(arr):\n    n = len(arr)\n    if n == 1: return 0\n    same = defaultdict(list)\n    for i, v in enumerate(arr): same[v].append(i)\n    visited = {0}; queue = deque([0]); steps = 0\n    while queue:\n        steps += 1\n        for _ in range(len(queue)):\n            i = queue.popleft()\n            neighbors = [i-1, i+1] + same.pop(arr[i], [])\n            for j in neighbors:\n                if j == n-1: return steps\n                if 0<=j<n and j not in visited:\n                    visited.add(j); queue.append(j)\n    return -1",
    "notes": {},
    "tests": "assert minJumps([100,-23,-23,404,100,23,23,23,3,404]) == 3\nassert minJumps([7]) == 0\nassert minJumps([7,6,9,6,9,6,9,7]) == 1\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1345"
   },
   {
    "id": "09-76-minimum-fuel-cost-to-report-to-capital",
@@ -1256,7 +1368,8 @@
    "solution": "import math\n\ndef minimumFuelCost(roads, seats):\n    graph = defaultdict(list)\n    for u, v in roads: graph[u].append(v); graph[v].append(u)\n    fuel = [0]\n    def dfs(node, parent):\n        people = 1\n        for nei in graph[node]:\n            if nei != parent: people += dfs(nei, node)\n        if node != 0: fuel[0] += math.ceil(people/seats)\n        return people\n    dfs(0, -1)\n    return fuel[0]",
    "notes": {},
    "tests": "assert minimumFuelCost([[0,1],[0,2],[0,3]], 5) == 3\nassert minimumFuelCost([[3,1],[3,2],[1,0],[0,4],[0,5],[4,6]], 2) == 7\nassert minimumFuelCost([], 1) == 0\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2477"
   },
   {
    "id": "09-77-detonate-the-maximum-bombs",
@@ -1272,7 +1385,8 @@
    "solution": "def maximumDetonation(bombs):\n    n = len(bombs)\n    graph = defaultdict(list)\n    for i in range(n):\n        for j in range(n):\n            if i==j: continue\n            xi,yi,ri = bombs[i]; xj,yj,_ = bombs[j]\n            if (xi-xj)**2+(yi-yj)**2 <= ri**2: graph[i].append(j)\n    best = 0\n    for start in range(n):\n        visited = {start}; queue = deque([start])\n        while queue:\n            node = queue.popleft()\n            for nei in graph[node]:\n                if nei not in visited: visited.add(nei); queue.append(nei)\n        best = max(best, len(visited))\n    return best",
    "notes": {},
    "tests": "assert maximumDetonation([[2,1,3],[6,1,4]]) == 2\nassert maximumDetonation([[1,1,5],[10,10,5]]) == 1\nassert maximumDetonation([[1,2,3],[2,3,1],[3,4,2],[4,5,3],[5,6,4]]) == 5\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2101"
   },
   {
    "id": "09-78-count-unreachable-pairs-of-nodes",
@@ -1288,7 +1402,8 @@
    "solution": "def countPairs(n, edges):\n    parent = list(range(n))\n    def find(x):\n        while parent[x]!=x: parent[x]=parent[parent[x]]; x=parent[x]\n        return x\n    for u, v in edges: parent[find(u)] = find(v)\n    sizes = Counter(find(i) for i in range(n))\n    result = remaining = 0\n    remaining = n\n    for s in sizes.values():\n        remaining -= s\n        result += s * remaining\n    return result",
    "notes": {},
    "tests": "assert countPairs(3, [[0,1],[0,2],[1,2]]) == 0\nassert countPairs(7, [[0,2],[0,5],[2,4],[1,6],[5,4]]) == 14\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2316"
   },
   {
    "id": "09-79-path-with-minimum-effort-dijkstra",
@@ -1304,7 +1419,8 @@
    "solution": "def minimumEffortPath(heights):\n    rows, cols = len(heights), len(heights[0])\n    dist = [[float('inf')]*cols for _ in range(rows)]\n    dist[0][0] = 0; heap = [(0,0,0)]\n    while heap:\n        effort, r, c = heapq.heappop(heap)\n        if effort > dist[r][c]: continue\n        if r==rows-1 and c==cols-1: return effort\n        for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:\n            nr, nc = r+dr, c+dc\n            if 0<=nr<rows and 0<=nc<cols:\n                ne = max(effort, abs(heights[nr][nc]-heights[r][c]))\n                if ne < dist[nr][nc]:\n                    dist[nr][nc]=ne; heapq.heappush(heap,(ne,nr,nc))\n    return dist[rows-1][cols-1]",
    "notes": {},
    "tests": "assert minimumEffortPath([[1,2,2],[3,8,2],[5,3,5]]) == 2\nassert minimumEffortPath([[1,2,3],[3,8,4],[5,3,5]]) == 1\nassert minimumEffortPath([[1,2,1,1,1],[1,2,1,2,1],[1,2,1,2,1],[1,2,1,2,1],[1,1,1,2,1]]) == 0\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1631"
   },
   {
    "id": "09-80-number-of-good-paths-union-find",
@@ -1320,7 +1436,8 @@
    "solution": "def numberOfGoodPaths(vals, edges):\n    n = len(vals)\n    parent = list(range(n))\n    size = [[vals[i],1] for i in range(n)]\n    def find(x):\n        while parent[x]!=x: parent[x]=parent[parent[x]]; x=parent[x]\n        return x\n    def union(a, b):\n        ra, rb = find(a), find(b)\n        if ra==rb: return 0\n        res = 0\n        if size[ra][0]==size[rb][0]:\n            res = size[ra][1]*size[rb][1]\n            size[ra][1]+=size[rb][1]; parent[rb]=ra\n        elif size[ra][0]>size[rb][0]: parent[rb]=ra\n        else: parent[ra]=rb\n        return res\n    adj = defaultdict(list)\n    for u, v in edges: adj[u].append(v); adj[v].append(u)\n    result = n\n    for node in sorted(range(n), key=lambda x: vals[x]):\n        for nei in adj[node]:\n            if vals[nei] <= vals[node]: result += union(node, nei)\n    return result",
    "notes": {},
    "tests": "assert numberOfGoodPaths([1,3,2,1,3],[[0,1],[0,2],[2,3],[2,4]]) == 6\nassert numberOfGoodPaths([1,1,2,2,3],[[0,1],[1,2],[2,3],[2,4]]) == 7\nassert numberOfGoodPaths([1],[]) == 1\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2421"
   },
   {
    "id": "09-81-minimum-cost-to-reach-city-with-discounts",
@@ -1336,7 +1453,8 @@
    "solution": "def minimumCostWithDiscounts(n, highways, discounts):\n    graph = defaultdict(list)\n    for u, v, w in highways: graph[u].append((v,w)); graph[v].append((u,w))\n    INF = float('inf')\n    dist = [[INF]*(discounts+1) for _ in range(n)]\n    dist[0][0] = 0; heap = [(0,0,0)]\n    while heap:\n        cost, node, used = heapq.heappop(heap)\n        if cost > dist[node][used]: continue\n        for nei, w in graph[node]:\n            nc = cost+w\n            if nc < dist[nei][used]: dist[nei][used]=nc; heapq.heappush(heap,(nc,nei,used))\n            if used < discounts:\n                nc2 = cost+w//2\n                if nc2 < dist[nei][used+1]: dist[nei][used+1]=nc2; heapq.heappush(heap,(nc2,nei,used+1))\n    ans = min(dist[n-1])\n    return ans if ans < INF else -1",
    "notes": {},
    "tests": "assert minimumCostWithDiscounts(5,[[0,1,4],[2,1,3],[1,4,11],[3,2,3],[3,4,2]],1) == 9\nassert minimumCostWithDiscounts(4,[[1,3,17],[0,1,6],[0,2,10],[0,3,16]],2) == 8\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2093"
   },
   {
    "id": "09-82-shortest-path-in-grid-with-obstacles-elimination",
@@ -1352,7 +1470,8 @@
    "solution": "def shortestPath(grid, k):\n    rows, cols = len(grid), len(grid[0])\n    if rows==1 and cols==1: return 0\n    visited = {(0,0,k)}\n    queue = deque([(0,0,k,0)])\n    while queue:\n        r, c, rem, steps = queue.popleft()\n        for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:\n            nr, nc = r+dr, c+dc\n            if not (0<=nr<rows and 0<=nc<cols): continue\n            nrem = rem - grid[nr][nc]\n            if nrem < 0: continue\n            if nr==rows-1 and nc==cols-1: return steps+1\n            if (nr,nc,nrem) not in visited:\n                visited.add((nr,nc,nrem)); queue.append((nr,nc,nrem,steps+1))\n    return -1",
    "notes": {},
    "tests": "assert shortestPath([[0,0,0],[1,1,0],[0,0,0],[0,1,1],[0,0,0]],1) == 6\nassert shortestPath([[0,1,1],[1,1,1],[1,0,0]],1) == -1\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1293"
   },
   {
    "id": "09-83-find-critical-and-pseudo-critical-edges-in-mst",
@@ -1368,7 +1487,8 @@
    "solution": "def findCriticalAndPseudoCriticalEdges(n, edges):\n    indexed = sorted(enumerate(edges), key=lambda x: x[1][2])\n    def kruskal(skip=-1, force=-1):\n        parent = list(range(n))\n        def find(x):\n            while parent[x]!=x: parent[x]=parent[parent[x]]; x=parent[x]\n            return x\n        weight = cnt = 0\n        if force >= 0:\n            u,v,w = edges[force]; parent[find(u)]=find(v); weight+=w; cnt+=1\n        for orig_i,(u,v,w) in indexed:\n            if orig_i==skip: continue\n            ru,rv=find(u),find(v)\n            if ru!=rv: parent[ru]=rv; weight+=w; cnt+=1\n        return weight if cnt==n-1 else float('inf')\n    base = kruskal()\n    critical=[]; pseudo=[]\n    for orig_i,_ in indexed:\n        if kruskal(skip=orig_i) > base: critical.append(orig_i)\n        elif kruskal(force=orig_i) == base: pseudo.append(orig_i)\n    return [critical, pseudo]\n\nres = findCriticalAndPseudoCriticalEdges(5,[[0,1,1],[1,2,1],[2,3,2],[0,3,2],[0,4,3],[3,4,3],[1,4,6]])",
    "notes": {},
    "tests": "assert sorted(res[0])==[0,1] and sorted(res[1])==[2,3,4,5]\nres2 = findCriticalAndPseudoCriticalEdges(4,[[0,1,1],[1,2,1],[2,3,1],[0,3,1]])\nassert res2[0]==[] and sorted(res2[1])==[0,1,2,3]\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1489"
   },
   {
    "id": "09-84-checking-existence-of-edge-length-limited-paths-union-",
@@ -1384,7 +1504,8 @@
    "solution": "def distanceLimitedPathsExist(n, edgeList, queries):\n    parent = list(range(n))\n    def find(x):\n        while parent[x]!=x: parent[x]=parent[parent[x]]; x=parent[x]\n        return x\n    edgeList.sort(key=lambda x: x[2])\n    q_idx = sorted(range(len(queries)), key=lambda i: queries[i][2])\n    ans = [False]*len(queries); ei = 0\n    for qi in q_idx:\n        u,v,limit = queries[qi]\n        while ei<len(edgeList) and edgeList[ei][2]<limit:\n            parent[find(edgeList[ei][0])]=find(edgeList[ei][1]); ei+=1\n        ans[qi] = find(u)==find(v)\n    return ans",
    "notes": {},
    "tests": "assert distanceLimitedPathsExist(3,[[0,1,2],[1,2,4],[2,0,8],[1,0,16]],[[0,1,2],[0,2,5]]) == [False,True]\nassert distanceLimitedPathsExist(5,[[0,1,10],[1,2,5],[2,3,9],[3,4,13]],[[0,4,14],[1,4,13]]) == [True,False]\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1697"
   },
   {
    "id": "09-85-minimum-score-of-a-path-between-two-cities",
@@ -1400,7 +1521,8 @@
    "solution": "def minScore(n, roads):\n    graph = defaultdict(list)\n    for u, v, w in roads: graph[u].append((v,w)); graph[v].append((u,w))\n    visited = {1}; queue = deque([1]); ans = float('inf')\n    while queue:\n        node = queue.popleft()\n        for nei, w in graph[node]:\n            ans = min(ans, w)\n            if nei not in visited: visited.add(nei); queue.append(nei)\n    return ans",
    "notes": {},
    "tests": "assert minScore(4,[[1,2,9],[2,3,6],[2,4,5],[1,4,7]]) == 5\nassert minScore(4,[[1,2,2],[1,3,4],[3,4,7]]) == 2\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2492"
   },
   {
    "id": "09-86-maximize-target-nodes-after-connecting-trees-i-simplif",
@@ -1416,7 +1538,8 @@
    "solution": "def maxTargetNodes(edges1, edges2, k):\n    def build(edges):\n        g = defaultdict(list)\n        for u,v in edges: g[u].append(v); g[v].append(u)\n        return g\n    def countWithin(g, start, max_d):\n        dist={start:0}; q=deque([start])\n        while q:\n            node=q.popleft()\n            if dist[node]>=max_d: continue\n            for nei in g[node]:\n                if nei not in dist: dist[nei]=dist[node]+1; q.append(nei)\n        return len(dist)\n    n1=max(max(u,v) for u,v in edges1)+1 if edges1 else 1\n    n2=max(max(u,v) for u,v in edges2)+1 if edges2 else 1\n    g1=build(edges1); g2=build(edges2)\n    cnt1=[countWithin(g1,i,k) for i in range(n1)]\n    cnt2=[countWithin(g2,i,k-1) for i in range(n2)] if k>0 else [1]*n2\n    best2=max(cnt2)\n    return [c+best2 for c in cnt1]\n\nres=maxTargetNodes([[0,1],[0,2],[2,3],[2,4]],[[0,1],[0,2],[0,3],[2,7],[1,4],[4,5],[4,6]],2)",
    "notes": {},
    "tests": "assert res==[9,7,9,8,8]\nres2=maxTargetNodes([[0,1],[0,2],[0,3],[0,4]],[[0,1],[1,2],[2,3]],1)\nassert res2==[6,3,3,3,3]\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=3372"
   },
   {
    "id": "09-87-graph-coloring-with-minimum-colors-chromatic-number-sm",
@@ -1432,7 +1555,8 @@
    "solution": "def chromaticNumber(n, edges):\n    adj = [0]*n\n    for u,v in edges: adj[u]|=1<<v; adj[v]|=1<<u\n    is_ind=[False]*(1<<n)\n    for mask in range(1<<n):\n        ok=True\n        for i in range(n):\n            if mask>>i&1 and adj[i]&mask: ok=False; break\n        is_ind[mask]=ok\n    dp=[n+1]*(1<<n); dp[0]=0\n    for mask in range(1,1<<n):\n        sub=mask\n        while sub:\n            if is_ind[sub]: dp[mask]=min(dp[mask],dp[mask^sub]+1)\n            sub=(sub-1)&mask\n    return dp[(1<<n)-1]",
    "notes": {},
    "tests": "assert chromaticNumber(3,[[0,1],[1,2],[0,2]]) == 3\nassert chromaticNumber(4,[[0,1],[1,2],[2,3],[3,0]]) == 2\nassert chromaticNumber(4,[[0,1],[0,2],[0,3],[1,2],[1,3],[2,3]]) == 4\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "09-88-eulerian-path-in-directed-graph",
@@ -1448,7 +1572,8 @@
    "solution": "def findEulerianPath(n, edges):\n    graph = defaultdict(list)\n    in_deg=[0]*n; out_deg=[0]*n\n    for u,v in edges: graph[u].append(v); out_deg[u]+=1; in_deg[v]+=1\n    start=-1\n    for i in range(n):\n        if out_deg[i]-in_deg[i]==1: start=i; break\n    if start==-1:\n        for i in range(n):\n            if out_deg[i]>0: start=i; break\n    if start==-1: return []\n    path=[]; stack=[start]\n    while stack:\n        node=stack[-1]\n        if graph[node]: stack.append(graph[node].pop())\n        else: path.append(stack.pop())\n    path.reverse()\n    return path if len(path)==len(edges)+1 else []\n\np=findEulerianPath(4,[[0,1],[1,2],[2,0],[0,3],[3,0]])",
    "notes": {},
    "tests": "assert len(p)==6\np2=findEulerianPath(3,[[0,1],[1,2],[2,0]])\nassert len(p2)==4\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "09-89-hamiltonian-path-detection-brute-force-small-graph",
@@ -1464,7 +1589,8 @@
    "solution": "def hasHamiltonianPath(n, edges):\n    adj=[[False]*n for _ in range(n)]\n    for u,v in edges: adj[u][v]=adj[v][u]=True\n    full_mask=(1<<n)-1\n    dp=[[False]*n for _ in range(1<<n)]\n    for i in range(n): dp[1<<i][i]=True\n    for mask in range(1,1<<n):\n        for v in range(n):\n            if not dp[mask][v]: continue\n            for u in range(n):\n                if not(mask>>u&1) and adj[v][u]: dp[mask|(1<<u)][u]=True\n    return any(dp[full_mask][v] for v in range(n))",
    "notes": {},
    "tests": "assert hasHamiltonianPath(4,[[0,1],[1,2],[2,3]]) == True\nassert hasHamiltonianPath(4,[[0,1],[2,3]]) == False\nassert hasHamiltonianPath(4,[[0,1],[0,2],[0,3],[1,2],[1,3],[2,3]]) == True\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   },
   {
    "id": "09-90-hamiltonian-cycle-detection-brute-force-small-graph",
@@ -1480,7 +1606,8 @@
    "solution": "def hasHamiltonianCycle(n, edges):\n    if n<3: return False\n    adj=[[False]*n for _ in range(n)]\n    for u,v in edges: adj[u][v]=adj[v][u]=True\n    full_mask=(1<<n)-1\n    dp=[[False]*n for _ in range(1<<n)]\n    dp[1][0]=True\n    for mask in range(1,1<<n):\n        for v in range(n):\n            if not dp[mask][v]: continue\n            for u in range(n):\n                if not(mask>>u&1) and adj[v][u]: dp[mask|(1<<u)][u]=True\n    return any(dp[full_mask][v] and adj[v][0] for v in range(1,n))",
    "notes": {},
    "tests": "assert hasHamiltonianCycle(3,[[0,1],[1,2],[2,0]]) == True\nassert hasHamiltonianCycle(4,[[0,1],[1,2],[2,3]]) == False\nassert hasHamiltonianCycle(4,[[0,1],[0,2],[0,3],[1,2],[1,3],[2,3]]) == True\nprint('All tests passed!')",
-   "verified": []
+   "verified": [],
+   "leetcodeUrl": null
   }
  ]
 }

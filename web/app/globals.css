@@ -31,8 +31,10 @@
   --medium: var(--violet);
   --hard: var(--amber);
 
-  --shell: min(1120px, 100%);
-  --pad: clamp(20px, 5vw, 48px);
+  /* 2in each side on anything wide enough to give it, shrinking on the way
+     down to a phone. Nothing inside caps its own width -- the page width is
+     the measure. */
+  --pad: clamp(18px, 13vw, 2in);
 }
 
 * { box-sizing: border-box; }
@@ -59,9 +61,8 @@ a { color: inherit; }
 :focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 4px; }
 
 .shell {
-  width: var(--shell);
-  margin: 0 auto;
-  padding: 0 var(--pad);
+  width: 100%;
+  padding-inline: var(--pad);
 }
 
 /* ─────────────────────────────────────────────────────────── type helpers */
@@ -103,38 +104,41 @@ a { color: inherit; }
 }
 .wordmark {
   display: inline-flex;
-  align-items: baseline;
-  gap: 10px;
+  align-items: center;
+  gap: 12px;
   text-decoration: none;
+  font-size: clamp(19px, 2.1vw, 23px);
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.025em;
   color: var(--bright);
 }
-.wordmark .dotmark {
-  width: 9px; height: 9px; border-radius: 50%;
-  background: linear-gradient(140deg, var(--violet), var(--cyan));
-  align-self: center;
+.wordmark svg { flex: none; }
+.wordmark .lockup { display: flex; flex-direction: column; line-height: 1.05; }
+.wordmark .sub {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px; font-weight: 400; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--dim);
 }
 .masthead nav { display: flex; gap: 20px; align-items: center; }
 .masthead nav a {
-  font-size: 14px; color: var(--dim); text-decoration: none;
+  font-size: 14.5px; color: var(--dim); text-decoration: none;
 }
 .masthead nav a:hover { color: var(--bright); }
 
 /* ─────────────────────────────────────────────────────────────────── hero */
-.hero { padding: clamp(48px, 9vw, 96px) 0 clamp(30px, 5vw, 52px); }
+.hero { padding-block: clamp(48px, 9vw, 96px) clamp(30px, 5vw, 52px); }
 .hero h1 {
-  margin: 14px 0 0;
+  margin: 16px 0 0;
   font-size: clamp(34px, 6.4vw, 62px);
   font-weight: 600;
   line-height: 1.03;
   letter-spacing: -0.035em;
-  max-width: 17ch;
+  max-width: 22ch;
   text-wrap: balance;
 }
 .hero p.stand {
-  margin: 20px 0 0;
-  max-width: 60ch;
+  margin: 22px 0 0;
+  max-width: 78ch;
   font-size: clamp(16px, 1.7vw, 18.5px);
   font-weight: 300;
   color: #b7b3cf;
@@ -213,11 +217,19 @@ a { color: inherit; }
 .pcard .ref-line.has { color: var(--cyan); }
 
 /* ─────────────────────────────────────────────────────────── pattern page */
-.crumbs { padding: 30px 0 0; }
-.crumbs a { font-size: 13.5px; color: var(--dim); text-decoration: none; }
-.crumbs a:hover { color: var(--cyan); }
+.crumbs { padding-block: 28px 0; }
+.back-link {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 15.5px; font-weight: 500; color: var(--text); text-decoration: none;
+  background: var(--surface); border: 1px solid var(--edge); border-radius: 24px;
+  padding: 10px 20px 10px 16px; cursor: pointer; font-family: inherit;
+  transition: border-color 140ms ease, color 140ms ease, background 140ms ease;
+}
+.back-link:hover { border-color: var(--edge-lit); color: var(--bright); background: var(--raised); }
+.back-link .arrow { font-size: 17px; line-height: 1; color: var(--cyan); }
+@media (prefers-reduced-motion: reduce) { .back-link { transition: none; } }
 
-.pattern-head { padding: 16px 0 26px; }
+.pattern-head { padding-block: 16px 26px; }
 .pattern-head h1 {
   margin: 10px 0 0; font-size: clamp(30px, 5vw, 46px); font-weight: 600;
   letter-spacing: -0.035em; line-height: 1.05;
@@ -249,7 +261,7 @@ a { color: inherit; }
 .search::placeholder { color: var(--dim); }
 .search:focus { border-color: var(--edge-lit); }
 
-.rows { display: flex; flex-direction: column; gap: 2px; padding: 10px 0 60px; }
+.rows { display: flex; flex-direction: column; gap: 2px; padding-block: 10px 60px; }
 .prow {
   display: grid; align-items: center; gap: 14px; width: 100%;
   grid-template-columns: 30px 62px minmax(0, 1fr) auto;
@@ -285,7 +297,7 @@ a { color: inherit; }
 .empty { padding: 40px 12px; color: var(--dim); font-size: 14px; }
 
 /* ─────────────────────────────────────────────────────────── problem view */
-.problem { padding: 4px 0 80px; display: flex; flex-direction: column; gap: 30px; }
+.problem { padding-block: 4px 80px; display: flex; flex-direction: column; gap: 30px; }
 .problem .back {
   background: none; border: none; padding: 0; cursor: pointer; font: inherit;
   font-size: 13.5px; color: var(--dim);
@@ -293,15 +305,15 @@ a { color: inherit; }
 .problem .back:hover { color: var(--cyan); }
 .problem h1 {
   margin: 10px 0 0; font-size: clamp(28px, 4.4vw, 42px); font-weight: 600;
-  letter-spacing: -0.035em; line-height: 1.06; max-width: 20ch; text-wrap: balance;
+  letter-spacing: -0.035em; line-height: 1.06; max-width: 26ch; text-wrap: balance;
 }
-.problem .statement { margin-top: 16px; max-width: 66ch; }
+.problem .statement { margin-top: 18px; }
 .problem .statement p {
   margin: 0 0 10px; font-size: 16.5px; font-weight: 300; color: #b7b3cf;
 }
 .problem .statement p:last-child { margin-bottom: 0; }
 
-.think { border-left: 1px solid var(--edge); padding-left: 20px; max-width: 68ch; }
+.think { border-left: 1px solid var(--edge); padding-left: 22px; }
 .think .label {
   font-family: var(--font-mono), monospace; font-size: 10.5px; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--dim);
@@ -316,9 +328,20 @@ a { color: inherit; }
   font-family: var(--font-mono), monospace; font-size: 0.88em;
   color: var(--cyan); background: var(--surface); padding: 1px 5px; border-radius: 4px;
 }
-.think .cost {
-  margin: 14px 0 0; font-family: var(--font-mono), monospace;
-  font-size: 12.5px; color: var(--dim);
+.target {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px;
+  margin-top: 18px; padding: 12px 16px;
+  border: 1px solid var(--edge); border-radius: 10px; background: var(--surface);
+  width: fit-content;
+}
+.target .lbl {
+  font-family: var(--font-mono), monospace; font-size: 10.5px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--dim);
+}
+.target .pair { display: flex; align-items: baseline; gap: 7px; }
+.target .k { font-size: 12.5px; color: var(--dim); }
+.target .v {
+  font-family: var(--font-mono), monospace; font-size: 14px; color: var(--bright);
 }
 
 .codewrap { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
@@ -382,7 +405,7 @@ a { color: inherit; }
   .caret.on { animation: none; }
 }
 
-.proof { display: flex; flex-direction: column; gap: 12px; max-width: 78ch; }
+.proof { display: flex; flex-direction: column; gap: 12px; }
 .proof .label {
   font-family: var(--font-mono), monospace; font-size: 10.5px; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--dim);
@@ -409,10 +432,260 @@ a { color: inherit; }
 
 /* ───────────────────────────────────────────────────────────────── footer */
 .foot {
-  border-top: 1px solid var(--edge); padding: 30px 0 44px;
+  border-top: 1px solid var(--edge); padding-block: 30px 44px;
   display: flex; flex-wrap: wrap; gap: 10px 24px;
   align-items: center; justify-content: space-between;
   font-size: 13.5px; color: var(--dim);
 }
 .foot a { color: var(--dim); }
 .foot a:hover { color: var(--cyan); }
+
+/* ─────────────────────────────────────── the pattern's own explainer ────── */
+/* Every notebook opens with one and none of it was reaching the page. It is
+   the best teaching material in the repo, so it gets real room. */
+.about { padding-block: 6px 46px; }
+.about > summary {
+  cursor: pointer; list-style: none; display: flex; align-items: center; gap: 12px;
+  padding: 16px 20px; border: 1px solid var(--edge); border-radius: 12px;
+  background: var(--surface); color: var(--bright); font-size: 16px; font-weight: 500;
+}
+.about > summary::-webkit-details-marker { display: none; }
+.about > summary:hover { border-color: var(--edge-lit); background: var(--raised); }
+.about > summary .caretmark {
+  color: var(--cyan); font-size: 13px; transition: transform 160ms ease;
+}
+.about[open] > summary .caretmark { transform: rotate(90deg); }
+@media (prefers-reduced-motion: reduce) { .about > summary .caretmark { transition: none; } }
+.about > summary .hint { color: var(--dim); font-size: 13.5px; font-weight: 400; }
+
+.about-body {
+  display: grid; gap: 16px; padding-top: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+}
+.about-body section {
+  border: 1px solid var(--edge); border-radius: 12px; padding: 20px 22px;
+  background: var(--surface);
+}
+.about-body h3 {
+  margin: 0 0 10px; font-size: 15px; font-weight: 600; color: var(--cyan);
+  letter-spacing: -0.01em;
+}
+.prose p { margin: 0 0 10px; font-size: 14.5px; font-weight: 300; color: #b7b3cf; }
+.prose p:last-child { margin-bottom: 0; }
+.prose ul { margin: 0 0 10px; padding-left: 20px; }
+.prose li { margin: 0 0 6px; font-size: 14.5px; font-weight: 300; color: #b7b3cf; }
+.prose h4 {
+  margin: 16px 0 8px; font-size: 13px; font-weight: 600; color: var(--bright);
+  letter-spacing: 0.01em;
+}
+.prose h4:first-child { margin-top: 0; }
+.prose strong { color: var(--bright); font-weight: 500; }
+.prose code {
+  font-family: var(--font-mono), monospace; font-size: 0.86em;
+  color: var(--cyan); background: var(--bg); padding: 1px 5px; border-radius: 4px;
+}
+.prose .snippet {
+  margin: 0 0 12px; overflow-x: auto; background: var(--bg);
+  border: 1px solid var(--edge); border-radius: 8px; padding: 14px 16px;
+  font-family: var(--font-mono), monospace; font-size: 12.5px; line-height: 1.65;
+  color: #a8a3c8;
+}
+.prose .snippet code { background: none; color: inherit; padding: 0; font-size: inherit; }
+
+/* ─────────────────────────────────────────────── open it on LeetCode ───── */
+.actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.leetcode {
+  display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+  font-size: 14px; font-weight: 500; color: #2a1a05; background: var(--amber);
+  border-radius: 24px; padding: 11px 20px;
+  transition: filter 140ms ease, transform 140ms ease;
+}
+.leetcode:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.leetcode .out { font-size: 12px; opacity: 0.8; }
+@media (prefers-reduced-motion: reduce) {
+  .leetcode { transition: none; }
+  .leetcode:hover { transform: none; }
+}
+.actions .aside {
+  font-size: 12.5px; color: var(--dim);
+}
+
+/* ────────────────────────────── the solution, explained line by line ────── */
+/* One grid row per line: number, code, explanation. An explanation level with
+   its line is the whole point -- a list of notes further down the page is the
+   thing students already have to assemble by hand. */
+.codegrid {
+  border: 1px solid var(--edge); border-radius: 12px; background: var(--surface);
+  overflow: hidden;
+}
+.codehead {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  padding: 13px 20px; border-bottom: 1px solid var(--edge); background: var(--raised);
+}
+.codehead .lbl {
+  font-family: var(--font-mono), monospace; font-size: 10.5px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--dim);
+}
+.skip {
+  font-family: var(--font-mono), monospace; font-size: 10.5px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text); background: var(--bg);
+  border: 1px solid var(--edge); border-radius: 20px; padding: 6px 13px; cursor: pointer;
+}
+.skip:hover { color: var(--cyan); border-color: var(--edge-lit); }
+
+.crows { padding: 14px 0; cursor: default; }
+.crow {
+  display: grid; gap: 0 20px; align-items: baseline; padding: 2px 20px;
+  grid-template-columns: 3ch fit-content(62ch) minmax(200px, 1fr);
+}
+.crow.pending { visibility: hidden; }
+.crow.writing {
+  background: linear-gradient(90deg, rgba(167, 139, 250, 0.16), transparent 78%);
+  box-shadow: inset 2px 0 0 var(--cyan);
+}
+.crow .num {
+  font-family: var(--font-mono), monospace; font-size: 11px; color: #4f4a70;
+  text-align: right; user-select: none; font-variant-numeric: tabular-nums;
+}
+.crow .ln {
+  font-family: var(--font-mono), monospace; font-size: 13.5px; line-height: 1.85;
+  white-space: pre; overflow-x: auto; scrollbar-width: thin;
+}
+.crow .nt {
+  font-size: 12.5px; line-height: 1.5; color: #9a95bd;
+  border-left: 1px solid var(--edge); padding-left: 14px;
+}
+/* an explanation the author wrote, rather than one read off the line */
+.crow .nt.authored { color: var(--cyan); border-left-color: #1f4a45; }
+
+.codefoot {
+  margin: 0; padding: 12px 20px; border-top: 1px solid var(--edge);
+  font-size: 12px; color: var(--dim); display: flex; flex-wrap: wrap;
+  align-items: center; gap: 6px;
+}
+.codefoot .dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #9a95bd;
+  display: inline-block; margin-right: 2px;
+}
+.codefoot .dot.authored { background: var(--cyan); }
+
+@media (max-width: 900px) {
+  .crow { grid-template-columns: 3ch minmax(0, 1fr); }
+  .crow .nt {
+    grid-column: 2; border-left: none; padding: 2px 0 8px;
+    border-top: 1px dashed var(--edge); margin-top: 3px;
+  }
+}
+
+/* ─────────────────────────────────── the pattern's shape, animated ─────── */
+/* A pattern is a shape of movement, which is the one thing a paragraph is
+   worst at. Each scene loops, captions every step, and can be stepped by hand
+   -- it starts paused under reduced motion. */
+.visual {
+  margin: 0; border: 1px solid var(--edge); border-radius: 12px;
+  background: var(--surface); overflow: hidden;
+}
+.visual-stage {
+  display: flex; align-items: center; justify-content: center;
+  padding: 26px 22px 20px; min-height: 190px;
+  background: radial-gradient(70% 90% at 50% 20%, rgba(167, 139, 250, 0.07), transparent 70%);
+}
+
+/* row-of-cells scenes */
+.cells {
+  position: relative; display: grid; gap: 8px;
+  grid-template-columns: repeat(var(--n), minmax(0, 58px));
+  padding-bottom: 30px;
+}
+.cell {
+  display: flex; align-items: center; justify-content: center;
+  height: 46px; border-radius: 8px; border: 1px solid var(--edge);
+  background: var(--bg); color: var(--text);
+  font-family: var(--font-mono), monospace; font-size: 14px;
+  transition: background 260ms ease, color 260ms ease, border-color 260ms ease, opacity 260ms ease;
+}
+.cell.live { border-color: var(--violet); background: rgba(167, 139, 250, 0.16); color: var(--bright); }
+.cell.kept { border-color: #1f4a45; background: rgba(94, 234, 212, 0.13); color: var(--cyan); }
+.cell.found { border-color: var(--cyan); background: var(--cyan); color: #071f1c; }
+.cell.gone { opacity: 0.28; }
+.cells-band {
+  position: absolute; top: -7px; height: 60px; border-radius: 10px;
+  border: 1px dashed var(--violet); background: rgba(167, 139, 250, 0.08);
+  left: calc(var(--from) * (100% + 8px) / var(--n) - 4px);
+  width: calc(var(--span) * (100% + 8px) / var(--n));
+  transition: left 300ms ease, width 300ms ease;
+}
+.cell-mark {
+  position: absolute; bottom: 0; display: flex; flex-direction: column; align-items: center;
+  gap: 2px; font-family: var(--font-mono), monospace; font-size: 10.5px; color: var(--dim);
+  left: calc(var(--at) * (100% + 8px) / var(--n));
+  width: calc((100% + 8px) / var(--n) - 8px);
+  transition: left 300ms ease;
+}
+.cell-mark i {
+  width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent;
+  border-bottom: 5px solid var(--dim);
+}
+.cell-mark.live { color: var(--violet); }
+.cell-mark.live i { border-bottom-color: var(--violet); }
+.cell-mark.found { color: var(--cyan); }
+.cell-mark.found i { border-bottom-color: var(--cyan); }
+
+/* node-and-edge scenes */
+.nodes { width: 100%; max-width: 420px; height: 196px; }
+.nodes .node circle {
+  fill: var(--bg); stroke: var(--edge); stroke-width: 0.9;
+  transition: fill 260ms ease, stroke 260ms ease;
+}
+.nodes .node text {
+  fill: var(--dim); font-size: 5.2px; font-family: var(--font-mono), monospace;
+  transition: fill 260ms ease;
+}
+.nodes .node.live circle { fill: rgba(167, 139, 250, 0.24); stroke: var(--violet); }
+.nodes .node.live text { fill: var(--bright); }
+.nodes .node.kept circle { fill: rgba(94, 234, 212, 0.16); stroke: #2b6d63; }
+.nodes .node.kept text { fill: var(--cyan); }
+.nodes .node.found circle { fill: var(--cyan); stroke: var(--cyan); }
+.nodes .node.found text { fill: #071f1c; }
+.nodes .node.gone circle { fill: var(--bg); stroke: #2a2648; }
+.nodes .node.gone text { fill: #4b4570; }
+.nodes .node-mark {
+  fill: var(--violet); font-size: 4.6px; font-family: var(--font-mono), monospace;
+}
+
+.visual-caption {
+  padding: 0 22px 16px; font-size: 14px; line-height: 1.5; color: #b7b3cf;
+  min-height: 3.2em;
+}
+.visual-controls {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  padding: 12px 20px; border-top: 1px solid var(--edge); background: var(--raised);
+}
+.visual-controls button {
+  width: 32px; height: 32px; border-radius: 50%; cursor: pointer;
+  border: 1px solid var(--edge); background: var(--bg); color: var(--text);
+  font-size: 13px; line-height: 1; font-family: inherit;
+}
+.visual-controls button:hover { border-color: var(--edge-lit); color: var(--cyan); }
+.visual-controls .play { font-size: 11px; }
+.visual-dots { display: flex; gap: 5px; margin-left: 4px; }
+.visual-dots i {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--edge); display: block;
+  transition: background 200ms ease;
+}
+.visual-dots i.on { background: var(--violet); }
+.visual-count {
+  margin-left: auto; font-family: var(--font-mono), monospace;
+  font-size: 11px; color: var(--dim);
+}
+@media (prefers-reduced-motion: reduce) {
+  .cell, .cells-band, .cell-mark, .nodes .node circle, .nodes .node text, .visual-dots i {
+    transition: none;
+  }
+}
+
+/* the two-up row: the reasoning beside the shape it describes */
+.thinkrow { display: grid; gap: 22px; align-items: start; }
+@media (min-width: 1000px) {
+  .thinkrow { grid-template-columns: minmax(0, 1fr) minmax(340px, 42%); gap: 34px; }
+}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono, Outfit } from "next/font/google";
 import Link from "next/link";
+import Mark from "@/app/components/Mark";
 import { REPO } from "@/lib/data";
 import "./globals.css";
 
@@ -32,8 +33,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className="masthead">
           <div className="shell">
             <Link href="/" className="wordmark">
-              <span className="dotmark" aria-hidden="true" />
-              Pattern Bank
+              <Mark />
+              <span className="lockup">
+                Pattern Bank
+                <span className="sub">Core algorithms</span>
+              </span>
             </Link>
             <nav>
               <a href={`${REPO}#testing`}>How it&rsquo;s verified</a>
