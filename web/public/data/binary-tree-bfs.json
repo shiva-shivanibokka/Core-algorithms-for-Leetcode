@@ -52,7 +52,9 @@
    "solution": "from collections import deque\n\ndef levelOrder(root):\n    if not root: return []\n    result = []\n    queue = deque([root])\n    while queue:\n        level_size = len(queue)\n        level = []\n        for _ in range(level_size):\n            node = queue.popleft()\n            level.append(node.val)\n            if node.left: queue.append(node.left)\n            if node.right: queue.append(node.right)\n        result.append(level)\n    return result",
    "notes": {},
    "tests": "assert levelOrder(build_tree([3,9,20,None,None,15,7])) == [[3],[9,20],[15,7]]\nassert levelOrder(build_tree([1])) == [[1]]\nassert levelOrder(None) == []\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "levelOrder"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=102"
   },
   {
@@ -69,7 +71,9 @@
    "solution": "def levelOrderBottom(root):\n    if not root: return []\n    result = []\n    queue = deque([root])\n    while queue:\n        level_size = len(queue)\n        level = []\n        for _ in range(level_size):\n            node = queue.popleft()\n            level.append(node.val)\n            if node.left: queue.append(node.left)\n            if node.right: queue.append(node.right)\n        result.append(level)\n    return result[::-1]",
    "notes": {},
    "tests": "assert levelOrderBottom(build_tree([3,9,20,None,None,15,7])) == [[15,7],[9,20],[3]]\nassert levelOrderBottom(build_tree([1])) == [[1]]\nassert levelOrderBottom(None) == []\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "levelOrderBottom"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=107"
   },
   {
@@ -86,7 +90,9 @@
    "solution": "def averageOfLevels(root):\n    if not root: return []\n    result = []\n    queue = deque([root])\n    while queue:\n        level_size = len(queue)\n        level_sum = 0\n        for _ in range(level_size):\n            node = queue.popleft()\n            level_sum += node.val\n            if node.left: queue.append(node.left)\n            if node.right: queue.append(node.right)\n        result.append(level_sum / level_size)\n    return result",
    "notes": {},
    "tests": "assert averageOfLevels(build_tree([3,9,20,None,None,15,7])) == [3.0, 14.5, 11.0]\nassert averageOfLevels(build_tree([3,9,20,15,7])) == [3.0, 14.5, 11.0]\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "averageOfLevels"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=637"
   },
   {
@@ -103,7 +109,9 @@
    "solution": "def maxDepth(root):\n    if not root: return 0\n    depth = 0\n    queue = deque([root])\n    while queue:\n        depth += 1\n        for _ in range(len(queue)):\n            node = queue.popleft()\n            if node.left: queue.append(node.left)\n            if node.right: queue.append(node.right)\n    return depth",
    "notes": {},
    "tests": "assert maxDepth(build_tree([3,9,20,None,None,15,7])) == 3\nassert maxDepth(build_tree([1,None,2])) == 2\nassert maxDepth(None) == 0\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "maxDepth"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=104"
   },
   {
@@ -120,7 +128,9 @@
    "solution": "def minDepth(root):\n    if not root: return 0\n    queue = deque([(root, 1)])\n    while queue:\n        node, depth = queue.popleft()\n        if not node.left and not node.right:\n            return depth\n        if node.left: queue.append((node.left, depth + 1))\n        if node.right: queue.append((node.right, depth + 1))\n    return 0",
    "notes": {},
    "tests": "assert minDepth(build_tree([3,9,20,None,None,15,7])) == 2\nassert minDepth(build_tree([2,None,3,None,4,None,5,None,6])) == 5\nassert minDepth(build_tree([1])) == 1\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "minDepth"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=111"
   },
   {
@@ -154,7 +164,9 @@
    "solution": "def largestValues(root):\n    if not root: return []\n    result = []\n    queue = deque([root])\n    while queue:\n        level_max = float('-inf')\n        for _ in range(len(queue)):\n            node = queue.popleft()\n            level_max = max(level_max, node.val)\n            if node.left: queue.append(node.left)\n            if node.right: queue.append(node.right)\n        result.append(level_max)\n    return result",
    "notes": {},
    "tests": "assert largestValues(build_tree([1,3,2,5,3,None,9])) == [1,3,9]\nassert largestValues(build_tree([1,2,3])) == [1,3]\nassert largestValues(None) == []\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "largestValues"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=515"
   },
   {
@@ -173,7 +185,9 @@
     "4": "first node of current level"
    },
    "tests": "assert findBottomLeftValue(build_tree([2,1,3])) == 1\nassert findBottomLeftValue(build_tree([1,2,3,4,None,5,6,None,None,7])) == 7\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "findBottomLeftValue"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=513"
   },
   {
@@ -227,7 +241,9 @@
    "solution": "def isSymmetric(root):\n    if not root: return True\n    queue = deque([(root.left, root.right)])\n    while queue:\n        left, right = queue.popleft()\n        if not left and not right: continue\n        if not left or not right: return False\n        if left.val != right.val: return False\n        queue.append((left.left, right.right))\n        queue.append((left.right, right.left))\n    return True",
    "notes": {},
    "tests": "assert isSymmetric(build_tree([1,2,2,3,4,4,3])) == True\nassert isSymmetric(build_tree([1,2,2,None,3,None,3])) == False\nassert isSymmetric(build_tree([1])) == True\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "isSymmetric"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=101"
   },
   {
@@ -278,7 +294,9 @@
    "solution": "def deepestLeavesSum(root):\n    if not root: return 0\n    queue = deque([root])\n    level_sum = 0\n    while queue:\n        level_sum = 0\n        for _ in range(len(queue)):\n            node = queue.popleft()\n            level_sum += node.val\n            if node.left: queue.append(node.left)\n            if node.right: queue.append(node.right)\n    return level_sum",
    "notes": {},
    "tests": "assert deepestLeavesSum(build_tree([1,2,3,4,5,None,6,7,None,None,None,None,8])) == 15\nassert deepestLeavesSum(build_tree([6,7,8,2,7,1,3,9,None,1,4,None,None,None,5])) == 19\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "deepestLeavesSum"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=1302"
   },
   {
@@ -348,7 +366,9 @@
    "solution": "def hasPathSum(root, targetSum):\n    if not root: return False\n    queue = deque([(root, targetSum - root.val)])\n    while queue:\n        node, remaining = queue.popleft()\n        if not node.left and not node.right and remaining == 0:\n            return True\n        if node.left: queue.append((node.left, remaining - node.left.val))\n        if node.right: queue.append((node.right, remaining - node.right.val))\n    return False",
    "notes": {},
    "tests": "assert hasPathSum(build_tree([5,4,8,11,None,13,4,7,2,None,None,None,1]), 22) == True\nassert hasPathSum(build_tree([1,2,3]), 5) == False\nassert hasPathSum(None, 0) == False\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "hasPathSum"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=112"
   },
   {
@@ -382,7 +402,9 @@
    "solution": "def invertTree(root):\n    if not root: return None\n    queue = deque([root])\n    while queue:\n        node = queue.popleft()\n        node.left, node.right = node.right, node.left\n        if node.left: queue.append(node.left)\n        if node.right: queue.append(node.right)\n    return root\n\ndef tree_to_list(root):\n    if not root: return []\n    result, q = [], deque([root])\n    while q:\n        node = q.popleft()\n        if node:\n            result.append(node.val)\n            q.append(node.left)\n            q.append(node.right)\n        else:\n            result.append(None)\n    while result and result[-1] is None:\n        result.pop()\n    return result",
    "notes": {},
    "tests": "assert tree_to_list(invertTree(build_tree([4,2,7,1,3,6,9]))) == [4,7,2,9,6,3,1]\nassert tree_to_list(invertTree(build_tree([2,1,3]))) == [2,3,1]\nassert invertTree(None) is None\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "invertTree"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=226"
   },
   {
@@ -575,7 +597,9 @@
    "solution": "def canFinish(numCourses, prerequisites):\n    graph = defaultdict(list)\n    in_degree = [0] * numCourses\n    for a, b in prerequisites:\n        graph[b].append(a)\n        in_degree[a] += 1\n    queue = deque(i for i in range(numCourses) if in_degree[i] == 0)\n    processed = 0\n    while queue:\n        node = queue.popleft()\n        processed += 1\n        for neighbor in graph[node]:\n            in_degree[neighbor] -= 1\n            if in_degree[neighbor] == 0:\n                queue.append(neighbor)\n    return processed == numCourses",
    "notes": {},
    "tests": "assert canFinish(2, [[1,0]]) == True\nassert canFinish(2, [[1,0],[0,1]]) == False\nassert canFinish(5, [[1,4],[2,4],[3,1],[3,2]]) == True\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "canFinish"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=207"
   },
   {
@@ -845,7 +869,9 @@
    "solution": "from collections import deque\n\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val; self.left = left; self.right = right\n\ndef build_tree(values):\n    if not values or values[0] is None: return None\n    root = TreeNode(values[0])\n    q = deque([root]); i = 1\n    while q and i < len(values):\n        node = q.popleft()\n        if i < len(values) and values[i] is not None:\n            node.left = TreeNode(values[i]); q.append(node.left)\n        i += 1\n        if i < len(values) and values[i] is not None:\n            node.right = TreeNode(values[i]); q.append(node.right)\n        i += 1\n    return root\n\ndef countNodes(root):\n    if not root: return 0\n    count = 0\n    queue = deque([root])\n    while queue:\n        node = queue.popleft()\n        count += 1\n        if node.left: queue.append(node.left)\n        if node.right: queue.append(node.right)\n    return count",
    "notes": {},
    "tests": "assert countNodes(build_tree([1,2,3,4,5,6])) == 6\nassert countNodes(build_tree([1])) == 1\nassert countNodes(None) == 0\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "countNodes"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=222"
   },
   {
@@ -1083,7 +1109,9 @@
    "solution": "from collections import deque\n\ndef floodFill(image, sr, sc, color):\n    orig = image[sr][sc]\n    if orig == color: return image\n    rows, cols = len(image), len(image[0])\n    queue = deque([(sr, sc)])\n    image[sr][sc] = color\n    while queue:\n        r, c = queue.popleft()\n        for dr, dc in [(0,1),(0,-1),(1,0),(-1,0)]:\n            nr, nc = r+dr, c+dc\n            if 0 <= nr < rows and 0 <= nc < cols and image[nr][nc] == orig:\n                image[nr][nc] = color\n                queue.append((nr, nc))\n    return image",
    "notes": {},
    "tests": "assert floodFill([[1,1,1],[1,1,0],[1,0,1]], 1, 1, 2) == [[2,2,2],[2,2,0],[2,0,1]]\nassert floodFill([[0,0,0],[0,0,0]], 0, 0, 0) == [[0,0,0],[0,0,0]]\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "floodFill"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=733"
   },
   {
@@ -1117,7 +1145,9 @@
    "solution": "from collections import deque\n\ndef maxAreaOfIsland(grid):\n    rows, cols = len(grid), len(grid[0])\n    visited = set()\n    max_area = 0\n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == 1 and (r, c) not in visited:\n                area = 0\n                queue = deque([(r, c)])\n                visited.add((r, c))\n                while queue:\n                    cr, cc = queue.popleft()\n                    area += 1\n                    for dr, dc in [(0,1),(0,-1),(1,0),(-1,0)]:\n                        nr, nc = cr+dr, cc+dc\n                        if 0<=nr<rows and 0<=nc<cols and grid[nr][nc]==1 and (nr,nc) not in visited:\n                            visited.add((nr, nc))\n                            queue.append((nr, nc))\n                max_area = max(max_area, area)\n    return max_area\n\ngrid1 = [[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],\n         [0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],\n         [0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],\n         [0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]]",
    "notes": {},
    "tests": "assert maxAreaOfIsland(grid1) == 6\nassert maxAreaOfIsland([[0,0,0,0,0,0,0,0]]) == 0\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "maxAreaOfIsland"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=695"
   },
   {

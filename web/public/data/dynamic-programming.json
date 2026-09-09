@@ -76,7 +76,9 @@
    "solution": "def rob(nums):\n    prev2, prev1 = 0, 0\n    for n in nums:\n        prev2, prev1 = prev1, max(prev1, prev2 + n)\n    return prev1",
    "notes": {},
    "tests": "assert rob([1,2,3,1]) == 4\nassert rob([2,7,9,3,1]) == 12\nassert rob([2,1]) == 2\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "rob"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=198"
   },
   {

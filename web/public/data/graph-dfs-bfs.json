@@ -75,7 +75,9 @@
    "solution": "def floodFill(image, sr, sc, color):\n    original = image[sr][sc]\n    if original == color: return image\n    rows, cols = len(image), len(image[0])\n    \n    def dfs(r, c):\n        if r < 0 or r >= rows or c < 0 or c >= cols or image[r][c] != original: return\n        image[r][c] = color\n        dfs(r+1,c); dfs(r-1,c); dfs(r,c+1); dfs(r,c-1)\n    \n    dfs(sr, sc)\n    return image",
    "notes": {},
    "tests": "assert floodFill([[1,1,1],[1,1,0],[1,0,1]], 1, 1, 2) == [[2,2,2],[2,2,0],[2,0,1]]\nassert floodFill([[0,0,0],[0,0,0]], 0, 0, 0) == [[0,0,0],[0,0,0]]\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "floodFill"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=733"
   },
   {
@@ -92,7 +94,9 @@
    "solution": "def maxAreaOfIsland(grid):\n    rows, cols = len(grid), len(grid[0])\n    \n    def dfs(r, c):\n        if r < 0 or r >= rows or c < 0 or c >= cols or grid[r][c] != 1: return 0\n        grid[r][c] = 0\n        return 1 + dfs(r+1,c) + dfs(r-1,c) + dfs(r,c+1) + dfs(r,c-1)\n    \n    return max(dfs(r, c) for r in range(rows) for c in range(cols))",
    "notes": {},
    "tests": "assert maxAreaOfIsland([[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]]) == 6\nassert maxAreaOfIsland([[0,0,0,0,0,0,0,0]]) == 0\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "maxAreaOfIsland"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=695"
   },
   {
@@ -109,7 +113,9 @@
    "solution": "def islandPerimeter(grid):\n    rows, cols = len(grid), len(grid[0])\n    perimeter = 0\n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == 1:\n                for dr, dc in [(0,1),(0,-1),(1,0),(-1,0)]:\n                    nr, nc = r+dr, c+dc\n                    if nr < 0 or nr >= rows or nc < 0 or nc >= cols or grid[nr][nc] == 0:\n                        perimeter += 1\n    return perimeter",
    "notes": {},
    "tests": "assert islandPerimeter([[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]]) == 16\nassert islandPerimeter([[1]]) == 4\nassert islandPerimeter([[1,0]]) == 4\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "islandPerimeter"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=463"
   },
   {
@@ -213,7 +219,9 @@
    "solution": "def canVisitAllRooms(rooms):\n    visited = set()\n    stack = [0]\n    while stack:\n        room = stack.pop()\n        if room in visited: continue\n        visited.add(room)\n        for key in rooms[room]:\n            if key not in visited:\n                stack.append(key)\n    return len(visited) == len(rooms)",
    "notes": {},
    "tests": "assert canVisitAllRooms([[1],[2],[3],[]]) == True\nassert canVisitAllRooms([[1,3],[3,0,1],[2],[0]]) == False\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "canVisitAllRooms"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=841"
   },
   {
@@ -444,7 +452,9 @@
    "solution": "def countComponents(n, edges):\n    graph = defaultdict(list)\n    for u, v in edges:\n        graph[u].append(v)\n        graph[v].append(u)\n    visited = set()\n    components = 0\n    for start in range(n):\n        if start not in visited:\n            components += 1\n            queue = deque([start])\n            visited.add(start)\n            while queue:\n                node = queue.popleft()\n                for neighbor in graph[node]:\n                    if neighbor not in visited:\n                        visited.add(neighbor)\n                        queue.append(neighbor)\n    return components",
    "notes": {},
    "tests": "assert countComponents(5, [[0,1],[1,2],[3,4]]) == 2\nassert countComponents(5, [[0,1],[1,2],[2,3],[3,4]]) == 1\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "countComponents"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=323"
   },
   {
@@ -869,7 +879,9 @@
    "solution": "def countComponents(n, edges):\n    graph = defaultdict(list)\n    for u, v in edges:\n        graph[u].append(v); graph[v].append(u)\n    visited = set()\n    def dfs(node):\n        visited.add(node)\n        for nei in graph[node]:\n            if nei not in visited: dfs(nei)\n    count = 0\n    for i in range(n):\n        if i not in visited:\n            dfs(i); count += 1\n    return count",
    "notes": {},
    "tests": "assert countComponents(5, [[0,1],[1,2],[3,4]]) == 2\nassert countComponents(5, [[0,1],[1,2],[2,3],[3,4]]) == 1\nassert countComponents(4, []) == 4\nprint('All tests passed!')",
-   "verified": [],
+   "verified": [
+    "countComponents"
+   ],
    "leetcodeUrl": null
   },
   {

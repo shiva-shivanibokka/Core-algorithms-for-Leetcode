@@ -44,7 +44,9 @@
    "solution": "def canFinish(numCourses, prerequisites):\n    graph = defaultdict(list)\n    indegree = [0] * numCourses\n    for a, b in prerequisites:\n        graph[b].append(a)\n        indegree[a] += 1\n    queue = deque(i for i in range(numCourses) if indegree[i] == 0)\n    count = 0\n    while queue:\n        node = queue.popleft()\n        count += 1\n        for nei in graph[node]:\n            indegree[nei] -= 1\n            if indegree[nei] == 0:\n                queue.append(nei)\n    return count == numCourses",
    "notes": {},
    "tests": "assert canFinish(2, [[1,0]]) == True\nassert canFinish(2, [[1,0],[0,1]]) == False\nassert canFinish(1, []) == True\nassert canFinish(3, [[1,0],[2,1]]) == True\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "canFinish"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=207"
   },
   {
@@ -61,7 +63,9 @@
    "solution": "def findOrder(numCourses, prerequisites):\n    graph = defaultdict(list)\n    indegree = [0] * numCourses\n    for a, b in prerequisites:\n        graph[b].append(a)\n        indegree[a] += 1\n    queue = deque(i for i in range(numCourses) if indegree[i] == 0)\n    order = []\n    while queue:\n        node = queue.popleft()\n        order.append(node)\n        for nei in graph[node]:\n            indegree[nei] -= 1\n            if indegree[nei] == 0:\n                queue.append(nei)\n    return order if len(order) == numCourses else []",
    "notes": {},
    "tests": "assert findOrder(2, [[1,0]]) == [0,1]\nassert findOrder(2, [[0,1],[1,0]]) == []\nassert len(findOrder(4, [[1,0],[2,0],[3,1],[3,2]])) == 4\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "findOrder"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=210"
   },
   {
@@ -180,7 +184,9 @@
    "solution": "def isDAG(n, edges):\n    graph = defaultdict(list)\n    indegree = [0] * n\n    for u, v in edges:\n        graph[u].append(v)\n        indegree[v] += 1\n    queue = deque(i for i in range(n) if indegree[i] == 0)\n    count = 0\n    while queue:\n        node = queue.popleft()\n        count += 1\n        for nei in graph[node]:\n            indegree[nei] -= 1\n            if indegree[nei] == 0: queue.append(nei)\n    return count == n",
    "notes": {},
    "tests": "assert isDAG(3, [[0,1],[1,2]]) == True\nassert isDAG(3, [[0,1],[1,2],[2,0]]) == False\nassert isDAG(4, [[0,1],[0,2],[1,3],[2,3]]) == True\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "isDAG"
+   ],
    "leetcodeUrl": null
   },
   {
@@ -197,7 +203,9 @@
    "solution": "def countSources(n, edges):\n    indegree = [0] * n\n    for u, v in edges:\n        indegree[v] += 1\n    return sum(1 for x in indegree if x == 0)",
    "notes": {},
    "tests": "assert countSources(4, [[0,1],[0,2],[1,3]]) == 1\nassert countSources(3, [[0,1],[2,1]]) == 2\nassert countSources(3, [[0,1],[1,2],[2,0]]) == 0\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "countSources"
+   ],
    "leetcodeUrl": null
   },
   {
@@ -214,7 +222,9 @@
    "solution": "def countSinks(n, edges):\n    outdegree = [0] * n\n    for u, v in edges:\n        outdegree[u] += 1\n    return sum(1 for x in outdegree if x == 0)",
    "notes": {},
    "tests": "assert countSinks(4, [[0,1],[0,2],[1,3]]) == 2\nassert countSinks(3, [[0,1],[2,1]]) == 1\nassert countSinks(3, [[0,1],[1,2],[2,0]]) == 0\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "countSinks"
+   ],
    "leetcodeUrl": null
   },
   {
@@ -813,7 +823,9 @@
    "solution": "from collections import deque, defaultdict\n\ndef findOrder(n, prerequisites):\n    graph = defaultdict(list)\n    indegree = [0]*n\n    for task, pre in prerequisites:\n        graph[pre].append(task); indegree[task]+=1\n    queue = deque(i for i in range(n) if indegree[i]==0)\n    order = []\n    while queue:\n        node = queue.popleft(); order.append(node)\n        for nei in graph[node]:\n            indegree[nei]-=1\n            if indegree[nei]==0: queue.append(nei)\n    return order if len(order)==n else []\n\nres = findOrder(4, [[1,0],[2,0],[3,1],[3,2]])",
    "notes": {},
    "tests": "assert len(res)==4 and res.index(0)<res.index(1) and res.index(0)<res.index(2)\nassert findOrder(2, [[1,0],[0,1]]) == []\nprint('All tests passed!')",
-   "verified": [],
+   "verified": [
+    "findOrder"
+   ],
    "leetcodeUrl": null
   },
   {

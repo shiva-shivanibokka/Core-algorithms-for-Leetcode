@@ -412,6 +412,102 @@ const rules: Rule[] = [
     say: (m) => (m[2].trim() ? `the solution — it takes ${m[2].trim()}` : `the solution`),
   },
   { re: /^\s*class\s+(\w+)/, say: (m) => `${m[1]}: the shape of one node` },
+
+  {
+    re: /^\s*(\w+)\s*-=\s*(.+)$/,
+    say: (m) => `take ${m[2].trim()} back off the running ${m[1]}`,
+  },
+  {
+    re: /^\s*while\s+(\w+)\s+and\s+(\w+)\s*:\s*$/,
+    say: (m) => `keep going while both ${m[1]} and ${m[2]} still have something left`,
+  },
+  {
+    re: /^\s*while\s+(\w+)\.(\w+)\s*:\s*$/,
+    say: (m) => `walk ${m[1]} forward until there is no ${m[2]} left`,
+  },
+  {
+    re: /^\s*while\s+(.+?)\s*:\s*$/,
+    say: (m) => `keep going while ${m[1]}`,
+  },
+  {
+    re: /^\s*(\w+)\[([^\]]+)\]\[([^\]]+)\]\s*=\s*(.+)$/,
+    say: (m) => `set ${m[1]} at row ${m[2].trim()}, column ${m[3].trim()}`,
+  },
+  {
+    re: /^\s*(\w+)\[-1\]\[(\d+)\]\s*=\s*(.+)$/,
+    say: (m) => `stretch the most recent entry rather than adding a new one`,
+  },
+  {
+    re: /^\s*(\w+)\s*,\s*(\w+)\s*,\s*(\w+)\s*=\s*(.+)$/,
+    say: (m) => `${m[1]}, ${m[2]} and ${m[3]} are all set up in one line`,
+  },
+  {
+    re: /^\s*for\s+(\w+)\s*,\s*(\w+)\s+in\s+(\w+)\s*:/,
+    say: (m) => `take each ${m[1]} and ${m[2]} pair out of ${m[3]}`,
+  },
+  {
+    re: /^\s*(\w+\[[^\]]+\]|\w+)\.append\((.+)\);\s*(.+)$/,
+    say: () => `two steps on one line, done together because they belong together`,
+  },
+  {
+    re: /^\s*self\.(\w+)\s*\+=\s*1\s*$/,
+    say: (m) => `one more ${m[1]} on this object`,
+  },
+
+  // -- last: the plain shapes ------------------------------------------------
+  // These say little, and that is the point. Everything specific has already
+  // had its turn, so what reaches here genuinely is just an assignment or a
+  // branch, and saying so beats leaving the line bare.
+  { re: /^\s*else\s*:\s*$/, say: () => `otherwise` },
+  { re: /^\s*elif\s+(.+?)\s*:\s*$/, say: (m) => `or, if ${m[1]}` },
+  { re: /^\s*while\s+True\s*:\s*$/, say: () => `loop until something inside breaks out` },
+  { re: /^\s*try\s*:\s*$/, say: () => `attempt this, and cope below if it fails` },
+  { re: /^\s*except\s*(\w*)/, say: () => `what to do when that goes wrong` },
+  {
+    re: /^\s*(\w+)\[([^\]]+)\]\s*\+=\s*1\s*$/,
+    say: (m) => `one more counted against ${m[2].trim()}`,
+  },
+  {
+    re: /^\s*(\w+)\[([^\]]+)\]\s*\+=\s*(.+)$/,
+    say: (m) => `add ${m[3].trim()} to what ${m[1]} holds at ${m[2].trim()}`,
+  },
+  {
+    re: /^\s*(\w+)\[([^\]]+)\]\s*=\s*(.+)$/,
+    say: (m) => `record ${m[3].trim()} at ${m[2].trim()}`,
+  },
+  {
+    re: /^\s*(\w+)\.(\w+)\s*=\s*(.+)$/,
+    say: (m) => `point ${m[1]}'s ${m[2]} at ${m[3].trim()}`,
+  },
+  {
+    re: /^\s*(\w+)\.(\w+)\.(\w+)\s*=\s*(.+)$/,
+    say: (m) => `relink one step further along`,
+  },
+  {
+    re: /^\s*(\w+)\s*,\s*(\w+)\s*=\s*(.+?)\s*,\s*(.+)$/,
+    say: (m) => `set ${m[1]} and ${m[2]} together, in one step`,
+  },
+  {
+    re: /^\s*(\w+)\s*=\s*(\w+)\((.*)\)\s*$/,
+    say: (m) =>
+      m[3].trim()
+        ? `${m[1]} is what ${m[2]}(${m[3].trim()}) gives back`
+        : `${m[1]} starts out as a fresh ${m[2]}()`,
+  },
+  {
+    re: /^\s*(\w+)\s*=\s*\[(.+)\]\s*$/,
+    say: (m) => `${m[1]} starts with ${m[2].trim()} in it`,
+  },
+  { re: /^\s*(\w+)\s*=\s*(.+)$/, say: (m) => `${m[1]} becomes ${m[2].trim()}` },
+  {
+    re: /^\s*if\s+(.+?)\s*:\s*$/,
+    say: (m) => `only when ${m[1]}`,
+  },
+  {
+    re: /^\s*if\s+(.+?)\s*:\s*(.+)$/,
+    say: (m) => `when ${m[1]}, ${m[2].trim()}`,
+  },
+  { re: /^\s*(\w+)\((.*)\)\s*$/, say: (m) => `run ${m[1]} on ${m[2].trim() || "no arguments"}` },
 ];
 
 /**

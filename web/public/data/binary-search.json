@@ -549,7 +549,9 @@
    "solution": "def findClosestElements(arr, k, x):\n    left, right = 0, len(arr) - k\n    while left < right:\n        mid = (left + right) // 2\n        if x - arr[mid] > arr[mid + k] - x:\n            left = mid + 1\n        else:\n            right = mid\n    return arr[left:left + k]",
    "notes": {},
    "tests": "assert findClosestElements([1,2,3,4,5], 4, 3) == [1,2,3,4]\nassert findClosestElements([1,2,3,4,5], 4, -1) == [1,2,3,4]\nassert findClosestElements([1,2,3,4,5], 4, 10) == [2,3,4,5]\nassert findClosestElements([1,3,5,7,9], 2, 4) == [3,5]\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "findClosestElements"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=658"
   },
   {

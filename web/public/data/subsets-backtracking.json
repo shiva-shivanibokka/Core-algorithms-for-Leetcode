@@ -271,7 +271,9 @@
    "solution": "def partition(s):\n    result = []\n    def is_pal(x): return x == x[::-1]\n    def backtrack(start, curr):\n        if start == len(s):\n            result.append(list(curr)); return\n        for end in range(start+1, len(s)+1):\n            sub = s[start:end]\n            if is_pal(sub):\n                curr.append(sub)\n                backtrack(end, curr)\n                curr.pop()\n    backtrack(0, [])\n    return result",
    "notes": {},
    "tests": "assert [[\"a\",\"a\",\"b\"]] == partition(\"aab\") or [[\"aa\",\"b\"]] == partition(\"aab\") or True\nres = partition(\"aab\")\nassert [\"aa\",\"b\"] in res and [\"a\",\"a\",\"b\"] in res\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "partition"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=131"
   },
   {

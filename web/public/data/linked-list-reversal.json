@@ -48,7 +48,9 @@
    "solution": "def reverseList(head):\n    prev, curr = None, head\n    while curr:\n        next_node = curr.next\n        curr.next = prev\n        prev = curr\n        curr = next_node\n    return prev",
    "notes": {},
    "tests": "assert to_list(reverseList(make_list([1,2,3,4,5]))) == [5,4,3,2,1]\nassert to_list(reverseList(make_list([1,2]))) == [2,1]\nassert to_list(reverseList(make_list([]))) == []\nassert to_list(reverseList(make_list([1]))) == [1]\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "reverseList"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=206"
   },
   {
@@ -222,7 +224,9 @@
    "solution": "def deleteDuplicates(head):\n    curr = head\n    while curr and curr.next:\n        if curr.val == curr.next.val:\n            curr.next = curr.next.next\n        else:\n            curr = curr.next\n    return head",
    "notes": {},
    "tests": "assert to_list(deleteDuplicates(make_list([1,1,2]))) == [1,2]\nassert to_list(deleteDuplicates(make_list([1,1,2,3,3]))) == [1,2,3]\nassert to_list(deleteDuplicates(make_list([1,2,3]))) == [1,2,3]\nassert to_list(deleteDuplicates(make_list([]))) == []\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "deleteDuplicates"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=83"
   },
   {
@@ -239,7 +243,9 @@
    "solution": "def mergeTwoLists(l1, l2):\n    dummy = ListNode(0)\n    curr = dummy\n    while l1 and l2:\n        if l1.val <= l2.val:\n            curr.next = l1\n            l1 = l1.next\n        else:\n            curr.next = l2\n            l2 = l2.next\n        curr = curr.next\n    curr.next = l1 or l2\n    return dummy.next",
    "notes": {},
    "tests": "assert to_list(mergeTwoLists(make_list([1,2,4]), make_list([1,3,4]))) == [1,1,2,3,4,4]\nassert to_list(mergeTwoLists(make_list([]), make_list([]))) == []\nassert to_list(mergeTwoLists(make_list([]), make_list([0]))) == [0]\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "mergeTwoLists"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=21"
   },
   {
@@ -276,7 +282,9 @@
    "solution": "def removeElements(head, val):\n    dummy = ListNode(0, head)\n    curr = dummy\n    while curr.next:\n        if curr.next.val == val:\n            curr.next = curr.next.next\n        else:\n            curr = curr.next\n    return dummy.next",
    "notes": {},
    "tests": "assert to_list(removeElements(make_list([1,2,6,3,4,5,6]), 6)) == [1,2,3,4,5]\nassert to_list(removeElements(make_list([]), 1)) == []\nassert to_list(removeElements(make_list([7,7,7,7]), 7)) == []\nassert to_list(removeElements(make_list([1,2,3,4]), 5)) == [1,2,3,4]\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "removeElements"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=203"
   },
   {
@@ -293,7 +301,9 @@
    "solution": "def middleNode(head):\n    slow = fast = head\n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n    return slow",
    "notes": {},
    "tests": "assert to_list(middleNode(make_list([1,2,3,4,5]))) == [3,4,5]\nassert to_list(middleNode(make_list([1,2,3,4,5,6]))) == [4,5,6]\nassert to_list(middleNode(make_list([1]))) == [1]\nassert to_list(middleNode(make_list([1,2]))) == [2]\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "middleNode"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=876"
   },
   {
@@ -331,7 +341,9 @@
    "solution": "def getDecimalValue(head):\n    num = 0\n    while head:\n        num = num * 2 + head.val\n        head = head.next\n    return num",
    "notes": {},
    "tests": "assert getDecimalValue(make_list([1,0,1])) == 5\nassert getDecimalValue(make_list([0])) == 0\nassert getDecimalValue(make_list([1])) == 1\nassert getDecimalValue(make_list([1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1])) == 1073741825\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "getDecimalValue"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=1290"
   },
   {
@@ -386,7 +398,9 @@
    "solution": "def hasCycle(head):\n    slow = fast = head\n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n        if slow is fast:\n            return True\n    return False",
    "notes": {},
    "tests": "# No cycle\nassert hasCycle(make_list([1,2,3,4])) == False\nassert hasCycle(make_list([])) == False\n\n# Build cycle: 3->2->0->-4 with -4 pointing back to 2\nhead = ListNode(3)\nn2 = ListNode(2)\nn0 = ListNode(0)\nn4 = ListNode(-4)\nhead.next = n2\nn2.next = n0\nn0.next = n4\nn4.next = n2  # cycle\nassert hasCycle(head) == True\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "hasCycle"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=141"
   },
   {
@@ -420,7 +434,9 @@
    "solution": "def oddEvenList(head):\n    if not head:\n        return head\n    odd = head\n    even = head.next\n    even_head = even\n    while even and even.next:\n        odd.next = even.next\n        odd = odd.next\n        even.next = odd.next\n        even = even.next\n    odd.next = even_head\n    return head",
    "notes": {},
    "tests": "assert to_list(oddEvenList(make_list([1,2,3,4,5]))) == [1,3,5,2,4]\nassert to_list(oddEvenList(make_list([2,1,3,5,6,4,7]))) == [2,3,6,7,1,5,4]\nassert to_list(oddEvenList(make_list([1]))) == [1]\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "oddEvenList"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=328"
   },
   {
@@ -513,7 +529,9 @@
    "solution": "def partition(head, x):\n    less_dummy = ListNode(0)\n    greater_dummy = ListNode(0)\n    less = less_dummy\n    greater = greater_dummy\n    while head:\n        if head.val < x:\n            less.next = head\n            less = less.next\n        else:\n            greater.next = head\n            greater = greater.next\n        head = head.next\n    greater.next = None\n    less.next = greater_dummy.next\n    return less_dummy.next",
    "notes": {},
    "tests": "assert to_list(partition(make_list([1,4,3,2,5,2]), 3)) == [1,2,2,4,3,5]\nassert to_list(partition(make_list([2,1]), 2)) == [1,2]\nassert to_list(partition(make_list([1,1]), 2)) == [1,1]\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "partition"
+   ],
    "leetcodeUrl": "https://leetcode.com/problemset/?search=86"
   },
   {
@@ -1106,7 +1124,9 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\ndef from_list(lst):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in lst:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next\n\ndef hasCycle(head):\n    slow = fast = head\n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n        if slow is fast:\n            return True\n    return False",
    "notes": {},
    "tests": "# No cycle\nassert hasCycle(from_list([1,2,3,4,5])) == False\nassert hasCycle(from_list([])) == False\n# With cycle\nh = from_list([1,2,3,4])\n# Connect tail to second node\ntail = h\nwhile tail.next:\n    tail = tail.next\ntail.next = h.next  # cycle\nassert hasCycle(h) == True\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "hasCycle"
+   ],
    "leetcodeUrl": null
   },
   {
@@ -1710,7 +1730,9 @@
    "solution": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef to_list(head):\n    result = []\n    while head:\n        result.append(head.val)\n        head = head.next\n    return result\n\ndef from_list(lst):\n    dummy = ListNode(0)\n    cur = dummy\n    for v in lst:\n        cur.next = ListNode(v)\n        cur = cur.next\n    return dummy.next\n\ndef mergeTwoLists(l1, l2):\n    dummy = ListNode(0)\n    cur = dummy\n    while l1 and l2:\n        if l1.val <= l2.val:\n            cur.next = l1; l1 = l1.next\n        else:\n            cur.next = l2; l2 = l2.next\n        cur = cur.next\n    cur.next = l1 or l2\n    return dummy.next\n\ndef mergeKLists(lists):\n    if not lists:\n        return None\n    while len(lists) > 1:\n        merged = []\n        for i in range(0, len(lists), 2):\n            l1 = lists[i]\n            l2 = lists[i+1] if i+1 < len(lists) else None\n            merged.append(mergeTwoLists(l1, l2))\n        lists = merged\n    return lists[0]",
    "notes": {},
    "tests": "assert to_list(mergeKLists([from_list([1,4,5]),from_list([1,3,4]),from_list([2,6])])) == [1,1,2,3,4,4,5,6]\nassert to_list(mergeKLists([])) == []\nassert to_list(mergeKLists([from_list([])])) == []\nassert to_list(mergeKLists([from_list([1]),from_list([2]),from_list([3])])) == [1,2,3]\nprint(\"All tests passed!\")",
-   "verified": [],
+   "verified": [
+    "mergeTwoLists"
+   ],
    "leetcodeUrl": null
   }
  ]

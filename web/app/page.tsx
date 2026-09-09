@@ -63,8 +63,9 @@ export default async function Home() {
             </h3>
             <p>
               Asserts written beside a solution only prove it agrees with its author.{" "}
-              <code>stress_test.py</code> runs {totals.verified} implementations against
-              brute-force references on 200 random inputs each.
+              <code>stress_test.py</code> runs {totals.verified} solutions against
+              brute-force references — written from the problem statement, sharing no
+              code with the bank — on 200 random inputs each. Every pattern is covered.
             </p>
           </article>
         </div>
@@ -113,9 +114,9 @@ export default async function Home() {
         </div>
 
         <p className="stand" style={{ paddingBottom: "70px", fontSize: "14px" }}>
-          The independent references are concentrated in {withRef} of the {totals.patterns}{" "}
-          patterns — array and string problems need a one-line brute force, graph and
-          tree problems need scaffolding. The cards say which is which rather than
+          All {withRef} patterns have solutions under an independent reference, though not
+          evenly: an array problem needs a one-line brute force, while a tree or graph
+          problem needs its input built first. The cards say how many rather than
           averaging it away.{" "}
           <a href={`${REPO}/blob/main/stress_test.py`} style={{ color: "var(--cyan)" }}>
             stress_test.py

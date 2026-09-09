@@ -178,7 +178,10 @@ def pattern_name(nb, path):
 
 def build():
     import stress_test
-    referenced = set(stress_test.PROBLEMS) - {n for _, n in stress_test.COLLISIONS}
+    # A collision is a (notebook, name) pair -- `countNodes` counts a linked
+    # list in one notebook and a tree in another, and only the first is excluded.
+    all_referenced = set(stress_test.PROBLEMS)
+    collisions = stress_test.COLLISIONS
 
     patterns, unresolved = [], []
     for path in sorted(glob.glob("*.ipynb")):
@@ -243,7 +246,8 @@ def build():
                 "solution": solution,
                 "notes": {str(k): v for k, v in annotations(solution).items()},
                 "tests": tests,
-                "verified": sorted(defined & referenced),
+                "verified": sorted(defined & all_referenced
+                                  - {n for nb, n in collisions if nb == path}),
                 "leetcodeUrl": LEETCODE.format(lc.group(1)) if lc else None,
             })
             pending = None

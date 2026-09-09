@@ -16,7 +16,7 @@ Built by Shivani Bokka.
 
 - **What it is** — a self-built coding-interview study bank organized by *pattern* (Two Pointers, Sliding Window, DP, …) rather than by random problem: 1,170 problem slots, 1,130 distinct problems, 655 distinct LeetCode numbers cited, all worked and all runnable.
 - **Hardest problem solved** — making the bank *trustworthy*, which turned out to be a harder claim than it sounds. Inline asserts prove a solution matches the tests written beside it — by the same person, at the same sitting, from the same reading of the problem. That is circular, and three ways of being wrong survive it. All three are now checked by scripts that run in CI, and each one had already caught something real.
-- **Impact** — 13 patterns × 90 problems, difficulty-tiered, **every cell green under CI on every push**, plus 27 problems sampled and re-verified against brute-force references that share no code with the solutions. All of it is [browsable](https://pattern-bank-liart.vercel.app) — pick a pattern, pick a problem, and the solution is written out a line at a time with the reasoning first and the evidence after.
+- **Impact** — 13 patterns × 90 problems, difficulty-tiered, **every cell green under CI on every push**, plus 66 problems sampled and re-verified against brute-force references that share no code with the solutions, covering every one of the 13 patterns. All of it is [browsable](https://pattern-bank-liart.vercel.app) — pick a pattern, pick a problem, and the solution is written out a line at a time with the reasoning first and the evidence after.
 
 ---
 
@@ -192,7 +192,7 @@ notebooks, there is no server to keep alive, and nothing about it can expire.
 ├── 13_Dynamic_Programming.ipynb   # ┘  problems + inline tests
 ├── verify_notebooks.py            # runs every cell; also fails on a problem with
 │                                  #   no solution, or a solution never reached
-├── stress_test.py                 # 27 problems vs independent brute-force references
+├── stress_test.py                 # 66 problems vs independent brute-force references
 ├── check_claims.py                # the numbers in this README, recomputed
 ├── build_site_data.py             # notebooks -> web/public/data/*.json
 ├── web/                           # the browsable bank: Next.js, statically exported
@@ -227,7 +227,13 @@ All three are fixed: the Skyline Problem now ships both the `SortedList` sweep a
 
 The inline asserts were written by the same person who wrote the solution, at the same time, from the same reading of the problem. They prove the code agrees with its author. They cannot catch the author being wrong.
 
-So 27 problems are pinned to a reference implementation written from the *problem statement* — deliberately the slow, obvious, brute-force version — and every matching solution in the notebooks is run against it on 200 random inputs. Currently 37 implementations, all agreeing.
+So 66 problems are pinned to a reference implementation written from the *problem statement* — deliberately the slow, obvious, brute-force version, because obvious code is the kind you can be sure about. Every matching solution in the notebooks is run against it on 200 random inputs: **104 solutions, covering all 13 patterns**, all agreeing.
+
+Three kinds of problem need more than "call it and compare", and the harness handles each:
+
+- **Linked lists, trees and graphs have to be built before they can be passed** — and built out of the node classes *that notebook* defines, so a solution is handed exactly the shape it expects.
+- **A solution that returns a node** is flattened back to values before anything is compared.
+- **Some problems have more than one correct answer.** A topological order is not unique, so `findOrder` is checked against the property its answer must have — a permutation of every course that respects every prerequisite — rather than against one particular order.
 
 The point is what this catches that the other script cannot. Break `coinChange` in a way its own three asserts do not reach:
 
@@ -240,7 +246,9 @@ FAIL  13_Dynamic_Programming.ipynb  cell 23: coinChange disagrees with the
       reference on 192/200 random inputs
 ```
 
-It is a sample, not a proof — 27 of 1,130 problems. It is the slice whose correctness does not rest on my having been right twice.
+It is a sample, not a proof — 66 of 1,130 problems. It is the slice whose correctness does not rest on my having been right twice.
+
+Widening it found four faults in the harness itself, every one of which surfaced as a *correct* solution being reported wrong: arguments copied only one level deep, so a solution that marks visited cells by writing into the grid was editing the reference's copy of the input as well; a graph handed edges over seven nodes while being told it had five; empty trees passed to problems whose LeetCode constraints promise at least one node; and a random tree given to Count Complete Tree Nodes, whose perfect-subtree shortcut is only valid on a complete tree. A harness that calls correct code broken is worse than no harness, so each of those sits next to its fix as a comment.
 
 ### 3. `check_claims.py` — do this README's numbers still hold?
 
@@ -255,13 +263,12 @@ All figures are computed from the notebooks by `check_claims.py`, which fails th
 - **13** algorithm patterns, in a deliberate learning order.
 - **90** problems per pattern — **1,170** problem slots, **1,130** distinct problems, **655** distinct LeetCode numbers cited.
 - **100%** of solution cells pass, every problem has a solution, and every solution is reached — enforced by CI on every push.
-- **27** problems additionally checked against independent brute-force references on random inputs.
+- **66** problems additionally checked against independent brute-force references on random inputs — **104** solutions, covering all 13 patterns.
 - **1** third-party dependency (`sortedcontainers`); everything else is the standard library.
 
 ## Roadmap
 
 - **Spaced-repetition tracking** — a lightweight workflow to schedule which solved problems to re-attempt and when, so review effort concentrates on the problems most likely to be forgotten.
-- **More problems under an independent reference** — 27 of 1,130 is a sample; the ones with a cheap brute force are worth pinning.
 - Additional patterns as needed (e.g. Union-Find, Trie, Monotonic Stack, Bit Manipulation).
 
 ## License
