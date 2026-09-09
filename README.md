@@ -4,7 +4,7 @@
 
 Built by Shivani Bokka.
 
-**Browse it: <https://pattern-bank.vercel.app>**
+**Browse it: <https://pattern-bank-liart.vercel.app>**
 
 [![Verify notebooks](https://github.com/shiva-shivanibokka/Core-algorithms-for-Leetcode/actions/workflows/verify.yml/badge.svg)](https://github.com/shiva-shivanibokka/Core-algorithms-for-Leetcode/actions/workflows/verify.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -16,7 +16,7 @@ Built by Shivani Bokka.
 
 - **What it is** — a self-built coding-interview study bank organized by *pattern* (Two Pointers, Sliding Window, DP, …) rather than by random problem: 1,170 problem slots, 1,130 distinct problems, 655 distinct LeetCode numbers cited, all worked and all runnable.
 - **Hardest problem solved** — making the bank *trustworthy*, which turned out to be a harder claim than it sounds. Inline asserts prove a solution matches the tests written beside it — by the same person, at the same sitting, from the same reading of the problem. That is circular, and three ways of being wrong survive it. All three are now checked by scripts that run in CI, and each one had already caught something real.
-- **Impact** — 13 patterns × 90 problems, difficulty-tiered, **every cell green under CI on every push**, plus 27 problems sampled and re-verified against brute-force references that share no code with the solutions. All of it is [browsable](https://pattern-bank.vercel.app) — pick a pattern, pick a problem, and the solution is written out a line at a time with the reasoning first and the evidence after.
+- **Impact** — 13 patterns × 90 problems, difficulty-tiered, **every cell green under CI on every push**, plus 27 problems sampled and re-verified against brute-force references that share no code with the solutions. All of it is [browsable](https://pattern-bank-liart.vercel.app) — pick a pattern, pick a problem, and the solution is written out a line at a time with the reasoning first and the evidence after.
 
 ---
 
@@ -163,7 +163,7 @@ This is the same check CI runs, so a green local run means a green build.
 
 ## The site
 
-<https://pattern-bank.vercel.app> — the same bank, browsable.
+<https://pattern-bank-liart.vercel.app> — the same bank, browsable.
 
 Pick one of the thirteen patterns, filter its ninety problems by tier or search
 by title, LeetCode number, or a line of code, and open one. The problem view

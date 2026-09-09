@@ -7,10 +7,21 @@ import { formatProse, tokenize } from "@/lib/format";
 
 const TIERS: Difficulty[] = ["Easy", "Medium", "Hard"];
 
-/** How long a line stays alone on screen before the next one arrives. */
-const LINE_MS = 190;
 /** A line carrying a margin note gets longer, because there is more to read. */
 const NOTE_MS = 620;
+/** No solution should take longer than this to arrive, however long it is. */
+const BUDGET_MS = 2600;
+const SLOWEST_MS = 190;
+const FASTEST_MS = 80;
+
+/**
+ * Pace the reveal to the length of the solution. A fixed delay per line reads
+ * well for a twelve-line two-pointer and turns a forty-line DP into a wait, so
+ * long solutions arrive faster per line and every one lands inside the budget.
+ */
+function paceFor(lineCount: number) {
+  return Math.min(SLOWEST_MS, Math.max(FASTEST_MS, BUDGET_MS / Math.max(lineCount, 1)));
+}
 
 export default function PatternView({ pattern }: { pattern: Pattern }) {
   const [tier, setTier] = useState<Difficulty | null>(null);
@@ -153,15 +164,30 @@ function ProblemView({ problem, pattern }: { problem: Problem; pattern: Pattern 
       return;
     }
     setWritten(0);
+    const pace = paceFor(lines.length);
     let i = 0;
     const step = () => {
       i += 1;
       setWritten(i);
       if (i >= lines.length) return;
-      timer.current = setTimeout(step, notes[String(i)] ? NOTE_MS : LINE_MS);
+      timer.current = setTimeout(step, notes[String(i)] ? NOTE_MS : pace);
     };
     timer.current = setTimeout(step, 260);
-    return () => clearTimeout(timer.current);
+
+    // A hidden tab throttles timers to about one a second, so someone who
+    // switches away mid-reveal comes back to a solution still crawling into
+    // place. Finish it instead: they left, the animation has no audience.
+    const onHide = () => {
+      if (document.hidden) {
+        clearTimeout(timer.current);
+        setWritten(lines.length);
+      }
+    };
+    document.addEventListener("visibilitychange", onHide);
+    return () => {
+      clearTimeout(timer.current);
+      document.removeEventListener("visibilitychange", onHide);
+    };
   }, [problem.id, lines.length, notes]);
 
   const done = written >= lines.length;
