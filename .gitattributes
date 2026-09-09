@@ -1,0 +1,8 @@
+# Normalise to LF in the repository. Authored on Windows, run on ubuntu-latest:
+# without this a notebook committed with CRLF makes every later diff useless and
+# a shell script committed with CRLF fails in CI with no useful message.
+* text=auto eol=lf
+
+# Notebooks are JSON, so they diff and merge as text -- but mark them so a
+# stray binary heuristic never kicks in on a cell holding unusual characters.
+*.ipynb text eol=lf

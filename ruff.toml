@@ -1,0 +1,25 @@
+# Lints the three verification scripts. The notebooks are deliberately out of
+# scope: LeetCode solutions are written the way they are written in an
+# interview -- one-letter names, dense lines, camelCase to match the problem's
+# own signature -- and linting them would either bury the real findings or push
+# the code away from what it is teaching.
+#
+# The rule set is named here rather than left to defaults, and the version is
+# pinned in the workflow, so a green build depends on what was committed and
+# not on the day CI happened to run.
+line-length = 100
+target-version = "py312"
+extend-exclude = ["*.ipynb"]
+
+[lint]
+select = [
+    "E", "W",    # pycodestyle
+    "F",         # pyflakes
+    "I",         # import order
+    "B",         # bugbear
+    "UP",        # pyupgrade
+    "S110",      # try-except-pass: a swallowed error is how a check quietly stops checking
+    "S112",      # try-except-continue, same reason
+    "C4",        # comprehensions
+    "RET",       # return hygiene
+]
