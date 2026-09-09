@@ -301,7 +301,10 @@ const rules: Rule[] = [
   },
   {
     re: /^\s*(\w+)\s*=\s*(\w+)\s*$/,
-    say: (m) => `step ${m[1]} along to ${m[2]}`,
+    // Deliberately flat: this same shape is `prev = curr` in a list
+    // reversal and `max_sum = window_sum` in a scan, and only one of
+    // those is a pointer moving.
+    say: (m) => `${m[1]} takes the value of ${m[2]}`,
   },
   {
     re: /^\s*self\.\w+\s*=\s*\w+\s*;\s*self\./,
