@@ -23,6 +23,18 @@ export interface Problem {
   verified: string[];
   /** LeetCode's own page for this problem, searched by number */
   leetcodeUrl: string | null;
+  /** a recording of this solution running on one of its own test cases */
+  trace: Trace | null;
+}
+
+/**
+ * What `trace_solutions.py` recorded: the sequences the solution walks, and a
+ * step per executed line saying where each of its pointers was sitting.
+ */
+export interface Trace {
+  call: string;
+  rows: { name: string; kind: "text" | "numbers"; values: (string | number)[]; movers: string[] }[];
+  steps: { l: number; m: Record<string, number> }[];
 }
 
 /** The explainer a notebook opens with, split into its sections. */

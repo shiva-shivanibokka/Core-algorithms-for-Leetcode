@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import type { Difficulty, Pattern, Problem } from "@/lib/data";
+import Trace from "@/app/components/Trace";
 import Visual, { hasVisual } from "@/app/components/Visual";
 import { explainSolution } from "@/lib/explain";
 import { formatProse, tokenize } from "@/lib/format";
@@ -182,6 +183,8 @@ function ProblemView({ problem, pattern }: { problem: Problem; pattern: Pattern 
 
   const reduced = useRef(false);
   const [written, setWritten] = useState(0); // how many lines have arrived
+  // the line the recording is currently executing, so the code can follow it
+  const [liveLine, setLiveLine] = useState<number | null>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   const settle = useCallback(() => {
@@ -254,8 +257,7 @@ function ProblemView({ problem, pattern }: { problem: Problem; pattern: Pattern 
         )}
       </div>
 
-      <div className="thinkrow">
-        {problem.approach && (
+      {problem.approach && (
           <div className="think">
             <span className="label">The thinking</span>
             <div
@@ -281,17 +283,21 @@ function ProblemView({ problem, pattern }: { problem: Problem; pattern: Pattern 
             )}
           </div>
         )}
-        {hasVisual(pattern.slug) && (
-          <div>
-            <p className="kicker" style={{ marginBottom: "10px" }}>
-              How {pattern.name} moves
-            </p>
-            <Visual slug={pattern.slug} />
-          </div>
-        )}
-      </div>
 
       <div className="codegrid">
+        {problem.trace ? (
+          <Trace trace={problem.trace} onLine={setLiveLine} />
+        ) : (
+          hasVisual(pattern.slug) && (
+            <div className="fallback-visual">
+              <p className="fallback-note">
+                This solution&rsquo;s own run could not be recorded — its state is not a
+                pointer into a list. Here is how {pattern.name} moves in general.
+              </p>
+              <Visual slug={pattern.slug} />
+            </div>
+          )
+        )}
         <div className="codehead">
           <span className="lbl">The solution, line by line</span>
           {!done && (
@@ -309,7 +315,8 @@ function ProblemView({ problem, pattern }: { problem: Problem; pattern: Pattern 
             return (
               <div
                 key={i}
-                className={`crow${i >= written ? " pending" : ""}${writing ? " writing" : ""}`}
+                className={`crow${i >= written ? " pending" : ""}${writing ? " writing" : ""}`
+                  + (i === liveLine ? " running" : "")}
               >
                 <span className="num" aria-hidden="true">
                   {i + 1}

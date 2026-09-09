@@ -49,7 +49,131 @@
    "notes": {},
    "tests": "assert search([-1,0,3,5,9,12], 9) == 4\nassert search([-1,0,3,5,9,12], 2) == -1\nassert search([5], 5) == 0\nassert search([5], 3) == -1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=704"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=704",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       -1,
+       0,
+       3,
+       5,
+       9,
+       12
+      ],
+      "movers": [
+       "mid"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "mid": 1
+      }
+     }
+    ],
+    "call": "search([-1, 0, 3, 5, 9, 12], 2)"
+   }
   },
   {
    "id": "04-02-search-insert-position",
@@ -68,7 +192,111 @@
    "verified": [
     "searchInsert"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=35"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=35",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       1,
+       3,
+       5,
+       6
+      ],
+      "movers": [
+       "mid"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "mid": 0
+      }
+     }
+    ],
+    "call": "searchInsert([1, 3, 5, 6], 2)"
+   }
   },
   {
    "id": "04-03-first-bad-version",
@@ -85,7 +313,8 @@
    "notes": {},
    "tests": "assert firstBadVersion(5, 4) == 4\nassert firstBadVersion(1, 1) == 1\nassert firstBadVersion(10, 1) == 1\nassert firstBadVersion(10, 10) == 10\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=278"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=278",
+   "trace": null
   },
   {
    "id": "04-04-sqrt-x-integer",
@@ -102,7 +331,8 @@
    "notes": {},
    "tests": "assert mySqrt(4) == 2\nassert mySqrt(8) == 2\nassert mySqrt(0) == 0\nassert mySqrt(1) == 1\nassert mySqrt(9) == 3\nassert mySqrt(100) == 10\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=69"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=69",
+   "trace": null
   },
   {
    "id": "04-05-guess-number-higher-or-lower",
@@ -119,7 +349,8 @@
    "notes": {},
    "tests": "assert guessNumber(10, 6) == 6\nassert guessNumber(1, 1) == 1\nassert guessNumber(2, 1) == 1\nassert guessNumber(2, 2) == 2\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=374"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=374",
+   "trace": null
   },
   {
    "id": "04-06-valid-perfect-square",
@@ -136,7 +367,8 @@
    "notes": {},
    "tests": "assert isPerfectSquare(16) == True\nassert isPerfectSquare(14) == False\nassert isPerfectSquare(1) == True\nassert isPerfectSquare(4) == True\nassert isPerfectSquare(9) == True\nassert isPerfectSquare(10) == False\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=367"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=367",
+   "trace": null
   },
   {
    "id": "04-07-count-negative-numbers-in-sorted-matrix",
@@ -153,7 +385,8 @@
    "notes": {},
    "tests": "assert countNegatives([[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]) == 8\nassert countNegatives([[3,2],[1,0]]) == 0\nassert countNegatives([[-1]]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1351"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1351",
+   "trace": null
   },
   {
    "id": "04-08-find-smallest-letter-greater-than-target",
@@ -170,7 +403,8 @@
    "notes": {},
    "tests": "assert nextGreatestLetter([\"c\",\"f\",\"j\"], \"a\") == \"c\"\nassert nextGreatestLetter([\"c\",\"f\",\"j\"], \"c\") == \"f\"\nassert nextGreatestLetter([\"c\",\"f\",\"j\"], \"j\") == \"c\"\nassert nextGreatestLetter([\"x\",\"x\",\"y\",\"y\"], \"x\") == \"y\"\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=744"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=744",
+   "trace": null
   },
   {
    "id": "04-09-kth-missing-positive-number",
@@ -191,7 +425,112 @@
    },
    "tests": "assert findKthPositive([2,3,4,7,11], 5) == 9\nassert findKthPositive([1,2,3,4], 2) == 6\nassert findKthPositive([2], 1) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1539"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1539",
+   "trace": {
+    "rows": [
+     {
+      "name": "arr",
+      "kind": "numbers",
+      "values": [
+       2,
+       3,
+       4,
+       7,
+       11
+      ],
+      "movers": [
+       "mid"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "mid": 3
+      }
+     }
+    ],
+    "call": "findKthPositive([2, 3, 4, 7, 11], 5)"
+   }
   },
   {
    "id": "04-10-special-array-with-x-elements-x",
@@ -210,7 +549,8 @@
    },
    "tests": "assert specialArray([3,5]) == 2\nassert specialArray([0,4,3,0,4]) == 3\nassert specialArray([3,6,7,7,0]) == -1\nassert specialArray([0,0]) == -1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1608"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1608",
+   "trace": null
   },
   {
    "id": "04-11-arranging-coins",
@@ -227,7 +567,8 @@
    "notes": {},
    "tests": "assert arrangeCoins(5) == 2\nassert arrangeCoins(8) == 3\nassert arrangeCoins(1) == 1\nassert arrangeCoins(6) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=441"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=441",
+   "trace": null
   },
   {
    "id": "04-12-search-a-2d-matrix",
@@ -244,7 +585,8 @@
    "notes": {},
    "tests": "assert searchMatrix([[1,3,5,7],[10,11,16,20],[23,30,34,60]], 3) == True\nassert searchMatrix([[1,3,5,7],[10,11,16,20],[23,30,34,60]], 13) == False\nassert searchMatrix([[1]], 1) == True\nassert searchMatrix([[1]], 2) == False\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=74"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=74",
+   "trace": null
   },
   {
    "id": "04-13-single-element-in-a-sorted-array",
@@ -263,7 +605,133 @@
    },
    "tests": "assert singleNonDuplicate([1,1,2,3,3,4,4,8,8]) == 2\nassert singleNonDuplicate([3,3,7,7,10,11,11]) == 10\nassert singleNonDuplicate([1]) == 1\nassert singleNonDuplicate([1,1,2]) == 2\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=540"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=540",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       1,
+       1,
+       2,
+       3,
+       3,
+       4,
+       4,
+       8,
+       8
+      ],
+      "movers": [
+       "left",
+       "mid"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {
+       "left": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "left": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "left": 0,
+       "mid": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "left": 0,
+       "mid": 4
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "left": 0,
+       "mid": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "left": 0,
+       "mid": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "left": 0,
+       "mid": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "left": 0,
+       "mid": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "left": 0,
+       "mid": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "left": 0,
+       "mid": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "left": 0,
+       "mid": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 0,
+       "mid": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "left": 2,
+       "mid": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "left": 2,
+       "mid": 1
+      }
+     }
+    ],
+    "call": "singleNonDuplicate([1, 1, 2, 3, 3, 4, 4, 8, 8])"
+   }
   },
   {
    "id": "04-14-peak-index-in-a-mountain-array",
@@ -280,7 +748,112 @@
    "notes": {},
    "tests": "assert peakIndexInMountainArray([0,1,0]) == 1\nassert peakIndexInMountainArray([0,2,1,0]) == 1\nassert peakIndexInMountainArray([0,10,5,2]) == 1\nassert peakIndexInMountainArray([3,5,3,2,0]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=852"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=852",
+   "trace": {
+    "rows": [
+     {
+      "name": "arr",
+      "kind": "numbers",
+      "values": [
+       3,
+       5,
+       3,
+       2,
+       0
+      ],
+      "movers": [
+       "mid"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "mid": 0
+      }
+     }
+    ],
+    "call": "peakIndexInMountainArray([3, 5, 3, 2, 0])"
+   }
   },
   {
    "id": "04-15-check-if-n-and-its-double-exist",
@@ -297,7 +870,407 @@
    "notes": {},
    "tests": "assert checkIfExist([10,2,5,3]) == True\nassert checkIfExist([7,1,14,11]) == True\nassert checkIfExist([3,1,7,11]) == False\nassert checkIfExist([0,0]) == True\nassert checkIfExist([-2,0,10,-19,4,6,-8]) == False\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1346"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1346",
+   "trace": {
+    "rows": [
+     {
+      "name": "arr",
+      "kind": "numbers",
+      "values": [
+       3,
+       1,
+       7,
+       11
+      ],
+      "movers": [
+       "i",
+       "mid"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 0,
+       "mid": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 0,
+       "mid": 1
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 0,
+       "mid": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0,
+       "mid": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0,
+       "mid": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 0,
+       "mid": 0
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 0,
+       "mid": 0
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 0,
+       "mid": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0,
+       "mid": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 0,
+       "mid": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1,
+       "mid": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1,
+       "mid": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1,
+       "mid": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1,
+       "mid": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 1,
+       "mid": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 1,
+       "mid": 1
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 1,
+       "mid": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1,
+       "mid": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1,
+       "mid": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 1,
+       "mid": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 1,
+       "mid": 2
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 1,
+       "mid": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1,
+       "mid": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 1,
+       "mid": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2,
+       "mid": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2,
+       "mid": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2,
+       "mid": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2,
+       "mid": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 2,
+       "mid": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 2,
+       "mid": 1
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 2,
+       "mid": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2,
+       "mid": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2,
+       "mid": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 2,
+       "mid": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 2,
+       "mid": 2
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 2,
+       "mid": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2,
+       "mid": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2,
+       "mid": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 2,
+       "mid": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 2,
+       "mid": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 2,
+       "mid": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2,
+       "mid": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2,
+       "mid": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3,
+       "mid": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3,
+       "mid": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3,
+       "mid": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3,
+       "mid": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 3,
+       "mid": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 3,
+       "mid": 1
+      }
+     }
+    ],
+    "call": "checkIfExist([3, 1, 7, 11])"
+   }
   },
   {
    "id": "04-16-find-target-indices-after-sorting-array",
@@ -317,7 +1290,216 @@
    },
    "tests": "assert targetIndices([1,2,5,2,3], 2) == [1,2]\nassert targetIndices([1,2,5,2,3], 3) == [3]\nassert targetIndices([1,2,5,2,3], 5) == [4]\nassert targetIndices([1,2,5,2,3], 4) == []\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2089"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2089",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       1,
+       2,
+       5,
+       2,
+       3
+      ],
+      "movers": [
+       "mid"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 17,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 19,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 19,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 20,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 21,
+      "m": {
+       "mid": 3
+      }
+     }
+    ],
+    "call": "targetIndices([1, 2, 5, 2, 3], 2)"
+   }
   },
   {
    "id": "04-17-find-the-distance-value-between-two-arrays",
@@ -337,7 +1519,129 @@
    },
    "tests": "assert findTheDistanceValue([4,5,8], [10,9,1,8], 2) == 2\nassert findTheDistanceValue([1,4,2,3], [-4,-3,6,10,20,30], 3) == 2\nassert findTheDistanceValue([2,1,100,3], [-5,-2,10,-3,7], 6) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1385"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1385",
+   "trace": {
+    "rows": [
+     {
+      "name": "arr2",
+      "kind": "numbers",
+      "values": [
+       -4,
+       -3,
+       6,
+       10,
+       20,
+       30
+      ],
+      "movers": [
+       "pos"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 9,
+      "m": {
+       "pos": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "pos": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "pos": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "pos": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "pos": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "pos": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "pos": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "pos": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "pos": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "pos": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "pos": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "pos": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "pos": 2
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "pos": 2
+      }
+     }
+    ],
+    "call": "findTheDistanceValue([1, 4, 2, 3], [-4, -3, 6, 10, 20, 30], 3)"
+   }
   },
   {
    "id": "04-18-minimum-absolute-difference",
@@ -354,7 +1658,247 @@
    "notes": {},
    "tests": "assert minimumAbsDifference([4,2,1,3]) == [[1,2],[2,3],[3,4]]\nassert minimumAbsDifference([1,3,6,10,15]) == [[1,3]]\nassert minimumAbsDifference([3,8,-10,23,19,-4,-14,27]) == [[-14,-10],[19,23],[23,27]]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1200"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1200",
+   "trace": {
+    "rows": [
+     {
+      "name": "arr",
+      "kind": "numbers",
+      "values": [
+       3,
+       8,
+       -10,
+       23,
+       19,
+       -4,
+       -14,
+       27
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 6
+      }
+     }
+    ],
+    "call": "minimumAbsDifference([3, 8, -10, 23, 19, -4, -14, 27])"
+   }
   },
   {
    "id": "04-19-intersection-of-two-arrays-binary-search-version",
@@ -371,7 +1915,292 @@
    "notes": {},
    "tests": "assert intersection([1,2,2,1], [2,2]) == [2]\nassert intersection([4,9,5], [9,4,9,8,4]) == [4,9]\nassert intersection([1,2,3], [4,5,6]) == []\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=349"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=349",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums2",
+      "kind": "numbers",
+      "values": [
+       9,
+       4,
+       9,
+       8,
+       4
+      ],
+      "movers": [
+       "mid"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "mid": 1
+      }
+     }
+    ],
+    "call": "intersection([4, 9, 5], [9, 4, 9, 8, 4])"
+   }
   },
   {
    "id": "04-20-is-subsequence-binary-search-version",
@@ -390,7 +2219,217 @@
    },
    "tests": "assert isSubsequence(\"abc\", \"ahbgdc\") == True\nassert isSubsequence(\"axc\", \"ahbgdc\") == False\nassert isSubsequence(\"\", \"ahbgdc\") == True\nassert isSubsequence(\"a\", \"a\") == True\nassert isSubsequence(\"b\", \"a\") == False\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=392"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=392",
+   "trace": {
+    "rows": [
+     {
+      "name": "t",
+      "kind": "text",
+      "values": [
+       "a",
+       "h",
+       "b",
+       "g",
+       "d",
+       "c"
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 5
+      }
+     }
+    ],
+    "call": "isSubsequence('abc', 'ahbgdc')"
+   }
   },
   {
    "id": "04-21-find-minimum-in-rotated-sorted-array",
@@ -407,7 +2446,146 @@
    "notes": {},
    "tests": "assert findMin([3,4,5,1,2]) == 1\nassert findMin([4,5,6,7,0,1,2]) == 0\nassert findMin([11,13,15,17]) == 11\nassert findMin([2,1]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=153"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=153",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       4,
+       5,
+       6,
+       7,
+       0,
+       1,
+       2
+      ],
+      "movers": [
+       "left",
+       "mid",
+       "right"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {
+       "left": 0,
+       "right": 6
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "left": 0,
+       "right": 6
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "left": 0,
+       "right": 6,
+       "mid": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "left": 0,
+       "right": 6,
+       "mid": 3
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "left": 4,
+       "right": 6,
+       "mid": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "left": 4,
+       "right": 6,
+       "mid": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "left": 4,
+       "right": 6,
+       "mid": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 4,
+       "right": 6,
+       "mid": 5
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "left": 4,
+       "right": 5,
+       "mid": 5
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "left": 4,
+       "right": 5,
+       "mid": 5
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "left": 4,
+       "right": 5,
+       "mid": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 4,
+       "right": 5,
+       "mid": 4
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "left": 4,
+       "right": 4,
+       "mid": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "left": 4,
+       "right": 4,
+       "mid": 4
+      }
+     }
+    ],
+    "call": "findMin([4, 5, 6, 7, 0, 1, 2])"
+   }
   },
   {
    "id": "04-22-search-in-rotated-sorted-array",
@@ -427,7 +2605,194 @@
    },
    "tests": "assert searchRotated([4,5,6,7,0,1,2], 0) == 4\nassert searchRotated([4,5,6,7,0,1,2], 3) == -1\nassert searchRotated([1], 0) == -1\nassert searchRotated([1,3], 3) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=33"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=33",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       4,
+       5,
+       6,
+       7,
+       0,
+       1,
+       2
+      ],
+      "movers": [
+       "left",
+       "mid",
+       "right"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {
+       "left": 0,
+       "right": 6
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "left": 0,
+       "right": 6
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "left": 0,
+       "right": 6,
+       "mid": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 0,
+       "right": 6,
+       "mid": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "left": 0,
+       "right": 6,
+       "mid": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "left": 0,
+       "right": 6,
+       "mid": 3
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "left": 4,
+       "right": 6,
+       "mid": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "left": 4,
+       "right": 6,
+       "mid": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "left": 4,
+       "right": 6,
+       "mid": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 4,
+       "right": 6,
+       "mid": 5
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "left": 4,
+       "right": 6,
+       "mid": 5
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "left": 4,
+       "right": 6,
+       "mid": 5
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "left": 6,
+       "right": 6,
+       "mid": 5
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "left": 6,
+       "right": 6,
+       "mid": 5
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "left": 6,
+       "right": 6,
+       "mid": 6
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 6,
+       "right": 6,
+       "mid": 6
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "left": 6,
+       "right": 6,
+       "mid": 6
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "left": 6,
+       "right": 6,
+       "mid": 6
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "left": 7,
+       "right": 6,
+       "mid": 6
+      }
+     },
+     {
+      "l": 17,
+      "m": {
+       "left": 7,
+       "right": 6,
+       "mid": 6
+      }
+     }
+    ],
+    "call": "searchRotated([4, 5, 6, 7, 0, 1, 2], 3)"
+   }
   },
   {
    "id": "04-23-find-peak-element",
@@ -444,7 +2809,114 @@
    "notes": {},
    "tests": "assert verify_peak([1,2,3,1], findPeakElement([1,2,3,1]))\nassert verify_peak([1,2,1,3,5,6,4], findPeakElement([1,2,1,3,5,6,4]))\nassert verify_peak([1], findPeakElement([1]))\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=162"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=162",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       1,
+       2,
+       1,
+       3,
+       5,
+       6,
+       4
+      ],
+      "movers": [
+       "mid"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 5
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 5
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 5
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "mid": 4
+      }
+     }
+    ],
+    "call": "findPeakElement([1, 2, 1, 3, 5, 6, 4])"
+   }
   },
   {
    "id": "04-24-koko-eating-bananas",
@@ -461,7 +2933,8 @@
    "notes": {},
    "tests": "assert minEatingSpeed([3,6,7,11], 8) == 4\nassert minEatingSpeed([30,11,23,4,20], 5) == 30\nassert minEatingSpeed([30,11,23,4,20], 6) == 23\nassert minEatingSpeed([1000000000], 2) == 500000000\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=875"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=875",
+   "trace": null
   },
   {
    "id": "04-25-capacity-to-ship-packages-within-d-days",
@@ -478,7 +2951,8 @@
    "notes": {},
    "tests": "assert shipWithinDays([1,2,3,4,5,6,7,8,9,10], 5) == 15\nassert shipWithinDays([3,2,2,4,1,4], 3) == 6\nassert shipWithinDays([1,2,3,1,1], 4) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1011"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1011",
+   "trace": null
   },
   {
    "id": "04-26-find-right-interval",
@@ -497,7 +2971,8 @@
    },
    "tests": "assert findRightInterval([[1,2]]) == [-1]\nassert findRightInterval([[3,4],[2,3],[1,2]]) == [-1,0,1]\nassert findRightInterval([[1,4],[2,3],[3,4]]) == [-1,2,-1]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=436"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=436",
+   "trace": null
   },
   {
    "id": "04-27-time-based-key-value-store",
@@ -516,7 +2991,8 @@
    },
    "tests": "assert tm.get(\"foo\", 1) == \"bar\"\nassert tm.get(\"foo\", 3) == \"bar\"\ntm.set(\"foo\", \"bar2\", 4)\nassert tm.get(\"foo\", 4) == \"bar2\"\nassert tm.get(\"foo\", 5) == \"bar2\"\nassert tm.get(\"foo\", 0) == \"\"\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=981"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=981",
+   "trace": null
   },
   {
    "id": "04-28-h-index-ii",
@@ -533,7 +3009,92 @@
    "notes": {},
    "tests": "assert hIndex([0,1,3,5,6]) == 3\nassert hIndex([1,2,100]) == 2\nassert hIndex([0]) == 0\nassert hIndex([100]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=275"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=275",
+   "trace": {
+    "rows": [
+     {
+      "name": "citations",
+      "kind": "numbers",
+      "values": [
+       0,
+       1,
+       3,
+       5,
+       6
+      ],
+      "movers": [
+       "mid"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "mid": 1
+      }
+     }
+    ],
+    "call": "hIndex([0, 1, 3, 5, 6])"
+   }
   },
   {
    "id": "04-29-find-k-closest-elements",
@@ -552,7 +3113,88 @@
    "verified": [
     "findClosestElements"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=658"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=658",
+   "trace": {
+    "rows": [
+     {
+      "name": "arr",
+      "kind": "numbers",
+      "values": [
+       1,
+       3,
+       5,
+       7,
+       9
+      ],
+      "movers": [
+       "mid"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "mid": 0
+      }
+     }
+    ],
+    "call": "findClosestElements([1, 3, 5, 7, 9], 2, 4)"
+   }
   },
   {
    "id": "04-30-successful-pairs-of-spells-and-potions",
@@ -571,7 +3213,8 @@
    },
    "tests": "assert successfulPairs([5,1,3], [1,2,3,4,5], 7) == [4,0,3]\nassert successfulPairs([3,1,2], [8,5,8], 16) == [2,0,2]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2300"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2300",
+   "trace": null
   },
   {
    "id": "04-31-minimum-number-of-days-to-make-m-bouquets",
@@ -588,7 +3231,8 @@
    "notes": {},
    "tests": "assert minDays([1,10,3,10,2], 3, 1) == 3\nassert minDays([1,10,3,10,2], 3, 2) == -1\nassert minDays([7,7,7,7,12,7,7], 2, 3) == 12\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1482"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1482",
+   "trace": null
   },
   {
    "id": "04-32-find-the-smallest-divisor-given-a-threshold",
@@ -605,7 +3249,8 @@
    "notes": {},
    "tests": "assert smallestDivisor([1,2,5,9], 6) == 5\nassert smallestDivisor([44,22,33,11,1], 5) == 44\nassert smallestDivisor([2,3,5,7,11], 11) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1283"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1283",
+   "trace": null
   },
   {
    "id": "04-33-count-fair-pairs",
@@ -624,7 +3269,171 @@
    },
    "tests": "assert countFairPairs([0,1,7,4,4,5], 3, 6) == 6\nassert countFairPairs([1,7,9,2,5], 11, 11) == 1\nassert countFairPairs([0,0,0,0], 0, 0) == 6\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2563"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2563",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       0,
+       1,
+       7,
+       4,
+       4,
+       5
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 4
+      }
+     }
+    ],
+    "call": "countFairPairs([0, 1, 7, 4, 4, 5], 3, 6)"
+   }
   },
   {
    "id": "04-34-magnetic-force-between-two-balls",
@@ -643,7 +3452,8 @@
    },
    "tests": "assert maxDistance([1,2,3,4,7], 3) == 3\nassert maxDistance([5,4,3,2,1,1000000000], 2) == 999999999\nassert maxDistance([1,2,3], 2) == 2\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1552"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1552",
+   "trace": null
   },
   {
    "id": "04-35-minimize-maximum-of-array",
@@ -663,7 +3473,205 @@
    },
    "tests": "assert minimizeArrayValue([3,7,1,6]) == 5\nassert minimizeArrayValue([10,1]) == 10\nassert minimizeArrayValue([3,1,1,1]) == 3\nassert minimizeArrayValue([0,0,0]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2439"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2439",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       3,
+       7,
+       1,
+       6
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 13,
+      "m": {}
+     },
+     {
+      "l": 14,
+      "m": {}
+     },
+     {
+      "l": 15,
+      "m": {}
+     },
+     {
+      "l": 16,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 17,
+      "m": {}
+     },
+     {
+      "l": 14,
+      "m": {}
+     },
+     {
+      "l": 15,
+      "m": {}
+     },
+     {
+      "l": 16,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 19,
+      "m": {}
+     },
+     {
+      "l": 14,
+      "m": {}
+     },
+     {
+      "l": 20,
+      "m": {}
+     }
+    ],
+    "call": "minimizeArrayValue([3, 7, 1, 6])"
+   }
   },
   {
    "id": "04-36-median-of-two-sorted-arrays",
@@ -680,7 +3688,157 @@
    "notes": {},
    "tests": "assert findMedianSortedArrays([1,3], [2]) == 2.0\nassert findMedianSortedArrays([1,2], [3,4]) == 2.5\nassert findMedianSortedArrays([0,0], [0,0]) == 0.0\nassert findMedianSortedArrays([], [1]) == 1.0\nassert findMedianSortedArrays([1,3], [2,4]) == 2.5\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=4"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=4",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums1",
+      "kind": "numbers",
+      "values": [
+       1,
+       3
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 20,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 23,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 17,
+      "m": {
+       "i": 1
+      }
+     }
+    ],
+    "call": "findMedianSortedArrays([1, 3], [2])"
+   }
   },
   {
    "id": "04-37-split-array-largest-sum",
@@ -697,7 +3855,8 @@
    "notes": {},
    "tests": "assert splitArray([7,2,5,10,8], 2) == 18\nassert splitArray([1,2,3,4,5], 2) == 9\nassert splitArray([1,4,4], 3) == 4\nassert splitArray([1,2,3,4,5], 5) == 5\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=410"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=410",
+   "trace": null
   },
   {
    "id": "04-38-find-in-mountain-array",
@@ -718,7 +3877,267 @@
    },
    "tests": "assert findInMountainArray(3, [1,2,3,4,5,3,1]) == 2\nassert findInMountainArray(3, [0,1,2,4,2,1]) == -1\nassert findInMountainArray(1, [0,1,2,4,2,1]) == 1\nassert findInMountainArray(5, [1,5,3]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1095"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1095",
+   "trace": {
+    "rows": [
+     {
+      "name": "arr",
+      "kind": "numbers",
+      "values": [
+       0,
+       1,
+       2,
+       4,
+       2,
+       1
+      ],
+      "movers": [
+       "mid"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 18,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 19,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 18,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 19,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 18,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 21,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 24,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 25,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 26,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 27,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 29,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 32,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 25,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 33,
+      "m": {
+       "mid": 4
+      }
+     }
+    ],
+    "call": "findInMountainArray(3, [0, 1, 2, 4, 2, 1])"
+   }
   },
   {
    "id": "04-39-kth-smallest-element-in-a-sorted-matrix-binary-search",
@@ -735,7 +4154,8 @@
    "notes": {},
    "tests": "assert kthSmallest([[1,5,9],[10,11,13],[12,13,15]], 8) == 13\nassert kthSmallest([[-5]], 1) == -5\nassert kthSmallest([[1,2],[3,3]], 2) == 2\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=378"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=378",
+   "trace": null
   },
   {
    "id": "04-40-find-k-th-smallest-pair-distance",
@@ -752,7 +4172,358 @@
    "notes": {},
    "tests": "assert smallestDistancePair([1,3,1], 1) == 0\nassert smallestDistancePair([1,1,1], 2) == 0\nassert smallestDistancePair([1,6,1], 3) == 5\nassert smallestDistancePair([1,2,3,4], 4) == 2\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=719"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=719",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "movers": [
+       "left",
+       "right"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 12,
+      "m": {}
+     },
+     {
+      "l": 13,
+      "m": {
+       "left": 0,
+       "right": 3
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "left": 0,
+       "right": 3
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "left": 0,
+       "right": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 0,
+       "right": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "left": 0,
+       "right": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 0,
+       "right": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 0,
+       "right": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "left": 0,
+       "right": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 1,
+       "right": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "left": 1,
+       "right": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 1,
+       "right": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 1,
+       "right": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "left": 1,
+       "right": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 2,
+       "right": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "left": 2,
+       "right": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 2,
+       "right": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "left": 2,
+       "right": 3
+      }
+     },
+     {
+      "l": 18,
+      "m": {
+       "left": 0,
+       "right": 3
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "left": 2,
+       "right": 3
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "left": 2,
+       "right": 3
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "left": 2,
+       "right": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 0,
+       "right": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "left": 0,
+       "right": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 0,
+       "right": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 0,
+       "right": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "left": 0,
+       "right": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 0,
+       "right": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 0,
+       "right": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "left": 0,
+       "right": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 1,
+       "right": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "left": 1,
+       "right": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 1,
+       "right": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "left": 1,
+       "right": 3
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "left": 2,
+       "right": 3
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "left": 2,
+       "right": 2
+      }
+     },
+     {
+      "l": 19,
+      "m": {
+       "left": 2,
+       "right": 2
+      }
+     }
+    ],
+    "call": "smallestDistancePair([1, 2, 3, 4], 4)"
+   }
   },
   {
    "id": "04-41-russian-doll-envelopes-lis-with-binary-search",
@@ -772,7 +4543,8 @@
    },
    "tests": "assert maxEnvelopes([[5,4],[6,4],[6,7],[2,3]]) == 3\nassert maxEnvelopes([[1,1],[1,1],[1,1]]) == 1\nassert maxEnvelopes([[1,2],[2,3],[3,4],[4,5]]) == 4\nassert maxEnvelopes([[2,3],[5,4],[6,7],[1,2],[3,5]]) == 4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=354"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=354",
+   "trace": null
   },
   {
    "id": "04-42-aggressive-cows-classic-binary-search-on-answer",
@@ -791,7 +4563,318 @@
    },
    "tests": "assert aggressiveCows([1,2,8,4,9], 3) == 3\nassert aggressiveCows([1,2,3], 2) == 2\nassert aggressiveCows([1,2,4,8,9], 3) == 3\nassert aggressiveCows([0,3,4,7,10,9], 4) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": {
+    "rows": [
+     {
+      "name": "stalls",
+      "kind": "numbers",
+      "values": [
+       1,
+       2,
+       8,
+       4,
+       9
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 14,
+      "m": {}
+     },
+     {
+      "l": 15,
+      "m": {}
+     },
+     {
+      "l": 16,
+      "m": {}
+     },
+     {
+      "l": 17,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 20,
+      "m": {}
+     },
+     {
+      "l": 15,
+      "m": {}
+     },
+     {
+      "l": 16,
+      "m": {}
+     },
+     {
+      "l": 17,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 18,
+      "m": {}
+     },
+     {
+      "l": 15,
+      "m": {}
+     },
+     {
+      "l": 16,
+      "m": {}
+     },
+     {
+      "l": 17,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3
+      }
+     }
+    ],
+    "call": "aggressiveCows([1, 2, 8, 4, 9], 3)"
+   }
   },
   {
    "id": "04-43-allocate-minimum-number-of-pages-classic-binary-search",
@@ -808,7 +4891,8 @@
    "notes": {},
    "tests": "assert allocateMinPages([12,34,67,90], 2) == 113\nassert allocateMinPages([10,20,30,40], 2) == 60\nassert allocateMinPages([10,20,30,40], 4) == 40\nassert allocateMinPages([5,17,100,11], 4) == 100\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "04-44-search-in-rotated-sorted-array-ii-with-duplicates",
@@ -829,7 +4913,210 @@
    },
    "tests": "assert searchWithDuplicates([2,5,6,0,0,1,2], 0) == True\nassert searchWithDuplicates([2,5,6,0,0,1,2], 3) == False\nassert searchWithDuplicates([1,0,1,1,1], 0) == True\nassert searchWithDuplicates([1,1,1,1,1], 2) == False\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=81"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=81",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       2,
+       5,
+       6,
+       0,
+       0,
+       1,
+       2
+      ],
+      "movers": [
+       "left",
+       "mid",
+       "right"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {
+       "left": 0,
+       "right": 6
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "left": 0,
+       "right": 6
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "left": 0,
+       "right": 6,
+       "mid": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 0,
+       "right": 6,
+       "mid": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "left": 0,
+       "right": 6,
+       "mid": 3
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "left": 0,
+       "right": 6,
+       "mid": 3
+      }
+     },
+     {
+      "l": 19,
+      "m": {
+       "left": 0,
+       "right": 6,
+       "mid": 3
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "left": 0,
+       "right": 2,
+       "mid": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "left": 0,
+       "right": 2,
+       "mid": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "left": 0,
+       "right": 2,
+       "mid": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 0,
+       "right": 2,
+       "mid": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "left": 0,
+       "right": 2,
+       "mid": 1
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "left": 0,
+       "right": 2,
+       "mid": 1
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "left": 0,
+       "right": 2,
+       "mid": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "left": 0,
+       "right": 0,
+       "mid": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "left": 0,
+       "right": 0,
+       "mid": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "left": 0,
+       "right": 0,
+       "mid": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 0,
+       "right": 0,
+       "mid": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "left": 0,
+       "right": 0,
+       "mid": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "left": 1,
+       "right": 0,
+       "mid": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "left": 1,
+       "right": -1,
+       "mid": 0
+      }
+     },
+     {
+      "l": 20,
+      "m": {
+       "left": 1,
+       "right": -1,
+       "mid": 0
+      }
+     }
+    ],
+    "call": "searchWithDuplicates([2, 5, 6, 0, 0, 1, 2], 3)"
+   }
   },
   {
    "id": "04-45-minimum-days-to-disconnect-island-simplified",
@@ -846,7 +5133,8 @@
    "notes": {},
    "tests": "assert minDaysToDisconnect([[0,1,1,0],[0,1,1,0],[0,0,0,0]]) == 2\nassert minDaysToDisconnect([[1,1]]) == 2\nassert minDaysToDisconnect([[1,0,1,0]]) == 0\nassert minDaysToDisconnect([[1,1,0,1,1],[1,1,1,1,1],[1,1,0,1,1]]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1568"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1568",
+   "trace": null
   },
   {
    "id": "04-46-count-elements-with-strictly-smaller-and-greater-eleme",
@@ -863,7 +5151,8 @@
    "notes": {},
    "tests": "assert countElements([11, 7, 2, 15]) == 2\nassert countElements([-3, 3, 3, 90]) == 2\nassert countElements([1, 1, 1]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2148"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2148",
+   "trace": null
   },
   {
    "id": "04-47-find-smallest-index-such-that-array-index-index",
@@ -880,7 +5169,135 @@
    "notes": {},
    "tests": "assert fixedPoint([-10, -5, 0, 3, 7]) == 3\nassert fixedPoint([0, 2, 5, 8, 17]) == 0\nassert fixedPoint([-10, -5, 3, 4, 7, 9]) == -1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1064"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1064",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       -10,
+       -5,
+       3,
+       4,
+       7,
+       9
+      ],
+      "movers": [
+       "mid"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "mid": 1
+      }
+     }
+    ],
+    "call": "fixedPoint([-10, -5, 3, 4, 7, 9])"
+   }
   },
   {
    "id": "04-48-minimum-absolute-difference",
@@ -897,7 +5314,127 @@
    "notes": {},
    "tests": "assert minimumAbsDifference([4, 2, 1, 3]) == [[1,2],[2,3],[3,4]]\nassert minimumAbsDifference([1, 3, 6, 10, 15]) == [[1,3]]\nassert minimumAbsDifference([3, 8, -10, 23, 19, -4, -14, 27]) == [[-14,-10],[19,23],[23,27]]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1200"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1200",
+   "trace": {
+    "rows": [
+     {
+      "name": "arr",
+      "kind": "numbers",
+      "values": [
+       3,
+       8,
+       -10,
+       23,
+       19,
+       -4,
+       -14,
+       27
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 6
+      }
+     }
+    ],
+    "call": "minimumAbsDifference([3, 8, -10, 23, 19, -4, -14, 27])"
+   }
   },
   {
    "id": "04-49-floor-and-ceiling-in-sorted-array",
@@ -914,7 +5451,8 @@
    "notes": {},
    "tests": "assert floorCeiling([1, 2, 8, 10, 10, 12, 19], 5) == (2, 8)\nassert floorCeiling([1, 2, 8, 10, 10, 12, 19], 10) == (10, 10)\nassert floorCeiling([1, 2, 8, 10, 10, 12, 19], 0) == (-1, 1)\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "04-50-count-occurrences-of-element-in-sorted-array",
@@ -931,7 +5469,8 @@
    "notes": {},
    "tests": "assert countOccurrences([1, 1, 2, 2, 2, 3, 3], 2) == 3\nassert countOccurrences([1, 1, 2, 2, 2, 3, 3], 4) == 0\nassert countOccurrences([5, 5, 5, 5], 5) == 4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "04-51-first-and-last-position-of-element-in-sorted-array",
@@ -950,7 +5489,8 @@
    "verified": [
     "searchRange"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=34"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=34",
+   "trace": null
   },
   {
    "id": "04-52-left-most-occurrence-in-sorted-array",
@@ -967,7 +5507,131 @@
    "notes": {},
    "tests": "assert leftMostOccurrence([1, 2, 2, 2, 3, 4], 2) == 1\nassert leftMostOccurrence([1, 2, 3, 4], 5) == -1\nassert leftMostOccurrence([3, 3, 3, 3], 3) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       1,
+       2,
+       2,
+       2,
+       3,
+       4
+      ],
+      "movers": [
+       "mid"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "mid": 1
+      }
+     }
+    ],
+    "call": "leftMostOccurrence([1, 2, 2, 2, 3, 4], 2)"
+   }
   },
   {
    "id": "04-53-right-most-occurrence-in-sorted-array",
@@ -984,7 +5648,131 @@
    "notes": {},
    "tests": "assert rightMostOccurrence([1, 2, 2, 2, 3, 4], 2) == 3\nassert rightMostOccurrence([1, 2, 3, 4], 5) == -1\nassert rightMostOccurrence([3, 3, 3, 3], 3) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       1,
+       2,
+       2,
+       2,
+       3,
+       4
+      ],
+      "movers": [
+       "mid"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "mid": 3
+      }
+     }
+    ],
+    "call": "rightMostOccurrence([1, 2, 2, 2, 3, 4], 2)"
+   }
   },
   {
    "id": "04-54-check-if-perfect-square-without-sqrt",
@@ -1001,7 +5789,8 @@
    "notes": {},
    "tests": "assert isPerfectSquareBS(16) == True\nassert isPerfectSquareBS(14) == False\nassert isPerfectSquareBS(1) == True\nassert isPerfectSquareBS(25) == True\nassert isPerfectSquareBS(26) == False\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=367"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=367",
+   "trace": null
   },
   {
    "id": "04-55-find-gcd-of-array",
@@ -1018,7 +5807,8 @@
    "notes": {},
    "tests": "assert findGCDArray([2, 5, 6, 9, 10]) == 2\nassert findGCDArray([7, 5, 6, 8, 3]) == 1\nassert findGCDArray([3, 3]) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1979"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1979",
+   "trace": null
   },
   {
    "id": "04-56-count-days-between-two-dates-simplified",
@@ -1035,7 +5825,8 @@
    "notes": {},
    "tests": "assert daysBetweenDates((2019, 6, 29), (2019, 6, 30)) == 1\nassert daysBetweenDates((2020, 1, 15), (2019, 12, 31)) == 15\nassert daysBetweenDates((2021, 1, 1), (2021, 1, 1)) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "04-57-lower-bound-in-sorted-array",
@@ -1052,7 +5843,112 @@
    "notes": {},
    "tests": "assert lowerBound([1, 3, 5, 7, 9], 5) == 2\nassert lowerBound([1, 3, 5, 7, 9], 4) == 2\nassert lowerBound([1, 3, 5, 7, 9], 10) == 5\nassert lowerBound([1, 3, 5, 7, 9], 0) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       1,
+       3,
+       5,
+       7,
+       9
+      ],
+      "movers": [
+       "mid"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "mid": 0
+      }
+     }
+    ],
+    "call": "lowerBound([1, 3, 5, 7, 9], 0)"
+   }
   },
   {
    "id": "04-58-upper-bound-in-sorted-array",
@@ -1069,7 +5965,112 @@
    "notes": {},
    "tests": "assert upperBound([1, 3, 5, 7, 9], 5) == 3\nassert upperBound([1, 3, 5, 7, 9], 4) == 2\nassert upperBound([1, 3, 5, 7, 9], 9) == 5\nassert upperBound([1, 3, 5, 5, 5, 9], 5) == 5\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       1,
+       3,
+       5,
+       7,
+       9
+      ],
+      "movers": [
+       "mid"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "mid": 3
+      }
+     }
+    ],
+    "call": "upperBound([1, 3, 5, 7, 9], 5)"
+   }
   },
   {
    "id": "04-59-find-minimum-in-rotated-array-no-duplicates-warmup",
@@ -1086,7 +6087,146 @@
    "notes": {},
    "tests": "assert findMinRotated([3, 4, 5, 1, 2]) == 1\nassert findMinRotated([4, 5, 6, 7, 0, 1, 2]) == 0\nassert findMinRotated([11, 13, 15, 17]) == 11\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       4,
+       5,
+       6,
+       7,
+       0,
+       1,
+       2
+      ],
+      "movers": [
+       "hi",
+       "lo",
+       "mid"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {
+       "lo": 0,
+       "hi": 6
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "lo": 0,
+       "hi": 6
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "lo": 0,
+       "hi": 6,
+       "mid": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "lo": 0,
+       "hi": 6,
+       "mid": 3
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "lo": 4,
+       "hi": 6,
+       "mid": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "lo": 4,
+       "hi": 6,
+       "mid": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "lo": 4,
+       "hi": 6,
+       "mid": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "lo": 4,
+       "hi": 6,
+       "mid": 5
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "lo": 4,
+       "hi": 5,
+       "mid": 5
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "lo": 4,
+       "hi": 5,
+       "mid": 5
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "lo": 4,
+       "hi": 5,
+       "mid": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "lo": 4,
+       "hi": 5,
+       "mid": 4
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "lo": 4,
+       "hi": 4,
+       "mid": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "lo": 4,
+       "hi": 4,
+       "mid": 4
+      }
+     }
+    ],
+    "call": "findMinRotated([4, 5, 6, 7, 0, 1, 2])"
+   }
   },
   {
    "id": "04-60-search-in-nearly-sorted-array",
@@ -1103,7 +6243,126 @@
    "notes": {},
    "tests": "assert searchNearlySorted([10, 3, 40, 20, 50, 80, 70], 40) == 2\nassert searchNearlySorted([10, 3, 40, 20, 50, 80, 70], 90) == -1\nassert searchNearlySorted([3, 10, 40, 20, 50, 80, 70], 10) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       10,
+       3,
+       40,
+       20,
+       50,
+       80,
+       70
+      ],
+      "movers": [
+       "mid"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 5
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "mid": 5
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "mid": 5
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "mid": 5
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "mid": 5
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 5
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "mid": 5
+      }
+     }
+    ],
+    "call": "searchNearlySorted([10, 3, 40, 20, 50, 80, 70], 90)"
+   }
   },
   {
    "id": "04-61-find-element-in-infinite-sorted-array-exponential-bina",
@@ -1124,7 +6383,8 @@
    },
    "tests": "assert findInInfiniteArray(arr, 99) == 33\nassert findInInfiniteArray(arr, 100) == -1\nassert findInInfiniteArray(arr, 0) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "04-62-count-elements-in-range-lo-hi-in-sorted-array",
@@ -1141,7 +6401,8 @@
    "notes": {},
    "tests": "assert countInRange([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3, 7) == 5\nassert countInRange([1, 2, 3, 4, 5], 6, 10) == 0\nassert countInRange([1, 1, 1, 2, 2, 3], 1, 2) == 5\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "04-63-binary-search-on-floating-point-answer-cube-root-to-6-",
@@ -1160,7 +6421,8 @@
    },
    "tests": "assert abs(cubeRootBS(27) - 3.0) < 1e-5\nassert abs(cubeRootBS(8) - 2.0) < 1e-5\nassert abs(cubeRootBS(10) - 10**(1/3)) < 1e-5\nassert abs(cubeRootBS(1) - 1.0) < 1e-5\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "04-64-guess-the-word-binary-search-simulation",
@@ -1177,7 +6439,152 @@
    "notes": {},
    "tests": "assert guesses <= math.ceil(math.log2(len(candidates))) + 1\nassert guessTheWord([1, 5, 10, 15, 20], 10) <= 3\nassert guessTheWord([1, 5, 10, 15, 20], 99) == -1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": {
+    "rows": [
+     {
+      "name": "candidates",
+      "kind": "numbers",
+      "values": [
+       1,
+       5,
+       10,
+       15,
+       20
+      ],
+      "movers": [
+       "mid"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "mid": 4
+      }
+     }
+    ],
+    "call": "guessTheWord([1, 5, 10, 15, 20], 99)"
+   }
   },
   {
    "id": "04-65-find-kth-positive-missing-number",
@@ -1194,7 +6601,112 @@
    "notes": {},
    "tests": "assert findKthPositive([2, 3, 4, 7, 11], 5) == 9\nassert findKthPositive([1, 2, 3, 4], 2) == 6\nassert findKthPositive([1, 3], 1) == 2\nassert findKthPositive([5, 6, 7, 8], 1) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1539"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1539",
+   "trace": {
+    "rows": [
+     {
+      "name": "arr",
+      "kind": "numbers",
+      "values": [
+       2,
+       3,
+       4,
+       7,
+       11
+      ],
+      "movers": [
+       "mid"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "mid": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "mid": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "mid": 3
+      }
+     }
+    ],
+    "call": "findKthPositive([2, 3, 4, 7, 11], 5)"
+   }
   },
   {
    "id": "04-66-search-a-2d-matrix-ii",
@@ -1211,7 +6723,8 @@
    "notes": {},
    "tests": "assert searchMatrix2D(mat, 5) == True\nassert searchMatrix2D(mat, 20) == False\nassert searchMatrix2D([[1,2],[3,4]], 3) == True\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=240"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=240",
+   "trace": null
   },
   {
    "id": "04-67-find-peak-element-2d",
@@ -1228,7 +6741,8 @@
    "notes": {},
    "tests": "assert all(mat1[r][c] > _x for _x in _nb)  # any peak is valid\nmat2 = [[10,20,15],[21,30,14],[7,16,32]]\nr, c = findPeakGrid(mat2)\nval = mat2[r][c]\nneighbors = [mat2[r+dr][c+dc] for dr,dc in [(-1,0),(1,0),(0,-1),(0,1)] if 0<=r+dr<3 and 0<=c+dc<3]\nassert all(val > n for n in neighbors)\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1901"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1901",
+   "trace": null
   },
   {
    "id": "04-68-random-pick-with-weight",
@@ -1245,7 +6759,8 @@
    "notes": {},
    "tests": "# index 1 should appear ~75% of the time\nassert 0.65 < results.count(1) / 4000 < 0.85\n\nsol2 = Solution528([1])\nassert sol2.pickIndex() == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=528"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=528",
+   "trace": null
   },
   {
    "id": "04-69-maximum-value-at-a-given-index-in-a-bounded-array",
@@ -1266,7 +6781,8 @@
    },
    "tests": "assert maxValue(4, 2, 6) == 2\nassert maxValue(6, 1, 10) == 3\nassert maxValue(3, 2, 18) == 7\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1802"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1802",
+   "trace": null
   },
   {
    "id": "04-70-minimum-speed-to-arrive-on-time",
@@ -1283,7 +6799,8 @@
    "notes": {},
    "tests": "assert minSpeedOnTime([1, 3, 2], 6) == 1\nassert minSpeedOnTime([1, 3, 2], 2.7) == 3\nassert minSpeedOnTime([1, 3, 2], 1.9) == -1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1870"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1870",
+   "trace": null
   },
   {
    "id": "04-71-maximum-tastiness-of-candy-basket",
@@ -1300,7 +6817,8 @@
    "notes": {},
    "tests": "assert maximumTastiness([13, 5, 1, 8, 21, 2], 3) == 8\nassert maximumTastiness([1, 3, 1], 2) == 2\nassert maximumTastiness([7, 7, 7, 7], 2) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2517"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2517",
+   "trace": null
   },
   {
    "id": "04-72-house-robber-iv-binary-search-on-answer",
@@ -1319,7 +6837,319 @@
    },
    "tests": "assert minCapability([2, 3, 5, 9], 2) == 5\nassert minCapability([2, 7, 9, 3, 1], 2) == 2\nassert minCapability([1, 2, 3, 4, 5], 3) == 5\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2560"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2560",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       2,
+       3,
+       5,
+       9
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 12,
+      "m": {}
+     },
+     {
+      "l": 13,
+      "m": {}
+     },
+     {
+      "l": 14,
+      "m": {}
+     },
+     {
+      "l": 15,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 16,
+      "m": {}
+     },
+     {
+      "l": 13,
+      "m": {}
+     },
+     {
+      "l": 14,
+      "m": {}
+     },
+     {
+      "l": 15,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 18,
+      "m": {}
+     },
+     {
+      "l": 13,
+      "m": {}
+     },
+     {
+      "l": 14,
+      "m": {}
+     },
+     {
+      "l": 15,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 18,
+      "m": {}
+     },
+     {
+      "l": 13,
+      "m": {}
+     },
+     {
+      "l": 19,
+      "m": {}
+     }
+    ],
+    "call": "minCapability([2, 3, 5, 9], 2)"
+   }
   },
   {
    "id": "04-73-minimum-time-to-complete-trips",
@@ -1336,7 +7166,8 @@
    "notes": {},
    "tests": "assert minimumTime([1, 2, 3], 5) == 3\nassert minimumTime([2], 1) == 2\nassert minimumTime([1], 10) == 10\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2187"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2187",
+   "trace": null
   },
   {
    "id": "04-74-kth-smallest-number-in-multiplication-table",
@@ -1353,7 +7184,8 @@
    "notes": {},
    "tests": "assert findKthNumber(3, 3, 5) == 3\nassert findKthNumber(2, 3, 6) == 6\nassert findKthNumber(1, 1, 1) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=668"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=668",
+   "trace": null
   },
   {
    "id": "04-75-reach-end-of-array-with-max-score",
@@ -1370,7 +7202,122 @@
    "notes": {},
    "tests": "assert findMaximumScore([1, 3, 1, 5]) == 7\nassert findMaximumScore([4, 3, 1, 3, 2]) == 16\nassert findMaximumScore([0, 0]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2918"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2918",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       4,
+       3,
+       1,
+       3,
+       2
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3
+      }
+     }
+    ],
+    "call": "findMaximumScore([4, 3, 1, 3, 2])"
+   }
   },
   {
    "id": "04-76-median-of-two-sorted-arrays-find-kth-element-method",
@@ -1387,7 +7334,8 @@
    "notes": {},
    "tests": "assert findMedianSortedArraysKth([1, 3], [2]) == 2.0\nassert findMedianSortedArraysKth([1, 2], [3, 4]) == 2.5\nassert findMedianSortedArraysKth([0, 0], [0, 0]) == 0.0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "04-77-count-negative-numbers-in-sorted-matrix-full-binary-se",
@@ -1404,7 +7352,8 @@
    "notes": {},
    "tests": "assert countNegatives([[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]) == 8\nassert countNegatives([[3,2],[1,0]]) == 0\nassert countNegatives([[-1]]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "04-78-divide-chocolate-maximize-minimum-sweetness",
@@ -1421,7 +7370,8 @@
    "notes": {},
    "tests": "assert maximizeMinSweetness([1, 2, 3, 4, 5, 6, 7, 8, 9], 5) == 6\nassert maximizeMinSweetness([5, 6, 7], 0) == 18\nassert maximizeMinSweetness([1, 2, 3], 1) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "04-79-minimize-max-distance-to-gas-station",
@@ -1440,7 +7390,343 @@
    },
    "tests": "assert abs(result - 0.5) < 1e-4\nresult2 = minmaxGasDist([23, 24, 36, 39, 46, 56, 57, 65, 84, 98], 1)\nassert abs(result2 - 14.0) < 1e-4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=774"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=774",
+   "trace": {
+    "rows": [
+     {
+      "name": "stations",
+      "kind": "numbers",
+      "values": [
+       23,
+       24,
+       36,
+       39,
+       46,
+       56,
+       57,
+       65,
+       84,
+       98
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 9,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {}
+     },
+     {
+      "l": 11,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 8
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 8
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 8
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 9
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 9
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 9
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 9
+      }
+     },
+     {
+      "l": 12,
+      "m": {}
+     },
+     {
+      "l": 9,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {}
+     },
+     {
+      "l": 11,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 5
+      }
+     }
+    ],
+    "call": "minmaxGasDist([23, 24, 36, 39, 46, 56, 57, 65, 84, 98], 1)"
+   }
   },
   {
    "id": "04-80-find-the-kth-largest-integer-in-array-via-binary-searc",
@@ -1457,7 +7743,8 @@
    "notes": {},
    "tests": "assert kthLargestNumber([\"3\",\"6\",\"7\",\"10\"], 4) == \"3\"\nassert kthLargestNumber([\"2\",\"21\",\"12\",\"1\"], 3) == \"2\"\nassert kthLargestNumber([\"0\",\"0\"], 2) == \"0\"\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1985"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1985",
+   "trace": null
   },
   {
    "id": "04-81-kth-smallest-element-in-a-bst-using-binary-search-on-v",
@@ -1476,7 +7763,8 @@
    },
    "tests": "assert kthSmallestBST(root, 1) == 1\nassert kthSmallestBST(root, 2) == 2\nassert kthSmallestBST(root, 3) == 3\n# BST: [5,3,6,2,4]\nroot2 = TreeNode(5, TreeNode(3, TreeNode(2), TreeNode(4)), TreeNode(6))\nassert kthSmallestBST(root2, 3) == 4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "04-82-find-k-th-smallest-pair-distance",
@@ -1493,7 +7781,299 @@
    "notes": {},
    "tests": "assert smallestDistancePair([1, 3, 1], 1) == 0\nassert smallestDistancePair([1, 1, 1], 2) == 0\nassert smallestDistancePair([1, 6, 1], 3) == 5\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=719"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=719",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       1,
+       3,
+       1
+      ],
+      "movers": [
+       "left",
+       "right"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 12,
+      "m": {}
+     },
+     {
+      "l": 13,
+      "m": {}
+     },
+     {
+      "l": 14,
+      "m": {}
+     },
+     {
+      "l": 15,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 0,
+       "right": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "left": 0,
+       "right": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 0,
+       "right": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 0,
+       "right": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "left": 0,
+       "right": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 1,
+       "right": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "left": 1,
+       "right": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 2,
+       "right": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "left": 2,
+       "right": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 2,
+       "right": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "left": 2,
+       "right": 2
+      }
+     },
+     {
+      "l": 16,
+      "m": {}
+     },
+     {
+      "l": 13,
+      "m": {}
+     },
+     {
+      "l": 14,
+      "m": {}
+     },
+     {
+      "l": 15,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 0,
+       "right": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "left": 0,
+       "right": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 0,
+       "right": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 0,
+       "right": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "left": 0,
+       "right": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 1,
+       "right": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "left": 1,
+       "right": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 2,
+       "right": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "left": 2,
+       "right": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 2,
+       "right": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "left": 2,
+       "right": 2
+      }
+     },
+     {
+      "l": 16,
+      "m": {}
+     },
+     {
+      "l": 13,
+      "m": {}
+     },
+     {
+      "l": 19,
+      "m": {}
+     }
+    ],
+    "call": "smallestDistancePair([1, 3, 1], 1)"
+   }
   },
   {
    "id": "04-83-binary-search-on-segment-trees-simplified-range-min-qu",
@@ -1513,7 +8093,8 @@
    },
    "tests": "assert st.query_min(0, 7) == 1\nassert st.query_min(2, 5) == 1\nassert st.query_min(4, 7) == 2\nassert st.find_leftmost_min(0, 7) == 1  # first '1' is at index 1\nassert st.find_leftmost_min(2, 7) == 3  # second '1' is at index 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "04-84-count-pairs-with-xor-in-range",
@@ -1532,7 +8113,309 @@
    },
    "tests": "assert countPairs([1, 4, 2, 7], 2, 6) == 6\nassert countPairs([9, 8, 4, 2, 1], 5, 14) == 8\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1803"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1803",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       9,
+       8,
+       4,
+       2,
+       1
+      ],
+      "movers": [
+       "i",
+       "j"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0,
+       "j": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0,
+       "j": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0,
+       "j": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0,
+       "j": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0,
+       "j": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0,
+       "j": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0,
+       "j": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0,
+       "j": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0,
+       "j": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0,
+       "j": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0,
+       "j": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 0,
+       "j": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1,
+       "j": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1,
+       "j": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1,
+       "j": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1,
+       "j": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1,
+       "j": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1,
+       "j": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1,
+       "j": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1,
+       "j": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1,
+       "j": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1,
+       "j": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 1,
+       "j": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2,
+       "j": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2,
+       "j": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2,
+       "j": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2,
+       "j": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2,
+       "j": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2,
+       "j": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2,
+       "j": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2,
+       "j": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3,
+       "j": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3,
+       "j": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3,
+       "j": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 3,
+       "j": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 4,
+       "j": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 4,
+       "j": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4,
+       "j": 4
+      }
+     }
+    ],
+    "call": "countPairs([9, 8, 4, 2, 1], 5, 14)"
+   }
   },
   {
    "id": "04-85-maximum-number-of-events-that-can-be-attended-via-bina",
@@ -1553,7 +8436,8 @@
    },
    "tests": "assert maxEvents([[1,2],[2,3],[3,4]]) == 3\nassert maxEvents([[1,2],[2,3],[3,4],[1,2]]) == 4\nassert maxEvents([[1,4],[4,4],[2,2],[3,4],[1,1]]) == 4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1353"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1353",
+   "trace": null
   },
   {
    "id": "04-86-minimum-number-of-days-to-make-m-bouquets-extended",
@@ -1570,7 +8454,8 @@
    "notes": {},
    "tests": "assert minDaysBouquets([1,10,3,10,2], 3, 1) == 3\nassert minDaysBouquets([1,10,3,10,2], 3, 2) == -1\nassert minDaysBouquets([7,7,7,7,12,7,7], 2, 3) == 12\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1482"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1482",
+   "trace": null
   },
   {
    "id": "04-87-4sum-ii-binary-search-version",
@@ -1587,7 +8472,8 @@
    "notes": {},
    "tests": "assert fourSumCount([1,2],[-2,-1],[-1,2],[0,2]) == 2\nassert fourSumCount([0],[0],[0],[0]) == 1\nassert fourSumCount([-1,-1],[1,1],[0,0],[0,0]) == 16\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=454"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=454",
+   "trace": null
   },
   {
    "id": "04-88-kth-smallest-product-of-two-sorted-arrays",
@@ -1609,7 +8495,8 @@
    },
    "tests": "assert kthSmallestProduct([2, 5], [3, 4], 2) == 8\nassert kthSmallestProduct([-4, -2, 0, 3], [2, 4], 6) == 0\nassert kthSmallestProduct([-2, -1, 0, 1, 2], [-3, -1, 2, 4, 5], 3) == -6\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2040"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2040",
+   "trace": null
   },
   {
    "id": "04-89-minimum-cost-to-make-array-equalindrome",
@@ -1626,7 +8513,8 @@
    "notes": {},
    "tests": "assert minimumCostEqualindrome([1, 2, 3, 4, 5]) == 6\nassert minimumCostEqualindrome([10, 12, 13, 14, 15]) == 11\nassert minimumCostEqualindrome([22, 33, 44]) == 22\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2967"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2967",
+   "trace": null
   },
   {
    "id": "04-90-maximum-running-time-of-n-computers",
@@ -1643,7 +8531,8 @@
    "notes": {},
    "tests": "assert maxRunTime(2, [3, 3, 3]) == 4\nassert maxRunTime(2, [1, 1, 1, 1]) == 2\nassert maxRunTime(1, [5]) == 5\nassert maxRunTime(3, [10, 10, 3, 5]) == 8\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2141"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2141",
+   "trace": null
   }
  ]
 }

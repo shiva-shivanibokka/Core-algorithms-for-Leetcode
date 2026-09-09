@@ -133,12 +133,11 @@ a { color: inherit; }
   font-weight: 600;
   line-height: 1.03;
   letter-spacing: -0.035em;
-  max-width: 22ch;
+  max-width: 24ch;
   text-wrap: balance;
 }
 .hero p.stand {
   margin: 22px 0 0;
-  max-width: 78ch;
   font-size: clamp(16px, 1.7vw, 18.5px);
   font-weight: 300;
   color: #b7b3cf;
@@ -170,7 +169,7 @@ a { color: inherit; }
 .assurance .tick {
   width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); flex: none;
 }
-.assurance p { margin: 0; font-size: 13.5px; color: #a29dc0; font-weight: 300; }
+.assurance p { margin: 0; font-size: 14px; color: #a29dc0; font-weight: 300; }
 .assurance code {
   font-family: var(--font-mono), monospace; font-size: 12.5px; color: var(--violet);
 }
@@ -318,7 +317,7 @@ a { color: inherit; }
   font-family: var(--font-mono), monospace; font-size: 10.5px; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--dim);
 }
-.think .body { margin: 10px 0 0; font-size: 16px; font-weight: 300; color: #b7b3cf; }
+.think .body { margin: 10px 0 0; font-size: 16.5px; font-weight: 300; color: #b7b3cf; }
 .think .body p { margin: 0 0 10px; }
 .think .body p:last-child { margin-bottom: 0; }
 .think .body ul { margin: 0 0 10px; padding-left: 20px; }
@@ -688,4 +687,80 @@ a { color: inherit; }
 .thinkrow { display: grid; gap: 22px; align-items: start; }
 @media (min-width: 1000px) {
   .thinkrow { grid-template-columns: minmax(0, 1fr) minmax(340px, 42%); gap: 34px; }
+}
+
+/* ──────────────────────────── the solution's own run, replayed ─────────── */
+/* Not an illustration of the pattern -- a recording of this solution running
+   on one of its own test cases. It sits directly above the code and lights the
+   line it is executing, so the pointer and the line that moved it are read
+   together. */
+.trace { border-bottom: 1px solid var(--edge); background: var(--raised); }
+.trace-head {
+  display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+  padding: 13px 20px 0;
+}
+.trace-head .lbl {
+  font-family: var(--font-mono), monospace; font-size: 10.5px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--dim);
+}
+.trace-call {
+  font-family: var(--font-mono), monospace; font-size: 12.5px; color: var(--cyan);
+  overflow-x: auto; white-space: nowrap; max-width: 100%;
+}
+.trace-rows { display: flex; flex-direction: column; gap: 18px; padding: 20px 20px 6px; }
+.trace-row { display: flex; align-items: flex-start; gap: 14px; overflow-x: auto; }
+.trace-row .rowname {
+  font-size: 11.5px; color: var(--dim); padding-top: 15px; white-space: nowrap;
+}
+/* the row of cells is laid out horizontally, one column per element */
+.trace .cells {
+  position: relative; display: grid; gap: 6px; padding-bottom: 34px;
+  grid-template-columns: repeat(var(--n), minmax(30px, 46px));
+}
+.trace .cells.text { grid-template-columns: repeat(var(--n), minmax(26px, 34px)); }
+.trace .cell {
+  display: flex; align-items: center; justify-content: center; height: 38px;
+  border-radius: 7px; border: 1px solid var(--edge); background: var(--bg);
+  font-family: var(--font-mono), monospace; font-size: 13px; color: var(--text);
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+.trace .cell.live {
+  border-color: var(--violet); background: rgba(167, 139, 250, 0.2); color: var(--bright);
+}
+.trace .cell-mark {
+  position: absolute; display: flex; flex-direction: column; align-items: center; gap: 2px;
+  font-family: var(--font-mono), monospace; font-size: 10px; color: var(--cyan);
+  left: calc(var(--at) * (100% + 6px) / var(--n));
+  width: calc((100% + 6px) / var(--n) - 6px);
+  top: calc(40px + var(--tier) * 15px);
+  transition: left 200ms ease;
+}
+.trace .cell-mark i {
+  width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent;
+  border-bottom: 5px solid var(--cyan);
+}
+.trace-controls {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 10px 20px 14px;
+}
+.trace-controls button {
+  width: 30px; height: 30px; border-radius: 50%; cursor: pointer; flex: none;
+  border: 1px solid var(--edge); background: var(--bg); color: var(--text);
+  font-size: 12px; line-height: 1; font-family: inherit;
+}
+.trace-controls button:hover:not(:disabled) { border-color: var(--edge-lit); color: var(--cyan); }
+.trace-controls button:disabled { opacity: 0.35; cursor: default; }
+.scrub { flex: 1 1 160px; min-width: 120px; accent-color: var(--violet); }
+.trace-count { font-size: 11px; color: var(--dim); white-space: nowrap; }
+
+/* the line the recording is on */
+.crow.running {
+  background: linear-gradient(90deg, rgba(94, 234, 212, 0.16), transparent 78%);
+  box-shadow: inset 3px 0 0 var(--cyan);
+}
+
+.fallback-visual { border-bottom: 1px solid var(--edge); background: var(--raised); padding: 16px 20px; }
+.fallback-note { margin: 0 0 12px; font-size: 13px; color: var(--dim); }
+
+@media (prefers-reduced-motion: reduce) {
+  .trace .cell, .trace .cell-mark { transition: none; }
 }

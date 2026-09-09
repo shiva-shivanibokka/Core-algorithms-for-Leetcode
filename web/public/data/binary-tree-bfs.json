@@ -55,7 +55,8 @@
    "verified": [
     "levelOrder"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=102"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=102",
+   "trace": null
   },
   {
    "id": "08-02-binary-tree-level-order-traversal-ii",
@@ -74,7 +75,8 @@
    "verified": [
     "levelOrderBottom"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=107"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=107",
+   "trace": null
   },
   {
    "id": "08-03-average-of-levels-in-binary-tree",
@@ -93,7 +95,8 @@
    "verified": [
     "averageOfLevels"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=637"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=637",
+   "trace": null
   },
   {
    "id": "08-04-maximum-depth-of-binary-tree-using-bfs",
@@ -112,7 +115,8 @@
    "verified": [
     "maxDepth"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=104"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=104",
+   "trace": null
   },
   {
    "id": "08-05-minimum-depth-of-binary-tree-using-bfs",
@@ -131,7 +135,8 @@
    "verified": [
     "minDepth"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=111"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=111",
+   "trace": null
   },
   {
    "id": "08-06-binary-tree-zigzag-level-order-traversal",
@@ -148,7 +153,8 @@
    "notes": {},
    "tests": "assert zigzagLevelOrder(build_tree([3,9,20,None,None,15,7])) == [[3],[20,9],[15,7]]\nassert zigzagLevelOrder(build_tree([1])) == [[1]]\nassert zigzagLevelOrder(None) == []\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=103"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=103",
+   "trace": null
   },
   {
    "id": "08-07-find-largest-value-in-each-tree-row",
@@ -167,7 +173,8 @@
    "verified": [
     "largestValues"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=515"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=515",
+   "trace": null
   },
   {
    "id": "08-08-find-bottom-left-tree-value",
@@ -188,7 +195,8 @@
    "verified": [
     "findBottomLeftValue"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=513"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=513",
+   "trace": null
   },
   {
    "id": "08-09-check-completeness-of-a-binary-tree",
@@ -205,7 +213,8 @@
    "notes": {},
    "tests": "assert isCompleteTree(build_tree([1,2,3,4,5,6])) == True\nassert isCompleteTree(build_tree([1,2,3,4,5,None,7])) == False\nassert isCompleteTree(build_tree([1,2,3,4,5,6,7])) == True\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=958"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=958",
+   "trace": null
   },
   {
    "id": "08-10-even-odd-tree",
@@ -225,7 +234,8 @@
    },
    "tests": "assert isEvenOddTree(build_tree([1,10,4,3,None,7,9,12,8,6,None,None,2])) == True\nassert isEvenOddTree(build_tree([5,4,2,3,3,7])) == False\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1609"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1609",
+   "trace": null
   },
   {
    "id": "08-11-symmetric-tree-using-bfs",
@@ -244,7 +254,8 @@
    "verified": [
     "isSymmetric"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=101"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=101",
+   "trace": null
   },
   {
    "id": "08-12-cousins-in-binary-tree",
@@ -261,7 +272,8 @@
    "notes": {},
    "tests": "assert isCousins(build_tree([1,2,3,4]), 4, 3) == False\nassert isCousins(build_tree([1,2,3,None,4,None,5]), 5, 4) == True\nassert isCousins(build_tree([1,2,3,None,4]), 2, 3) == False\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=993"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=993",
+   "trace": null
   },
   {
    "id": "08-13-maximum-level-sum-of-a-binary-tree",
@@ -278,7 +290,8 @@
    "notes": {},
    "tests": "assert maxLevelSum(build_tree([1,7,0,7,-8,None,None])) == 2\nassert maxLevelSum(build_tree([989,None,10250,98693,-89388,None,None,None,-32127])) == 2\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1161"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1161",
+   "trace": null
   },
   {
    "id": "08-14-deepest-leaves-sum",
@@ -297,7 +310,8 @@
    "verified": [
     "deepestLeavesSum"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1302"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1302",
+   "trace": null
   },
   {
    "id": "08-15-n-ary-tree-level-order-traversal",
@@ -316,7 +330,8 @@
    },
    "tests": "assert naryLevelOrder(root) == [[1],[3,2,4],[5,6]]\nassert naryLevelOrder(None) == []\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=429"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=429",
+   "trace": null
   },
   {
    "id": "08-16-binary-tree-right-side-view-using-bfs",
@@ -333,7 +348,8 @@
    "notes": {},
    "tests": "assert rightSideView(build_tree([1,2,3,None,5,None,4])) == [1,3,4]\nassert rightSideView(build_tree([1,None,3])) == [1,3]\nassert rightSideView(None) == []\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=199"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=199",
+   "trace": null
   },
   {
    "id": "08-17-sum-of-left-leaves-using-bfs",
@@ -350,7 +366,8 @@
    "notes": {},
    "tests": "assert sumOfLeftLeaves(build_tree([3,9,20,None,None,15,7])) == 24\nassert sumOfLeftLeaves(build_tree([1])) == 0\nassert sumOfLeftLeaves(build_tree([1,2,3,4,5])) == 4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=404"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=404",
+   "trace": null
   },
   {
    "id": "08-18-path-sum-using-bfs-with-state",
@@ -369,7 +386,8 @@
    "verified": [
     "hasPathSum"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=112"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=112",
+   "trace": null
   },
   {
    "id": "08-19-count-nodes-equal-to-average-of-subtree",
@@ -386,7 +404,8 @@
    "notes": {},
    "tests": "assert averageOfSubtree(build_tree([4,8,5,0,1,None,6])) == 5\nassert averageOfSubtree(build_tree([1])) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2265"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2265",
+   "trace": null
   },
   {
    "id": "08-20-invert-binary-tree-using-bfs",
@@ -405,7 +424,8 @@
    "verified": [
     "invertTree"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=226"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=226",
+   "trace": null
   },
   {
    "id": "08-21-populating-next-right-pointers-in-each-node",
@@ -424,7 +444,8 @@
    },
    "tests": "assert r.next is None\nassert r.left.next == r.right\nassert r.left.left.next == r.left.right\nassert r.left.right.next == r.right.left\nassert r.right.left.next == r.right.right\nassert r.right.right.next is None\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=116"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=116",
+   "trace": null
   },
   {
    "id": "08-22-populating-next-right-pointers-in-each-node-ii",
@@ -443,7 +464,8 @@
    },
    "tests": "assert r.left.next == r.right\nassert r.left.left.next == r.left.right\nassert r.left.right.next == r.right.right\nassert r.right.right.next is None\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=117"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=117",
+   "trace": null
   },
   {
    "id": "08-23-maximum-width-of-binary-tree",
@@ -462,7 +484,8 @@
    },
    "tests": "assert widthOfBinaryTree(build_tree([1,3,2,5,3,None,9])) == 4\nassert widthOfBinaryTree(build_tree([1,3,2,5,None,None,9,6,None,7])) == 7\nassert widthOfBinaryTree(build_tree([1,3,2,5])) == 2\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=662"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=662",
+   "trace": null
   },
   {
    "id": "08-24-rotting-oranges",
@@ -479,7 +502,8 @@
    "notes": {},
    "tests": "assert orangesRotting([[2,1,1],[1,1,0],[0,1,1]]) == 4\nassert orangesRotting([[2,1,1],[0,1,1],[1,0,1]]) == -1\nassert orangesRotting([[0,2]]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=994"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=994",
+   "trace": null
   },
   {
    "id": "08-25-01-matrix-shortest-distance-to-0",
@@ -496,7 +520,8 @@
    "notes": {},
    "tests": "assert updateMatrix([[0,0,0],[0,1,0],[0,0,0]]) == [[0,0,0],[0,1,0],[0,0,0]]\nassert updateMatrix([[0,0,0],[0,1,0],[1,1,1]]) == [[0,0,0],[0,1,0],[1,2,1]]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=542"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=542",
+   "trace": null
   },
   {
    "id": "08-26-nearest-exit-from-entrance-in-maze",
@@ -513,7 +538,8 @@
    "notes": {},
    "tests": "assert nearestExit([['+','+','.','+'],['.','.','.','+'],['+','+','+','.']], [1,2]) == 1\nassert nearestExit([['+','+','+'],['.','.','.'],['+'[0],'+','+']],[1,0]) == 2\nassert nearestExit([['.','+']], [0,0]) == -1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1926"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1926",
+   "trace": null
   },
   {
    "id": "08-27-word-ladder",
@@ -530,7 +556,8 @@
    "notes": {},
    "tests": "assert ladderLength(\"hit\", \"cog\", [\"hot\",\"dot\",\"dog\",\"lot\",\"log\",\"cog\"]) == 5\nassert ladderLength(\"hit\", \"cog\", [\"hot\",\"dot\",\"dog\",\"lot\",\"log\"]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=127"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=127",
+   "trace": null
   },
   {
    "id": "08-28-minimum-genetic-mutation",
@@ -547,7 +574,8 @@
    "notes": {},
    "tests": "assert minMutation(\"AACCGGTT\", \"AACCGGTA\", [\"AACCGGTA\"]) == 1\nassert minMutation(\"AACCGGTT\", \"AAACGGTA\", [\"AACCGGTA\",\"AACCGCTA\",\"AAACGGTA\"]) == 2\nassert minMutation(\"AAAAACCC\", \"AACCCCCC\", [\"AAAACCCC\",\"AAACCCCC\",\"AACCCCCC\"]) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=433"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=433",
+   "trace": null
   },
   {
    "id": "08-29-jump-game-iii",
@@ -564,7 +592,296 @@
    "notes": {},
    "tests": "assert canReach([4,2,3,0,3,1,2], 5) == True\nassert canReach([4,2,3,0,3,1,2], 0) == True\nassert canReach([3,0,2,1,2], 2) == False\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1306"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1306",
+   "trace": {
+    "rows": [
+     {
+      "name": "arr",
+      "kind": "numbers",
+      "values": [
+       4,
+       2,
+       3,
+       0,
+       3,
+       1,
+       2
+      ],
+      "movers": [
+       "idx"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {
+       "idx": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "idx": 5
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "idx": 5
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "idx": 5
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "idx": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "idx": 5
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "idx": 5
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "idx": 5
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "idx": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "idx": 5
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "idx": 5
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "idx": 5
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "idx": 6
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "idx": 6
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "idx": 6
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "idx": 6
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "idx": 6
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "idx": 6
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "idx": 6
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "idx": 6
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "idx": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "idx": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "idx": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "idx": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "idx": 4
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "idx": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "idx": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "idx": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "idx": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "idx": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "idx": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "idx": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "idx": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "idx": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "idx": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "idx": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "idx": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "idx": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "idx": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "idx": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "idx": 3
+      }
+     }
+    ],
+    "call": "canReach([4, 2, 3, 0, 3, 1, 2], 5)"
+   }
   },
   {
    "id": "08-30-time-needed-to-inform-all-employees",
@@ -581,7 +898,361 @@
    "notes": {},
    "tests": "assert numOfMinutes(1, 0, [-1], [0]) == 0\nassert numOfMinutes(6, 2, [2,2,-1,2,2,2], [0,0,1,0,0,0]) == 1\nassert numOfMinutes(7, 6, [1,2,3,4,5,6,-1], [0,6,5,4,3,2,1]) == 21\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1376"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1376",
+   "trace": {
+    "rows": [
+     {
+      "name": "manager",
+      "kind": "numbers",
+      "values": [
+       2,
+       2,
+       -1,
+       2,
+       2,
+       2
+      ],
+      "movers": [
+       "emp"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {
+       "emp": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "emp": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "emp": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "emp": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "emp": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "emp": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "emp": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "emp": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "emp": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "emp": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "emp": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "emp": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "emp": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "emp": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "emp": 5
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "emp": 5
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "emp": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "emp": 5
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "emp": 5
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "emp": 5
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "emp": 5
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "emp": 2
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "emp": 2
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "emp": 2
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "emp": 2
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "emp": 2
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "emp": 2
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "emp": 2
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "emp": 2
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "emp": 2
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "emp": 2
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "emp": 2
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "emp": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "emp": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "emp": 2
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "emp": 0
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "emp": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "emp": 0
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "emp": 0
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "emp": 1
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "emp": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "emp": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "emp": 1
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "emp": 3
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "emp": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "emp": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "emp": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "emp": 4
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "emp": 4
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "emp": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "emp": 4
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "emp": 5
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "emp": 5
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "emp": 5
+      }
+     }
+    ],
+    "call": "numOfMinutes(6, 2, [2, 2, -1, 2, 2, 2], [0, 0, 1, 0, 0, 0])"
+   }
   },
   {
    "id": "08-31-course-schedule-kahn-s-bfs-topological-sort",
@@ -600,7 +1271,8 @@
    "verified": [
     "canFinish"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=207"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=207",
+   "trace": null
   },
   {
    "id": "08-32-all-nodes-distance-k-in-binary-tree",
@@ -620,7 +1292,8 @@
    },
    "tests": "assert distanceK(tree, 5, 2) == [1, 4, 7]\nassert distanceK(build_tree([1]), 1, 3) == []\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=863"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=863",
+   "trace": null
   },
   {
    "id": "08-33-maximum-difference-between-node-and-ancestor-using-bfs",
@@ -637,7 +1310,8 @@
    "notes": {},
    "tests": "assert maxAncestorDiff(build_tree([8,3,10,1,6,None,14,None,None,4,7,13])) == 7\nassert maxAncestorDiff(build_tree([1,None,2,None,0,3])) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1026"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1026",
+   "trace": null
   },
   {
    "id": "08-34-step-by-step-directions-from-a-binary-tree-node-to-ano",
@@ -656,7 +1330,8 @@
    },
    "tests": "assert getDirections(build_tree([5,1,2,3,None,6,4]), 3, 6) == \"UURL\"\nassert getDirections(build_tree([2,1]), 2, 1) == \"L\"\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2096"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2096",
+   "trace": null
   },
   {
    "id": "08-35-minimum-time-to-collect-all-apples-in-a-tree",
@@ -673,7 +1348,306 @@
    "notes": {},
    "tests": "assert minTime(7, [[0,1],[0,2],[1,4],[1,5],[2,3],[2,6]], [False,False,True,False,True,True,False]) == 8\nassert minTime(7, [[0,1],[0,2],[1,4],[1,5],[2,3],[2,6]], [False,False,True,False,False,True,False]) == 6\nassert minTime(7, [[0,1],[0,2],[1,4],[1,5],[2,3],[2,6]], [False,False,False,False,False,False,False]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1443"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1443",
+   "trace": {
+    "rows": [
+     {
+      "name": "hasApple",
+      "kind": "numbers",
+      "values": [
+       false,
+       false,
+       true,
+       false,
+       true,
+       true,
+       false
+      ],
+      "movers": [
+       "child"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 15,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 9,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 9,
+      "m": {
+       "child": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "child": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 9,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "child": 5
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "child": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 9,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "child": 5
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "child": 5
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "child": 5
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "child": 5
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "child": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "child": 2
+      }
+     }
+    ],
+    "call": "minTime(7, [[0, 1], [0, 2], [1, 4], [1, 5], [2, 3], [2, 6]], [False, False, True, False, True, True, False])"
+   }
   },
   {
    "id": "08-36-word-ladder-ii",
@@ -693,7 +1667,8 @@
    },
    "tests": "assert sorted(res) == sorted(expected)\nassert findLadders(\"hit\", \"cog\", [\"hot\",\"dot\",\"dog\",\"lot\",\"log\"]) == []\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=126"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=126",
+   "trace": null
   },
   {
    "id": "08-37-shortest-path-in-a-grid-with-obstacles-elimination",
@@ -712,7 +1687,8 @@
    },
    "tests": "assert shortestPath([[0,0,0],[1,1,0],[0,0,0],[0,1,1],[0,0,0]], 1) == 6\nassert shortestPath([[0,1,1],[1,1,1],[1,0,0]], 1) == -1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1293"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1293",
+   "trace": null
   },
   {
    "id": "08-38-bus-routes",
@@ -729,7 +1705,8 @@
    "notes": {},
    "tests": "assert numBusesToDestination([[1,2,7],[3,6,7]], 1, 6) == 2\nassert numBusesToDestination([[7,12],[4,5,15],[6],[15,19],[9,12,13]], 15, 12) == -1\nassert numBusesToDestination([[1,7],[3,5]], 5, 5) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=815"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=815",
+   "trace": null
   },
   {
    "id": "08-39-cut-off-trees-for-golf-event",
@@ -746,7 +1723,8 @@
    "notes": {},
    "tests": "assert cutOffTree([[1,2,3],[0,0,4],[7,6,5]]) == 6\nassert cutOffTree([[2,3,4],[0,0,5],[8,7,6]]) == 6\nassert cutOffTree([[1,2,3],[0,0,0],[7,6,5]]) == -1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=675"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=675",
+   "trace": null
   },
   {
    "id": "08-40-minimum-number-of-flips-to-convert-binary-matrix-to-ze",
@@ -763,7 +1741,8 @@
    "notes": {},
    "tests": "assert minFlips([[0,0],[0,1]]) == 3\nassert minFlips([[0]]) == 0\nassert minFlips([[1,0,0],[1,0,0]]) == -1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1284"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1284",
+   "trace": null
   },
   {
    "id": "08-41-swim-in-rising-water",
@@ -782,7 +1761,8 @@
    },
    "tests": "assert swimInWater([[0,2],[1,3]]) == 3\nassert swimInWater([[0,1,2,3,4],[24,23,22,21,5],[12,13,14,15,16],[11,17,18,19,20],[10,9,8,7,6]]) == 16\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=778"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=778",
+   "trace": null
   },
   {
    "id": "08-42-minimum-cost-to-make-at-least-one-valid-path-in-a-grid",
@@ -802,7 +1782,8 @@
    },
    "tests": "assert minCost([[1,1,1,1],[2,2,2,2],[1,1,1,1],[2,2,2,2]]) == 3\nassert minCost([[1,1,3],[3,2,2],[1,1,4],[4,2,3]]) == 1\nassert minCost([[1,2],[4,3]]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1368"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1368",
+   "trace": null
   },
   {
    "id": "08-43-escape-the-spreading-fire",
@@ -819,7 +1800,8 @@
    "notes": {},
    "tests": "assert maximumMinutes([[0,2,0,0,0,0,0],[0,0,0,2,2,1,0],[0,2,0,0,1,2,0],[0,0,2,2,2,0,2],[0,0,0,0,0,0,0]]) == 3\nassert maximumMinutes([[0,0,0,0],[0,1,2,0],[0,2,0,0]]) == -1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2258"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2258",
+   "trace": null
   },
   {
    "id": "08-44-zuma-game-simplified",
@@ -836,7 +1818,352 @@
    "notes": {},
    "tests": "assert findMinStep(\"WRRBBW\", \"RB\") == -1\nassert findMinStep(\"WWRRBBWW\", \"WRBRW\") == 2\nassert findMinStep(\"G\", \"GGGGG\") == 2\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=488"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=488",
+   "trace": {
+    "rows": [
+     {
+      "name": "board",
+      "kind": "text",
+      "values": [
+       "W",
+       "R",
+       "R",
+       "B",
+       "B",
+       "W"
+      ],
+      "movers": [
+       "i",
+       "j"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 18,
+      "m": {}
+     },
+     {
+      "l": 19,
+      "m": {}
+     },
+     {
+      "l": 21,
+      "m": {}
+     },
+     {
+      "l": 22,
+      "m": {}
+     },
+     {
+      "l": 21,
+      "m": {}
+     },
+     {
+      "l": 22,
+      "m": {}
+     },
+     {
+      "l": 42,
+      "m": {}
+     },
+     {
+      "l": 23,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 0,
+       "j": 0
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 0,
+       "j": 1
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 0,
+       "j": 1
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 0,
+       "j": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 1,
+       "j": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 1,
+       "j": 1
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 1,
+       "j": 1
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 1,
+       "j": 2
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 1,
+       "j": 3
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 1,
+       "j": 3
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 1,
+       "j": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 3,
+       "j": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 3,
+       "j": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 3,
+       "j": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 3,
+       "j": 4
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 3,
+       "j": 5
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 3,
+       "j": 5
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 3,
+       "j": 5
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 5,
+       "j": 5
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 5,
+       "j": 5
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 5,
+       "j": 5
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 5,
+       "j": 6
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 5,
+       "j": 6
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 5,
+       "j": 6
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 6,
+       "j": 6
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 6,
+       "j": 6
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 6,
+       "j": 6
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "i": 6,
+       "j": 6
+      }
+     },
+     {
+      "l": 24,
+      "m": {}
+     },
+     {
+      "l": 25,
+      "m": {}
+     },
+     {
+      "l": 26,
+      "m": {}
+     },
+     {
+      "l": 27,
+      "m": {}
+     },
+     {
+      "l": 28,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 29,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 30,
+      "m": {
+       "i": 0,
+       "j": 0
+      }
+     },
+     {
+      "l": 31,
+      "m": {
+       "i": 0,
+       "j": 1
+      }
+     },
+     {
+      "l": 32,
+      "m": {
+       "i": 0,
+       "j": 1
+      }
+     },
+     {
+      "l": 33,
+      "m": {
+       "i": 0,
+       "j": 1
+      }
+     }
+    ],
+    "call": "findMinStep('WRRBBW', 'RB')"
+   }
   },
   {
    "id": "08-45-serialize-and-deserialize-binary-tree-using-bfs",
@@ -853,7 +2180,8 @@
    "notes": {},
    "tests": "assert codec.serialize(codec.deserialize(codec.serialize(tree))) == codec.serialize(tree)\nassert codec.serialize(None) == '[]'\nassert codec.deserialize('[]') is None\nresult_tree = codec.deserialize('[1,2,3,null,null,4,5]')\nassert codec.serialize(result_tree) == '[1,2,3,null,null,4,5]'\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=297"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=297",
+   "trace": null
   },
   {
    "id": "08-46-count-total-nodes-in-binary-tree-using-bfs",
@@ -872,7 +2200,8 @@
    "verified": [
     "countNodes"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=222"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=222",
+   "trace": null
   },
   {
    "id": "08-47-sum-all-node-values-using-bfs",
@@ -889,7 +2218,8 @@
    "notes": {},
    "tests": "assert sumNodes(build_tree([1,2,3,4,5])) == 15\nassert sumNodes(build_tree([10,5,3])) == 18\nassert sumNodes(None) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "08-48-find-minimum-value-in-binary-tree-using-bfs",
@@ -906,7 +2236,8 @@
    "notes": {},
    "tests": "assert findMin(build_tree([3,1,5,0,2,4,6])) == 0\nassert findMin(build_tree([5,3,8,1,4])) == 1\nassert findMin(build_tree([7])) == 7\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "08-49-find-maximum-value-in-binary-tree-using-bfs",
@@ -923,7 +2254,8 @@
    "notes": {},
    "tests": "assert findMax(build_tree([3,1,5,0,2,4,6])) == 6\nassert findMax(build_tree([5,3,8,1,4])) == 8\nassert findMax(build_tree([7])) == 7\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "08-50-level-at-which-node-with-given-value-exists",
@@ -940,7 +2272,8 @@
    "notes": {},
    "tests": "assert findLevel(build_tree([3,9,20,None,None,15,7]), 15) == 3\nassert findLevel(build_tree([3,9,20,None,None,15,7]), 3) == 1\nassert findLevel(build_tree([3,9,20,None,None,15,7]), 99) == -1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "08-51-count-leaves-using-bfs",
@@ -957,7 +2290,8 @@
    "notes": {},
    "tests": "assert countLeaves(build_tree([3,9,20,None,None,15,7])) == 3\nassert countLeaves(build_tree([1])) == 1\nassert countLeaves(build_tree([1,2,3,4,5])) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "08-52-find-all-nodes-at-level-k-from-root-using-bfs",
@@ -974,7 +2308,8 @@
    "notes": {},
    "tests": "assert nodesAtLevelK(build_tree([3,9,20,None,None,15,7]), 2) == [15, 7]\nassert nodesAtLevelK(build_tree([3,9,20,None,None,15,7]), 0) == [3]\nassert nodesAtLevelK(build_tree([3,9,20,None,None,15,7]), 5) == []\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "08-53-check-if-binary-tree-is-perfect-using-bfs",
@@ -991,7 +2326,8 @@
    "notes": {},
    "tests": "assert isPerfect(build_tree([1,2,3,4,5,6,7])) == True\nassert isPerfect(build_tree([1,2,3])) == True\nassert isPerfect(build_tree([1,2,3,4,5])) == False\nassert isPerfect(build_tree([1])) == True\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "08-54-print-level-order-in-spiral",
@@ -1008,7 +2344,8 @@
    "notes": {},
    "tests": "assert spiralOrder(build_tree([3,9,20,None,None,15,7])) == [[3],[20,9],[15,7]]\nassert spiralOrder(build_tree([1])) == [[1]]\nassert spiralOrder(None) == []\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=103"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=103",
+   "trace": null
   },
   {
    "id": "08-55-find-width-of-binary-tree-at-each-level",
@@ -1025,7 +2362,8 @@
    "notes": {},
    "tests": "assert widthPerLevel(build_tree([3,9,20,None,None,15,7])) == [1,2,2]\nassert widthPerLevel(build_tree([1,2,3,4,5,6,7])) == [1,2,4]\nassert widthPerLevel(None) == []\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "08-56-jump-game-ii-bfs-framing",
@@ -1042,7 +2380,144 @@
    "notes": {},
    "tests": "assert jump([2,3,1,1,4]) == 2\nassert jump([2,3,0,1,4]) == 2\nassert jump([1]) == 0\nassert jump([1,2]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=45"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=45",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       2,
+       3,
+       1,
+       1,
+       4
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 2
+      }
+     }
+    ],
+    "call": "jump([2, 3, 1, 1, 4])"
+   }
   },
   {
    "id": "08-57-snakes-and-ladders-bfs-on-board",
@@ -1059,7 +2534,8 @@
    "notes": {},
    "tests": "assert snakesAndLadders(board1) == 4\nassert snakesAndLadders([[-1,-1],[-1,3]]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=909"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=909",
+   "trace": null
   },
   {
    "id": "08-58-open-the-lock-bfs-on-4-digit-combinations",
@@ -1076,7 +2552,8 @@
    "notes": {},
    "tests": "assert openLock(['0201','0101','0102','1212','2002'], '0202') == 6\nassert openLock(['8888'], '0009') == 1\nassert openLock(['0000'], '8888') == -1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=752"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=752",
+   "trace": null
   },
   {
    "id": "08-59-is-graph-bipartite-bfs-coloring",
@@ -1093,7 +2570,8 @@
    "notes": {},
    "tests": "assert isBipartite([[1,3],[0,2],[1,3],[0,2]]) == True\nassert isBipartite([[1,2,3],[0,2],[0,1,3],[0,2]]) == False\nassert isBipartite([[],[3],[],[1],[]])  == True\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=785"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=785",
+   "trace": null
   },
   {
    "id": "08-60-flood-fill-bfs-version",
@@ -1112,7 +2590,8 @@
    "verified": [
     "floodFill"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=733"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=733",
+   "trace": null
   },
   {
    "id": "08-61-number-of-islands-bfs-version",
@@ -1129,7 +2608,8 @@
    "notes": {},
    "tests": "assert numIslands(g1) == 1\ng2 = [['1','1','0','0','0'],['1','1','0','0','0'],['0','0','1','0','0'],['0','0','0','1','1']]\nassert numIslands(g2) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=200"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=200",
+   "trace": null
   },
   {
    "id": "08-62-max-area-of-island-bfs-version",
@@ -1148,7 +2628,8 @@
    "verified": [
     "maxAreaOfIsland"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=695"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=695",
+   "trace": null
   },
   {
    "id": "08-63-walls-and-gates-multi-source-bfs",
@@ -1165,7 +2646,8 @@
    "notes": {},
    "tests": "assert rooms == [[3,-1,0,1],[2,2,1,-1],[1,-1,2,-1],[0,-1,3,4]]\nempty = [[INF]]\nwallsAndGates(empty)\nassert empty == [[INF]]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=286"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=286",
+   "trace": null
   },
   {
    "id": "08-64-pacific-atlantic-water-flow-bfs-from-both-coasts",
@@ -1182,7 +2664,8 @@
    "notes": {},
    "tests": "assert result == expected\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=417"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=417",
+   "trace": null
   },
   {
    "id": "08-65-surrounded-regions-bfs-from-border",
@@ -1199,7 +2682,8 @@
    "notes": {},
    "tests": "assert board1 == [['X','X','X','X'],['X','X','X','X'],['X','X','X','X'],['X','O','X','X']]\nboard2 = [['X']]\nsolve(board2)\nassert board2 == [['X']]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=130"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=130",
+   "trace": null
   },
   {
    "id": "08-66-snakes-and-ladders-full",
@@ -1216,7 +2700,8 @@
    "notes": {},
    "tests": "assert snakesAndLaddersFull(board) == 4\nassert snakesAndLaddersFull([[-1,-1],[-1,3]]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=909"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=909",
+   "trace": null
   },
   {
    "id": "08-67-open-the-lock-full",
@@ -1233,7 +2718,8 @@
    "notes": {},
    "tests": "assert openLockFull(['0201','0101','0102','1212','2002'], '0202') == 6\nassert openLockFull(['8888'], '0009') == 1\nassert openLockFull(['0000'], '8888') == -1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=752"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=752",
+   "trace": null
   },
   {
    "id": "08-68-is-graph-bipartite-full",
@@ -1250,7 +2736,8 @@
    "notes": {},
    "tests": "assert isBipartiteFull([[1,3],[0,2],[1,3],[0,2]]) == True\nassert isBipartiteFull([[1,2,3],[0,2],[0,1,3],[0,2]]) == False\nassert isBipartiteFull([[], [2,4,6], [1,4,8], [6,7], [1,2], [6,9], [1,3,5], [3], [2], [5]]) == False\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=785"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=785",
+   "trace": null
   },
   {
    "id": "08-69-number-of-operations-to-make-network-connected",
@@ -1267,7 +2754,8 @@
    "notes": {},
    "tests": "assert makeConnected(4, [[0,1],[0,2],[1,2]]) == 1\nassert makeConnected(6, [[0,1],[0,2],[0,3],[1,2],[1,3]]) == 2\nassert makeConnected(6, [[0,1],[0,2],[0,3],[1,2]]) == -1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1319"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1319",
+   "trace": null
   },
   {
    "id": "08-70-shortest-path-in-binary-matrix",
@@ -1284,7 +2772,8 @@
    "notes": {},
    "tests": "assert shortestPathBinaryMatrix([[0,1],[1,0]]) == 2\nassert shortestPathBinaryMatrix([[0,0,0],[1,1,0],[1,1,0]]) == 4\nassert shortestPathBinaryMatrix([[1,0,0],[1,1,0],[1,1,0]]) == -1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1091"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1091",
+   "trace": null
   },
   {
    "id": "08-71-pacific-atlantic-water-flow-bfs-full",
@@ -1301,7 +2790,8 @@
    "notes": {},
    "tests": "assert pacificAtlanticFull(heights) == sorted([[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]])\nassert pacificAtlanticFull([[1]]) == [[0,0]]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=417"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=417",
+   "trace": null
   },
   {
    "id": "08-72-surrounded-regions-bfs-full",
@@ -1318,7 +2808,8 @@
    "notes": {},
    "tests": "assert b1 == [['X','X','X','X'],['X','X','X','X'],['X','X','X','X'],['X','O','X','X']]\nb2 = [['O']]\nsolveFull(b2)\nassert b2 == [['O']]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=130"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=130",
+   "trace": null
   },
   {
    "id": "08-73-number-of-enclaves-bfs",
@@ -1335,7 +2826,8 @@
    "notes": {},
    "tests": "assert numEnclaves([[0,0,0,0],[1,0,1,0],[0,1,1,0],[0,0,0,0]]) == 3\nassert numEnclaves([[0,1,1,0],[0,0,1,0],[0,0,1,0],[0,0,0,0]]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1020"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1020",
+   "trace": null
   },
   {
    "id": "08-74-clone-graph-bfs",
@@ -1352,7 +2844,8 @@
    "notes": {},
    "tests": "assert cloned is not n1\nassert cloned.val == 1\nassert len(cloned.neighbors) == 2\nassert cloneGraph(None) is None\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=133"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=133",
+   "trace": null
   },
   {
    "id": "08-75-shortest-bridge",
@@ -1369,7 +2862,8 @@
    "notes": {},
    "tests": "assert shortestBridge([[0,1],[1,0]]) == 1\nassert shortestBridge([[0,1,0],[0,0,0],[0,0,1]]) == 2\nassert shortestBridge([[1,1,1,1,1],[1,0,0,0,1],[1,0,1,0,1],[1,0,0,0,1],[1,1,1,1,1]]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=934"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=934",
+   "trace": null
   },
   {
    "id": "08-76-as-far-from-land-as-possible-multi-source-bfs",
@@ -1386,7 +2880,8 @@
    "notes": {},
    "tests": "assert maxDistance([[1,0,1],[0,0,0],[1,0,1]]) == 2\nassert maxDistance([[1,0,0],[0,0,0],[0,0,0]]) == 4\nassert maxDistance([[1,1,1],[1,1,1],[1,1,1]]) == -1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1162"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1162",
+   "trace": null
   },
   {
    "id": "08-77-map-of-highest-peak-multi-source-bfs",
@@ -1403,7 +2898,8 @@
    "notes": {},
    "tests": "assert highestPeak([[0,1],[0,0]]) == [[1,0],[2,1]]\nassert highestPeak([[0,0,1],[1,0,0],[0,0,0]]) == [[1,1,0],[0,1,1],[1,2,2]]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1765"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1765",
+   "trace": null
   },
   {
    "id": "08-78-jump-game-iv-bfs-on-index-graph",
@@ -1420,7 +2916,390 @@
    "notes": {},
    "tests": "assert minJumps([100,-23,-23,404,100,23,23,23,3,404]) == 3\nassert minJumps([7]) == 0\nassert minJumps([7,6,9,6,9,6,9,7]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1345"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1345",
+   "trace": {
+    "rows": [
+     {
+      "name": "arr",
+      "kind": "numbers",
+      "values": [
+       100,
+       -23,
+       -23,
+       404,
+       100,
+       23,
+       23,
+       23,
+       3,
+       404
+      ],
+      "movers": [
+       "i",
+       "idx"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 8
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 8
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 9
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 9
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 9
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 9
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 9
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 9
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 9,
+       "idx": 0
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 9,
+       "idx": 0
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 9,
+       "idx": 0
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 9,
+       "idx": 0
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 9,
+       "idx": 0
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 9,
+       "idx": 0
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 9,
+       "idx": 0
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "i": 9,
+       "idx": 0
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 9,
+       "idx": 0
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 9,
+       "idx": 0
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 9,
+       "idx": 0
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 9,
+       "idx": 0
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 9,
+       "idx": 0
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 9,
+       "idx": 0
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 9,
+       "idx": 0
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "i": 9,
+       "idx": 0
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 9,
+       "idx": 0
+      }
+     },
+     {
+      "l": 17,
+      "m": {
+       "i": 9,
+       "idx": 0
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 9,
+       "idx": 0
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 9,
+       "idx": 0
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 9,
+       "idx": 1
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 9,
+       "idx": 1
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 9,
+       "idx": 1
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 9,
+       "idx": 1
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 9,
+       "idx": 1
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 9,
+       "idx": 1
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 9,
+       "idx": 1
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "i": 9,
+       "idx": 1
+      }
+     }
+    ],
+    "call": "minJumps([100, -23, -23, 404, 100, 23, 23, 23, 3, 404])"
+   }
   },
   {
    "id": "08-79-minimum-fuel-cost-to-report-to-capital",
@@ -1437,7 +3316,8 @@
    "notes": {},
    "tests": "assert minimumFuelCost([[0,1],[0,2],[0,3]], 5) == 3\nassert minimumFuelCost([[3,1],[3,2],[1,0],[0,4],[0,5],[4,6]], 2) == 7\nassert minimumFuelCost([], 1) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2477"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2477",
+   "trace": null
   },
   {
    "id": "08-80-find-closest-node-to-given-two-nodes",
@@ -1454,7 +3334,283 @@
    "notes": {},
    "tests": "assert closestMeetingNode([2,2,3,-1], 0, 1) == 2\nassert closestMeetingNode([1,2,-1], 0, 2) == 2\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2359"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2359",
+   "trace": {
+    "rows": [
+     {
+      "name": "edges",
+      "kind": "numbers",
+      "values": [
+       2,
+       2,
+       3,
+       -1
+      ],
+      "movers": [
+       "curr"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 14,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {
+       "curr": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "curr": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "curr": 0
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "curr": 0
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "curr": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "curr": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "curr": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "curr": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "curr": 2
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "curr": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "curr": 3
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "curr": 3
+      }
+     },
+     {
+      "l": 15,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {
+       "curr": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "curr": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "curr": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "curr": 1
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "curr": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "curr": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "curr": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "curr": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "curr": 2
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "curr": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "curr": 3
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "curr": 3
+      }
+     },
+     {
+      "l": 16,
+      "m": {}
+     },
+     {
+      "l": 17,
+      "m": {}
+     },
+     {
+      "l": 18,
+      "m": {}
+     },
+     {
+      "l": 19,
+      "m": {}
+     },
+     {
+      "l": 18,
+      "m": {}
+     },
+     {
+      "l": 19,
+      "m": {}
+     },
+     {
+      "l": 18,
+      "m": {}
+     },
+     {
+      "l": 19,
+      "m": {}
+     },
+     {
+      "l": 20,
+      "m": {}
+     },
+     {
+      "l": 21,
+      "m": {}
+     },
+     {
+      "l": 22,
+      "m": {}
+     },
+     {
+      "l": 23,
+      "m": {}
+     },
+     {
+      "l": 18,
+      "m": {}
+     },
+     {
+      "l": 19,
+      "m": {}
+     },
+     {
+      "l": 20,
+      "m": {}
+     },
+     {
+      "l": 21,
+      "m": {}
+     },
+     {
+      "l": 18,
+      "m": {}
+     },
+     {
+      "l": 24,
+      "m": {}
+     }
+    ],
+    "call": "closestMeetingNode([2, 2, 3, -1], 0, 1)"
+   }
   },
   {
    "id": "08-81-shortest-path-visiting-all-nodes-bitmask-bfs",
@@ -1471,7 +3627,8 @@
    "notes": {},
    "tests": "assert shortestPathLength([[1,2,3],[0],[0],[0]]) == 4\nassert shortestPathLength([[1],[0,2,4],[1,3,4],[2],[1,2]]) == 4\nassert shortestPathLength([[1],[0]]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=847"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=847",
+   "trace": null
   },
   {
    "id": "08-82-trapping-rain-water-ii-bfs-min-heap",
@@ -1488,7 +3645,8 @@
    "notes": {},
    "tests": "assert trapRainWater([[1,4,3,1,3,2],[3,2,1,3,2,4],[2,3,3,2,3,1]]) == 4\nassert trapRainWater([[3,3,3,3,3],[3,2,2,2,3],[3,2,1,2,3],[3,2,2,2,3],[3,3,3,3,3]]) == 10\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=407"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=407",
+   "trace": null
   },
   {
    "id": "08-83-sliding-puzzle-bfs-on-state",
@@ -1505,7 +3663,8 @@
    "notes": {},
    "tests": "assert slidingPuzzle([[1,2,3],[4,0,5]]) == 1\nassert slidingPuzzle([[1,2,3],[5,4,0]]) == -1\nassert slidingPuzzle([[4,1,2],[5,0,3]]) == 5\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=773"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=773",
+   "trace": null
   },
   {
    "id": "08-84-network-delay-time-dijkstra",
@@ -1522,7 +3681,8 @@
    "notes": {},
    "tests": "assert networkDelayTime([[2,1,1],[2,3,1],[3,4,1]], 4, 2) == 2\nassert networkDelayTime([[1,2,1]], 2, 1) == 1\nassert networkDelayTime([[1,2,1]], 2, 2) == -1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=743"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=743",
+   "trace": null
   },
   {
    "id": "08-85-cheapest-flights-within-k-stops-modified-bfs-bellman-f",
@@ -1539,7 +3699,8 @@
    "notes": {},
    "tests": "assert findCheapestPrice(4, [[0,1,100],[1,2,100],[2,0,100],[1,3,600],[2,3,200]], 0, 3, 1) == 700\nassert findCheapestPrice(3, [[0,1,100],[1,2,100],[0,2,500]], 0, 2, 1) == 200\nassert findCheapestPrice(3, [[0,1,100],[1,2,100],[0,2,500]], 0, 2, 0) == 500\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=787"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=787",
+   "trace": null
   },
   {
    "id": "08-86-find-the-city-with-smallest-number-of-neighbors-at-thr",
@@ -1556,7 +3717,8 @@
    "notes": {},
    "tests": "assert findTheCity(4, [[0,1,3],[1,2,1],[1,3,4],[2,3,1]], 4) == 3\nassert findTheCity(5, [[0,1,2],[0,4,8],[1,2,3],[1,4,2],[2,3,1],[3,4,1]], 2) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1334"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1334",
+   "trace": null
   },
   {
    "id": "08-87-path-with-maximum-probability-dijkstra-max-heap",
@@ -1573,7 +3735,8 @@
    "notes": {},
    "tests": "assert abs(maxProbability(3, [[0,1],[1,2],[0,2]], [0.5,0.5,0.2], 0, 2) - 0.25) < 1e-6\nassert abs(maxProbability(3, [[0,1],[1,2],[0,2]], [0.5,0.5,0.3], 0, 2) - 0.3) < 1e-6\nassert maxProbability(3, [[0,1]], [0.5], 0, 2) == 0.0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1514"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1514",
+   "trace": null
   },
   {
    "id": "08-88-path-with-minimum-effort-dijkstra-on-grid",
@@ -1590,7 +3753,8 @@
    "notes": {},
    "tests": "assert minimumEffortPath([[1,2,2],[3,8,2],[5,3,5]]) == 2\nassert minimumEffortPath([[1,2,3],[3,8,4],[5,3,5]]) == 1\nassert minimumEffortPath([[1,2,1,1,1],[1,2,1,2,1],[1,2,1,2,1],[1,2,1,2,1],[1,1,1,2,1]]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1631"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1631",
+   "trace": null
   },
   {
    "id": "08-89-minimum-cost-to-make-at-least-one-valid-path-in-a-grid",
@@ -1607,7 +3771,8 @@
    "notes": {},
    "tests": "assert minCost([[1,1,1,1],[2,2,2,2],[1,1,1,1],[2,2,2,2]]) == 3\nassert minCost([[1,1,3],[3,2,2],[1,1,4]]) == 0\nassert minCost([[1,2],[4,3]]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1368"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1368",
+   "trace": null
   },
   {
    "id": "08-90-detonate-maximum-bombs-bfs-on-directed-graph",
@@ -1624,7 +3789,8 @@
    "notes": {},
    "tests": "assert maximumDetonation([[2,1,3],[6,1,4]]) == 2\nassert maximumDetonation([[1,1,5],[10,10,5]]) == 1\nassert maximumDetonation([[1,2,3],[2,3,1],[3,4,2],[4,5,3],[5,6,4]]) == 5\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2101"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2101",
+   "trace": null
   }
  ]
 }

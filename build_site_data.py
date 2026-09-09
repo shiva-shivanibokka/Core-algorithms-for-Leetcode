@@ -11,7 +11,9 @@ from __future__ import annotations
 
 import argparse
 import ast
+import contextlib
 import glob
+import io
 import json
 import re
 import sys
@@ -178,15 +180,21 @@ def pattern_name(nb, path):
 
 def build():
     import stress_test
+    import trace_solutions
     # A collision is a (notebook, name) pair -- `countNodes` counts a linked
     # list in one notebook and a tree in another, and only the first is excluded.
     all_referenced = set(stress_test.PROBLEMS)
     collisions = stress_test.COLLISIONS
 
     patterns, unresolved = [], []
+    traced = 0
     for path in sorted(glob.glob("*.ipynb")):
         with open(path, encoding="utf-8") as fh:
             nb = json.load(fh)
+        # The notebooks share a namespace between cells, so the tracer needs
+        # the same one: a solution can only be run if the helpers defined
+        # above it exist.
+        shared: dict = {}
         number = path.split("_", 1)[0]
         # The slug stays derived from the filename, so a renamed heading
         # never moves a URL that has already been shared.
@@ -215,7 +223,10 @@ def build():
                 continue
 
             if pending is None:
-                continue                        # a shared-helper cell, not a solution
+                with contextlib.suppress(Exception):
+                    with contextlib.redirect_stdout(io.StringIO()):
+                        exec(src, shared)       # a shared-helper cell, not a solution
+                continue
 
             order += 1
             heading, approach = pending["heading"], pending["approach"]
@@ -228,6 +239,10 @@ def build():
                 unresolved.append(f"{path}: {heading[:60]}")
             lc = LC_ID.search(heading)
             solution, tests = split_solution(src)
+            recording = None
+            with contextlib.suppress(Exception):
+                recording = trace_solutions.trace(solution, tests, shared)
+            traced += recording is not None
             defined = {n.name for n in ast.parse(src).body if isinstance(n, ast.FunctionDef)}
             title = clean_title(heading)
             problems.append({
@@ -249,8 +264,12 @@ def build():
                 "verified": sorted(defined & all_referenced
                                   - {n for nb, n in collisions if nb == path}),
                 "leetcodeUrl": LEETCODE.format(lc.group(1)) if lc else None,
+                "trace": recording,
             })
             pending = None
+            with contextlib.suppress(Exception):
+                with contextlib.redirect_stdout(io.StringIO()):
+                    exec(src, shared)
 
         patterns.append({"id": number, "slug": slug, "name": name, "note": note,
                          "about": about, "notebook": path, "problems": problems})
@@ -260,11 +279,14 @@ def build():
         for u in unresolved[:10]:
             print("   ", u)
         return None
+    print(f"recorded a run for {traced} of "
+          f"{sum(len(p['problems']) for p in patterns)} problems")
     return {"patterns": patterns,
             "totals": {
                 "patterns": len(patterns),
                 "problems": sum(len(p["problems"]) for p in patterns),
                 "verified": sum(1 for p in patterns for q in p["problems"] if q["verified"]),
+                "traced": traced,
             }}
 
 
@@ -285,6 +307,7 @@ def files(data):
             "counts": {tier: sum(1 for q in pattern["problems"] if q["difficulty"] == tier)
                        for tier in TIERS},
             "verified": sum(1 for q in pattern["problems"] if q["verified"]),
+            "traced": sum(1 for q in pattern["problems"] if q["trace"]),
         })
     out["index.json"] = index
     return out

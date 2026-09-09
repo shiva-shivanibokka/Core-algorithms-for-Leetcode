@@ -51,7 +51,8 @@
    "verified": [
     "merge"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=56"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=56",
+   "trace": null
   },
   {
    "id": "05-02-summary-ranges",
@@ -70,7 +71,190 @@
    },
    "tests": "assert summaryRanges([0,1,2,4,5,7]) == [\"0->2\",\"4->5\",\"7\"]\nassert summaryRanges([0,2,3,4,6,8,9]) == [\"0\",\"2->4\",\"6\",\"8->9\"]\nassert summaryRanges([]) == []\nassert summaryRanges([1]) == [\"1\"]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=228"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=228",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       0,
+       2,
+       3,
+       4,
+       6,
+       8,
+       9
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 17,
+      "m": {
+       "i": 6
+      }
+     }
+    ],
+    "call": "summaryRanges([0, 2, 3, 4, 6, 8, 9])"
+   }
   },
   {
    "id": "05-03-meeting-rooms",
@@ -87,7 +271,8 @@
    "notes": {},
    "tests": "assert canAttendMeetings([[0,30],[5,10],[15,20]]) == False\nassert canAttendMeetings([[7,10],[2,4]]) == True\nassert canAttendMeetings([]) == True\nassert canAttendMeetings([[1,5],[5,10]]) == True  # back to back is fine\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=252"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=252",
+   "trace": null
   },
   {
    "id": "05-04-determine-if-two-events-have-conflict",
@@ -104,7 +289,8 @@
    "notes": {},
    "tests": "assert haveConflict([\"01:15\",\"02:00\"],[\"02:00\",\"03:00\"]) == True\nassert haveConflict([\"01:00\",\"02:00\"],[\"01:20\",\"03:00\"]) == True\nassert haveConflict([\"10:00\",\"11:00\"],[\"14:00\",\"15:00\"]) == False\nassert haveConflict([\"09:00\",\"10:00\"],[\"10:00\",\"11:00\"]) == True\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2446"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2446",
+   "trace": null
   },
   {
    "id": "05-05-maximum-population-year",
@@ -124,7 +310,8 @@
    },
    "tests": "assert maximumPopulation([[1993,1999],[2000,2010]]) == 1993\nassert maximumPopulation([[1950,1961],[1960,1971],[1970,1981]]) == 1960\nassert maximumPopulation([[1950,2000],[1975,2005],[1950,2000],[1975,2005]]) in [1975, 1950]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1854"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1854",
+   "trace": null
   },
   {
    "id": "05-06-points-that-intersect-with-cars",
@@ -141,7 +328,8 @@
    "notes": {},
    "tests": "assert numberOfPoints([[3,6],[1,5],[4,7]]) == 7\nassert numberOfPoints([[1,3],[5,8]]) == 7\nassert numberOfPoints([[1,2],[3,4],[5,6]]) == 6\nassert numberOfPoints([[1,1],[2,2]]) == 2\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2848"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2848",
+   "trace": null
   },
   {
    "id": "05-07-minimum-number-of-moves-to-seat-everyone",
@@ -158,7 +346,8 @@
    "notes": {},
    "tests": "assert minMovesToSeat([3,1,5],[2,7,4]) == 4\nassert minMovesToSeat([4,1,5,9],[1,3,2,6]) == 7\nassert minMovesToSeat([2,2,6,6],[1,3,2,6]) == 4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2037"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2037",
+   "trace": null
   },
   {
    "id": "05-08-minimum-time-visiting-all-points",
@@ -175,7 +364,8 @@
    "notes": {},
    "tests": "assert minTimeToVisitAllPoints([[1,1],[3,4],[-1,0]]) == 7\nassert minTimeToVisitAllPoints([[3,2],[-2,2]]) == 5\nassert minTimeToVisitAllPoints([[0,0],[1,1],[2,2]]) == 2\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1266"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1266",
+   "trace": null
   },
   {
    "id": "05-09-range-sum-query-immutable",
@@ -192,7 +382,8 @@
    "notes": {},
    "tests": "assert na.sumRange(0,2) == 1\nassert na.sumRange(2,5) == -1\nassert na.sumRange(0,5) == -3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=303"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=303",
+   "trace": null
   },
   {
    "id": "05-10-count-ways-to-group-overlapping-ranges",
@@ -211,7 +402,8 @@
    },
    "tests": "assert countWays([[6,10],[5,15]]) == 2\nassert countWays([[1,3],[10,20],[2,5],[4,8]]) == 4\nassert countWays([[1,2],[3,4],[5,6]]) == 8\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2580"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2580",
+   "trace": null
   },
   {
    "id": "05-11-non-overlapping-intervals-easy-count",
@@ -232,7 +424,8 @@
    "verified": [
     "eraseOverlapIntervals"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=435"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=435",
+   "trace": null
   },
   {
    "id": "05-12-partition-array-into-disjoint-intervals",
@@ -249,7 +442,147 @@
    "notes": {},
    "tests": "assert partitionDisjoint([5,0,3,8,6]) == 3\nassert partitionDisjoint([1,1,1,0,6,12]) == 4\nassert partitionDisjoint([1,2,3,4]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=915"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=915",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       1,
+       1,
+       1,
+       0,
+       6,
+       12
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 5
+      }
+     }
+    ],
+    "call": "partitionDisjoint([1, 1, 1, 0, 6, 12])"
+   }
   },
   {
    "id": "05-13-missing-ranges",
@@ -266,7 +599,244 @@
    "notes": {},
    "tests": "assert findMissingRanges([0,1,3,50,75], 0, 99) == [[2,2],[4,49],[51,74],[76,99]]\nassert findMissingRanges([], 1, 1) == [[1,1]]\nassert findMissingRanges([], -3, -1) == [[-3,-1]]\nassert findMissingRanges([-1], -1, -1) == []\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=163"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=163",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       0,
+       1,
+       3,
+       50,
+       75
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 5
+      }
+     }
+    ],
+    "call": "findMissingRanges([0, 1, 3, 50, 75], 0, 99)"
+   }
   },
   {
    "id": "05-14-check-if-all-1-s-are-at-least-k-places-away",
@@ -283,7 +853,177 @@
    "notes": {},
    "tests": "assert kLengthApart([1,0,0,0,1,0,0,1], 2) == True\nassert kLengthApart([1,0,0,1,0,1], 2) == False\nassert kLengthApart([1,1,1,1,1], 0) == True\nassert kLengthApart([0,1,0,1], 1) == True\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1437"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1437",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       1,
+       0,
+       0,
+       0,
+       1,
+       0,
+       0,
+       1
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 7
+      }
+     }
+    ],
+    "call": "kLengthApart([1, 0, 0, 0, 1, 0, 0, 1], 2)"
+   }
   },
   {
    "id": "05-15-count-days-spent-together",
@@ -300,7 +1040,8 @@
    "notes": {},
    "tests": "assert countDaysTogether(\"08-15\",\"08-18\",\"08-16\",\"08-19\") == 3\nassert countDaysTogether(\"10-01\",\"10-31\",\"11-01\",\"12-31\") == 0\nassert countDaysTogether(\"01-01\",\"12-31\",\"01-01\",\"12-31\") == 365\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2409"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2409",
+   "trace": null
   },
   {
    "id": "05-16-number-of-rectangles-that-can-form-the-largest-square",
@@ -317,7 +1058,8 @@
    "notes": {},
    "tests": "assert countGoodRectangles([[5,8],[3,9],[5,12],[16,5]]) == 3\nassert countGoodRectangles([[2,3],[3,7],[4,3],[3,7]]) == 3\nassert countGoodRectangles([[1,1],[1,1],[1,1]]) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1725"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1725",
+   "trace": null
   },
   {
    "id": "05-17-find-right-interval-simplified",
@@ -334,7 +1076,8 @@
    "notes": {},
    "tests": "assert findRightIntervalSimple([[1,2]]) == [-1]\nassert findRightIntervalSimple([[3,4],[2,3],[1,2]]) == [-1,0,1]\nassert findRightIntervalSimple([[1,4],[2,3],[3,4]]) == [-1,2,-1]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "05-18-count-subarrays-with-fixed-bounds",
@@ -351,7 +1094,251 @@
    "notes": {},
    "tests": "assert countSubarrays([1,3,5,2,7,5], 1, 5) == 2\nassert countSubarrays([1,1,1,1], 1, 1) == 10\nassert countSubarrays([1,2,3,4], 2, 3) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2444"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2444",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       1,
+       3,
+       5,
+       2,
+       7,
+       5
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 5
+      }
+     }
+    ],
+    "call": "countSubarrays([1, 3, 5, 2, 7, 5], 1, 5)"
+   }
   },
   {
    "id": "05-19-remove-covered-intervals",
@@ -370,7 +1357,8 @@
    },
    "tests": "assert removeCoveredIntervals([[1,4],[3,6],[2,8]]) == 2\nassert removeCoveredIntervals([[1,4],[2,3]]) == 1\nassert removeCoveredIntervals([[1,2],[1,4],[3,4]]) == 1\nassert removeCoveredIntervals([[3,10],[4,10],[5,11]]) == 2\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1288"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1288",
+   "trace": null
   },
   {
    "id": "05-20-count-number-of-texts",
@@ -389,7 +1377,8 @@
    },
    "tests": "assert countTexts(\"22233\") == 8\nassert countTexts(\"222222222222222222222222222222222222\") == 82876089\nassert countTexts(\"8\") == 1\nassert countTexts(\"999\") == 4  # 9/99/999/9_9 → wait, 7 ways for 3 nines on key 9\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2266"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2266",
+   "trace": null
   },
   {
    "id": "05-21-merge-intervals-full",
@@ -406,7 +1395,8 @@
    "notes": {},
    "tests": "assert mergeFull([[1,3],[2,6],[8,10],[15,18]]) == [[1,6],[8,10],[15,18]]\nassert mergeFull([[1,4],[4,5]]) == [[1,5]]\nassert mergeFull([[1,4],[0,0]]) == [[0,0],[1,4]]\nassert mergeFull([[1,4],[2,3]]) == [[1,4]]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=56"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=56",
+   "trace": null
   },
   {
    "id": "05-22-insert-interval",
@@ -427,7 +1417,8 @@
    },
    "tests": "assert insert([[1,3],[6,9]], [2,5]) == [[1,5],[6,9]]\nassert insert([[1,2],[3,5],[6,7],[8,10],[12,16]], [4,8]) == [[1,2],[3,10],[12,16]]\nassert insert([], [5,7]) == [[5,7]]\nassert insert([[1,5]], [2,3]) == [[1,5]]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=57"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=57",
+   "trace": null
   },
   {
    "id": "05-23-non-overlapping-intervals",
@@ -444,7 +1435,8 @@
    "notes": {},
    "tests": "assert eraseOverlapIntervalsFull([[1,2],[2,3],[3,4],[1,3]]) == 1\nassert eraseOverlapIntervalsFull([[1,2],[1,2],[1,2]]) == 2\nassert eraseOverlapIntervalsFull([[1,2],[2,3]]) == 0\nassert eraseOverlapIntervalsFull([[-52,31],[-73,-26],[82,97],[-65,-11],[-62,-49],[95,99],[58,95],[-31,49],[66,98],[-63,2],[30,47],[-40,-26]]) == 7\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=435"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=435",
+   "trace": null
   },
   {
    "id": "05-24-meeting-rooms-ii",
@@ -464,7 +1456,8 @@
    },
    "tests": "assert minMeetingRooms([[0,30],[5,10],[15,20]]) == 2\nassert minMeetingRooms([[7,10],[2,4]]) == 1\nassert minMeetingRooms([[1,5],[2,3],[3,7],[4,8]]) == 3\nassert minMeetingRooms([]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=253"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=253",
+   "trace": null
   },
   {
    "id": "05-25-minimum-number-of-arrows-to-burst-balloons",
@@ -485,7 +1478,8 @@
    "verified": [
     "findMinArrowShots"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=452"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=452",
+   "trace": null
   },
   {
    "id": "05-26-interval-list-intersections",
@@ -504,7 +1498,8 @@
    },
    "tests": "assert intervalIntersection([[0,2],[5,10],[13,23],[24,25]],[[1,5],[8,12],[15,24],[25,26]]) == [[1,2],[5,5],[8,10],[15,23],[24,24],[25,25]]\nassert intervalIntersection([[1,3],[5,9]],[]) == []\nassert intervalIntersection([],[]) == []\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=986"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=986",
+   "trace": null
   },
   {
    "id": "05-27-my-calendar-i",
@@ -526,7 +1521,8 @@
    },
    "tests": "assert cal.book(10, 20) == True\nassert cal.book(15, 25) == False\nassert cal.book(20, 30) == True\nassert cal.book(5, 10) == True\nassert cal.book(5, 15) == False\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=729"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=729",
+   "trace": null
   },
   {
    "id": "05-28-divide-intervals-into-minimum-number-of-groups",
@@ -543,7 +1539,8 @@
    "notes": {},
    "tests": "assert minGroups([[5,10],[6,8],[1,5],[2,3],[1,10]]) == 3\nassert minGroups([[1,3],[5,6],[8,10],[11,13]]) == 1\nassert minGroups([[1,2],[2,3],[3,4]]) == 2  # inclusive intervals share endpoints\nassert minGroups([[1,4],[2,5],[3,6]]) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2406"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2406",
+   "trace": null
   },
   {
    "id": "05-29-car-pooling",
@@ -560,7 +1557,8 @@
    "notes": {},
    "tests": "assert carPooling([[2,1,5],[3,3,7]], 4) == False\nassert carPooling([[2,1,5],[3,3,7]], 5) == True\nassert carPooling([[3,2,7],[3,7,9],[8,3,9]], 11) == True\nassert carPooling([[2,1,5],[3,5,7]], 3) == True\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1094"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1094",
+   "trace": null
   },
   {
    "id": "05-30-maximum-cpu-load-classic-interval-scheduling",
@@ -580,7 +1578,8 @@
    },
    "tests": "assert maxCPULoad([[1,4,3],[2,5,4],[7,9,6]]) == 7\nassert maxCPULoad([[6,7,10],[2,4,11],[8,12,15]]) == 15\nassert maxCPULoad([[1,4,2],[2,4,1],[3,6,5]]) == 8\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "05-31-task-scheduler",
@@ -599,7 +1598,8 @@
    },
    "tests": "assert leastInterval([\"A\",\"A\",\"A\",\"B\",\"B\",\"B\"], 2) == 8\nassert leastInterval([\"A\",\"A\",\"A\",\"B\",\"B\",\"B\"], 0) == 6\nassert leastInterval([\"A\",\"A\",\"A\",\"A\",\"A\",\"A\",\"B\",\"C\",\"D\",\"E\",\"F\",\"G\"], 2) == 16\nassert leastInterval([\"A\",\"B\",\"C\",\"D\",\"E\",\"F\"], 2) == 6\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=621"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=621",
+   "trace": null
   },
   {
    "id": "05-32-remove-covered-intervals-full",
@@ -616,7 +1616,8 @@
    "notes": {},
    "tests": "assert removeCoveredFull([[1,4],[3,6],[2,8]]) == 2\nassert removeCoveredFull([[1,4],[2,3]]) == 1\nassert removeCoveredFull([[1,2],[1,4],[3,4]]) == 1\nassert removeCoveredFull([[1,4],[1,6],[2,8],[5,9]]) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1288"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1288",
+   "trace": null
   },
   {
    "id": "05-33-minimum-interval-to-include-each-query",
@@ -637,7 +1638,8 @@
    },
    "tests": "assert minInterval([[1,4],[2,4],[3,6],[4,4]], [2,3,4,5]) == [3,3,1,4]\nassert minInterval([[2,3],[2,5],[1,8],[20,25]], [2,19,5,22]) == [2,-1,4,6]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2158"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2158",
+   "trace": null
   },
   {
    "id": "05-34-average-waiting-time",
@@ -654,7 +1656,8 @@
    "notes": {},
    "tests": "assert abs(averageWaitingTime([[1,2],[2,5],[4,3]]) - 5.0) < 1e-9\nassert abs(averageWaitingTime([[5,2],[5,4],[10,3],[20,1]]) - 3.25) < 1e-9\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1701"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1701",
+   "trace": null
   },
   {
    "id": "05-35-my-calendar-i-full-sortedlist-variant",
@@ -675,7 +1678,8 @@
    },
    "tests": "assert mc.book(10, 20) == True\nassert mc.book(15, 25) == False\nassert mc.book(20, 30) == True\nassert mc.book(5, 10) == True\nassert mc.book(25, 35) == False  # overlaps [20,30]\nassert mc.book(5, 11) == False\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=729"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=729",
+   "trace": null
   },
   {
    "id": "05-36-the-skyline-problem",
@@ -708,7 +1712,8 @@
    },
    "tests": "assert getSkyline([[2,9,10],[3,7,15],[5,12,12],[15,20,10],[19,24,8]]) == [[2,10],[3,15],[7,12],[12,0],[15,10],[20,8],[24,0]]\nassert getSkyline([[0,2,3],[2,5,3]]) == [[0,3],[5,0]]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=218"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=218",
+   "trace": null
   },
   {
    "id": "05-37-range-module",
@@ -730,7 +1735,8 @@
    },
    "tests": "assert rm.queryRange(10, 14) == True\nassert rm.queryRange(13, 15) == False\nassert rm.queryRange(16, 17) == True\nrm.addRange(13, 15)\nassert rm.queryRange(13, 15) == True\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=715"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=715",
+   "trace": null
   },
   {
    "id": "05-38-my-calendar-iii",
@@ -747,7 +1753,8 @@
    "notes": {},
    "tests": "assert mc3.book(10, 20) == 1\nassert mc3.book(50, 60) == 1\nassert mc3.book(10, 40) == 2\nassert mc3.book(5, 15) == 3\nassert mc3.book(5, 10) == 3\nassert mc3.book(25, 55) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=732"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=732",
+   "trace": null
   },
   {
    "id": "05-39-data-stream-as-disjoint-intervals",
@@ -769,7 +1776,8 @@
    },
    "tests": "assert sr.getIntervals() == [[1,1]]\nsr.addNum(3)\nassert sr.getIntervals() == [[1,1],[3,3]]\nsr.addNum(7)\nsr.addNum(2)\nassert sr.getIntervals() == [[1,3],[7,7]]\nsr.addNum(6)\nassert sr.getIntervals() == [[1,3],[6,7]]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=352"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=352",
+   "trace": null
   },
   {
    "id": "05-40-minimum-number-of-taps-to-open-to-water-a-garden",
@@ -792,7 +1800,363 @@
    },
    "tests": "assert minTaps(5, [3,4,1,1,0,0]) == 1\nassert minTaps(3, [0,0,0,0]) == -1\nassert minTaps(7, [1,2,1,0,2,1,0,1]) == 3\nassert minTaps(8, [4,0,0,0,4,0,0,0,4]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1326"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1326",
+   "trace": {
+    "rows": [
+     {
+      "name": "ranges",
+      "kind": "numbers",
+      "values": [
+       1,
+       2,
+       1,
+       0,
+       2,
+       1,
+       0,
+       1
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 18,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 19,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 18,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 19,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 7
+      }
+     }
+    ],
+    "call": "minTaps(7, [1, 2, 1, 0, 2, 1, 0, 1])"
+   }
   },
   {
    "id": "05-41-maximum-number-of-events-that-can-be-attended-ii",
@@ -812,7 +2176,8 @@
    },
    "tests": "assert maxValue([[1,2,4],[3,4,3],[2,3,1]], 2) == 7\nassert maxValue([[1,2,4],[3,4,3],[2,3,10]], 2) == 10\nassert maxValue([[1,1,1],[2,2,2],[3,3,3],[4,4,4]], 3) == 9\nassert maxValue([[1,2,4],[3,4,3],[2,3,1]], 3) == 7\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1751"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1751",
+   "trace": null
   },
   {
    "id": "05-42-falling-squares",
@@ -833,7 +2198,8 @@
    },
    "tests": "assert fallingSquares([[1,2],[2,2],[1,2]]) == [2,4,6]\nassert fallingSquares([[100,100],[200,100]]) == [100,100]\nassert fallingSquares([[1,2],[1,2],[1,2]]) == [2,4,6]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=699"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=699",
+   "trace": null
   },
   {
    "id": "05-43-employee-free-time",
@@ -854,7 +2220,8 @@
    },
    "tests": "assert employeeFreeTime([[[1,3],[6,7]],[[2,4]],[[2,5],[9,12]]]) == [[5,6],[7,9]]\nassert employeeFreeTime([[[1,3],[9,12]],[[2,4]],[[6,8]]]) == [[4,6],[8,9]]\nassert employeeFreeTime([[[1,2],[5,10]],[[3,6]]]) == [[2,3]]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=759"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=759",
+   "trace": null
   },
   {
    "id": "05-44-russian-doll-envelopes-interval-nesting",
@@ -871,7 +2238,8 @@
    "notes": {},
    "tests": "assert maxEnvelopesInterval([[5,4],[6,4],[6,7],[2,3]]) == 3\nassert maxEnvelopesInterval([[1,1],[1,1],[1,1]]) == 1\nassert maxEnvelopesInterval([[1,3],[3,5],[6,7],[6,8],[8,4],[9,5]]) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=354"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=354",
+   "trace": null
   },
   {
    "id": "05-45-minimum-cost-to-cut-a-stick",
@@ -890,7 +2258,315 @@
    },
    "tests": "assert minCost(7, [1,3,4,5]) == 16\nassert minCost(9, [5,6,1,4,2]) == 22\nassert minCost(10, [2,4,7]) == 20\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1547"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1547",
+   "trace": {
+    "rows": [
+     {
+      "name": "cuts",
+      "kind": "numbers",
+      "values": [
+       1,
+       3,
+       4,
+       5
+      ],
+      "movers": [
+       "j"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 5
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 5
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 5
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "j": 5
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 5
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "j": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 5
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 5
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "j": 4
+      }
+     }
+    ],
+    "call": "minCost(7, [1, 3, 4, 5])"
+   }
   },
   {
    "id": "05-46-merge-two-2d-arrays-by-summing-values",
@@ -907,7 +2583,8 @@
    "notes": {},
    "tests": "assert mergeArrays([[1,2],[2,3],[4,5]],[[1,4],[3,2],[4,1]]) == [[1,6],[2,3],[3,2],[4,6]]\nassert mergeArrays([[2,4],[3,6],[5,5]],[[1,3],[4,3]]) == [[1,3],[2,4],[3,6],[4,3],[5,5]]\nassert mergeArrays([],[]) == []\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2570"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2570",
+   "trace": null
   },
   {
    "id": "05-47-count-days-without-meetings",
@@ -924,7 +2601,8 @@
    "notes": {},
    "tests": "assert countDays(10, [[5,7],[1,3],[9,10]]) == 2\nassert countDays(5, [[2,4],[1,3]]) == 1\nassert countDays(6, [[1,6]]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=3169"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=3169",
+   "trace": null
   },
   {
    "id": "05-48-convert-character-ranges-to-interval-list",
@@ -941,7 +2619,8 @@
    "notes": {},
    "tests": "assert charRanges('abcef') == [[97,99],[101,102]]\nassert charRanges('z') == [[122,122]]\nassert charRanges('') == []\nassert charRanges('ace') == [[97,97],[99,99],[101,101]]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "05-49-find-the-intersection-of-two-lists-as-ranges",
@@ -958,7 +2637,8 @@
    "notes": {},
    "tests": "assert intersectAsRanges([1,2,3,5,6],[2,3,4,6,7]) == [[2,3],[6,6]]\nassert intersectAsRanges([1,2],[3,4]) == []\nassert intersectAsRanges([1,2,3],[1,2,3]) == [[1,3]]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "05-50-flowers-in-bloom-at-time-t",
@@ -975,7 +2655,8 @@
    "notes": {},
    "tests": "assert flowersAtTime([[1,6],[3,7],[9,12],[4,13]], 4) == 3\nassert flowersAtTime([[1,6],[3,7],[9,12],[4,13]], 9) == 2\nassert flowersAtTime([[1,2],[3,4]], 5) == 0\nassert flowersAtTime([], 1) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2251"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2251",
+   "trace": null
   },
   {
    "id": "05-51-rectangle-overlap",
@@ -992,7 +2673,8 @@
    "notes": {},
    "tests": "assert isRectangleOverlap([0,0,2,2],[1,1,3,3]) == True\nassert isRectangleOverlap([0,0,1,1],[1,0,2,1]) == False\nassert isRectangleOverlap([0,0,2,2],[3,3,5,5]) == False\nassert isRectangleOverlap([0,0,3,3],[1,1,2,2]) == True\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=836"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=836",
+   "trace": null
   },
   {
    "id": "05-52-largest-number-at-least-twice-of-others",
@@ -1009,7 +2691,111 @@
    "notes": {},
    "tests": "assert dominantIndex([3,6,1,0]) == 1\nassert dominantIndex([1,2,3,4]) == -1\nassert dominantIndex([1]) == 0\nassert dominantIndex([0,0,0,1]) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=747"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=747",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       3,
+       6,
+       1,
+       0
+      ],
+      "movers": [
+       "i",
+       "idx"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "idx": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "idx": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "idx": 1,
+       "i": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "idx": 1,
+       "i": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "idx": 1,
+       "i": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "idx": 1,
+       "i": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "idx": 1,
+       "i": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "idx": 1,
+       "i": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "idx": 1,
+       "i": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "idx": 1,
+       "i": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "idx": 1,
+       "i": 3
+      }
+     }
+    ],
+    "call": "dominantIndex([3, 6, 1, 0])"
+   }
   },
   {
    "id": "05-53-maximum-difference-between-adjacent-elements",
@@ -1026,7 +2812,49 @@
    "notes": {},
    "tests": "assert maxAdjacentDiff([1, 5, 2, 10]) == 8\nassert maxAdjacentDiff([1, 2, 3, 4]) == 1\nassert maxAdjacentDiff([10, 1]) == 9\nassert maxAdjacentDiff([3, 3, 3]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       1,
+       5,
+       2,
+       10
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 1,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 1,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 1,
+      "m": {
+       "i": 3
+      }
+     }
+    ],
+    "call": "maxAdjacentDiff([1, 5, 2, 10])"
+   }
   },
   {
    "id": "05-54-employee-shift-interval-coverage",
@@ -1043,7 +2871,8 @@
    "notes": {},
    "tests": "assert totalShiftCoverage([[1,4],[2,6],[8,10]]) == 7\nassert totalShiftCoverage([[1,3],[3,5]]) == 4\nassert totalShiftCoverage([]) == 0\nassert totalShiftCoverage([[0,24]]) == 24\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "05-55-minimum-taps-to-water-garden-small-input",
@@ -1060,7 +2889,363 @@
    "notes": {},
    "tests": "assert minTaps(5, [3,4,1,1,0,0]) == 1\nassert minTaps(3, [0,0,0,0]) == -1\nassert minTaps(7, [1,2,1,0,2,1,0,1]) == 3\nassert minTaps(0, [0]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": {
+    "rows": [
+     {
+      "name": "ranges",
+      "kind": "numbers",
+      "values": [
+       1,
+       2,
+       1,
+       0,
+       2,
+       1,
+       0,
+       1
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 5
+      }
+     }
+    ],
+    "call": "minTaps(7, [1, 2, 1, 0, 2, 1, 0, 1])"
+   }
   },
   {
    "id": "05-56-partition-labels",
@@ -1077,7 +3262,307 @@
    "notes": {},
    "tests": "assert partitionLabels('ababcbacadefegdehijhklij') == [9,7,8]\nassert partitionLabels('eccbbbbdec') == [10]\nassert partitionLabels('a') == [1]\nassert partitionLabels('ab') == [1,1]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=763"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=763",
+   "trace": {
+    "rows": [
+     {
+      "name": "s",
+      "kind": "text",
+      "values": [
+       "e",
+       "c",
+       "c",
+       "b",
+       "b",
+       "b",
+       "b",
+       "d",
+       "e",
+       "c"
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 1,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 1,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 1,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 1,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 1,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 1,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 1,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 1,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 1,
+      "m": {
+       "i": 8
+      }
+     },
+     {
+      "l": 1,
+      "m": {
+       "i": 9
+      }
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 8
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 8
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 8
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 9
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 9
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 9
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 9
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 9
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 9
+      }
+     }
+    ],
+    "call": "partitionLabels('eccbbbbdec')"
+   }
   },
   {
    "id": "05-57-find-all-intervals-that-overlap-with-a-given-interval",
@@ -1094,7 +3579,8 @@
    "notes": {},
    "tests": "assert findOverlapping(ivs, [2,9]) == [[1,3],[2,6],[8,10]]\nassert findOverlapping(ivs, [4,7]) == [[2,6]]\nassert findOverlapping(ivs, [11,14]) == []\nassert findOverlapping(ivs, [1,18]) == [[1,3],[2,6],[8,10],[15,18]]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "05-58-count-overlapping-pairs-of-intervals-na-ve",
@@ -1111,7 +3597,8 @@
    "notes": {},
    "tests": "assert countOverlappingPairs([[1,3],[2,4],[5,7]]) == 1\nassert countOverlappingPairs([[1,5],[2,3],[4,6]]) == 2\nassert countOverlappingPairs([[1,2],[3,4]]) == 0\nassert countOverlappingPairs([[1,10],[2,9],[3,8]]) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "05-59-merge-overlapping-intervals-return-count-merged",
@@ -1128,7 +3615,8 @@
    "notes": {},
    "tests": "assert countAfterMerge([[1,3],[2,6],[8,10],[15,18]]) == 3\nassert countAfterMerge([[1,4],[4,5]]) == 1\nassert countAfterMerge([[1,2],[3,4],[5,6]]) == 3\nassert countAfterMerge([]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "05-60-find-gaps-between-intervals",
@@ -1145,7 +3633,8 @@
    "notes": {},
    "tests": "assert findGaps([[2,5],[7,9]], 0, 10) == [[0,2],[5,7],[9,10]]\nassert findGaps([[0,10]], 0, 10) == []\nassert findGaps([], 1, 5) == [[1,5]]\nassert findGaps([[1,2],[3,4]], 0, 5) == [[0,1],[2,3],[4,5]]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "05-61-find-maximum-overlap-at-any-point",
@@ -1162,7 +3651,8 @@
    "notes": {},
    "tests": "assert maxOverlap([[1,3],[2,4],[3,5]]) == 3\nassert maxOverlap([[1,2],[3,4],[5,6]]) == 1\nassert maxOverlap([[1,10],[2,9],[3,8],[4,7]]) == 4\nassert maxOverlap([[1,1]]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "05-62-sort-and-merge-bookings",
@@ -1179,7 +3669,8 @@
    "notes": {},
    "tests": "assert mergeBookings([[1,3,50],[2,5,80],[7,9,30]]) == [[1,5],[7,9]]\nassert mergeBookings([[1,2,10],[3,4,20]]) == [[1,2],[3,4]]\nassert mergeBookings([]) == []\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "05-63-check-if-schedule-is-conflict-free",
@@ -1196,7 +3687,8 @@
    "notes": {},
    "tests": "assert isConflictFree([[1,2],[3,4],[5,6]]) == True\nassert isConflictFree([[1,3],[2,4]]) == False\nassert isConflictFree([[1,2],[2,3]]) == True\nassert isConflictFree([]) == True\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "05-64-longest-non-overlapping-intervals-greedy",
@@ -1213,7 +3705,8 @@
    "notes": {},
    "tests": "assert maxNonOverlapping([[1,2],[2,3],[3,4],[1,3]]) == 3\nassert maxNonOverlapping([[1,2],[1,2],[1,2]]) == 1\nassert maxNonOverlapping([[1,2],[2,3]]) == 2\nassert maxNonOverlapping([]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "05-65-find-union-length-of-all-intervals",
@@ -1230,7 +3723,8 @@
    "notes": {},
    "tests": "assert unionLength([[1,3],[2,5],[7,9]]) == 8\nassert unionLength([[1,4],[4,8]]) == 8\nassert unionLength([[1,1],[2,2],[3,3]]) == 3\nassert unionLength([]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=3224"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=3224",
+   "trace": null
   },
   {
    "id": "05-66-my-calendar-ii",
@@ -1247,7 +3741,8 @@
    "notes": {},
    "tests": "assert cal.book(10, 20) == True\nassert cal.book(50, 60) == True\nassert cal.book(10, 40) == True\nassert cal.book(5, 15) == False\nassert cal.book(5, 10) == True\nassert cal.book(25, 55) == True\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=731"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=731",
+   "trace": null
   },
   {
    "id": "05-67-maximum-number-of-events-that-can-be-attended",
@@ -1264,7 +3759,8 @@
    "notes": {},
    "tests": "assert maxEvents([[1,2],[2,3],[3,4]]) == 3\nassert maxEvents([[1,2],[2,3],[3,4],[1,2]]) == 4\nassert maxEvents([[1,4],[4,4],[2,2],[3,4],[1,1]]) == 4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1353"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1353",
+   "trace": null
   },
   {
    "id": "05-68-minimum-arrows-from-the-top-vertical-arrow-variant",
@@ -1283,7 +3779,8 @@
    "verified": [
     "findMinArrowShots"
    ],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "05-69-interval-schedule-maximization-weighted-simplified",
@@ -1302,7 +3799,8 @@
    },
    "tests": "assert jobSchedulingSimple([[1,2,50],[3,5,20],[6,9,100],[2,100,200]]) == 250\nassert jobSchedulingSimple([[1,3,20],[2,5,20],[3,10,100],[4,6,70],[6,9,60]]) == 150\nassert jobSchedulingSimple([[1,2,1],[1,2,2],[1,2,3]]) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "05-70-maximum-sum-of-non-overlapping-intervals",
@@ -1319,7 +3817,8 @@
    "notes": {},
    "tests": "assert maxSumNonOverlap([[1,3,4],[2,5,6],[3,7,2],[5,8,5]]) == 11\nassert maxSumNonOverlap([[1,2,10],[2,3,20],[3,4,30]]) == 60\nassert maxSumNonOverlap([[1,5,5],[2,4,3],[3,6,2]]) == 5\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "05-71-sweep-line-count-active-intervals-at-each-integer-poin",
@@ -1336,7 +3835,8 @@
    "notes": {},
    "tests": "assert countActive([[1,3],[2,4],[5,7]], 1, 7) == [1,2,2,1,1,1,1]\nassert countActive([[1,5],[2,3]], 1, 5) == [1,2,2,1,1]\nassert countActive([], 0, 3) == [0,0,0,0]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "05-72-minimum-platforms-required-railway-station-classic",
@@ -1353,7 +3853,400 @@
    "notes": {},
    "tests": "assert minPlatforms([900,940,950,1100,1500,1800],[910,1200,1120,1130,1900,2000]) == 3\nassert minPlatforms([900,1100],[1000,1200]) == 1\nassert minPlatforms([100,200,300],[400,500,600]) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": {
+    "rows": [
+     {
+      "name": "arrivals",
+      "kind": "numbers",
+      "values": [
+       900,
+       940,
+       950,
+       1100,
+       1500,
+       1800
+      ],
+      "movers": [
+       "i"
+      ]
+     },
+     {
+      "name": "departures",
+      "kind": "numbers",
+      "values": [
+       910,
+       1200,
+       1120,
+       1130,
+       1900,
+       2000
+      ],
+      "movers": [
+       "j"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0,
+       "j": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1,
+       "j": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 1,
+       "j": 0
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 1,
+       "j": 0
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 1,
+       "j": 0
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 1,
+       "j": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1,
+       "j": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 1,
+       "j": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 1,
+       "j": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 1,
+       "j": 1
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 2,
+       "j": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2,
+       "j": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 2,
+       "j": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 2,
+       "j": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 2,
+       "j": 1
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 3,
+       "j": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3,
+       "j": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 3,
+       "j": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 3,
+       "j": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 3,
+       "j": 1
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 4,
+       "j": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4,
+       "j": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 4,
+       "j": 1
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 4,
+       "j": 1
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 4,
+       "j": 1
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 4,
+       "j": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4,
+       "j": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 4,
+       "j": 2
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 4,
+       "j": 2
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 4,
+       "j": 2
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 4,
+       "j": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4,
+       "j": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 4,
+       "j": 3
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 4,
+       "j": 3
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 4,
+       "j": 3
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 4,
+       "j": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4,
+       "j": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 4,
+       "j": 4
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 4,
+       "j": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 4,
+       "j": 4
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 5,
+       "j": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 5,
+       "j": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 5,
+       "j": 4
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 5,
+       "j": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 5,
+       "j": 4
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 6,
+       "j": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 6,
+       "j": 4
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 6,
+       "j": 4
+      }
+     }
+    ],
+    "call": "minPlatforms([900, 940, 950, 1100, 1500, 1800], [910, 1200, 1120, 1130, 1900, 2000])"
+   }
   },
   {
    "id": "05-73-overlapping-rectangles-total-area",
@@ -1370,7 +4263,8 @@
    "notes": {},
    "tests": "assert computeArea(-3,0,3,4,0,-1,9,2) == 45\nassert computeArea(-2,-2,2,2,-2,-2,2,2) == 16\nassert computeArea(0,0,1,1,2,2,3,3) == 2\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "05-74-merge-k-interval-lists",
@@ -1387,7 +4281,8 @@
    "notes": {},
    "tests": "assert mergeKLists([[[1,3],[5,7]],[[2,4],[6,8]],[[9,10]]]) == [[1,4],[5,8],[9,10]]\nassert mergeKLists([[[1,2]],[[3,4]],[[5,6]]]) == [[1,2],[3,4],[5,6]]\nassert mergeKLists([]) == []\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "05-75-find-median-from-data-stream",
@@ -1407,7 +4302,8 @@
    },
    "tests": "assert mf.findMedian() == 1.5\nmf.addNum(3)\nassert mf.findMedian() == 2.0\nmf.addNum(4)\nassert mf.findMedian() == 2.5\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=295"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=295",
+   "trace": null
   },
   {
    "id": "05-76-describe-the-painting",
@@ -1424,7 +4320,8 @@
    "notes": {},
    "tests": "assert res[0][:2] == [1, 4]\nassert 5 in res[0][2] and 3 in res[0][2]\nassert res[1][:2] == [4, 7]\nassert 7 in res[1][2] and 3 in res[1][2]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1943"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1943",
+   "trace": null
   },
   {
    "id": "05-77-amount-of-new-area-painted-each-day",
@@ -1446,7 +4343,8 @@
    },
    "tests": "assert amountPainted([[1,4],[4,7],[5,8]]) == [3,3,1]\nassert amountPainted([[1,5],[1,5]]) == [4,0]\nassert amountPainted([[1,2],[2,3],[3,4]]) == [1,1,1]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2158"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2158",
+   "trace": null
   },
   {
    "id": "05-78-minimum-interval-to-include-each-query",
@@ -1465,7 +4363,8 @@
    },
    "tests": "assert minInterval([[1,4],[2,4],[3,6],[4,4]], [2,3,4,5]) == [3,3,1,4]\nassert minInterval([[2,3],[2,5],[1,8],[20,25]], [2,19,5,22]) == [2,-1,4,6]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2158"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2158",
+   "trace": null
   },
   {
    "id": "05-79-largest-rectangle-in-histogram",
@@ -1482,7 +4381,357 @@
    "notes": {},
    "tests": "assert largestRectangleArea([2,1,5,6,2,3]) == 10\nassert largestRectangleArea([2,4]) == 4\nassert largestRectangleArea([1]) == 1\nassert largestRectangleArea([1,1,1,1]) == 4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=84"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=84",
+   "trace": {
+    "rows": [
+     {
+      "name": "heights",
+      "kind": "numbers",
+      "values": [
+       2,
+       1,
+       5,
+       6,
+       2,
+       3
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 6
+      }
+     }
+    ],
+    "call": "largestRectangleArea([2, 1, 5, 6, 2, 3])"
+   }
   },
   {
    "id": "05-80-count-integers-in-intervals",
@@ -1502,7 +4751,8 @@
    },
    "tests": "assert ci.count() == 6\nci.add(5, 8)\nassert ci.count() == 8\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2276"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2276",
+   "trace": null
   },
   {
    "id": "05-81-count-integers-in-intervals-full",
@@ -1523,7 +4773,8 @@
    },
    "tests": "assert cif.count() == 6\ncif.add(5, 8)\nassert cif.count() == 8\ncif.add(1, 10)\nassert cif.count() == 10\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2276"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2276",
+   "trace": null
   },
   {
    "id": "05-82-maximum-profit-in-job-scheduling",
@@ -1540,7 +4791,8 @@
    "notes": {},
    "tests": "assert jobScheduling([1,2,3,3],[3,4,5,6],[50,10,40,70]) == 120\nassert jobScheduling([1,2,3,4,6],[3,5,10,6,9],[20,20,100,70,60]) == 150\nassert jobScheduling([1,1,1],[2,3,4],[5,6,4]) == 6\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1235"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1235",
+   "trace": null
   },
   {
    "id": "05-83-video-stitching",
@@ -1557,7 +4809,8 @@
    "notes": {},
    "tests": "assert videoStitching([[0,2],[4,6],[8,10],[1,9],[1,5],[5,9]], 10) == 3\nassert videoStitching([[0,1],[1,2]], 5) == -1\nassert videoStitching([[0,1],[6,8],[0,2],[5,6],[0,4],[0,3],[6,7],[1,3],[4,7],[1,4],[2,5],[2,6],[3,4],[4,5],[5,7],[6,9]], 9) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1024"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1024",
+   "trace": null
   },
   {
    "id": "05-84-jump-game-ii-as-interval-cover",
@@ -1574,7 +4827,158 @@
    "notes": {},
    "tests": "assert jump([2,3,1,1,4]) == 2\nassert jump([2,3,0,1,4]) == 2\nassert jump([1,2,1,1,1]) == 3\nassert jump([0]) == 0\nassert jump([1,1,1,1]) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=45"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=45",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       1,
+       2,
+       1,
+       1,
+       1
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 3
+      }
+     }
+    ],
+    "call": "jump([1, 2, 1, 1, 1])"
+   }
   },
   {
    "id": "05-85-minimum-number-of-intervals-to-cover-a-range",
@@ -1591,7 +4995,8 @@
    "notes": {},
    "tests": "assert minIntervalsCover([[1,3],[2,5],[4,7]], 1, 7) == 3\nassert minIntervalsCover([[1,2],[3,4]], 1, 4) == -1\nassert minIntervalsCover([[1,10]], 1, 10) == 1\nassert minIntervalsCover([[1,3],[2,4],[3,6],[5,8]], 1, 8) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "05-86-weighted-job-scheduling-maximize-profit",
@@ -1611,7 +5016,8 @@
    },
    "tests": "assert weightedJobSchedule([(1,3,20),(2,5,20),(3,10,100),(4,6,70),(6,9,60)]) == 150\nassert weightedJobSchedule([(1,2,50),(1,3,10),(2,3,40),(2,4,25)]) == 90\nassert weightedJobSchedule([(1,4,3),(2,5,4),(3,6,5)]) == 5\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "05-87-minimum-cost-to-cut-a-stick-full",
@@ -1630,7 +5036,315 @@
    },
    "tests": "assert minCost(7, [1,3,4,5]) == 16\nassert minCost(9, [5,6,1,4,2]) == 22\nassert minCost(4, [2]) == 4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1547"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1547",
+   "trace": {
+    "rows": [
+     {
+      "name": "cuts",
+      "kind": "numbers",
+      "values": [
+       1,
+       3,
+       4,
+       5
+      ],
+      "movers": [
+       "j"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 5
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 5
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 5
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 5
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 5
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 5
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "j": 5
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 5
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "j": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 4
+      }
+     }
+    ],
+    "call": "minCost(7, [1, 3, 4, 5])"
+   }
   },
   {
    "id": "05-88-strange-printer-ii",
@@ -1647,7 +5361,8 @@
    "notes": {},
    "tests": "assert isPrintable([[1,1,1,1],[1,2,2,1],[1,2,2,1],[1,1,1,1]]) == True\nassert isPrintable([[1,1,1],[3,1,3]]) == False\nassert isPrintable([[1,2],[2,1]]) == False\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1591"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1591",
+   "trace": null
   },
   {
    "id": "05-89-minimum-difficulty-of-a-job-schedule",
@@ -1666,7 +5381,8 @@
    },
    "tests": "assert minDifficulty([6,5,4,3,2,1], 2) == 7\nassert minDifficulty([9,9,9], 4) == -1\nassert minDifficulty([1,1,1], 3) == 3\nassert minDifficulty([7,1,7,1,7,1], 3) == 15\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1335"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1335",
+   "trace": null
   },
   {
    "id": "05-90-zuma-game-with-interval-dp",
@@ -1685,7 +5401,8 @@
    },
    "tests": "assert findMinStep('WRRBBW', 'RB') == -1\nassert findMinStep('WWRRBBWW', 'WRBRW') == 2\nassert findMinStep('G', 'GGGGG') == 2\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=488"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=488",
+   "trace": null
   }
  ]
 }

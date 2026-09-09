@@ -47,7 +47,8 @@
    "verified": [
     "canFinish"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=207"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=207",
+   "trace": null
   },
   {
    "id": "10-02-course-schedule-ii",
@@ -66,7 +67,8 @@
    "verified": [
     "findOrder"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=210"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=210",
+   "trace": null
   },
   {
    "id": "10-03-find-eventual-safe-states",
@@ -83,7 +85,8 @@
    "notes": {},
    "tests": "assert eventualSafeNodes([[1,2],[2,3],[5],[0],[5],[],[]]) == [2,4,5,6]\nassert eventualSafeNodes([[1,2,3,4],[1,2],[3,4],[0,4],[]]) == [4]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=802"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=802",
+   "trace": null
   },
   {
    "id": "10-04-minimum-height-trees",
@@ -100,7 +103,8 @@
    "notes": {},
    "tests": "assert set(findMinHeightTrees(4, [[1,0],[1,2],[1,3]])) == {1}\nassert set(findMinHeightTrees(6, [[3,0],[3,1],[3,2],[3,4],[5,4]])) == {3,4}\nassert findMinHeightTrees(1, []) == [0]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=310"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=310",
+   "trace": null
   },
   {
    "id": "10-05-find-all-possible-recipes-from-given-supplies",
@@ -117,7 +121,8 @@
    "notes": {},
    "tests": "assert set(findAllRecipes([\"bread\"],[[\"yeast\",\"flour\"]],[\"yeast\",\"flour\",\"corn\"])) == {\"bread\"}\nassert set(findAllRecipes([\"bread\",\"sandwich\"],[[\"yeast\",\"flour\"],[\"bread\",\"meat\"]],[\"yeast\",\"flour\",\"meat\"])) == {\"bread\",\"sandwich\"}\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2115"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2115",
+   "trace": null
   },
   {
    "id": "10-06-loud-and-rich",
@@ -134,7 +139,8 @@
    "notes": {},
    "tests": "assert loudAndRich([[1,0],[2,1],[3,1],[3,7],[4,3],[5,3],[6,3]],[3,2,5,4,6,1,7,0]) == [5,5,2,5,4,5,6,7]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=851"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=851",
+   "trace": null
   },
   {
    "id": "10-07-parallel-courses",
@@ -151,7 +157,8 @@
    "notes": {},
    "tests": "assert minimumSemesters(3, [[1,3],[2,3]]) == 2\nassert minimumSemesters(3, [[1,2],[2,3],[3,1]]) == -1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1136"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1136",
+   "trace": null
   },
   {
    "id": "10-08-sequence-reconstruction",
@@ -168,7 +175,224 @@
    "notes": {},
    "tests": "assert sequenceReconstruction([1,2,3], [[1,2],[1,3],[2,3]]) == True\nassert sequenceReconstruction([1,2,3], [[1,2]]) == False\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=444"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=444",
+   "trace": {
+    "rows": [
+     {
+      "name": "org",
+      "kind": "numbers",
+      "values": [
+       1,
+       2,
+       3
+      ],
+      "movers": [
+       "idx"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 9,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {}
+     },
+     {
+      "l": 11,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 9,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {}
+     },
+     {
+      "l": 11,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 9,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {}
+     },
+     {
+      "l": 11,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 12,
+      "m": {}
+     },
+     {
+      "l": 13,
+      "m": {}
+     },
+     {
+      "l": 12,
+      "m": {}
+     },
+     {
+      "l": 13,
+      "m": {}
+     },
+     {
+      "l": 12,
+      "m": {}
+     },
+     {
+      "l": 13,
+      "m": {}
+     },
+     {
+      "l": 12,
+      "m": {}
+     },
+     {
+      "l": 14,
+      "m": {}
+     },
+     {
+      "l": 15,
+      "m": {}
+     },
+     {
+      "l": 16,
+      "m": {}
+     },
+     {
+      "l": 17,
+      "m": {
+       "idx": 0
+      }
+     },
+     {
+      "l": 18,
+      "m": {
+       "idx": 0
+      }
+     },
+     {
+      "l": 19,
+      "m": {
+       "idx": 0
+      }
+     },
+     {
+      "l": 20,
+      "m": {
+       "idx": 0
+      }
+     },
+     {
+      "l": 21,
+      "m": {
+       "idx": 0
+      }
+     },
+     {
+      "l": 22,
+      "m": {
+       "idx": 1
+      }
+     },
+     {
+      "l": 23,
+      "m": {
+       "idx": 1
+      }
+     }
+    ],
+    "call": "sequenceReconstruction([1, 2, 3], [[1, 2], [1, 3], [2, 3]])"
+   }
   },
   {
    "id": "10-09-check-if-graph-is-a-dag",
@@ -187,7 +411,8 @@
    "verified": [
     "isDAG"
    ],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-10-count-nodes-with-no-incoming-edges-sources",
@@ -206,7 +431,8 @@
    "verified": [
     "countSources"
    ],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-11-count-nodes-with-no-outgoing-edges-sinks",
@@ -225,7 +451,8 @@
    "verified": [
     "countSinks"
    ],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-12-find-all-nodes-reachable-from-source-in-dag",
@@ -242,7 +469,8 @@
    "notes": {},
    "tests": "assert reachableFromSource(5, [[0,1],[0,2],[1,3],[2,3],[3,4]], 0) == [0,1,2,3,4]\nassert reachableFromSource(5, [[0,1],[0,2],[1,3],[2,3],[3,4]], 2) == [2,3,4]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-13-longest-path-in-dag",
@@ -259,7 +487,8 @@
    "notes": {},
    "tests": "assert longestPathInDAG(4, [[0,1],[0,2],[1,3],[2,3]]) == 2\nassert longestPathInDAG(3, [[0,1],[1,2]]) == 2\nassert longestPathInDAG(1, []) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-14-topological-sort-with-dfs-coloring",
@@ -276,7 +505,8 @@
    "notes": {},
    "tests": "assert order.index(0) < order.index(3)\nassert topoSortDFSColor(3, [[0,1],[1,2],[2,0]]) == []\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-15-find-all-ancestors-of-a-node-in-a-dag",
@@ -293,7 +523,8 @@
    "notes": {},
    "tests": "assert res[6] == [0,1,2,3,4]\nassert res[3] == [0,1]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2192"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2192",
+   "trace": null
   },
   {
    "id": "10-16-build-dependency-ordering-for-packages",
@@ -310,7 +541,8 @@
    "notes": {},
    "tests": "assert order.index(\"a\") < order.index(\"b\") < order.index(\"c\")\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-17-find-nodes-that-can-reach-all-others-in-dag",
@@ -327,7 +559,8 @@
    "notes": {},
    "tests": "assert nodesReachAll(4, [[0,1],[0,2],[1,3],[2,3]]) == [0]\nassert nodesReachAll(3, [[0,1],[0,2]]) == [0]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-18-largest-number",
@@ -344,7 +577,8 @@
    "notes": {},
    "tests": "assert largestNumber([10,2]) == \"210\"\nassert largestNumber([3,30,34,5,9]) == \"9534330\"\nassert largestNumber([0,0]) == \"0\"\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=179"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=179",
+   "trace": null
   },
   {
    "id": "10-19-sort-array-by-increasing-frequency",
@@ -361,7 +595,8 @@
    "notes": {},
    "tests": "assert frequencySort([1,1,2,2,2,3]) == [3,1,1,2,2,2]\nassert frequencySort([2,3,1,3,2]) == [1,3,3,2,2]\nassert frequencySort([-1,1,-6,4,5,-6,1,4,1]) == [5,-1,4,4,-6,-6,1,1,1]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1636"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1636",
+   "trace": null
   },
   {
    "id": "10-20-find-the-winner-of-the-circular-game",
@@ -378,7 +613,8 @@
    "notes": {},
    "tests": "assert findTheWinner(5, 2) == 3\nassert findTheWinner(6, 5) == 1\nassert findTheWinner(1, 1) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1823"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1823",
+   "trace": null
   },
   {
    "id": "10-21-alien-dictionary",
@@ -395,7 +631,8 @@
    "notes": {},
    "tests": "assert alienOrder([\"wrt\",\"wrf\",\"er\",\"ett\",\"rftt\"]) == \"wertf\"\nassert alienOrder([\"z\",\"x\"]) == \"zx\"\nassert alienOrder([\"z\",\"x\",\"z\"]) == \"\"\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=269"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=269",
+   "trace": null
   },
   {
    "id": "10-22-build-a-matrix-with-conditions",
@@ -412,7 +649,8 @@
    "notes": {},
    "tests": "assert res != []\nassert buildMatrix(3, [[1,2],[2,3],[3,1]], [[1,2]]) == []\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2392"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2392",
+   "trace": null
   },
   {
    "id": "10-23-longest-increasing-path-in-a-matrix",
@@ -429,7 +667,8 @@
    "notes": {},
    "tests": "assert longestIncreasingPath([[9,9,4],[6,6,8],[2,1,1]]) == 4\nassert longestIncreasingPath([[3,4,5],[3,2,6],[2,2,1]]) == 4\nassert longestIncreasingPath([[1]]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=329"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=329",
+   "trace": null
   },
   {
    "id": "10-24-course-schedule-iv",
@@ -450,7 +689,8 @@
    },
    "tests": "assert checkIfPrerequisite(2, [[1,0]], [[0,1],[1,0]]) == [False, True]\nassert checkIfPrerequisite(3, [[1,2],[1,0],[2,0]], [[1,0],[1,2]]) == [True, True]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1462"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1462",
+   "trace": null
   },
   {
    "id": "10-25-parallel-courses-iii",
@@ -467,7 +707,8 @@
    "notes": {},
    "tests": "assert minimumTime(3, [[1,3],[2,3]], [3,2,5]) == 8\nassert minimumTime(5, [[1,5],[2,5],[3,5],[3,4],[4,5]], [1,2,3,4,5]) == 12\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2050"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2050",
+   "trace": null
   },
   {
    "id": "10-26-reconstruct-itinerary",
@@ -484,7 +725,8 @@
    "notes": {},
    "tests": "assert findItinerary([[\"MUC\",\"LHR\"],[\"JFK\",\"MUC\"],[\"SFO\",\"SJC\"],[\"LHR\",\"SFO\"]]) == [\"JFK\",\"MUC\",\"LHR\",\"SFO\",\"SJC\"]\nassert findItinerary([[\"JFK\",\"SFO\"],[\"JFK\",\"ATL\"],[\"SFO\",\"ATL\"],[\"ATL\",\"JFK\"],[\"ATL\",\"SFO\"]]) == [\"JFK\",\"ATL\",\"JFK\",\"SFO\",\"ATL\",\"SFO\"]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=332"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=332",
+   "trace": null
   },
   {
    "id": "10-27-time-needed-to-inform-all-employees",
@@ -501,7 +743,362 @@
    "notes": {},
    "tests": "assert numOfMinutes(1, 0, [-1], [0]) == 0\nassert numOfMinutes(6, 2, [2,2,-1,2,2,2], [0,0,1,0,0,0]) == 1\nassert numOfMinutes(7, 6, [1,2,3,4,5,6,-1], [0,6,5,4,3,2,1]) == 21\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1376"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1376",
+   "trace": {
+    "rows": [
+     {
+      "name": "manager",
+      "kind": "numbers",
+      "values": [
+       1,
+       2,
+       3,
+       4,
+       5,
+       6,
+       -1
+      ],
+      "movers": [
+       "emp"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {
+       "emp": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "emp": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "emp": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "emp": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "emp": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "emp": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "emp": 3
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "emp": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "emp": 4
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "emp": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "emp": 5
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "emp": 5
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "emp": 6
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "emp": 6
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "emp": 6
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "emp": 6
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "emp": 6
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "emp": 6
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "emp": 6
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "emp": 6
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "emp": 6
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "emp": 6
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "emp": 6
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "emp": 6
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "emp": 5
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "emp": 5
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "emp": 5
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "emp": 5
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "emp": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "emp": 5
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "emp": 4
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "emp": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "emp": 4
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "emp": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "emp": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "emp": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "emp": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "emp": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "emp": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "emp": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "emp": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "emp": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "emp": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "emp": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "emp": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "emp": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "emp": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "emp": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "emp": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "emp": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "emp": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "emp": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "emp": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "emp": 1
+      }
+     }
+    ],
+    "call": "numOfMinutes(7, 6, [1, 2, 3, 4, 5, 6, -1], [0, 6, 5, 4, 3, 2, 1])"
+   }
   },
   {
    "id": "10-28-all-ancestors-of-a-node-in-a-dag-propagation",
@@ -518,7 +1115,8 @@
    "notes": {},
    "tests": "assert res[6] == [0,1,2,3,4]\nassert res[7] == [0,1,2,3]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2192"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2192",
+   "trace": null
   },
   {
    "id": "10-29-sort-items-by-groups-respecting-dependencies",
@@ -535,7 +1133,8 @@
    "notes": {},
    "tests": "assert res != [] and len(res) == 8\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1203"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1203",
+   "trace": null
   },
   {
    "id": "10-30-minimum-semesters-with-at-most-k-courses-per-semester",
@@ -552,7 +1151,8 @@
    "notes": {},
    "tests": "assert minNumberOfSemesters(4, [[2,1],[3,1],[1,4]], 2) == 3\nassert minNumberOfSemesters(5, [[2,1],[3,1],[4,1],[1,5]], 2) == 4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-31-strange-printer-ii",
@@ -569,7 +1169,8 @@
    "notes": {},
    "tests": "assert isPrintable([[1,1,1,1],[1,2,2,1],[1,2,2,1],[1,1,1,1]]) == True\nassert isPrintable([[1,1,1],[3,1,3]]) == False\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1591"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1591",
+   "trace": null
   },
   {
    "id": "10-32-bfs-layer-count-in-a-dag",
@@ -586,7 +1187,8 @@
    "notes": {},
    "tests": "assert courseLevels(4, [[0,1],[0,2],[1,3],[2,3]]) == 3\nassert courseLevels(3, [[0,1],[1,2]]) == 3\nassert courseLevels(1, []) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-33-count-paths-from-source-to-destination-in-dag",
@@ -603,7 +1205,8 @@
    "notes": {},
    "tests": "assert countPaths(4, [[0,1],[0,2],[1,3],[2,3]], 0, 3) == 2\nassert countPaths(3, [[0,1],[0,2],[1,2]], 0, 2) == 2\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-34-widest-level-in-a-dag",
@@ -620,7 +1223,8 @@
    "notes": {},
    "tests": "assert maxWidth(4, [[0,1],[0,2],[1,3],[2,3]]) == 2\nassert maxWidth(5, [[0,1],[0,2],[0,3],[1,4],[2,4],[3,4]]) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-35-critical-path-earliest-finish-time",
@@ -637,7 +1241,8 @@
    "notes": {},
    "tests": "assert criticalPathLength(3, [[0,1],[0,2],[1,2]], [3,2,1]) == 6\nassert criticalPathLength(2, [[0,1]], [5,3]) == 8\nassert criticalPathLength(1, [], [4]) == 4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-36-alien-dictionary-full-with-all-edge-cases",
@@ -654,7 +1259,8 @@
    "notes": {},
    "tests": "assert alienOrderFull([\"wrt\",\"wrf\",\"er\",\"ett\",\"rftt\"]) == \"wertf\"\nassert alienOrderFull([\"z\",\"x\"]) == \"zx\"\nassert alienOrderFull([\"z\",\"x\",\"z\"]) == \"\"\nassert alienOrderFull([\"abc\",\"ab\"]) == \"\"\nassert alienOrderFull([\"a\",\"b\",\"a\"]) == \"\"\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=269"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=269",
+   "trace": null
   },
   {
    "id": "10-37-sort-items-by-groups-respecting-dependencies-full",
@@ -671,7 +1277,8 @@
    "notes": {},
    "tests": "assert len(res) == 8 and res != []\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1203"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1203",
+   "trace": null
   },
   {
    "id": "10-38-parallel-courses-iii-full",
@@ -688,7 +1295,8 @@
    "notes": {},
    "tests": "assert minimumTimeFull(3, [[1,3],[2,3]], [3,2,5]) == 8\nassert minimumTimeFull(5, [[1,5],[2,5],[3,5],[3,4],[4,5]], [1,2,3,4,5]) == 12\nassert minimumTimeFull(1, [], [5]) == 5\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2050"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2050",
+   "trace": null
   },
   {
    "id": "10-39-minimum-number-of-semesters-bitmask-dp",
@@ -705,7 +1313,8 @@
    "notes": {},
    "tests": "assert minNumberOfSemestersBitmask(4, [[2,1],[3,1],[1,4]], 2) == 3\nassert minNumberOfSemestersBitmask(5, [[2,1],[3,1],[4,1],[1,5]], 2) == 4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1494"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1494",
+   "trace": null
   },
   {
    "id": "10-40-reconstruct-itinerary-full-hierholzer",
@@ -722,7 +1331,8 @@
    "notes": {},
    "tests": "assert findItineraryFull([[\"MUC\",\"LHR\"],[\"JFK\",\"MUC\"],[\"SFO\",\"SJC\"],[\"LHR\",\"SFO\"]]) == [\"JFK\",\"MUC\",\"LHR\",\"SFO\",\"SJC\"]\nassert findItineraryFull([[\"JFK\",\"SFO\"],[\"JFK\",\"ATL\"],[\"SFO\",\"ATL\"],[\"ATL\",\"JFK\"],[\"ATL\",\"SFO\"]]) == [\"JFK\",\"ATL\",\"JFK\",\"SFO\",\"ATL\",\"SFO\"]\nassert findItineraryFull([[\"JFK\",\"KUL\"],[\"JFK\",\"NRT\"],[\"NRT\",\"JFK\"]]) == [\"JFK\",\"NRT\",\"JFK\",\"KUL\"]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=332"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=332",
+   "trace": null
   },
   {
    "id": "10-41-longest-path-with-different-adjacent-characters",
@@ -739,7 +1349,338 @@
    "notes": {},
    "tests": "assert longestPathDiffChars([-1,0,0,1,1,2], \"abacbe\") == 3\nassert longestPathDiffChars([-1,0,0,0], \"aabc\") == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2246"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2246",
+   "trace": {
+    "rows": [
+     {
+      "name": "parent",
+      "kind": "numbers",
+      "values": [
+       -1,
+       0,
+       0,
+       1,
+       1,
+       2
+      ],
+      "movers": [
+       "i"
+      ]
+     },
+     {
+      "name": "s",
+      "kind": "text",
+      "values": [
+       "a",
+       "b",
+       "a",
+       "c",
+       "b",
+       "e"
+      ],
+      "movers": [
+       "child"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 9,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 9,
+      "m": {
+       "child": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 13,
+      "m": {}
+     },
+     {
+      "l": 14,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {
+       "child": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "child": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "child": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 13,
+      "m": {}
+     },
+     {
+      "l": 14,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "child": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 9,
+      "m": {
+       "child": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 13,
+      "m": {}
+     },
+     {
+      "l": 14,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {
+       "child": 5
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "child": 5
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "child": 5
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "child": 5
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "child": 5
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "child": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "child": 2
+      }
+     }
+    ],
+    "call": "longestPathDiffChars([-1, 0, 0, 1, 1, 2], 'abacbe')"
+   }
   },
   {
    "id": "10-42-maximum-employees-to-be-invited-to-a-meeting",
@@ -756,7 +1697,284 @@
    "notes": {},
    "tests": "assert maximumInvitations([2,2,1,2]) == 3\nassert maximumInvitations([1,2,0]) == 3\nassert maximumInvitations([3,0,1,4,1]) == 4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2127"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2127",
+   "trace": {
+    "rows": [
+     {
+      "name": "favorite",
+      "kind": "numbers",
+      "values": [
+       3,
+       0,
+       1,
+       4,
+       1
+      ],
+      "movers": [
+       "node"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {
+       "node": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "node": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "node": 2
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "node": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "node": 2
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "node": 2
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "node": 2
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "node": 2
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "node": 2
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "node": 2
+      }
+     },
+     {
+      "l": 17,
+      "m": {
+       "node": 2
+      }
+     },
+     {
+      "l": 18,
+      "m": {
+       "node": 2
+      }
+     },
+     {
+      "l": 19,
+      "m": {
+       "node": 0
+      }
+     },
+     {
+      "l": 20,
+      "m": {
+       "node": 0
+      }
+     },
+     {
+      "l": 21,
+      "m": {
+       "node": 0
+      }
+     },
+     {
+      "l": 22,
+      "m": {
+       "node": 0
+      }
+     },
+     {
+      "l": 19,
+      "m": {
+       "node": 3
+      }
+     },
+     {
+      "l": 20,
+      "m": {
+       "node": 3
+      }
+     },
+     {
+      "l": 21,
+      "m": {
+       "node": 3
+      }
+     },
+     {
+      "l": 22,
+      "m": {
+       "node": 3
+      }
+     },
+     {
+      "l": 19,
+      "m": {
+       "node": 4
+      }
+     },
+     {
+      "l": 20,
+      "m": {
+       "node": 4
+      }
+     },
+     {
+      "l": 21,
+      "m": {
+       "node": 4
+      }
+     },
+     {
+      "l": 22,
+      "m": {
+       "node": 4
+      }
+     },
+     {
+      "l": 19,
+      "m": {
+       "node": 1
+      }
+     },
+     {
+      "l": 20,
+      "m": {
+       "node": 1
+      }
+     },
+     {
+      "l": 21,
+      "m": {
+       "node": 1
+      }
+     },
+     {
+      "l": 22,
+      "m": {
+       "node": 1
+      }
+     },
+     {
+      "l": 19,
+      "m": {
+       "node": 0
+      }
+     },
+     {
+      "l": 23,
+      "m": {
+       "node": 0
+      }
+     },
+     {
+      "l": 24,
+      "m": {
+       "node": 0
+      }
+     },
+     {
+      "l": 28,
+      "m": {
+       "node": 0
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "node": 0
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "node": 0
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "node": 0
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "node": 0
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "node": 0
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "node": 0
+      }
+     }
+    ],
+    "call": "maximumInvitations([3, 0, 1, 4, 1])"
+   }
   },
   {
    "id": "10-43-minimum-score-of-a-path-between-two-cities",
@@ -773,7 +1991,8 @@
    "notes": {},
    "tests": "assert minScore(4, [[1,2,9],[2,3,6],[2,4,5],[1,4,7]]) == 5\nassert minScore(4, [[1,2,2],[1,3,4],[3,4,7]]) == 2\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2492"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2492",
+   "trace": null
   },
   {
    "id": "10-44-find-critical-and-pseudo-critical-edges-in-mst",
@@ -790,7 +2009,8 @@
    "notes": {},
    "tests": "assert 0 in res[0] and 1 in res[0]  # edges 0 and 1 are critical (weight-1 edges)\nres2 = findCriticalAndPseudoCriticalEdges(4, [[0,1,1],[1,2,1],[2,3,1],[0,3,1]])\nassert res2[0] == []\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1489"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1489",
+   "trace": null
   },
   {
    "id": "10-45-count-subtrees-with-max-distance-between-cities",
@@ -807,7 +2027,8 @@
    "notes": {},
    "tests": "assert countSubgraphsForEachDiameter(4, [[1,2],[2,3],[2,4]]) == [4,3,0]\nassert countSubgraphsForEachDiameter(2, [[1,2]]) == [1]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1617"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1617",
+   "trace": null
   },
   {
    "id": "10-46-find-order-to-finish-tasks-basic-topological-sort",
@@ -826,7 +2047,8 @@
    "verified": [
     "findOrder"
    ],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-47-check-if-a-path-exists-in-dag-from-source-to-destinati",
@@ -843,7 +2065,8 @@
    "notes": {},
    "tests": "assert pathExistsDAG(4,[[0,1],[1,2],[2,3]],0,3) == True\nassert pathExistsDAG(4,[[0,1],[2,3]],0,3) == False\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-48-count-nodes-with-no-prerequisites",
@@ -860,7 +2083,8 @@
    "notes": {},
    "tests": "assert countNoPrereqs(4,[[1,0],[2,0],[3,1]]) == 1  # only task 0\nassert countNoPrereqs(3,[]) == 3\nassert countNoPrereqs(4,[[1,0],[2,1],[3,2]]) == 1\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-49-find-all-tasks-that-must-be-done-before-task-k",
@@ -877,7 +2101,8 @@
    "notes": {},
    "tests": "assert prerequisitesOf(4,[[1,0],[2,1],[3,2]],3) == [0,1,2]\nassert prerequisitesOf(4,[[1,0],[2,0],[3,1],[3,2]],3) == [0,1,2]\nassert prerequisitesOf(3,[[1,0]],0) == []\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-50-print-all-topological-orderings-small-graph",
@@ -894,7 +2119,8 @@
    "notes": {},
    "tests": "assert len(orders)==2\nassert all(o.index(0)<o.index(2) and o.index(1)<o.index(2) for o in orders)\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-51-check-if-tasks-can-be-completed-in-time",
@@ -913,7 +2139,162 @@
    },
    "tests": "# Tasks 0,1 in parallel (each take 3), then task 2 (takes 2) => total=5\nassert canCompleteInTime(3,[3,3,2],[[0,2],[1,2]],5) == True\nassert canCompleteInTime(3,[3,3,2],[[0,2],[1,2]],4) == False\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": {
+    "rows": [
+     {
+      "name": "durations",
+      "kind": "numbers",
+      "values": [
+       3,
+       3,
+       2
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 9,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {}
+     },
+     {
+      "l": 11,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 9,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {}
+     },
+     {
+      "l": 11,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 12,
+      "m": {}
+     },
+     {
+      "l": 13,
+      "m": {}
+     }
+    ],
+    "call": "canCompleteInTime(3, [3, 3, 2], [[0, 2], [1, 2]], 5)"
+   }
   },
   {
    "id": "10-52-minimum-time-to-finish-all-jobs-simplified-linear",
@@ -930,7 +2311,154 @@
    "notes": {},
    "tests": "# Chain 0->1->2 with durations 2,3,4 => 2+3+4=9\nassert minTimeToFinish(3,[2,3,4],[[0,1],[1,2]]) == 9\n# Parallel: 0->2 and 1->2; durations [3,5,1] => max(3,5)+1=6\nassert minTimeToFinish(3,[3,5,1],[[0,2],[1,2]]) == 6\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": {
+    "rows": [
+     {
+      "name": "durations",
+      "kind": "numbers",
+      "values": [
+       2,
+       3,
+       4
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 9,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 9,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 11,
+      "m": {}
+     }
+    ],
+    "call": "minTimeToFinish(3, [2, 3, 4], [[0, 1], [1, 2]])"
+   }
   },
   {
    "id": "10-53-find-the-next-task-after-completing-prerequisites",
@@ -950,7 +2478,8 @@
    },
    "tests": "assert nextAvailableTasks(4,[[1,0],[2,0],[3,1],[3,2]],0,ind)==[1,2]\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-54-count-total-prerequisites-for-each-task",
@@ -967,7 +2496,8 @@
    "notes": {},
    "tests": "assert countAllPrereqs(4,[[1,0],[2,1],[3,2]]) == [0,1,2,3]\nassert countAllPrereqs(3,[]) == [0,0,0]\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-55-build-order-tasks-with-dependencies",
@@ -984,7 +2514,8 @@
    "notes": {},
    "tests": "assert len(res)==6 and res.index('a')<res.index('d') and res.index('d')<res.index('c')\nassert buildOrder(['a','b'],[('a','b'),('b','a')]) == []\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-56-detect-if-adding-edge-creates-a-cycle",
@@ -1004,7 +2535,8 @@
    },
    "tests": "# 0->1->2->3; adding 3->0 creates cycle\nassert wouldCreateCycle(4,[[0,1],[1,2],[2,3]],3,0) == True\n# 0->1->2->3; adding 0->3 does NOT (just a shortcut)\nassert wouldCreateCycle(4,[[0,1],[1,2],[2,3]],0,3) == False\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-57-find-number-of-tasks-reachable-from-start",
@@ -1021,7 +2553,8 @@
    "notes": {},
    "tests": "assert countReachableFromStart(5,[[0,1],[0,2],[1,3],[2,4]],0) == 5\nassert countReachableFromStart(5,[[0,1],[2,3]],0) == 2\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-58-longest-chain-of-tasks",
@@ -1038,7 +2571,8 @@
    "notes": {},
    "tests": "assert longestChain(4,[[0,1],[1,2],[2,3]]) == 4\nassert longestChain(4,[[0,2],[1,2],[2,3]]) == 3\nassert longestChain(3,[]) == 1\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-59-find-all-independent-tasks-no-prerequisites",
@@ -1055,7 +2589,8 @@
    "notes": {},
    "tests": "assert independentTasks(4,[[1,0],[2,0],[3,1]]) == [0]\nassert independentTasks(3,[]) == [0,1,2]\nassert sorted(independentTasks(4,[[2,0],[3,1]])) == [0,1]\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-60-task-dependency-level-level-in-topological-order",
@@ -1072,7 +2607,8 @@
    "notes": {},
    "tests": "assert taskLevels(4,[[1,0],[2,1],[3,2]]) == [0,1,2,3]\nassert taskLevels(4,[[2,0],[2,1],[3,2]]) == [0,0,1,2]\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-61-count-tasks-at-each-dependency-level",
@@ -1089,7 +2625,8 @@
    "notes": {},
    "tests": "assert countTasksPerLevel(4,[[1,0],[2,1],[3,2]]) == [1,1,1,1]\nassert countTasksPerLevel(5,[[2,0],[2,1],[3,2],[4,2]]) == [2,1,2]\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-62-sort-tasks-by-priority-respecting-dependencies",
@@ -1108,7 +2645,8 @@
    },
    "tests": "assert res[0]==1 and res[1]==0 and res[2]==2\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-63-find-all-leaf-tasks-no-dependents",
@@ -1125,7 +2663,8 @@
    "notes": {},
    "tests": "assert sorted(leafTasks(4,[[1,0],[2,0],[3,1],[3,2]])) == [3]\nassert sorted(leafTasks(3,[])) == [0,1,2]\nassert sorted(leafTasks(4,[[1,0],[2,1]])) == [2,3]\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-64-check-if-two-tasks-are-in-dependency-order",
@@ -1142,7 +2681,8 @@
    "notes": {},
    "tests": "assert isABeforeB(4,[[1,0],[2,1],[3,2]],0,3) == True\nassert isABeforeB(4,[[1,0],[2,1],[3,2]],2,0) == False\nassert isABeforeB(4,[[1,0],[2,0]],1,2) == False\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-65-minimum-tasks-to-remove-to-make-dag-acyclic",
@@ -1161,7 +2701,8 @@
    },
    "tests": "assert minEdgesToRemoveForDAG(4,[[0,1],[1,2],[2,3],[3,1]]) == 1\nassert minEdgesToRemoveForDAG(3,[[0,1],[1,2],[2,0]]) == 1\nassert minEdgesToRemoveForDAG(3,[[0,1],[1,2]]) == 0\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-66-course-schedule-iii-greedy-scheduling",
@@ -1180,7 +2721,8 @@
    },
    "tests": "assert scheduleCourse([[100,200],[200,1300],[1000,1250],[2000,3200]]) == 3\nassert scheduleCourse([[1,2]]) == 1\nassert scheduleCourse([[3,2],[4,3]]) == 0\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=630"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=630",
+   "trace": null
   },
   {
    "id": "10-67-minimum-height-trees-full-with-edge-cases",
@@ -1197,7 +2739,8 @@
    "notes": {},
    "tests": "assert sorted(findMinHeightTrees(4,[[1,0],[1,2],[1,3]])) == [1]\nassert sorted(findMinHeightTrees(6,[[3,0],[3,1],[3,2],[3,4],[5,4]])) == [3,4]\nassert findMinHeightTrees(1,[]) == [0]\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=310"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=310",
+   "trace": null
   },
   {
    "id": "10-68-find-all-ancestors-of-a-node-in-a-dag-full",
@@ -1214,7 +2757,8 @@
    "notes": {},
    "tests": "assert res[6]==[0,1,2,3,4] and res[7]==[0,1,2,3]\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2192"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2192",
+   "trace": null
   },
   {
    "id": "10-69-parallel-courses-minimum-semesters",
@@ -1231,7 +2775,8 @@
    "notes": {},
    "tests": "assert minimumSemesters(3,[[1,3],[2,3]]) == 2\nassert minimumSemesters(3,[[1,2],[2,3],[3,1]]) == -1\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1136"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1136",
+   "trace": null
   },
   {
    "id": "10-70-topological-sort-lexicographically-smallest",
@@ -1248,7 +2793,8 @@
    "notes": {},
    "tests": "assert res==[3,1,2,0]\nres2=lexSmallestTopo(4,[[0,1],[0,2],[1,3],[2,3]])\nassert res2==[0,1,2,3]\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-71-detect-cycle-in-undirected-graph-dfs",
@@ -1265,7 +2811,8 @@
    "notes": {},
    "tests": "assert hasCycleUndirected(4,[[0,1],[1,2],[2,0],[3,0]]) == True\nassert hasCycleUndirected(4,[[0,1],[1,2],[2,3]]) == False\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-72-number-of-ways-to-reach-destination-in-dag",
@@ -1282,7 +2829,8 @@
    "notes": {},
    "tests": "assert countPathsDAG(4,[[0,1],[0,2],[1,3],[2,3]],0,3) == 2\nassert countPathsDAG(5,[[0,1],[0,2],[1,3],[2,3],[3,4]],0,4) == 2\nassert countPathsDAG(3,[[0,1],[1,2]],0,2) == 1\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-73-minimum-edges-to-add-to-make-graph-strongly-connected-",
@@ -1299,7 +2847,8 @@
    "notes": {},
    "tests": "assert minEdgesForSCC(3,[[0,1],[1,2]]) == 1\nassert minEdgesForSCC(4,[[0,1],[2,3]]) == 2\nassert minEdgesForSCC(3,[[0,1],[1,2],[2,0]]) == 0\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-74-find-strongly-connected-components-kosaraju-s-algorith",
@@ -1316,7 +2865,8 @@
    "notes": {},
    "tests": "assert sizes==[1,1,3]  # {0,1,2}, {3}, {4}\nsccs2=kosarajuSCC(3,[[0,1],[1,2],[2,0]])\nassert len(sccs2)==1 and len(sccs2[0])==3\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-75-topological-sort-with-priority-min-heap-queue",
@@ -1333,7 +2883,8 @@
    "notes": {},
    "tests": "assert topoWithPriority(6,[[5,2],[5,0],[4,0],[4,1],[2,3],[3,1]]) == [4,5,0,2,3,1]\nassert topoWithPriority(4,[[0,1],[0,2],[1,3],[2,3]]) == [0,1,2,3]\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-76-check-if-graph-has-a-unique-topological-order",
@@ -1350,7 +2901,8 @@
    "notes": {},
    "tests": "assert hasUniqueTopoOrder(4,[[0,1],[1,2],[2,3]]) == True\nassert hasUniqueTopoOrder(4,[[0,1],[0,2],[1,3],[2,3]]) == False\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-77-find-all-hamiltonian-paths-in-dag-small-graph",
@@ -1367,7 +2919,8 @@
    "notes": {},
    "tests": "assert [0,1,3] not in paths  # can't reach 2\n# path 0->1->3 only visits 3 nodes\nassert len(paths)==0  # no HP since 0->1->3 skips 2 and 0->2->3 skips 1\npaths2=hamiltonianPathsDAG(3,[[0,1],[1,2],[0,2]])\nassert [0,1,2] in paths2\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-78-minimum-cost-to-finish-all-courses-in-order",
@@ -1387,7 +2940,8 @@
    },
    "tests": "assert minCostAllCourses(3,[1,2,3],[[1,0],[2,1]]) == 6\nassert minCostAllCourses(3,[5,3,4],[]) == 12\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-79-count-paths-from-source-to-destination-in-dag",
@@ -1404,7 +2958,8 @@
    "notes": {},
    "tests": "assert countPathsToDestination(4,[[0,1],[0,2],[1,3],[2,3]],0,3) == 2\nassert countPathsToDestination(5,[[0,1],[0,2],[1,3],[2,3],[3,4]],0,4) == 2\nassert countPathsToDestination(3,[[0,1],[1,2]],0,2) == 1\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-80-course-schedule-iv-reachability-queries",
@@ -1428,7 +2983,8 @@
    },
    "tests": "for solve in (checkIfPrerequisite, checkIfPrerequisiteFloyd):\n    assert solve(2, [[1,0]], [[0,1],[1,0]]) == [False, True]\n    assert solve(3, [[1,2],[1,0],[2,0]], [[1,0],[1,2]]) == [True, True]\n    assert solve(2, [[1,0]], [[1,1]]) == [False]           # a course is not its own prereq\n    assert solve(5, [[0,1],[1,2],[2,3],[3,4]], [[0,4],[4,0]]) == [True, False]\n    assert solve(3, [], [[0,1]]) == [False]                # no prerequisites at all\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1462"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1462",
+   "trace": null
   },
   {
    "id": "10-81-longest-path-in-dag-with-node-weights",
@@ -1445,7 +3001,8 @@
    "notes": {},
    "tests": "# 0(1)->1(3)->2(2): best path = 1+3+2=6\nassert longestPathDAG(3,[[0,1],[1,2]],[1,3,2]) == 6\n# 0(5)->2(1) or 1(3)->2(1): best=5+1=6\nassert longestPathDAG(3,[[0,2],[1,2]],[5,3,1]) == 6\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-82-kosaraju-s-algorithm-for-strongly-connected-components",
@@ -1462,7 +3019,8 @@
    "notes": {},
    "tests": "assert sizes==[1,1,3]\nsccs2=kosarajuFull(4,[[0,1],[1,2],[2,3],[3,0]])\nassert len(sccs2)==1 and len(sccs2[0])==4\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-83-minimum-vertices-to-traverse-all-nodes-dag-covering",
@@ -1479,7 +3037,8 @@
    "notes": {},
    "tests": "assert sorted(minVerticesToTraverseAll(6,[[0,1],[0,2],[2,5],[3,4],[4,2]])) == [0,3]\nassert sorted(minVerticesToTraverseAll(4,[[0,1],[1,2],[2,3]])) == [0]\nassert sorted(minVerticesToTraverseAll(3,[])) == [0,1,2]\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-84-topological-sort-for-matrix-chain-multiplication-depen",
@@ -1499,7 +3058,8 @@
    },
    "tests": "assert len(order)==4\nassert order.index(0)<order.index(2)\nassert order.index(2)<order.index(3)\nassert order.index(1)<order.index(3)\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-85-critical-path-method-find-critical-path-length-in-proj",
@@ -1516,7 +3076,8 @@
    "notes": {},
    "tests": "# A(3)->C(2)->D(1), B(4)->C(2)->D(1). Critical path = B+C+D = 4+2+1=7\nassert criticalPathLength(4,[3,4,2,1],[[0,2],[1,2],[2,3]]) == 7\nassert criticalPathLength(3,[1,2,3],[[0,2],[1,2]]) == 5\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-86-job-sequencing-with-deadlines-greedy-topological-insig",
@@ -1535,7 +3096,8 @@
    },
    "tests": "assert count==3 and profit==142\ncount2,profit2=jobSequencing([(20,1),(15,2),(10,1),(5,3),(1,3)])\nassert profit2==40\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-87-shortest-path-in-dag-single-source",
@@ -1552,7 +3114,8 @@
    "notes": {},
    "tests": "assert d[0]==0 and d[5]==5\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-88-all-topological-sorts-enumerate-all-valid-orderings",
@@ -1569,7 +3132,8 @@
    "notes": {},
    "tests": "assert [0,1,2,3] in sorts and [0,2,1,3] in sorts\nassert len(sorts)==2\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-89-check-if-directed-graph-is-a-tree",
@@ -1586,7 +3150,8 @@
    "notes": {},
    "tests": "assert isDirectedTree(4,[[0,1],[0,2],[1,3]]) == True\nassert isDirectedTree(4,[[0,1],[1,2],[2,3],[3,0]]) == False  # cycle\nassert isDirectedTree(4,[[0,1],[0,2]]) == False  # only 2 edges for 4 nodes\nassert isDirectedTree(4,[[0,1],[0,2],[1,3],[2,3]]) == False  # node 3 has 2 parents\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "10-90-build-a-complete-ranking-from-partial-rankings",
@@ -1605,7 +3170,8 @@
    },
    "tests": "assert sequenceReconstruction([1,2,3],[[1,2],[1,3],[2,3]]) == True\nassert sequenceReconstruction([1,2,3],[[1,2]]) == False\nassert sequenceReconstruction([4,1,5,2,6,3],[[5,2,6,3],[4,1,5,2]]) == True\nprint('All tests passed!')",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=444"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=444",
+   "trace": null
   }
  ]
 }

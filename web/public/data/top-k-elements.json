@@ -41,7 +41,8 @@
    "notes": {},
    "tests": "assert kl.add(3) == 4\nassert kl.add(5) == 5\nassert kl.add(10) == 5\nassert kl.add(9) == 8\nassert kl.add(4) == 8\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=703"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=703",
+   "trace": null
   },
   {
    "id": "11-02-last-stone-weight",
@@ -58,7 +59,8 @@
    "notes": {},
    "tests": "assert lastStoneWeight([2,7,4,1,8,1]) == 1\nassert lastStoneWeight([1]) == 1\nassert lastStoneWeight([2,2]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1046"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1046",
+   "trace": null
   },
   {
    "id": "11-03-k-closest-points-to-origin",
@@ -77,7 +79,8 @@
    "verified": [
     "kClosest"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=973"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=973",
+   "trace": null
   },
   {
    "id": "11-04-take-gifts-from-the-richest-pile",
@@ -94,7 +97,8 @@
    "notes": {},
    "tests": "assert pickGifts([25,64,9,4,100], 4) == 29\nassert pickGifts([1,1,1,1], 4) == 4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2558"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2558",
+   "trace": null
   },
   {
    "id": "11-05-minimum-cost-of-buying-candies-with-discount",
@@ -111,7 +115,73 @@
    "notes": {},
    "tests": "assert minimumCost([1,2,3]) == 5\nassert minimumCost([6,5,7,9,2,2]) == 23\nassert minimumCost([5,5]) == 10\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2144"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2144",
+   "trace": {
+    "rows": [
+     {
+      "name": "cost",
+      "kind": "numbers",
+      "values": [
+       6,
+       5,
+       7,
+       9,
+       2,
+       2
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 5
+      }
+     }
+    ],
+    "call": "minimumCost([6, 5, 7, 9, 2, 2])"
+   }
   },
   {
    "id": "11-06-maximum-product-of-two-elements-in-an-array",
@@ -128,7 +198,8 @@
    "notes": {},
    "tests": "assert maxProduct([3,4,5,2]) == 12\nassert maxProduct([1,5,4,5]) == 16\nassert maxProduct([3,7]) == 12\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1464"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1464",
+   "trace": null
   },
   {
    "id": "11-07-find-subsequence-of-length-k-with-the-largest-sum",
@@ -145,7 +216,8 @@
    "notes": {},
    "tests": "assert maxSubsequence([2,1,3,3], 2) == [3,3]\nassert maxSubsequence([-1,-2,3,4], 3) == [-1,3,4]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2099"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2099",
+   "trace": null
   },
   {
    "id": "11-08-find-the-kth-largest-integer-in-the-array",
@@ -164,7 +236,8 @@
    },
    "tests": "assert kthLargestNumber([\"3\",\"6\",\"7\",\"10\"], 4) == \"3\"\nassert kthLargestNumber([\"2\",\"21\",\"12\",\"1\"], 3) == \"2\"\nassert kthLargestNumber([\"0\",\"0\"], 2) == \"0\"\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1985"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1985",
+   "trace": null
   },
   {
    "id": "11-09-minimum-operations-to-halve-array-sum",
@@ -181,7 +254,8 @@
    "notes": {},
    "tests": "assert halveArray([5,19,8,1]) == 3\nassert halveArray([3,8,20]) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2208"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2208",
+   "trace": null
   },
   {
    "id": "11-10-remove-stones-to-minimize-the-total",
@@ -198,7 +272,8 @@
    "notes": {},
    "tests": "assert minStoneSum([5,4,9], 2) == 12\nassert minStoneSum([4,3,6,7], 3) == 12\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1962"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1962",
+   "trace": null
   },
   {
    "id": "11-11-reducing-dishes",
@@ -215,7 +290,8 @@
    "notes": {},
    "tests": "assert maxSatisfaction([-1,-8,0,5,-9]) == 14\nassert maxSatisfaction([4,3,2]) == 20\nassert maxSatisfaction([-1,-4,-5]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1402"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1402",
+   "trace": null
   },
   {
    "id": "11-12-reorganize-string",
@@ -232,7 +308,8 @@
    "notes": {},
    "tests": "assert reorganizeString(\"aab\") in [\"aba\"]\nassert reorganizeString(\"aaab\") == \"\"\nassert len(reorganizeString(\"aabb\")) == 4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=767"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=767",
+   "trace": null
   },
   {
    "id": "11-13-top-k-frequent-words",
@@ -251,7 +328,8 @@
    },
    "tests": "assert topKFrequent([\"i\",\"love\",\"leetcode\",\"i\",\"love\",\"coding\"],2) == [\"i\",\"love\"]\nassert topKFrequent([\"the\",\"day\",\"is\",\"sunny\",\"the\",\"the\",\"the\",\"sunny\",\"is\",\"is\"],4) == [\"the\",\"is\",\"sunny\",\"day\"]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=692"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=692",
+   "trace": null
   },
   {
    "id": "11-14-minimum-cost-to-connect-sticks",
@@ -268,7 +346,8 @@
    "notes": {},
    "tests": "assert connectSticks([2,4,3]) == 14\nassert connectSticks([1,8,3,5]) == 30\nassert connectSticks([5]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1167"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1167",
+   "trace": null
   },
   {
    "id": "11-15-the-k-weakest-rows-in-a-matrix",
@@ -285,7 +364,8 @@
    "notes": {},
    "tests": "assert kWeakestRows([[1,1,0,0,0],[1,1,1,1,0],[1,0,0,0,0],[1,1,0,0,0],[1,1,1,1,1]], 3) == [2,0,3]\nassert kWeakestRows([[1,0,0,0],[1,1,1,1],[1,0,0,0],[1,0,0,0]], 2) == [0,2]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1337"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1337",
+   "trace": null
   },
   {
    "id": "11-16-furthest-building-you-can-reach",
@@ -304,7 +384,292 @@
    },
    "tests": "assert furthestBuilding([4,2,7,6,9,14,12], 5, 1) == 4\nassert furthestBuilding([4,12,2,7,3,18,20,3,19], 10, 2) == 7\nassert furthestBuilding([14,3,19,3], 17, 0) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1642"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1642",
+   "trace": {
+    "rows": [
+     {
+      "name": "heights",
+      "kind": "numbers",
+      "values": [
+       4,
+       12,
+       2,
+       7,
+       3,
+       18,
+       20,
+       3,
+       19
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 7
+      }
+     }
+    ],
+    "call": "furthestBuilding([4, 12, 2, 7, 3, 18, 20, 3, 19], 10, 2)"
+   }
   },
   {
    "id": "11-17-maximum-units-on-a-truck",
@@ -321,7 +686,8 @@
    "notes": {},
    "tests": "assert maximumUnits([[1,3],[2,2],[3,1]], 4) == 8\nassert maximumUnits([[5,10],[2,5],[4,7],[3,9]], 10) == 91\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1710"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1710",
+   "trace": null
   },
   {
    "id": "11-18-sort-array-by-frequency",
@@ -338,7 +704,8 @@
    "notes": {},
    "tests": "assert frequencySort2([1,1,2,2,2,3]) == [3,1,1,2,2,2]\nassert frequencySort2([2,3,1,3,2]) == [1,3,3,2,2]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1636"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1636",
+   "trace": null
   },
   {
    "id": "11-19-find-k-pairs-with-smallest-sums-easy-version",
@@ -355,7 +722,178 @@
    "notes": {},
    "tests": "assert kSmallestPairs([1,7,11],[2,4,6],3) == [[1,2],[1,4],[1,6]]\nassert kSmallestPairs([1,1,2],[1,2,3],2) == [[1,1],[1,1]]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=373"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=373",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums1",
+      "kind": "numbers",
+      "values": [
+       1,
+       7,
+       11
+      ],
+      "movers": [
+       "i"
+      ]
+     },
+     {
+      "name": "nums2",
+      "kind": "numbers",
+      "values": [
+       2,
+       4,
+       6
+      ],
+      "movers": [
+       "j"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0,
+       "j": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 0,
+       "j": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 0,
+       "j": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0,
+       "j": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0,
+       "j": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0,
+       "j": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 0,
+       "j": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 0,
+       "j": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0,
+       "j": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0,
+       "j": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0,
+       "j": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 0,
+       "j": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0,
+       "j": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 0,
+       "j": 2
+      }
+     }
+    ],
+    "call": "kSmallestPairs([1, 7, 11], [2, 4, 6], 3)"
+   }
   },
   {
    "id": "11-20-find-kth-smallest-largest-using-heap",
@@ -374,7 +912,8 @@
    "verified": [
     "findKthLargest"
    ],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "11-21-top-k-frequent-elements",
@@ -391,7 +930,8 @@
    "notes": {},
    "tests": "assert set(topKFrequentElements([1,1,1,2,2,3], 2)) == {1, 2}\nassert topKFrequentElements([1], 1) == [1]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=347"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=347",
+   "trace": null
   },
   {
    "id": "11-22-kth-largest-element-in-an-array",
@@ -408,7 +948,8 @@
    "notes": {},
    "tests": "assert findKthLargestFull([3,2,1,5,6,4], 2) == 5\nassert findKthLargestFull([3,2,3,1,2,4,5,5,6], 4) == 4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=215"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=215",
+   "trace": null
   },
   {
    "id": "11-23-task-scheduler",
@@ -428,7 +969,8 @@
    },
    "tests": "assert leastInterval([\"A\",\"A\",\"A\",\"B\",\"B\",\"B\"], 2) == 8\nassert leastInterval([\"A\",\"C\",\"A\",\"B\",\"D\",\"B\"], 1) == 6\nassert leastInterval([\"A\",\"A\",\"A\",\"B\",\"B\",\"B\"], 0) == 6\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=621"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=621",
+   "trace": null
   },
   {
    "id": "11-24-reorganize-string-full",
@@ -445,7 +987,8 @@
    "notes": {},
    "tests": "assert res and res[0] != res[1]\nassert reorganizeStringFull(\"aaab\") == \"\"\nres2 = reorganizeStringFull(\"aabb\")\nassert all(res2[i] != res2[i+1] for i in range(len(res2)-1))\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=767"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=767",
+   "trace": null
   },
   {
    "id": "11-25-find-k-pairs-with-smallest-sums-full",
@@ -462,7 +1005,178 @@
    "notes": {},
    "tests": "assert kSmallestPairsFull([1,7,11],[2,4,6],3) == [[1,2],[1,4],[1,6]]\nassert len(kSmallestPairsFull([1,2],[3],3)) == 2\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=373"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=373",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums1",
+      "kind": "numbers",
+      "values": [
+       1,
+       7,
+       11
+      ],
+      "movers": [
+       "i"
+      ]
+     },
+     {
+      "name": "nums2",
+      "kind": "numbers",
+      "values": [
+       2,
+       4,
+       6
+      ],
+      "movers": [
+       "j"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0,
+       "j": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 0,
+       "j": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 0,
+       "j": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0,
+       "j": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0,
+       "j": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0,
+       "j": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 0,
+       "j": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 0,
+       "j": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0,
+       "j": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0,
+       "j": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0,
+       "j": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 0,
+       "j": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0,
+       "j": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 0,
+       "j": 2
+      }
+     }
+    ],
+    "call": "kSmallestPairsFull([1, 7, 11], [2, 4, 6], 3)"
+   }
   },
   {
    "id": "11-26-kth-smallest-element-in-a-sorted-matrix",
@@ -479,7 +1193,8 @@
    "notes": {},
    "tests": "assert kthSmallest([[1,5,9],[10,11,13],[12,13,15]], 8) == 13\nassert kthSmallest([[-5]], 1) == -5\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=378"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=378",
+   "trace": null
   },
   {
    "id": "11-27-ipo",
@@ -499,7 +1214,8 @@
    },
    "tests": "assert findMaximizedCapital(2, 0, [1,2,3], [0,1,1]) == 4\nassert findMaximizedCapital(3, 0, [1,2,3], [0,1,2]) == 6\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=502"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=502",
+   "trace": null
   },
   {
    "id": "11-28-maximum-subsequence-score",
@@ -516,7 +1232,8 @@
    "notes": {},
    "tests": "assert maxScore([1,3,3,2],[2,1,3,4],3) == 12\nassert maxScore([4,2,3,1,1],[7,5,10,9,6],1) == 30\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2542"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2542",
+   "trace": null
   },
   {
    "id": "11-29-minimum-cost-to-hire-k-workers",
@@ -536,7 +1253,8 @@
    },
    "tests": "assert abs(mincostToHireWorkers([10,20,5],[70,50,30],2) - 105.0) < 1e-5\nassert abs(mincostToHireWorkers([3,1,10,10,1],[4,8,2,2,7],3) - 30.666666666666664) < 1e-5\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=857"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=857",
+   "trace": null
   },
   {
    "id": "11-30-meeting-rooms-iii",
@@ -556,7 +1274,8 @@
    },
    "tests": "assert mostBooked(2, [[0,10],[1,5],[2,7],[3,4]]) == 0\nassert mostBooked(3, [[1,20],[2,10],[3,5],[4,9],[6,8]]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2402"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2402",
+   "trace": null
   },
   {
    "id": "11-31-car-pooling-with-heap",
@@ -575,7 +1294,8 @@
    },
    "tests": "assert carPooling([[2,1,5],[3,3,7]], 4) == False\nassert carPooling([[2,1,5],[3,3,7]], 5) == True\nassert carPooling([[3,2,7],[3,7,9],[8,3,9]], 11) == True\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1094"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1094",
+   "trace": null
   },
   {
    "id": "11-32-minimum-number-of-refueling-stops",
@@ -594,7 +1314,8 @@
    },
    "tests": "assert minRefuelStops(1, 1, []) == 0\nassert minRefuelStops(100, 10, [[10,100]]) == 1\nassert minRefuelStops(100, 10, [[10,60],[20,30],[30,30],[60,40]]) == 2\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=871"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=871",
+   "trace": null
   },
   {
    "id": "11-33-smallest-range-covering-elements-from-k-lists",
@@ -611,7 +1332,8 @@
    "notes": {},
    "tests": "assert smallestRange([[4,10,15,24,26],[0,9,12,20],[5,18,22,30]]) == [20,24]\nassert smallestRange([[1,2,3],[1,2,3],[1,2,3]]) == [1,1]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=632"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=632",
+   "trace": null
   },
   {
    "id": "11-34-find-median-from-data-stream-partial",
@@ -631,7 +1353,8 @@
    },
    "tests": "assert mf.findMedian() == 1.5\nmf.addNum(3)\nassert mf.findMedian() == 2.0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=295"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=295",
+   "trace": null
   },
   {
    "id": "11-35-merge-k-sorted-lists-heap-approach",
@@ -648,7 +1371,8 @@
    "notes": {},
    "tests": "assert to_list(mergeKLists([l1,l2,l3])) == [1,1,2,3,4,4,5,6]\nassert mergeKLists([]) is None\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=23"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=23",
+   "trace": null
   },
   {
    "id": "11-36-find-median-from-data-stream",
@@ -668,7 +1392,8 @@
    },
    "tests": "assert mf.findMedian() == 5.0\nmf2 = MedianFinderFull()\nmf2.addNum(1); mf2.addNum(2)\nassert mf2.findMedian() == 1.5\nmf2.addNum(3)\nassert mf2.findMedian() == 2.0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=295"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=295",
+   "trace": null
   },
   {
    "id": "11-37-sliding-window-median",
@@ -685,7 +1410,343 @@
    "notes": {},
    "tests": "assert medianSlidingWindow([1,3,-1,-3,5,3,6,7], 3) == [1.0,-1.0,-1.0,3.0,5.0,6.0]\nassert medianSlidingWindow([1,2], 1) == [1.0,2.0]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=480"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=480",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       1,
+       3,
+       -1,
+       -3,
+       5,
+       3,
+       6,
+       7
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 7
+      }
+     }
+    ],
+    "call": "medianSlidingWindow([1, 3, -1, -3, 5, 3, 6, 7], 3)"
+   }
   },
   {
    "id": "11-38-ipo-full",
@@ -702,7 +1763,8 @@
    "notes": {},
    "tests": "assert findMaximizedCapitalFull(2, 0, [1,2,3], [0,1,1]) == 4\nassert findMaximizedCapitalFull(3, 0, [1,2,3], [0,1,2]) == 6\nassert findMaximizedCapitalFull(1, 0, [1,2,3], [1,1,2]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=502"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=502",
+   "trace": null
   },
   {
    "id": "11-39-minimum-cost-to-hire-k-workers-full",
@@ -721,7 +1783,206 @@
    },
    "tests": "assert abs(mincostToHireWorkersFull([10,20,5],[70,50,30],2) - 105.0) < 1e-5\nassert abs(mincostToHireWorkersFull([3,1,10,10,1],[4,8,2,2,7],3) - 30.666666666666664) < 1e-5\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=857"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=857",
+   "trace": {
+    "rows": [
+     {
+      "name": "quality",
+      "kind": "numbers",
+      "values": [
+       3,
+       1,
+       10,
+       10,
+       1
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 9,
+      "m": {}
+     },
+     {
+      "l": 11,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 9,
+      "m": {}
+     },
+     {
+      "l": 11,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 9,
+      "m": {}
+     },
+     {
+      "l": 11,
+      "m": {}
+     },
+     {
+      "l": 12,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 9,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {}
+     },
+     {
+      "l": 11,
+      "m": {}
+     },
+     {
+      "l": 12,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 9,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {}
+     },
+     {
+      "l": 11,
+      "m": {}
+     },
+     {
+      "l": 12,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 13,
+      "m": {}
+     }
+    ],
+    "call": "mincostToHireWorkersFull([3, 1, 10, 10, 1], [4, 8, 2, 2, 7], 3)"
+   }
   },
   {
    "id": "11-40-the-skyline-problem",
@@ -751,7 +2012,8 @@
    },
    "tests": "assert getSkyline(buildings) == expected\nassert getSkylineHeap(buildings) == expected\nassert getSkyline([[0,2,3],[2,5,3]]) == [[0,3],[5,0]]      # touching, same height\nassert getSkyline([[1,2,1],[1,2,2],[1,2,3]]) == [[1,3],[2,0]]  # nested, same span\nassert getSkyline([]) == []\nassert getSkyline([[0,1,5]]) == [[0,5],[1,0]]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=218"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=218",
+   "trace": null
   },
   {
    "id": "11-41-maximum-performance-of-a-team",
@@ -768,7 +2030,8 @@
    "notes": {},
    "tests": "assert maxPerformance(6, [2,10,3,1,5,8], [5,4,3,9,7,2], 2) == 60\nassert maxPerformance(6, [2,10,3,1,5,8], [5,4,3,9,7,2], 3) == 68\nassert maxPerformance(6, [2,10,3,1,5,8], [5,4,3,9,7,2], 4) == 72\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1383"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1383",
+   "trace": null
   },
   {
    "id": "11-42-smallest-range-covering-elements-from-k-lists-full",
@@ -785,7 +2048,8 @@
    "notes": {},
    "tests": "assert smallestRangeFull([[4,10,15,24,26],[0,9,12,20],[5,18,22,30]]) == [20,24]\nassert smallestRangeFull([[1,2,3],[1,2,3],[1,2,3]]) == [1,1]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=632"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=632",
+   "trace": null
   },
   {
    "id": "11-43-merge-k-sorted-lists-full",
@@ -802,7 +2066,8 @@
    "notes": {},
    "tests": "assert to_list(mergeKListsFull([l1,l2,l3])) == [1,1,2,3,4,4,5,6]\nassert mergeKListsFull([]) is None\nassert to_list(mergeKListsFull([from_list([])])) == []\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=23"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=23",
+   "trace": null
   },
   {
    "id": "11-44-minimum-number-of-refueling-stops-full",
@@ -821,7 +2086,8 @@
    },
    "tests": "assert minRefuelStopsFull(1, 1, []) == 0\nassert minRefuelStopsFull(100, 10, [[10,100]]) == 1\nassert minRefuelStopsFull(100, 10, [[10,60],[20,30],[30,30],[60,40]]) == 2\nassert minRefuelStopsFull(100, 10, [[10,60],[20,30],[30,30],[60,40],[90,60]]) == 2\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=871"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=871",
+   "trace": null
   },
   {
    "id": "11-45-find-the-kth-smallest-sum-of-a-matrix-with-sorted-rows",
@@ -840,7 +2106,8 @@
    },
    "tests": "assert kthSmallest_matrix([[1,3,11],[2,4,6]], 5) == 7\nassert kthSmallest_matrix([[1,3,11],[2,4,6]], 9) == 17\nassert kthSmallest_matrix([[1,10,10],[1,4,5],[2,3,6]], 7) == 9\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1439"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1439",
+   "trace": null
   },
   {
    "id": "11-46-kth-smallest-element-in-sorted-matrix-heap-warmup",
@@ -857,7 +2124,8 @@
    "notes": {},
    "tests": "assert kthSmallestMatrix([[1,5,9],[10,11,13],[12,13,15]], 8) == 13\nassert kthSmallestMatrix([[1,2],[1,3]], 2) == 1\nassert kthSmallestMatrix([[-5]], 1) == -5\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=378"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=378",
+   "trace": null
   },
   {
    "id": "11-47-find-median-from-running-stream-step-by-step",
@@ -877,7 +2145,8 @@
    },
    "tests": "assert running_medians([1]) == [1]\nassert running_medians([1, 2]) == [1, 1.5]\nassert running_medians([5, 3, 8]) == [5, 4.0, 5]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=295"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=295",
+   "trace": null
   },
   {
    "id": "11-48-sort-characters-by-frequency",
@@ -894,7 +2163,8 @@
    "notes": {},
    "tests": "assert frequencySort('tree') in ('eert', 'eetr')\nassert frequencySort('cccaaa') in ('cccaaa', 'aaaccc')\nassert frequencySort('Aabb') in ('bbaA', 'bbAa')\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=451"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=451",
+   "trace": null
   },
   {
    "id": "11-49-relative-sort-array",
@@ -911,7 +2181,8 @@
    "notes": {},
    "tests": "assert relativeSortArray([2,3,1,3,2,4,6,7,9,2,19], [2,1,4,3,9,6]) == [2,2,2,1,4,3,3,9,6,7,19]\nassert relativeSortArray([28,6,22,8,44,17], [22,28,8,6]) == [22,28,8,6,17,44]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1122"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1122",
+   "trace": null
   },
   {
    "id": "11-50-maximum-bags-with-full-capacity-of-rocks",
@@ -928,7 +2199,8 @@
    "notes": {},
    "tests": "assert maximumBags([2,3,4,5], [1,2,4,4], 2) == 3\nassert maximumBags([10,2,2], [2,2,0], 100) == 3\nassert maximumBags([5], [3], 1) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2279"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2279",
+   "trace": null
   },
   {
    "id": "11-51-minimum-cost-to-move-chips-to-same-position",
@@ -945,7 +2217,8 @@
    "notes": {},
    "tests": "assert minCostChips([1,2,3]) == 1\nassert minCostChips([2,2,2,3,3]) == 2\nassert minCostChips([1,1000000000]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1217"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1217",
+   "trace": null
   },
   {
    "id": "11-52-minimum-number-of-moves-to-seat-everyone",
@@ -962,7 +2235,8 @@
    "notes": {},
    "tests": "assert minMovesToSeat([3,1,5], [2,7,4]) == 4\nassert minMovesToSeat([4,1,5,9], [1,3,2,6]) == 7\nassert minMovesToSeat([2,2,6,6], [1,3,2,6]) == 4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2037"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2037",
+   "trace": null
   },
   {
    "id": "11-53-find-the-kth-largest-sum-of-a-subarray-small-n-brute-f",
@@ -981,7 +2255,353 @@
    },
    "tests": "assert kthLargestSubarraySum([3, -1, 4, 1], 3) == 5\nassert kthLargestSubarraySum([1, 2, 3], 2) == 5\nassert kthLargestSubarraySum([-1, -2, -3], 1) == -1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       3,
+       -1,
+       4,
+       1
+      ],
+      "movers": [
+       "j"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 3
+      }
+     }
+    ],
+    "call": "kthLargestSubarraySum([3, -1, 4, 1], 3)"
+   }
   },
   {
    "id": "11-54-least-number-of-unique-integers-after-k-removals",
@@ -998,7 +2618,8 @@
    "notes": {},
    "tests": "assert findLeastNumOfUniqueInts([5,5,4], 1) == 1\nassert findLeastNumOfUniqueInts([4,3,1,1,3,3,2], 3) == 2\nassert findLeastNumOfUniqueInts([1], 1) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1481"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1481",
+   "trace": null
   },
   {
    "id": "11-55-minimum-number-of-pushes-to-type-word",
@@ -1015,7 +2636,8 @@
    "notes": {},
    "tests": "assert minimumPushes('abcde') == 5\nassert minimumPushes('xyzxyzxyzxyz') == 12\nassert minimumPushes('aabbccddeeffgghhiiiiii') == 24\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=3014"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=3014",
+   "trace": null
   },
   {
    "id": "11-56-sort-array-by-parity",
@@ -1032,7 +2654,101 @@
    "notes": {},
    "tests": "assert all(res[i] % 2 == 0 for i in range(res.index(next(x for x in res if x%2!=0))))\nassert sortArrayByParity([0]) == [0]\nassert sortArrayByParity([2,4,6]) == [2,4,6]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=905"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=905",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       2,
+       4,
+       6
+      ],
+      "movers": [
+       "l",
+       "r"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {
+       "l": 0,
+       "r": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "l": 0,
+       "r": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "l": 0,
+       "r": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "l": 1,
+       "r": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "l": 1,
+       "r": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "l": 1,
+       "r": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "l": 1,
+       "r": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "l": 2,
+       "r": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "l": 2,
+       "r": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "l": 2,
+       "r": 2
+      }
+     }
+    ],
+    "call": "sortArrayByParity([2, 4, 6])"
+   }
   },
   {
    "id": "11-57-sort-array-by-parity-ii",
@@ -1052,7 +2768,61 @@
    },
    "tests": "assert all(res[i] % 2 == i % 2 for i in range(len(res)))\nres2 = sortArrayByParityII([2,3])\nassert all(res2[i] % 2 == i % 2 for i in range(len(res2)))\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=922"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=922",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       2,
+       3
+      ],
+      "movers": [
+       "i",
+       "j"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "j": 1,
+       "i": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "j": 1,
+       "i": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 1,
+       "i": 0
+      }
+     }
+    ],
+    "call": "sortArrayByParityII([2, 3])"
+   }
   },
   {
    "id": "11-58-rank-teams-by-votes",
@@ -1069,7 +2839,8 @@
    "notes": {},
    "tests": "assert rankTeams(['ABC','ACB','ABC','ACB','ACB']) == 'ACB'\nassert rankTeams(['WXYZ','XYZW']) == 'XWYZ'\nassert rankTeams(['ZMNAGUEDSJYLBOPHRQICWFXTVK']) == 'ZMNAGUEDSJYLBOPHRQICWFXTVK'\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1366"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1366",
+   "trace": null
   },
   {
    "id": "11-59-maximum-number-of-coins-you-can-get",
@@ -1088,7 +2859,114 @@
    },
    "tests": "assert maxCoins([2,4,1,2,7,8]) == 9\nassert maxCoins([2,4,5]) == 4\nassert maxCoins([9,8,7,6,5,1,2,3,4]) == 18\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1561"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1561",
+   "trace": {
+    "rows": [
+     {
+      "name": "piles",
+      "kind": "numbers",
+      "values": [
+       9,
+       8,
+       7,
+       6,
+       5,
+       1,
+       2,
+       3,
+       4
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 1
+      }
+     }
+    ],
+    "call": "maxCoins([9, 8, 7, 6, 5, 1, 2, 3, 4])"
+   }
   },
   {
    "id": "11-60-largest-perimeter-triangle",
@@ -1105,7 +2983,65 @@
    "notes": {},
    "tests": "assert largestPerimeter([2,1,2]) == 5\nassert largestPerimeter([1,2,1,10]) == 0\nassert largestPerimeter([3,6,2,3]) == 8\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=976"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=976",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       1,
+       2,
+       1,
+       10
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1
+      }
+     }
+    ],
+    "call": "largestPerimeter([1, 2, 1, 10])"
+   }
   },
   {
    "id": "11-61-minimum-subsequence-in-non-increasing-order",
@@ -1122,7 +3058,8 @@
    "notes": {},
    "tests": "assert minSubsequence([4,3,10,9,8]) == [10,9]\nassert minSubsequence([4,4,7,6,7]) == [7,7,6]\nassert minSubsequence([6]) == [6]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1403"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1403",
+   "trace": null
   },
   {
    "id": "11-62-how-many-numbers-are-smaller-than-the-current-number",
@@ -1139,7 +3076,8 @@
    "notes": {},
    "tests": "assert smallerNumbersThanCurrent([8,1,2,2,3]) == [4,0,1,1,3]\nassert smallerNumbersThanCurrent([6,5,4,8]) == [2,1,0,3]\nassert smallerNumbersThanCurrent([7,7,7,7]) == [0,0,0,0]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1365"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1365",
+   "trace": null
   },
   {
    "id": "11-63-maximum-product-of-three-numbers",
@@ -1156,7 +3094,8 @@
    "notes": {},
    "tests": "assert maximumProduct([1,2,3]) == 6\nassert maximumProduct([1,2,3,4]) == 24\nassert maximumProduct([-1,-2,-3]) == -6\nassert maximumProduct([-4,-3,-2,-1,60]) == 720\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=628"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=628",
+   "trace": null
   },
   {
    "id": "11-64-third-largest-number-heap-approach",
@@ -1173,7 +3112,8 @@
    "notes": {},
    "tests": "assert thirdMax([3,2,1]) == 1\nassert thirdMax([1,2]) == 2\nassert thirdMax([2,2,3,1]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=414"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=414",
+   "trace": null
   },
   {
    "id": "11-65-find-n-unique-integers-sum-up-to-zero",
@@ -1190,7 +3130,8 @@
    "notes": {},
    "tests": "for n in [1, 2, 3, 5]:\n    res = sumZero(n)\n    assert len(res) == n\n    assert len(set(res)) == n\n    assert sum(res) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1304"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1304",
+   "trace": null
   },
   {
    "id": "11-66-kth-largest-element-in-an-array-quickselect",
@@ -1209,7 +3150,491 @@
    },
    "tests": "assert findKthLargest_qs([3,2,1,5,6,4], 2) == 5\nassert findKthLargest_qs([3,2,3,1,2,4,5,5,6], 4) == 4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=215"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=215",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       3,
+       2,
+       1,
+       5,
+       6,
+       4
+      ],
+      "movers": [
+       "i",
+       "pivot_idx",
+       "r",
+       "store"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 19,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {
+       "r": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "r": 5,
+       "pivot_idx": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "r": 5,
+       "pivot_idx": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "r": 5,
+       "pivot_idx": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "r": 5,
+       "pivot_idx": 2,
+       "store": 0
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "r": 5,
+       "pivot_idx": 2,
+       "store": 0,
+       "i": 0
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "r": 5,
+       "pivot_idx": 2,
+       "store": 0,
+       "i": 0
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "r": 5,
+       "pivot_idx": 2,
+       "store": 0,
+       "i": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "r": 5,
+       "pivot_idx": 2,
+       "store": 0,
+       "i": 1
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "r": 5,
+       "pivot_idx": 2,
+       "store": 0,
+       "i": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "r": 5,
+       "pivot_idx": 2,
+       "store": 0,
+       "i": 2
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "r": 5,
+       "pivot_idx": 2,
+       "store": 0,
+       "i": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "r": 5,
+       "pivot_idx": 2,
+       "store": 0,
+       "i": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "r": 5,
+       "pivot_idx": 2,
+       "store": 0,
+       "i": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "r": 5,
+       "pivot_idx": 2,
+       "store": 0,
+       "i": 4
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "r": 5,
+       "pivot_idx": 2,
+       "store": 0,
+       "i": 4
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "r": 5,
+       "pivot_idx": 2,
+       "store": 0,
+       "i": 4
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "r": 5,
+       "pivot_idx": 2,
+       "store": 0,
+       "i": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "r": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "r": 5,
+       "pivot_idx": 5
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "r": 5,
+       "pivot_idx": 5
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "r": 5,
+       "pivot_idx": 5
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "r": 5,
+       "pivot_idx": 5,
+       "store": 1
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "r": 5,
+       "pivot_idx": 5,
+       "store": 1,
+       "i": 1
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "r": 5,
+       "pivot_idx": 5,
+       "store": 1,
+       "i": 1
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "r": 5,
+       "pivot_idx": 5,
+       "store": 1,
+       "i": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "r": 5,
+       "pivot_idx": 5,
+       "store": 2,
+       "i": 1
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "r": 5,
+       "pivot_idx": 5,
+       "store": 2,
+       "i": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "r": 5,
+       "pivot_idx": 5,
+       "store": 2,
+       "i": 2
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "r": 5,
+       "pivot_idx": 5,
+       "store": 2,
+       "i": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "r": 5,
+       "pivot_idx": 5,
+       "store": 2,
+       "i": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "r": 5,
+       "pivot_idx": 5,
+       "store": 2,
+       "i": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "r": 5,
+       "pivot_idx": 5,
+       "store": 2,
+       "i": 4
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "r": 5,
+       "pivot_idx": 5,
+       "store": 2,
+       "i": 4
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "r": 5,
+       "pivot_idx": 5,
+       "store": 2,
+       "i": 4
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "r": 5,
+       "pivot_idx": 5,
+       "store": 2,
+       "i": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "r": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "r": 5,
+       "pivot_idx": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "r": 5,
+       "pivot_idx": 4
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "r": 5,
+       "pivot_idx": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "r": 5,
+       "pivot_idx": 4,
+       "store": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "r": 5,
+       "pivot_idx": 4,
+       "store": 3,
+       "i": 3
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "r": 5,
+       "pivot_idx": 4,
+       "store": 3,
+       "i": 3
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "r": 5,
+       "pivot_idx": 4,
+       "store": 3,
+       "i": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "r": 5,
+       "pivot_idx": 4,
+       "store": 4,
+       "i": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "r": 5,
+       "pivot_idx": 4,
+       "store": 4,
+       "i": 4
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "r": 5,
+       "pivot_idx": 4,
+       "store": 4,
+       "i": 4
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "r": 5,
+       "pivot_idx": 4,
+       "store": 4,
+       "i": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "r": 5,
+       "pivot_idx": 4,
+       "store": 5,
+       "i": 4
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "r": 5,
+       "pivot_idx": 4,
+       "store": 5,
+       "i": 4
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "r": 5,
+       "pivot_idx": 4,
+       "store": 5,
+       "i": 4
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "r": 5,
+       "pivot_idx": 4,
+       "store": 5,
+       "i": 4
+      }
+     },
+     {
+      "l": 17,
+      "m": {
+       "r": 5,
+       "pivot_idx": 4,
+       "store": 5,
+       "i": 4
+      }
+     }
+    ],
+    "call": "findKthLargest_qs([3, 2, 1, 5, 6, 4], 2)"
+   }
   },
   {
    "id": "11-67-k-closest-points-to-origin-quickselect-version",
@@ -1226,7 +3651,8 @@
    "notes": {},
    "tests": "assert res == [[-2,2]] or dist_sq(res[0]) <= dist_sq([1,3])\ndef dist_sq(p): return p[0]**2+p[1]**2\nres2 = kClosest_qs([[3,3],[5,-1],[-2,4]], 2)\nassert all(dist_sq(p) <= dist_sq([5,-1]) for p in res2)\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=973"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=973",
+   "trace": null
   },
   {
    "id": "11-68-find-k-th-largest-xor-coordinate-value",
@@ -1243,7 +3669,8 @@
    "notes": {},
    "tests": "assert kthLargestXOR([[5,2],[1,6]], 1) == 7\nassert kthLargestXOR([[5,2],[1,6]], 2) == 5\nassert kthLargestXOR([[5,2],[1,6]], 3) == 4\nassert kthLargestXOR([[5,2],[1,6]], 4) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1738"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1738",
+   "trace": null
   },
   {
    "id": "11-69-maximum-average-pass-ratio",
@@ -1260,7 +3687,8 @@
    "notes": {},
    "tests": "assert abs(result - 0.78333) < 1e-4\nresult2 = maxAverageRatio([[2,4],[3,9],[4,5],[2,10]], 4)\nassert abs(result2 - 0.53485) < 1e-4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1792"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1792",
+   "trace": null
   },
   {
    "id": "11-70-reduce-array-size-to-the-half",
@@ -1277,7 +3705,8 @@
    "notes": {},
    "tests": "assert minSetSize([3,3,3,3,5,5,5,2,2,7]) == 2\nassert minSetSize([7,7,7,7,7,7]) == 1\nassert minSetSize([1,9]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1338"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1338",
+   "trace": null
   },
   {
    "id": "11-71-minimum-cost-to-hire-k-workers-variant-different-scori",
@@ -1297,7 +3726,8 @@
    },
    "tests": "assert abs(mincostHireWorkers_variant([10,20,5], [70,50,30], 2) - 105.0) < 1e-5\nassert abs(mincostHireWorkers_variant([3,1,10,10,1], [4,8,2,2,7], 3) - 30.66667) < 1e-4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "11-72-find-k-closest-elements-heap-approach",
@@ -1318,7 +3748,8 @@
    "verified": [
     "findClosestElements"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=658"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=658",
+   "trace": null
   },
   {
    "id": "11-73-top-k-frequent-elements-bucket-sort-version",
@@ -1335,7 +3766,8 @@
    "notes": {},
    "tests": "assert set(topKFrequent_bucket([1,1,1,2,2,3], 2)) == {1, 2}\nassert topKFrequent_bucket([1], 1) == [1]\nassert set(topKFrequent_bucket([4,4,4,3,3,2], 2)) == {4, 3}\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=347"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=347",
+   "trace": null
   },
   {
    "id": "11-74-maximum-score-from-removing-substrings-heap-greedy",
@@ -1352,7 +3784,8 @@
    "notes": {},
    "tests": "assert maximumGain('cdbcbbaaabab', 4, 5) == 19\nassert maximumGain('aabbaaxybbaabb', 5, 4) == 20\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1717"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1717",
+   "trace": null
   },
   {
    "id": "11-75-longest-happy-string-greedy-heap",
@@ -1369,7 +3802,8 @@
    "notes": {},
    "tests": "assert 'ccc' not in res and 'aaa' not in res and 'bbb' not in res\nres2 = longestDiverseString(7, 1, 0)\nassert 'aaa' not in res2\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1405"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1405",
+   "trace": null
   },
   {
    "id": "11-76-process-tasks-using-servers",
@@ -1389,7 +3823,337 @@
    },
    "tests": "assert assignTasks([3,3,2], [1,2,3,2,1,2]) == [2,2,0,2,1,2]\nassert assignTasks([5,1,4,3,2], [2,1,2,4,5,2,1]) == [1,4,1,4,1,3,2]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1882"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1882",
+   "trace": {
+    "rows": [
+     {
+      "name": "tasks",
+      "kind": "numbers",
+      "values": [
+       1,
+       2,
+       3,
+       2,
+       1,
+       2
+      ],
+      "movers": [
+       "t"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 9,
+      "m": {
+       "t": 0
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "t": 0
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "t": 0
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "t": 0
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "t": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "t": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "t": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "t": 1
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "t": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "t": 1
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "t": 1
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "t": 1
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "t": 1
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "t": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "t": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "t": 2
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "t": 2
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "t": 2
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "t": 2
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "t": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "t": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "t": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "t": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "t": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "t": 3
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "t": 3
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "t": 3
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "t": 3
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "t": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "t": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "t": 4
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "t": 4
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "t": 4
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "t": 4
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "t": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "t": 4
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "t": 5
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "t": 5
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "t": 5
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "t": 5
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "t": 5
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "t": 5
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "t": 5
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "t": 5
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "t": 5
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "t": 5
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "t": 5
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "t": 5
+      }
+     }
+    ],
+    "call": "assignTasks([3, 3, 2], [1, 2, 3, 2, 1, 2])"
+   }
   },
   {
    "id": "11-77-single-threaded-cpu",
@@ -1408,7 +4172,8 @@
    },
    "tests": "assert getOrder([[1,2],[2,4],[3,2],[4,1]]) == [0,2,3,1]\nassert getOrder([[7,10],[7,12],[7,5],[7,4],[7,2]]) == [4,3,2,0,1]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1834"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1834",
+   "trace": null
   },
   {
    "id": "11-78-maximum-performance-of-a-team-revisit",
@@ -1427,7 +4192,8 @@
    },
    "tests": "assert maxPerformance(6, [2,10,3,1,5,8], [5,4,3,9,7,2], 2) == 60\nassert maxPerformance(6, [2,10,3,1,5,8], [5,4,3,9,7,2], 3) == 68\nassert maxPerformance(6, [2,10,3,1,5,8], [5,4,3,9,7,2], 4) == 72\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1383"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1383",
+   "trace": null
   },
   {
    "id": "11-79-find-median-from-data-stream-two-heaps-detailed-walkth",
@@ -1449,7 +4215,8 @@
    },
    "tests": "assert mf.findMedian() == 1.5\nmf.addNum(3)\nassert mf.findMedian() == 2.0\nmf.addNum(4); mf.addNum(5)\nassert mf.findMedian() == 3.0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=295"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=295",
+   "trace": null
   },
   {
    "id": "11-80-ugly-number-ii-min-heap-approach",
@@ -1466,7 +4233,8 @@
    "notes": {},
    "tests": "assert nthUglyNumber(1) == 1\nassert nthUglyNumber(10) == 12\nassert nthUglyNumber(15) == 24\nassert nthUglyNumber(1690) == 2123366400\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=264"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=264",
+   "trace": null
   },
   {
    "id": "11-81-find-median-from-data-stream-with-deletes-extended",
@@ -1486,7 +4254,8 @@
    },
    "tests": "assert mfd.findMedian() == 3.0\nmfd.deleteNum(3)\nassert mfd.findMedian() == 3.0\nmfd.deleteNum(1)\nassert mfd.findMedian() == 4.0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "11-82-rearrange-string-k-distance-apart",
@@ -1505,7 +4274,8 @@
    },
    "tests": "assert res != '' and valid_k(res, 3) and sorted(res) == sorted('aabbcc')\nassert rearrangeString('aaabc', 3) == ''\nassert rearrangeString('aaadbbcc', 2) != '' or True  # may vary\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=358"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=358",
+   "trace": null
   },
   {
    "id": "11-83-task-scheduler-ii",
@@ -1522,7 +4292,8 @@
    "notes": {},
    "tests": "assert taskSchedulerII([1,2,1,2,3,1], 3) == 9\nassert taskSchedulerII([1,2,3,4,5], 5) == 5\nassert taskSchedulerII([1,2,1], 2) == 4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2365"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2365",
+   "trace": null
   },
   {
    "id": "11-84-maximum-profit-in-job-scheduling-heap-dp",
@@ -1542,7 +4313,8 @@
    },
    "tests": "assert jobScheduling([1,2,3,3], [3,4,5,6], [50,10,40,70]) == 120\nassert jobScheduling([1,2,3,4,6], [3,5,10,6,9], [20,20,100,70,60]) == 150\nassert jobScheduling([1,1,1], [2,3,4], [5,6,4]) == 6\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1235"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1235",
+   "trace": null
   },
   {
    "id": "11-85-minimum-cost-to-connect-sticks-extended-k-way-merge",
@@ -1561,7 +4333,8 @@
    },
    "tests": "# k=2 standard case\nassert connectSticksK([2,4,3], 2) == 14\nassert connectSticksK([1,8,3,5], 2) == 30\n# k=3 case\nassert connectSticksK([1,2,3,4,5], 3) == 21\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1167"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1167",
+   "trace": null
   },
   {
    "id": "11-86-smallest-range-covering-elements-from-k-lists-full",
@@ -1580,7 +4353,8 @@
    },
    "tests": "assert smallestRange([[4,10,15,24,26],[0,9,12,20],[5,18,22,30]]) == [20,24]\nassert smallestRange([[1,2,3],[1,2,3],[1,2,3]]) == [1,1]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=632"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=632",
+   "trace": null
   },
   {
    "id": "11-87-kth-smallest-number-in-multiplication-table-binary-sea",
@@ -1597,7 +4371,8 @@
    "notes": {},
    "tests": "assert findKthNumber(3, 3, 5) == 3\nassert findKthNumber(2, 3, 6) == 6\nassert findKthNumber(3, 3, 9) == 9\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=668"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=668",
+   "trace": null
   },
   {
    "id": "11-88-k-pairs-with-smallest-sums-extended-all-pairs-from-k-l",
@@ -1614,7 +4389,8 @@
    "notes": {},
    "tests": "assert sums == sorted(sums) and sums[0] == 3\nres2 = kSmallestPairsKLists([[1,2],[1,2],[1,2]], 4)\nassert all(sum(x) <= sum(y) for x, y in zip(res2, res2[1:]))\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "11-89-maximum-frequency-stack-full",
@@ -1633,7 +4409,8 @@
    },
    "tests": "assert fs.pop() == 5\nassert fs.pop() == 7\nassert fs.pop() == 5\nassert fs.pop() == 4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=895"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=895",
+   "trace": null
   },
   {
    "id": "11-90-find-the-k-th-character-in-string-game-ii",
@@ -1655,7 +4432,134 @@
    },
    "tests": "assert kthCharacter(5, [0, 0, 0]) == 'a'  # all copies\nassert kthCharacter(10, [0, 1, 0]) == 'b'  # one flip encountered\nassert kthCharacter(3, [0]) == 'a'\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=3307"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=3307",
+   "trace": {
+    "rows": [
+     {
+      "name": "operations",
+      "kind": "numbers",
+      "values": [
+       0,
+       1,
+       0
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 0
+      }
+     }
+    ],
+    "call": "kthCharacter(10, [0, 1, 0])"
+   }
   }
  ]
 }

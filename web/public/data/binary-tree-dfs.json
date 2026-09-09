@@ -47,7 +47,8 @@
    "verified": [
     "maxDepth"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=104"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=104",
+   "trace": null
   },
   {
    "id": "07-02-minimum-depth-of-binary-tree",
@@ -66,7 +67,8 @@
    "verified": [
     "minDepth"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=111"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=111",
+   "trace": null
   },
   {
    "id": "07-03-invert-binary-tree",
@@ -85,7 +87,8 @@
    "verified": [
     "invertTree"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=226"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=226",
+   "trace": null
   },
   {
    "id": "07-04-symmetric-tree",
@@ -104,7 +107,8 @@
    "verified": [
     "isSymmetric"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=101"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=101",
+   "trace": null
   },
   {
    "id": "07-05-same-tree",
@@ -121,7 +125,8 @@
    "notes": {},
    "tests": "assert isSameTree(build_tree([1,2,3]), build_tree([1,2,3])) == True\nassert isSameTree(build_tree([1,2]), build_tree([1,None,2])) == False\nassert isSameTree(build_tree([1,2,1]), build_tree([1,1,2])) == False\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=100"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=100",
+   "trace": null
   },
   {
    "id": "07-06-path-sum",
@@ -140,7 +145,8 @@
    "verified": [
     "hasPathSum"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=112"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=112",
+   "trace": null
   },
   {
    "id": "07-07-binary-tree-paths",
@@ -157,7 +163,8 @@
    "notes": {},
    "tests": "assert sorted(binaryTreePaths(build_tree([1,2,3,None,5]))) == sorted([\"1->2->5\",\"1->3\"])\nassert binaryTreePaths(build_tree([1])) == [\"1\"]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=257"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=257",
+   "trace": null
   },
   {
    "id": "07-08-sum-of-left-leaves",
@@ -174,7 +181,8 @@
    "notes": {},
    "tests": "assert sumOfLeftLeaves(build_tree([3,9,20,None,None,15,7])) == 24\nassert sumOfLeftLeaves(build_tree([1])) == 0\nassert sumOfLeftLeaves(build_tree([1,2,3,4,5])) == 4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=404"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=404",
+   "trace": null
   },
   {
    "id": "07-09-diameter-of-binary-tree",
@@ -193,7 +201,8 @@
    "verified": [
     "diameterOfBinaryTree"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=543"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=543",
+   "trace": null
   },
   {
    "id": "07-10-balanced-binary-tree",
@@ -212,7 +221,8 @@
    "verified": [
     "isBalanced"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=110"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=110",
+   "trace": null
   },
   {
    "id": "07-11-count-complete-tree-nodes",
@@ -233,7 +243,8 @@
    "verified": [
     "countNodes"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=222"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=222",
+   "trace": null
   },
   {
    "id": "07-12-subtree-of-another-tree",
@@ -250,7 +261,8 @@
    "notes": {},
    "tests": "assert isSubtree(build_tree([3,4,5,1,2]), build_tree([4,1,2])) == True\nassert isSubtree(build_tree([3,4,5,1,2,None,None,None,None,0]), build_tree([4,1,2])) == False\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=572"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=572",
+   "trace": null
   },
   {
    "id": "07-13-lowest-common-ancestor-of-bst",
@@ -270,7 +282,8 @@
    },
    "tests": "assert lcaBST(root, p, q).val == 6\n\np = root.left       # node 2\nq = root.left.right # node 4\nassert lcaBST(root, p, q).val == 2\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=235"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=235",
+   "trace": null
   },
   {
    "id": "07-14-merge-two-binary-trees",
@@ -287,7 +300,8 @@
    "notes": {},
    "tests": "assert tree_to_list(mergeTrees(t1, t2)) == [3,4,5,5,4,None,7]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=617"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=617",
+   "trace": null
   },
   {
    "id": "07-15-search-in-bst",
@@ -304,7 +318,8 @@
    "notes": {},
    "tests": "assert result is not None and tree_to_list(result) == [2,1,3]\nassert searchBST(root, 5) is None\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=700"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=700",
+   "trace": null
   },
   {
    "id": "07-16-range-sum-of-bst",
@@ -321,7 +336,8 @@
    "notes": {},
    "tests": "assert rangeSumBST(build_tree([10,5,15,3,7,None,18]), 7, 15) == 32\nassert rangeSumBST(build_tree([10,5,15,3,7,13,18,1,None,6]), 6, 10) == 23\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=938"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=938",
+   "trace": null
   },
   {
    "id": "07-17-univalued-binary-tree",
@@ -338,7 +354,8 @@
    "notes": {},
    "tests": "assert isUnivalTree(build_tree([1,1,1,1,1,None,1])) == True\nassert isUnivalTree(build_tree([2,2,2,5,2])) == False\nassert isUnivalTree(build_tree([1])) == True\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=965"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=965",
+   "trace": null
   },
   {
    "id": "07-18-leaf-similar-trees",
@@ -355,7 +372,8 @@
    "notes": {},
    "tests": "assert leafSimilar(build_tree([3,5,1,6,2,9,8,None,None,7,4]), build_tree([3,5,1,6,7,4,2,None,None,None,None,None,None,9,8])) == True\nassert leafSimilar(build_tree([1,2,3]), build_tree([1,3,2])) == False\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=872"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=872",
+   "trace": null
   },
   {
    "id": "07-19-find-mode-in-bst",
@@ -372,7 +390,8 @@
    "notes": {},
    "tests": "assert sorted(findMode(build_tree([1,None,2,2]))) == [2]\nassert sorted(findMode(build_tree([0]))) == [0]\nresult = findMode(build_tree([1,1,2,None,None,2]))\nassert sorted(result) == [1, 2]  # both appear twice\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=501"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=501",
+   "trace": null
   },
   {
    "id": "07-20-two-sum-iv-input-is-a-bst",
@@ -389,7 +408,8 @@
    "notes": {},
    "tests": "assert findTarget(build_tree([5,3,6,2,4,None,7]), 9) == True\nassert findTarget(build_tree([5,3,6,2,4,None,7]), 28) == False\nassert findTarget(build_tree([1,None,2]), 3) == True\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=653"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=653",
+   "trace": null
   },
   {
    "id": "07-21-binary-tree-inorder-traversal-iterative",
@@ -408,7 +428,8 @@
    "verified": [
     "inorderTraversal"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=94"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=94",
+   "trace": null
   },
   {
    "id": "07-22-validate-bst",
@@ -425,7 +446,8 @@
    "notes": {},
    "tests": "assert isValidBST(build_tree([2,1,3])) == True\nassert isValidBST(build_tree([5,1,4,None,None,3,6])) == False\nassert isValidBST(build_tree([2,2,2])) == False\nassert isValidBST(build_tree([1,None,1])) == False\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=98"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=98",
+   "trace": null
   },
   {
    "id": "07-23-construct-binary-tree-from-preorder-and-inorder-traver",
@@ -442,7 +464,173 @@
    "notes": {},
    "tests": "assert tree_to_list(result) == [3,9,20,None,None,15,7]\nresult2 = buildTreePreIn([1,2], [2,1])\nassert tree_to_list(result2) == [1,2]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=105"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=105",
+   "trace": {
+    "rows": [
+     {
+      "name": "preorder",
+      "kind": "numbers",
+      "values": [
+       1,
+       2
+      ],
+      "movers": [
+       "pre_start"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 14,
+      "m": {}
+     },
+     {
+      "l": 15,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "pre_start": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "pre_start": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "pre_start": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "pre_start": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "pre_start": 0
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "pre_start": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "pre_start": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "pre_start": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "pre_start": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "pre_start": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "pre_start": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "pre_start": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "pre_start": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "pre_start": 2
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "pre_start": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "pre_start": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "pre_start": 2
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "pre_start": 1
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "pre_start": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "pre_start": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "pre_start": 2
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "pre_start": 0
+      }
+     }
+    ],
+    "call": "buildTreePreIn([1, 2], [2, 1])"
+   }
   },
   {
    "id": "07-24-path-sum-ii",
@@ -461,7 +649,8 @@
    },
    "tests": "assert sorted(pathSum(build_tree([5,4,8,11,None,13,4,7,2,None,None,5,1]), 22)) == sorted([[5,4,11,2],[5,8,4,5]])\nassert pathSum(build_tree([1,2,3]), 5) == []\nassert pathSum(build_tree([1,2]), 0) == []\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=113"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=113",
+   "trace": null
   },
   {
    "id": "07-25-lowest-common-ancestor-of-binary-tree",
@@ -481,7 +670,8 @@
    },
    "tests": "assert lowestCommonAncestor(root, p, q).val == 3\n\np = root.left               # 5\nq = root.left.right.right   # 4\nassert lowestCommonAncestor(root, p, q).val == 5\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=236"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=236",
+   "trace": null
   },
   {
    "id": "07-26-kth-smallest-element-in-bst",
@@ -498,7 +688,8 @@
    "notes": {},
    "tests": "assert kthSmallestBST(build_tree([3,1,4,None,2]), 1) == 1\nassert kthSmallestBST(build_tree([5,3,6,2,4,None,None,1]), 3) == 3\nassert kthSmallestBST(build_tree([1,None,2]), 2) == 2\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=230"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=230",
+   "trace": null
   },
   {
    "id": "07-27-sum-root-to-leaf-numbers",
@@ -515,7 +706,8 @@
    "notes": {},
    "tests": "assert sumNumbers(build_tree([1,2,3])) == 25  # 12 + 13\nassert sumNumbers(build_tree([4,9,0,5,1])) == 1026  # 495 + 491 + 40\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=129"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=129",
+   "trace": null
   },
   {
    "id": "07-28-flatten-binary-tree-to-linked-list",
@@ -532,7 +724,8 @@
    "notes": {},
    "tests": "assert right_chain(r) == [1,2,3,4,5,6]\n\nr2 = build_tree([0])\nflattenTree(r2)\nassert right_chain(r2) == [0]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=114"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=114",
+   "trace": null
   },
   {
    "id": "07-29-house-robber-iii",
@@ -551,7 +744,8 @@
    },
    "tests": "assert rob(build_tree([3,2,3,None,3,None,1])) == 7\nassert rob(build_tree([3,4,5,1,3,None,1])) == 9\nassert rob(build_tree([4,1,None,2,None,3])) == 7\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=337"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=337",
+   "trace": null
   },
   {
    "id": "07-30-delete-node-in-bst",
@@ -570,7 +764,8 @@
    },
    "tests": "assert vals == [2,4,5,6,7]\n\nr2 = build_tree([5,3,6,2,4,None,7])\nr2 = deleteNode(r2, 0)  # key not in tree\nassert inorderTraversal(r2) == [2,3,4,5,6,7]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=450"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=450",
+   "trace": null
   },
   {
    "id": "07-31-all-nodes-distance-k-in-binary-tree",
@@ -591,7 +786,8 @@
    },
    "tests": "assert sorted(distanceK(root, 5, 2)) == sorted([7,4,1])\nassert distanceK(root, 1, 0) == [1]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=863"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=863",
+   "trace": null
   },
   {
    "id": "07-32-recover-binary-search-tree",
@@ -611,7 +807,8 @@
    },
    "tests": "assert inorderTraversal(r) == [1,2,3]\n\nr2 = build_tree([3,1,4,None,None,2])\nrecoverTree(r2)\nassert inorderTraversal(r2) == [1,2,3,4]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=99"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=99",
+   "trace": null
   },
   {
    "id": "07-33-unique-binary-search-trees-ii",
@@ -628,7 +825,8 @@
    "notes": {},
    "tests": "assert len(trees) == 5  # Catalan(3) = 5\ntrees1 = generateTrees(1)\nassert len(trees1) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=95"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=95",
+   "trace": null
   },
   {
    "id": "07-34-binary-tree-right-side-view-using-dfs",
@@ -647,7 +845,8 @@
    },
    "tests": "assert rightSideView(build_tree([1,2,3,None,5,None,4])) == [1,3,4]\nassert rightSideView(build_tree([1,None,3])) == [1,3]\nassert rightSideView(None) == []\nassert rightSideView(build_tree([1,2,3,4])) == [1,3,4]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=199"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=199",
+   "trace": null
   },
   {
    "id": "07-35-find-duplicate-subtrees",
@@ -664,7 +863,8 @@
    "notes": {},
    "tests": "assert dup_vals == [2, 4]  # subtrees rooted at 2 and 4 are duplicated\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=652"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=652",
+   "trace": null
   },
   {
    "id": "07-36-binary-tree-maximum-path-sum",
@@ -684,7 +884,8 @@
    },
    "tests": "assert maxPathSum(build_tree([1,2,3])) == 6\nassert maxPathSum(build_tree([-10,9,20,None,None,15,7])) == 42\nassert maxPathSum(build_tree([-3])) == -3\nassert maxPathSum(build_tree([1,-2,-3,1,3,-2,None,-1])) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=124"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=124",
+   "trace": null
   },
   {
    "id": "07-37-serialize-and-deserialize-binary-tree",
@@ -701,7 +902,8 @@
    "notes": {},
    "tests": "assert tree_to_list(deserialized) == tree_to_list(original)\n\nassert codec.deserialize(codec.serialize(None)) is None\nr2 = build_tree([1,2])\nassert tree_to_list(codec.deserialize(codec.serialize(r2))) == [1,2]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=297"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=297",
+   "trace": null
   },
   {
    "id": "07-38-vertical-order-traversal-of-binary-tree",
@@ -718,7 +920,8 @@
    "notes": {},
    "tests": "assert verticalTraversal(build_tree([3,9,20,None,None,15,7])) == [[9],[3,15],[20],[7]]\nassert verticalTraversal(build_tree([1,2,3,4,5,6,7])) == [[4],[2],[1,5,6],[3],[7]]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=987"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=987",
+   "trace": null
   },
   {
    "id": "07-39-binary-tree-cameras",
@@ -742,7 +945,8 @@
    },
    "tests": "assert minCameraCover(build_tree([0,0,None,0,0])) == 1\nassert minCameraCover(build_tree([0,0,None,0,None,0,None,None,0])) == 2\nassert minCameraCover(build_tree([0])) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=968"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=968",
+   "trace": null
   },
   {
    "id": "07-40-maximum-sum-bst-in-binary-tree",
@@ -761,7 +965,8 @@
    },
    "tests": "assert maxSumBST(build_tree([1,4,3,2,4,2,5,None,None,None,None,None,None,4,6])) == 20\nassert maxSumBST(build_tree([4,3,None,1,2])) == 2\nassert maxSumBST(build_tree([-4,-2,-5])) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1373"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1373",
+   "trace": null
   },
   {
    "id": "07-41-count-of-smaller-numbers-after-self-using-bst",
@@ -781,7 +986,8 @@
    },
    "tests": "assert countSmaller([5,2,6,1]) == [2,1,1,0]\nassert countSmaller([-1]) == [0]\nassert countSmaller([-1,-1]) == [0,0]\nassert countSmaller([1,2,3,4]) == [0,0,0,0]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=315"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=315",
+   "trace": null
   },
   {
    "id": "07-42-recover-bst-extended-morris-inorder",
@@ -803,7 +1009,8 @@
    },
    "tests": "assert inorderTraversal(r) == [1,2,3,4]\n\nr2 = build_tree([1,3,None,None,2])\nrecoverTreeMorris(r2)\nassert inorderTraversal(r2) == [1,2,3]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "07-43-binary-tree-coloring-game",
@@ -820,7 +1027,8 @@
    "notes": {},
    "tests": "assert btreeGameWinningMove(build_tree([1,2,3,4,5,6,7,8,9,10,11]), 11, 3) == True\nassert btreeGameWinningMove(build_tree([1,2,3]), 3, 1) == False\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1145"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1145",
+   "trace": null
   },
   {
    "id": "07-44-construct-binary-tree-from-preorder-and-postorder-trav",
@@ -840,7 +1048,8 @@
    },
    "tests": "assert get_preorder(result) == pre\nassert get_postorder(result) == post\n\npre2, post2 = [1], [1]\nresult2 = constructFromPrePost(pre2, post2)\nassert get_preorder(result2) == [1]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=889"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=889",
+   "trace": null
   },
   {
    "id": "07-45-number-of-ways-to-reorder-array-to-get-same-bst-simpli",
@@ -859,7 +1068,8 @@
    },
    "tests": "assert numOfWays([2,1,3]) == 1\nassert numOfWays([3,4,5,1,2]) == 5\nassert numOfWays([1,2,3]) == 0\nassert numOfWays([3,1,2,5,4,6]) == 19\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1569"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1569",
+   "trace": null
   },
   {
    "id": "07-46-convert-bst-to-greater-tree",
@@ -878,7 +1088,8 @@
    },
    "tests": "assert root.val == 30\n\nassert root.left.val == 36\n\nassert root.right.val == 21\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=538"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=538",
+   "trace": null
   },
   {
    "id": "07-47-binary-tree-tilt",
@@ -895,7 +1106,8 @@
    "notes": {},
    "tests": "assert findTilt(root) == 1\n\nroot2 = TreeNode(4, TreeNode(2, TreeNode(3), TreeNode(5)), TreeNode(9, None, TreeNode(7)))\n\nassert findTilt(root2) == 15\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=563"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=563",
+   "trace": null
   },
   {
    "id": "07-48-sum-of-nodes-with-even-valued-grandparent",
@@ -914,7 +1126,8 @@
    },
    "tests": "assert sumEvenGrandparent(root) == 18\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1315"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1315",
+   "trace": null
   },
   {
    "id": "07-49-count-good-nodes-in-binary-tree",
@@ -931,7 +1144,8 @@
    "notes": {},
    "tests": "assert goodNodes(root) == 4\n\nroot2 = TreeNode(3, TreeNode(3, TreeNode(4), TreeNode(2)))\n\nassert goodNodes(root2) == 3\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1448"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1448",
+   "trace": null
   },
   {
    "id": "07-50-path-sum-iii",
@@ -948,7 +1162,8 @@
    "notes": {},
    "tests": "assert pathSum(root, 8) == 3\n\nassert pathSum(TreeNode(5, TreeNode(4, TreeNode(11, TreeNode(7), TreeNode(2))), TreeNode(8, TreeNode(13), TreeNode(4, TreeNode(5), TreeNode(1)))), 22) == 3\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=437"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=437",
+   "trace": null
   },
   {
    "id": "07-51-binary-tree-pruning",
@@ -965,7 +1180,8 @@
    "notes": {},
    "tests": "assert to_list(pruned) == [1, 1, 1]\n\nroot2 = TreeNode(1, None, TreeNode(0, TreeNode(0), TreeNode(1)))\n\npruned2 = pruneTree(root2)\n\nassert to_list(pruned2) == [1, 0, 1]\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=814"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=814",
+   "trace": null
   },
   {
    "id": "07-52-deepest-leaves-sum",
@@ -986,7 +1202,8 @@
    "verified": [
     "deepestLeavesSum"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1302"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1302",
+   "trace": null
   },
   {
    "id": "07-53-find-the-leftmost-value-in-the-last-row",
@@ -1007,7 +1224,8 @@
    "verified": [
     "findBottomLeftValue"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=513"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=513",
+   "trace": null
   },
   {
    "id": "07-54-maximum-binary-tree",
@@ -1024,7 +1242,289 @@
    "notes": {},
    "tests": "assert preorder(constructMaximumBinaryTree([3,2,1,6,0,5])) == [6,3,2,1,5,0]\n\nassert preorder(constructMaximumBinaryTree([3,2,3])) == [3,3,2]\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=654"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=654",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       3,
+       2,
+       1,
+       6,
+       0,
+       5
+      ],
+      "movers": [
+       "max_idx"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {}
+     },
+     {
+      "l": 12,
+      "m": {
+       "max_idx": 3
+      }
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 14,
+      "m": {
+       "max_idx": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {}
+     },
+     {
+      "l": 12,
+      "m": {
+       "max_idx": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 14,
+      "m": {
+       "max_idx": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 16,
+      "m": {
+       "max_idx": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {}
+     },
+     {
+      "l": 12,
+      "m": {
+       "max_idx": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 14,
+      "m": {
+       "max_idx": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 16,
+      "m": {
+       "max_idx": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {}
+     },
+     {
+      "l": 12,
+      "m": {
+       "max_idx": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 14,
+      "m": {
+       "max_idx": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 16,
+      "m": {
+       "max_idx": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 18,
+      "m": {
+       "max_idx": 0
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "max_idx": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {}
+     },
+     {
+      "l": 12,
+      "m": {
+       "max_idx": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 14,
+      "m": {
+       "max_idx": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {}
+     },
+     {
+      "l": 12,
+      "m": {
+       "max_idx": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 14,
+      "m": {
+       "max_idx": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 16,
+      "m": {
+       "max_idx": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 18,
+      "m": {
+       "max_idx": 0
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "max_idx": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 18,
+      "m": {
+       "max_idx": 1
+      }
+     },
+     {
+      "l": 18,
+      "m": {
+       "max_idx": 3
+      }
+     }
+    ],
+    "call": "constructMaximumBinaryTree([3, 2, 1, 6, 0, 5])"
+   }
   },
   {
    "id": "07-55-all-elements-in-two-binary-search-trees",
@@ -1041,7 +1541,8 @@
    "notes": {},
    "tests": "assert getAllElements(t1, t2) == [0, 1, 1, 2, 3, 4]\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1305"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1305",
+   "trace": null
   },
   {
    "id": "07-56-cousins-in-binary-tree",
@@ -1058,7 +1559,8 @@
    "notes": {},
    "tests": "assert isCousins(root, 4, 3) == False\n\nroot2 = TreeNode(1, TreeNode(2, None, TreeNode(4)), TreeNode(3, None, TreeNode(5)))\n\nassert isCousins(root2, 5, 4) == True\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=993"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=993",
+   "trace": null
   },
   {
    "id": "07-57-check-if-binary-tree-is-symmetric-dfs",
@@ -1075,7 +1577,8 @@
    "notes": {},
    "tests": "assert isSymmetricDFS(sym) == True\n\nasym = TreeNode(1, TreeNode(2, None, TreeNode(3)), TreeNode(2, None, TreeNode(3)))\n\nassert isSymmetricDFS(asym) == False\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "07-58-check-if-all-leaves-are-at-the-same-level",
@@ -1092,7 +1595,8 @@
    "notes": {},
    "tests": "assert allLeavesAtSameLevel(good) == True\n\nbad = TreeNode(1, TreeNode(2, TreeNode(4)), TreeNode(3))\n\nassert allLeavesAtSameLevel(bad) == False\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "07-59-count-nodes-at-each-level-dfs",
@@ -1109,7 +1613,8 @@
    "notes": {},
    "tests": "assert countNodesPerLevel(root) == [1, 2, 3]\n\nassert countNodesPerLevel(TreeNode(1)) == [1]\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "07-60-find-the-longest-path-from-root-to-leaf",
@@ -1126,7 +1631,8 @@
    "notes": {},
    "tests": "assert longestRootToLeaf(root) == [1, 2, 4]\n\nsingle = TreeNode(42)\n\nassert longestRootToLeaf(single) == [42]\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "07-61-find-the-shortest-path-from-root-to-leaf",
@@ -1143,7 +1649,8 @@
    "notes": {},
    "tests": "assert shortestRootToLeaf(root) == [1, 3]\n\nsingle = TreeNode(7)\n\nassert shortestRootToLeaf(single) == [7]\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "07-62-sum-of-all-root-to-leaf-numbers-variant",
@@ -1160,7 +1667,8 @@
    "notes": {},
    "tests": "assert sumNumbers(root) == 1026  # 495 + 491 + 40\n\nassert sumNumbers(TreeNode(1, TreeNode(2), TreeNode(3))) == 25  # 12 + 13\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "07-63-validate-binary-search-tree-iterative-inorder",
@@ -1177,7 +1685,8 @@
    "notes": {},
    "tests": "assert isValidBSTIterative(TreeNode(2, TreeNode(1), TreeNode(3))) == True\n\nassert isValidBSTIterative(TreeNode(5, TreeNode(1), TreeNode(4, TreeNode(3), TreeNode(6)))) == False\n\nassert isValidBSTIterative(TreeNode(2, TreeNode(2), TreeNode(2))) == False\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "07-64-increasing-order-search-tree",
@@ -1194,7 +1703,8 @@
    "notes": {},
    "tests": "assert right_chain(increasingBST(root)) == [1,2,3,4,5,6,7,8,9]\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=897"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=897",
+   "trace": null
   },
   {
    "id": "07-65-average-of-even-node-values-not-divisible-by-three-tre",
@@ -1211,7 +1721,8 @@
    "notes": {},
    "tests": "assert averageEvenNotDivBy3(root) == (2 + 4 + 8) / 3\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "07-66-path-sum-iii-full-prefix-sum-dfs",
@@ -1228,7 +1739,8 @@
    "notes": {},
    "tests": "assert pathSumIII(root, 8) == 3\n\nassert pathSumIII(TreeNode(5, TreeNode(4, TreeNode(11, TreeNode(7), TreeNode(2))), TreeNode(8, TreeNode(13), TreeNode(4, TreeNode(5), TreeNode(1)))), 22) == 3\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=437"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=437",
+   "trace": null
   },
   {
    "id": "07-67-count-good-nodes-in-binary-tree-full",
@@ -1247,7 +1759,8 @@
    },
    "tests": "assert goodNodesFull(root) == 4\n\nassert goodNodesFull(TreeNode(3, TreeNode(3, TreeNode(4), TreeNode(2)))) == 3\n\nassert goodNodesFull(TreeNode(1)) == 1\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1448"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1448",
+   "trace": null
   },
   {
    "id": "07-68-distribute-coins-in-binary-tree",
@@ -1264,7 +1777,8 @@
    "notes": {},
    "tests": "assert distributeCoins(TreeNode(3, TreeNode(0), TreeNode(0))) == 2\n\nassert distributeCoins(TreeNode(0, TreeNode(3), TreeNode(0))) == 3\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=979"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=979",
+   "trace": null
   },
   {
    "id": "07-69-lowest-common-ancestor-of-deepest-leaves",
@@ -1283,7 +1797,8 @@
    },
    "tests": "assert lcaDeepestLeaves(root).val == 2\n\nassert lcaDeepestLeaves(TreeNode(1)).val == 1\n\nroot2 = TreeNode(0, TreeNode(1, None, TreeNode(2)))\n\nassert lcaDeepestLeaves(root2).val == 2\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1123"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1123",
+   "trace": null
   },
   {
    "id": "07-70-maximum-width-of-binary-tree-dfs",
@@ -1302,7 +1817,8 @@
    },
    "tests": "assert widthOfBinaryTree(root) == 4\n\nroot2 = TreeNode(1, TreeNode(3, TreeNode(5, TreeNode(6)), None), TreeNode(2, None, TreeNode(9, TreeNode(7))))\n\nassert widthOfBinaryTree(root2) == 7\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=662"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=662",
+   "trace": null
   },
   {
    "id": "07-71-pseudo-palindromic-paths-in-a-binary-tree",
@@ -1321,7 +1837,8 @@
    },
    "tests": "assert pseudoPalindromicPaths(root) == 2\n\nroot2 = TreeNode(2, TreeNode(1, TreeNode(1), TreeNode(3, None, TreeNode(1))), TreeNode(1))\n\nassert pseudoPalindromicPaths(root2) == 1\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1457"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1457",
+   "trace": null
   },
   {
    "id": "07-72-maximum-difference-between-node-and-ancestor",
@@ -1338,7 +1855,8 @@
    "notes": {},
    "tests": "assert maxAncestorDiff(root) == 7\n\nroot2 = TreeNode(1, None, TreeNode(2, None, TreeNode(0, TreeNode(3))))\n\nassert maxAncestorDiff(root2) == 3\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1026"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1026",
+   "trace": null
   },
   {
    "id": "07-73-create-binary-tree-from-descriptions",
@@ -1355,7 +1873,8 @@
    "notes": {},
    "tests": "assert root.val == 50\n\nassert inorder(root) == [15, 20, 17, 50, 19, 80]\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2196"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2196",
+   "trace": null
   },
   {
    "id": "07-74-amount-of-time-for-binary-tree-to-be-infected",
@@ -1372,7 +1891,8 @@
    "notes": {},
    "tests": "assert amountOfTime(root, 3) == 4\n\nassert amountOfTime(TreeNode(1), 1) == 0\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2385"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2385",
+   "trace": null
   },
   {
    "id": "07-75-step-by-step-directions-from-binary-tree-node-to-anoth",
@@ -1391,7 +1911,8 @@
    },
    "tests": "assert getDirections(root, 3, 6) == 'UURL'\n\nassert getDirections(root, 4, 3) == 'UULL'\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2096"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2096",
+   "trace": null
   },
   {
    "id": "07-76-find-a-corresponding-node-of-binary-tree-in-clone-of-t",
@@ -1410,7 +1931,8 @@
    },
    "tests": "assert result.val == 4\n\nassert result is not target_node  # different object\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1379"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1379",
+   "trace": null
   },
   {
    "id": "07-77-delete-nodes-and-return-forest",
@@ -1427,7 +1949,8 @@
    "notes": {},
    "tests": "assert len(forest) == 3\n\nassert collect_vals(forest) == {1, 2, 4, 6, 7}\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1110"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1110",
+   "trace": null
   },
   {
    "id": "07-78-count-nodes-with-the-highest-score",
@@ -1446,7 +1969,348 @@
    },
    "tests": "assert countHighestScoreNodes([-1,2,0,2,0]) == 3\n\nassert countHighestScoreNodes([-1,2,0]) == 2\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2049"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2049",
+   "trace": {
+    "rows": [
+     {
+      "name": "parents",
+      "kind": "numbers",
+      "values": [
+       -1,
+       2,
+       0,
+       2,
+       0
+      ],
+      "movers": [
+       "child"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {}
+     },
+     {
+      "l": 12,
+      "m": {
+       "child": 0
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "child": 0
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "child": 2
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "child": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "child": 2
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "child": 3
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "child": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "child": 3
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 20,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 28,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 22,
+      "m": {}
+     },
+     {
+      "l": 24,
+      "m": {
+       "child": 2
+      }
+     },
+     {
+      "l": 22,
+      "m": {}
+     },
+     {
+      "l": 24,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 22,
+      "m": {}
+     },
+     {
+      "l": 26,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 22,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 24,
+      "m": {
+       "child": 3
+      }
+     },
+     {
+      "l": 22,
+      "m": {}
+     },
+     {
+      "l": 26,
+      "m": {
+       "child": 3
+      }
+     },
+     {
+      "l": 22,
+      "m": {
+       "child": 3
+      }
+     },
+     {
+      "l": 26,
+      "m": {
+       "child": 2
+      }
+     },
+     {
+      "l": 22,
+      "m": {
+       "child": 2
+      }
+     },
+     {
+      "l": 24,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 22,
+      "m": {}
+     },
+     {
+      "l": 26,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 22,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 30,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 32,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 34,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 36,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 38,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 40,
+      "m": {
+       "child": 2
+      }
+     },
+     {
+      "l": 38,
+      "m": {
+       "child": 2
+      }
+     },
+     {
+      "l": 40,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 38,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 42,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 46,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 48,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 32,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 34,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 36,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 38,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 42,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 44,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 46,
+      "m": {
+       "child": 4
+      }
+     }
+    ],
+    "call": "countHighestScoreNodes([-1, 2, 0, 2, 0])"
+   }
   },
   {
    "id": "07-79-longest-zigzag-path-in-binary-tree",
@@ -1465,7 +2329,8 @@
    },
    "tests": "assert longestZigZag(root) == 3\nsingle = TreeNode(1)\nassert longestZigZag(single) == 0\n# root->L->R->L = 3 edges\nroot2 = TreeNode(1, TreeNode(2, None, TreeNode(3, TreeNode(4))), None)\nassert longestZigZag(root2) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1372"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1372",
+   "trace": null
   },
   {
    "id": "07-80-sum-of-distances-in-tree-star-graph-simplified",
@@ -1484,7 +2349,8 @@
    },
    "tests": "assert sumOfDistancesInTree(6, [[0,1],[0,2],[2,3],[2,4],[2,5]]) == [8,12,6,10,10,10]\n\nassert sumOfDistancesInTree(1, []) == [0]\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=834"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=834",
+   "trace": null
   },
   {
    "id": "07-81-maximum-product-of-splitted-binary-tree",
@@ -1501,7 +2367,8 @@
    "notes": {},
    "tests": "assert maxProduct(root) == 110\n\nroot2 = TreeNode(1, TreeNode(2, TreeNode(3), TreeNode(4)), TreeNode(5, TreeNode(6)))\n\nassert maxProduct(root2) == 110\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1339"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1339",
+   "trace": null
   },
   {
    "id": "07-82-all-possible-full-binary-trees",
@@ -1518,7 +2385,8 @@
    "notes": {},
    "tests": "assert len(trees_7) == 5\n\nassert all(count_nodes(t) == 7 for t in trees_7)\n\nassert len(allPossibleFBT(1)) == 1\n\nassert len(allPossibleFBT(4)) == 0  # even, impossible\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=894"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=894",
+   "trace": null
   },
   {
    "id": "07-83-minimum-time-to-collect-all-apples-in-a-tree",
@@ -1535,7 +2403,314 @@
    "notes": {},
    "tests": "assert minTime(7, edges, [False,False,True,False,True,True,False]) == 8\n\nassert minTime(7, edges, [False,False,True,False,False,True,False]) == 6\n\nassert minTime(7, edges, [False,False,False,False,False,False,False]) == 0\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1443"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1443",
+   "trace": {
+    "rows": [
+     {
+      "name": "hasApple",
+      "kind": "numbers",
+      "values": [
+       false,
+       false,
+       true,
+       false,
+       true,
+       true,
+       false
+      ],
+      "movers": [
+       "child"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 12,
+      "m": {}
+     },
+     {
+      "l": 28,
+      "m": {}
+     },
+     {
+      "l": 14,
+      "m": {}
+     },
+     {
+      "l": 16,
+      "m": {}
+     },
+     {
+      "l": 18,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 20,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 14,
+      "m": {}
+     },
+     {
+      "l": 16,
+      "m": {}
+     },
+     {
+      "l": 18,
+      "m": {
+       "child": 0
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "child": 0
+      }
+     },
+     {
+      "l": 18,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 20,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 14,
+      "m": {}
+     },
+     {
+      "l": 16,
+      "m": {}
+     },
+     {
+      "l": 18,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 26,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 22,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 24,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "child": 4
+      }
+     },
+     {
+      "l": 18,
+      "m": {
+       "child": 5
+      }
+     },
+     {
+      "l": 20,
+      "m": {
+       "child": 5
+      }
+     },
+     {
+      "l": 14,
+      "m": {}
+     },
+     {
+      "l": 16,
+      "m": {}
+     },
+     {
+      "l": 18,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 26,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 22,
+      "m": {
+       "child": 5
+      }
+     },
+     {
+      "l": 24,
+      "m": {
+       "child": 5
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "child": 5
+      }
+     },
+     {
+      "l": 26,
+      "m": {
+       "child": 5
+      }
+     },
+     {
+      "l": 22,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 24,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "child": 1
+      }
+     },
+     {
+      "l": 18,
+      "m": {
+       "child": 2
+      }
+     },
+     {
+      "l": 20,
+      "m": {
+       "child": 2
+      }
+     },
+     {
+      "l": 14,
+      "m": {}
+     },
+     {
+      "l": 16,
+      "m": {}
+     },
+     {
+      "l": 18,
+      "m": {
+       "child": 0
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "child": 0
+      }
+     },
+     {
+      "l": 18,
+      "m": {
+       "child": 3
+      }
+     },
+     {
+      "l": 20,
+      "m": {
+       "child": 3
+      }
+     }
+    ],
+    "call": "minTime(7, edges, [False, False, True, False, True, True, False])"
+   }
   },
   {
    "id": "07-84-number-of-ways-to-reorder-array-to-get-same-bst",
@@ -1552,7 +2727,8 @@
    "notes": {},
    "tests": "assert numOfWaysFull([2,1,3]) == 1\n\nassert numOfWaysFull([3,4,5,1,2]) == 5\n\nassert numOfWaysFull([1,2,3]) == 0\n\nassert numOfWaysFull([3,1,2,5,4,6]) == 19\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1569"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1569",
+   "trace": null
   },
   {
    "id": "07-85-binary-tree-maximum-path-sum-through-root",
@@ -1569,7 +2745,8 @@
    "notes": {},
    "tests": "assert maxPathSumThroughRoot(TreeNode(1, TreeNode(2), TreeNode(3))) == 6\n\n# Path: 2 -> 1 -> 3 = 6\n\nroot = TreeNode(-3, TreeNode(4), TreeNode(-1, None, TreeNode(5)))\n\nassert maxPathSumThroughRoot(root) == 5  # -3 + max(left=4, right=max(-1+5)=4) = -3+4+4=5\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "07-86-serialize-and-deserialize-bst",
@@ -1586,7 +2763,8 @@
    "notes": {},
    "tests": "assert inorder(deserialized) == [1, 2, 3, 4, 5]\n\nassert deserializeBST('') is None\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=449"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=449",
+   "trace": null
   },
   {
    "id": "07-87-recover-binary-search-tree-with-morris-traversal",
@@ -1605,7 +2783,8 @@
    },
    "tests": "assert inorder(root) == [1, 2, 3]\n# Non-adjacent swap: [6,3,4,1,5,2,7] -> 3 and 4 swapped to make invalid BST\nroot2 = TreeNode(3, TreeNode(1), TreeNode(4, TreeNode(2)))\nrecoverTreeMorris(root2)\nassert inorder(root2) == [1, 2, 3, 4]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=99"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=99",
+   "trace": null
   },
   {
    "id": "07-88-count-nodes-in-complete-binary-tree-o-log-n",
@@ -1625,7 +2804,8 @@
    },
    "tests": "assert countNodesLogSquared(root) == 6\n\nassert countNodesLogSquared(None) == 0\n\nassert countNodesLogSquared(TreeNode(1)) == 1\n\n# Perfect tree with 7 nodes\n\nperf = TreeNode(1, TreeNode(2, TreeNode(4), TreeNode(5)), TreeNode(3, TreeNode(6), TreeNode(7)))\n\nassert countNodesLogSquared(perf) == 7\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=222"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=222",
+   "trace": null
   },
   {
    "id": "07-89-construct-binary-search-tree-from-preorder-traversal",
@@ -1642,7 +2822,8 @@
    "notes": {},
    "tests": "assert inorder(root) == [1,5,7,8,10,12]\n\nassert root.val == 8\n\nassert root.left.val == 5\n\nroot2 = bstFromPreorder([1,3])\n\nassert inorder(root2) == [1,3]\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1008"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1008",
+   "trace": null
   },
   {
    "id": "07-90-maximum-sum-of-any-subtree",
@@ -1659,7 +2840,8 @@
    "notes": {},
    "tests": "assert maxSubtreeSum(root) == 11\n\nroot2 = TreeNode(-1, TreeNode(-2), TreeNode(-3))\n\nassert maxSubtreeSum(root2) == -2  # largest single-node subtree\n\nassert maxSubtreeSum(TreeNode(5, TreeNode(3), TreeNode(-8, TreeNode(10)))) == 10\n\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   }
  ]
 }

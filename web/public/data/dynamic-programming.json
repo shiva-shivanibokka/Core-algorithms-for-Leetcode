@@ -43,7 +43,8 @@
    "verified": [
     "climbStairs"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=70"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=70",
+   "trace": null
   },
   {
    "id": "13-02-fibonacci-number",
@@ -60,7 +61,8 @@
    "notes": {},
    "tests": "assert fib(0) == 0\nassert fib(1) == 1\nassert fib(6) == 8\nassert fib(10) == 55\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=509"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=509",
+   "trace": null
   },
   {
    "id": "13-03-house-robber",
@@ -79,7 +81,8 @@
    "verified": [
     "rob"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=198"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=198",
+   "trace": null
   },
   {
    "id": "13-04-min-cost-climbing-stairs",
@@ -96,7 +99,147 @@
    "notes": {},
    "tests": "assert minCostClimbingStairs([10,15,20]) == 15\nassert minCostClimbingStairs([1,100,1,1,1,100,1,1,100,1]) == 6\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=746"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=746",
+   "trace": {
+    "rows": [
+     {
+      "name": "cost",
+      "kind": "numbers",
+      "values": [
+       1,
+       100,
+       1,
+       1,
+       1,
+       100,
+       1,
+       1,
+       100,
+       1
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 8
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 8
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 9
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 9
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 9
+      }
+     }
+    ],
+    "call": "minCostClimbingStairs([1, 100, 1, 1, 1, 100, 1, 1, 100, 1])"
+   }
   },
   {
    "id": "13-05-pascal-s-triangle",
@@ -113,7 +256,8 @@
    "notes": {},
    "tests": "assert generate(1) == [[1]]\nassert generate(5) == [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=118"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=118",
+   "trace": null
   },
   {
    "id": "13-06-pascal-s-triangle-ii",
@@ -130,7 +274,8 @@
    "notes": {},
    "tests": "assert getRow(3) == [1,3,3,1]\nassert getRow(0) == [1]\nassert getRow(4) == [1,4,6,4,1]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=119"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=119",
+   "trace": null
   },
   {
    "id": "13-07-maximum-subarray-kadane-s-algorithm",
@@ -147,7 +292,8 @@
    "notes": {},
    "tests": "assert maxSubArray([-2,1,-3,4,-1,2,1,-5,4]) == 6\nassert maxSubArray([1]) == 1\nassert maxSubArray([5,4,-1,7,8]) == 23\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=53"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=53",
+   "trace": null
   },
   {
    "id": "13-08-best-time-to-buy-and-sell-stock",
@@ -164,7 +310,8 @@
    "notes": {},
    "tests": "assert maxProfit([7,1,5,3,6,4]) == 5\nassert maxProfit([7,6,4,3,1]) == 0\nassert maxProfit([1,2]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=121"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=121",
+   "trace": null
   },
   {
    "id": "13-09-range-sum-query-immutable",
@@ -181,7 +328,8 @@
    "notes": {},
    "tests": "assert na.sumRange(0,2) == 1\nassert na.sumRange(2,5) == -1\nassert na.sumRange(0,5) == -3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=303"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=303",
+   "trace": null
   },
   {
    "id": "13-10-counting-bits",
@@ -198,7 +346,8 @@
    "notes": {},
    "tests": "assert countBits(2) == [0,1,1]\nassert countBits(5) == [0,1,1,2,1,2]\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=338"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=338",
+   "trace": null
   },
   {
    "id": "13-11-is-subsequence-dp",
@@ -215,7 +364,132 @@
    "notes": {},
    "tests": "assert isSubsequence(\"abc\", \"ahbgdc\") == True\nassert isSubsequence(\"axc\", \"ahbgdc\") == False\nassert isSubsequence(\"\", \"ahbgdc\") == True\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=392"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=392",
+   "trace": {
+    "rows": [
+     {
+      "name": "s",
+      "kind": "text",
+      "values": [
+       "a",
+       "b",
+       "c"
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3
+      }
+     }
+    ],
+    "call": "isSubsequence('abc', 'ahbgdc')"
+   }
   },
   {
    "id": "13-12-n-th-tribonacci-number",
@@ -232,7 +506,8 @@
    "notes": {},
    "tests": "assert tribonacci(4) == 4\nassert tribonacci(25) == 1389537\nassert tribonacci(0) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1137"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1137",
+   "trace": null
   },
   {
    "id": "13-13-get-maximum-in-generated-array",
@@ -249,7 +524,8 @@
    "notes": {},
    "tests": "assert getMaximumGenerated(7) == 3\nassert getMaximumGenerated(2) == 1\nassert getMaximumGenerated(3) == 2\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1646"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1646",
+   "trace": null
   },
   {
    "id": "13-14-longest-turbulent-subarray",
@@ -268,7 +544,280 @@
    },
    "tests": "assert maxTurbulenceSize([9,4,2,10,7,8,8,1,9]) == 5\nassert maxTurbulenceSize([4,8,12,16]) == 2\nassert maxTurbulenceSize([100]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=978"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=978",
+   "trace": {
+    "rows": [
+     {
+      "name": "arr",
+      "kind": "numbers",
+      "values": [
+       9,
+       4,
+       2,
+       10,
+       7,
+       8,
+       8,
+       1,
+       9
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 5
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 6
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 7
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 8
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 8
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 8
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 8
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 8
+      }
+     }
+    ],
+    "call": "maxTurbulenceSize([9, 4, 2, 10, 7, 8, 8, 1, 9])"
+   }
   },
   {
    "id": "13-15-jump-game",
@@ -285,7 +834,132 @@
    "notes": {},
    "tests": "assert canJump([2,3,1,1,4]) == True\nassert canJump([3,2,1,0,4]) == False\nassert canJump([0]) == True\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=55"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=55",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       2,
+       3,
+       1,
+       1,
+       4
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 4
+      }
+     }
+    ],
+    "call": "canJump([2, 3, 1, 1, 4])"
+   }
   },
   {
    "id": "13-16-divisor-game",
@@ -302,7 +976,8 @@
    "notes": {},
    "tests": "assert divisorGame(2) == True\nassert divisorGame(3) == False\nassert divisorGame(4) == True\nassert divisorGame(100) == True\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1025"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1025",
+   "trace": null
   },
   {
    "id": "13-17-maximum-subarray-product-simplified",
@@ -319,7 +994,8 @@
    "notes": {},
    "tests": "assert maxProduct([2,3,-2,4]) == 6\nassert maxProduct([-2,0,-1]) == 0\nassert maxProduct([-2,3,-4]) == 24\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=152"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=152",
+   "trace": null
   },
   {
    "id": "13-18-delete-and-earn-simplified",
@@ -338,7 +1014,8 @@
    },
    "tests": "assert deleteAndEarn([3,4,2]) == 6\nassert deleteAndEarn([2,2,3,3,3,4]) == 9\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=740"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=740",
+   "trace": null
   },
   {
    "id": "13-19-number-of-1-bits",
@@ -355,7 +1032,8 @@
    "notes": {},
    "tests": "assert hammingWeight(11) == 3   # 1011\nassert hammingWeight(128) == 1  # 10000000\nassert hammingWeight(4294967293) == 31\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=191"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=191",
+   "trace": null
   },
   {
    "id": "13-20-reverse-bits",
@@ -372,7 +1050,8 @@
    "notes": {},
    "tests": "assert reverseBits(43261596) == 964176192\nassert reverseBits(4294967293) == 3221225471\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=190"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=190",
+   "trace": null
   },
   {
    "id": "13-21-unique-paths",
@@ -391,7 +1070,8 @@
    "verified": [
     "uniquePaths"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=62"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=62",
+   "trace": null
   },
   {
    "id": "13-22-coin-change",
@@ -410,7 +1090,8 @@
    "verified": [
     "coinChange"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=322"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=322",
+   "trace": null
   },
   {
    "id": "13-23-longest-increasing-subsequence",
@@ -431,7 +1112,8 @@
    "verified": [
     "lengthOfLIS"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=300"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=300",
+   "trace": null
   },
   {
    "id": "13-24-house-robber-ii",
@@ -448,7 +1130,8 @@
    "notes": {},
    "tests": "assert robII([2,3,2]) == 3\nassert robII([1,2,3,1]) == 4\nassert robII([1,2,3]) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=213"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=213",
+   "trace": null
   },
   {
    "id": "13-25-partition-equal-subset-sum",
@@ -467,7 +1150,8 @@
    "verified": [
     "canPartition"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=416"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=416",
+   "trace": null
   },
   {
    "id": "13-26-jump-game-ii",
@@ -484,7 +1168,138 @@
    "notes": {},
    "tests": "assert jump([2,3,1,1,4]) == 2\nassert jump([2,3,0,1,4]) == 2\nassert jump([0]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=45"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=45",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       2,
+       3,
+       1,
+       1,
+       4
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3
+      }
+     }
+    ],
+    "call": "jump([2, 3, 1, 1, 4])"
+   }
   },
   {
    "id": "13-27-decode-ways",
@@ -501,7 +1316,140 @@
    "notes": {},
    "tests": "assert numDecodings(\"12\") == 2\nassert numDecodings(\"226\") == 3\nassert numDecodings(\"06\") == 0\nassert numDecodings(\"0\") == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=91"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=91",
+   "trace": {
+    "rows": [
+     {
+      "name": "s",
+      "kind": "text",
+      "values": [
+       "2",
+       "2",
+       "6"
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 2
+      }
+     }
+    ],
+    "call": "numDecodings('226')"
+   }
   },
   {
    "id": "13-28-word-break",
@@ -518,7 +1466,8 @@
    "notes": {},
    "tests": "assert wordBreak(\"leetcode\", [\"leet\",\"code\"]) == True\nassert wordBreak(\"applepenapple\", [\"apple\",\"pen\"]) == True\nassert wordBreak(\"catsandog\", [\"cats\",\"dog\",\"sand\",\"and\",\"cat\"]) == False\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=139"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=139",
+   "trace": null
   },
   {
    "id": "13-29-longest-palindromic-substring",
@@ -535,7 +1484,388 @@
    "notes": {},
    "tests": "assert longestPalindrome(\"babad\") in [\"bab\",\"aba\"]\nassert longestPalindrome(\"cbbd\") == \"bb\"\nassert longestPalindrome(\"a\") == \"a\"\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=5"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=5",
+   "trace": {
+    "rows": [
+     {
+      "name": "s",
+      "kind": "text",
+      "values": [
+       "b",
+       "a",
+       "b",
+       "a",
+       "d"
+      ],
+      "movers": [
+       "i",
+       "l",
+       "r"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "l": 0,
+       "r": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "l": 0,
+       "r": 0
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "l": -1,
+       "r": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "l": -1,
+       "r": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "l": 0,
+       "r": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "l": 0,
+       "r": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "l": 1,
+       "r": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "l": 1,
+       "r": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "l": 0,
+       "r": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "l": 0,
+       "r": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "l": -1,
+       "r": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "l": -1,
+       "r": 3
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "l": 1,
+       "r": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "l": 1,
+       "r": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "l": 2,
+       "r": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "l": 2,
+       "r": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "l": 1,
+       "r": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "l": 1,
+       "r": 3
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "l": 0,
+       "r": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "l": 0,
+       "r": 4
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "l": 2,
+       "r": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "l": 2,
+       "r": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "l": 3,
+       "r": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "l": 3,
+       "r": 3
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "l": 2,
+       "r": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "l": 2,
+       "r": 4
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "l": 3,
+       "r": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "l": 3,
+       "r": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4
+      }
+     }
+    ],
+    "call": "longestPalindrome('babad')"
+   }
   },
   {
    "id": "13-30-minimum-path-sum",
@@ -554,7 +1884,8 @@
    },
    "tests": "assert minPathSum([[1,3,1],[1,5,1],[4,2,1]]) == 7\nassert minPathSum([[1,2,3],[4,5,6]]) == 12\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=64"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=64",
+   "trace": null
   },
   {
    "id": "13-31-target-sum-dp-version",
@@ -571,7 +1902,8 @@
    "notes": {},
    "tests": "assert findTargetSumWaysDP([1,1,1,1,1], 3) == 5\nassert findTargetSumWaysDP([1], 1) == 1\nassert findTargetSumWaysDP([1], 2) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=494"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=494",
+   "trace": null
   },
   {
    "id": "13-32-maximum-length-of-repeated-subarray",
@@ -588,7 +1920,8 @@
    "notes": {},
    "tests": "assert findLength([1,2,3,2,1],[3,2,1,4,7]) == 3\nassert findLength([0,0,0,0,0],[0,0,0,0,0]) == 5\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=718"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=718",
+   "trace": null
   },
   {
    "id": "13-33-domino-and-tromino-tiling",
@@ -605,7 +1938,8 @@
    "notes": {},
    "tests": "assert numTilings(1) == 1\nassert numTilings(2) == 2\nassert numTilings(3) == 5\nassert numTilings(4) == 11\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=790"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=790",
+   "trace": null
   },
   {
    "id": "13-34-count-number-of-texts",
@@ -622,7 +1956,8 @@
    "notes": {},
    "tests": "assert countTextsFull(\"22233\") == 8\nassert countTextsFull(\"222222222222222222222222222222222222\") == 82876089\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2266"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2266",
+   "trace": null
   },
   {
    "id": "13-35-maximum-product-subarray-full",
@@ -639,7 +1974,8 @@
    "notes": {},
    "tests": "assert maxProductFull([2,3,-2,4]) == 6\nassert maxProductFull([-2,0,-1]) == 0\nassert maxProductFull([-2,3,-4]) == 24\nassert maxProductFull([-2,-3,-4]) == 12\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=152"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=152",
+   "trace": null
   },
   {
    "id": "13-36-edit-distance",
@@ -658,7 +1994,8 @@
    "verified": [
     "minDistance"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=72"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=72",
+   "trace": null
   },
   {
    "id": "13-37-longest-common-subsequence",
@@ -677,7 +2014,8 @@
    "verified": [
     "longestCommonSubsequence"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1143"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1143",
+   "trace": null
   },
   {
    "id": "13-38-best-time-to-buy-and-sell-stock-iv",
@@ -697,7 +2035,8 @@
    },
    "tests": "assert maxProfitK(2, [2,4,1]) == 2\nassert maxProfitK(2, [3,2,6,5,0,3]) == 7\nassert maxProfitK(0, [1,2,3]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=188"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=188",
+   "trace": null
   },
   {
    "id": "13-39-maximal-rectangle",
@@ -714,7 +2053,8 @@
    "notes": {},
    "tests": "assert maximalRectangle(matrix) == 6\nassert maximalRectangle([[\"0\"]]) == 0\nassert maximalRectangle([[\"1\"]]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=85"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=85",
+   "trace": null
   },
   {
    "id": "13-40-burst-balloons",
@@ -731,7 +2071,315 @@
    "notes": {},
    "tests": "assert maxCoins([3,1,5,8]) == 167\nassert maxCoins([1,5]) == 10\nassert maxCoins([]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=312"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=312",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       3,
+       1,
+       5,
+       8
+      ],
+      "movers": [
+       "right"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {
+       "right": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "right": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "right": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "right": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "right": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "right": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "right": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "right": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "right": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "right": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "right": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "right": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "right": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "right": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "right": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "right": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "right": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "right": 4
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "right": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "right": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "right": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "right": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "right": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "right": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "right": 5
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "right": 5
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "right": 5
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "right": 5
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "right": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "right": 5
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "right": 5
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "right": 5
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "right": 5
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "right": 5
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "right": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "right": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "right": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "right": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "right": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "right": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "right": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "right": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "right": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "right": 3
+      }
+     }
+    ],
+    "call": "maxCoins([3, 1, 5, 8])"
+   }
   },
   {
    "id": "13-41-regular-expression-matching",
@@ -751,7 +2399,8 @@
    },
    "tests": "assert isMatch(\"aa\",\"a\") == False\nassert isMatch(\"aa\",\"a*\") == True\nassert isMatch(\"ab\",\".*\") == True\nassert isMatch(\"aab\",\"c*a*b\") == True\nassert isMatch(\"mississippi\",\"mis*is*p*.\") == False\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=10"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=10",
+   "trace": null
   },
   {
    "id": "13-42-wildcard-matching",
@@ -768,7 +2417,8 @@
    "notes": {},
    "tests": "assert isMatchWild(\"aa\",\"a\") == False\nassert isMatchWild(\"aa\",\"*\") == True\nassert isMatchWild(\"cb\",\"?a\") == False\nassert isMatchWild(\"adceb\",\"*a*b\") == True\nassert isMatchWild(\"acdcb\",\"a*c?b\") == False\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=44"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=44",
+   "trace": null
   },
   {
    "id": "13-43-distinct-subsequences",
@@ -785,7 +2435,8 @@
    "notes": {},
    "tests": "assert numDistinct(\"rabbbit\",\"rabbit\") == 3\nassert numDistinct(\"babgbag\",\"bag\") == 5\nassert numDistinct(\"a\",\"b\") == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=115"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=115",
+   "trace": null
   },
   {
    "id": "13-44-stone-game-and-stone-game-vii",
@@ -807,7 +2458,368 @@
    },
    "tests": "assert stoneGame([5,3,4,5]) == True\nassert stoneGame([3,7,2,3]) == True\nassert stoneGameVII([5,3,1,4,2]) == 6\nassert stoneGameVII([7,90,5,1,100,10,10,2]) == 122\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=877"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=877",
+   "trace": {
+    "rows": [
+     {
+      "name": "stones",
+      "kind": "numbers",
+      "values": [
+       5,
+       3,
+       1,
+       4,
+       2
+      ],
+      "movers": [
+       "i",
+       "j"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 0,
+       "j": 1
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 0,
+       "j": 1
+      }
+     },
+     {
+      "l": 17,
+      "m": {
+       "i": 0,
+       "j": 1
+      }
+     },
+     {
+      "l": 18,
+      "m": {
+       "i": 0,
+       "j": 1
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 0,
+       "j": 1
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 1,
+       "j": 1
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 1,
+       "j": 2
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 1,
+       "j": 2
+      }
+     },
+     {
+      "l": 17,
+      "m": {
+       "i": 1,
+       "j": 2
+      }
+     },
+     {
+      "l": 18,
+      "m": {
+       "i": 1,
+       "j": 2
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 1,
+       "j": 2
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 2,
+       "j": 2
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 2,
+       "j": 3
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 2,
+       "j": 3
+      }
+     },
+     {
+      "l": 17,
+      "m": {
+       "i": 2,
+       "j": 3
+      }
+     },
+     {
+      "l": 18,
+      "m": {
+       "i": 2,
+       "j": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 2,
+       "j": 3
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 3,
+       "j": 3
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 3,
+       "j": 4
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 3,
+       "j": 4
+      }
+     },
+     {
+      "l": 17,
+      "m": {
+       "i": 3,
+       "j": 4
+      }
+     },
+     {
+      "l": 18,
+      "m": {
+       "i": 3,
+       "j": 4
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 3,
+       "j": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 3,
+       "j": 4
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 3,
+       "j": 4
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 0,
+       "j": 4
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 0,
+       "j": 2
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 0,
+       "j": 2
+      }
+     },
+     {
+      "l": 17,
+      "m": {
+       "i": 0,
+       "j": 2
+      }
+     },
+     {
+      "l": 18,
+      "m": {
+       "i": 0,
+       "j": 2
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 0,
+       "j": 2
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 1,
+       "j": 2
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 1,
+       "j": 3
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 1,
+       "j": 3
+      }
+     },
+     {
+      "l": 17,
+      "m": {
+       "i": 1,
+       "j": 3
+      }
+     },
+     {
+      "l": 18,
+      "m": {
+       "i": 1,
+       "j": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 1,
+       "j": 3
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 2,
+       "j": 3
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 2,
+       "j": 4
+      }
+     }
+    ],
+    "call": "stoneGameVII([5, 3, 1, 4, 2])"
+   }
   },
   {
    "id": "13-45-minimum-window-subsequence-simplified",
@@ -828,7 +2840,428 @@
    },
    "tests": "assert minWindowSubsequence(\"abcdebdde\",\"bde\") == \"bcde\"\nassert minWindowSubsequence(\"jmeqksfrsdcmsiwvaovztaqenprpvnbstl\",\"u\") == \"\"\nassert minWindowSubsequence(\"cnhczmccqouqadqtmjjzl\",\"mm\") == \"mccqouqadqtm\"\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=727"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=727",
+   "trace": {
+    "rows": [
+     {
+      "name": "s",
+      "kind": "text",
+      "values": [
+       "a",
+       "b",
+       "c",
+       "d",
+       "e",
+       "b",
+       "d",
+       "d",
+       "e"
+      ],
+      "movers": [
+       "i"
+      ]
+     },
+     {
+      "name": "t",
+      "kind": "text",
+      "values": [
+       "b",
+       "d",
+       "e"
+      ],
+      "movers": [
+       "j"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0,
+       "j": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0,
+       "j": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 0,
+       "j": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1,
+       "j": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1,
+       "j": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 1,
+       "j": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2,
+       "j": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2,
+       "j": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 2,
+       "j": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3,
+       "j": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3,
+       "j": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 3,
+       "j": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 4,
+       "j": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4,
+       "j": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 4,
+       "j": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 5,
+       "j": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 5,
+       "j": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 5,
+       "j": 3
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "i": 5,
+       "j": 3
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 4,
+       "j": 2
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 4,
+       "j": 2
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 4,
+       "j": 1
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 3,
+       "j": 1
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 3,
+       "j": 1
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 3,
+       "j": 0
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 2,
+       "j": 0
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 2,
+       "j": 0
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 2,
+       "j": 0
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 1,
+       "j": 0
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "i": 1,
+       "j": 0
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "i": 1,
+       "j": -1
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "i": 0,
+       "j": -1
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "i": 0,
+       "j": -1
+      }
+     },
+     {
+      "l": 17,
+      "m": {
+       "i": 0,
+       "j": -1
+      }
+     },
+     {
+      "l": 18,
+      "m": {
+       "i": 0,
+       "j": -1
+      }
+     },
+     {
+      "l": 19,
+      "m": {
+       "i": 0,
+       "j": -1
+      }
+     },
+     {
+      "l": 20,
+      "m": {
+       "i": 0,
+       "j": -1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2,
+       "j": -1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2,
+       "j": -1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2,
+       "j": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2,
+       "j": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 2,
+       "j": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3,
+       "j": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3,
+       "j": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 3,
+       "j": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 4,
+       "j": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4,
+       "j": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 4,
+       "j": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 5,
+       "j": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 5,
+       "j": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 5,
+       "j": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 6,
+       "j": 1
+      }
+     }
+    ],
+    "call": "minWindowSubsequence('abcdebdde', 'bde')"
+   }
   },
   {
    "id": "13-46-best-time-to-buy-and-sell-stock-ii",
@@ -845,7 +3278,63 @@
    "notes": {},
    "tests": "assert maxProfitII([7,1,5,3,6,4]) == 7\nassert maxProfitII([1,2,3,4,5]) == 4\nassert maxProfitII([7,6,4,3,1]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=122"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=122",
+   "trace": {
+    "rows": [
+     {
+      "name": "prices",
+      "kind": "numbers",
+      "values": [
+       7,
+       1,
+       5,
+       3,
+       6,
+       4
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 1,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 1,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 1,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 1,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 1,
+      "m": {
+       "i": 5
+      }
+     }
+    ],
+    "call": "maxProfitII([7, 1, 5, 3, 6, 4])"
+   }
   },
   {
    "id": "13-47-coin-change-ii",
@@ -862,7 +3351,8 @@
    "notes": {},
    "tests": "assert change(5, [1,2,5]) == 4\nassert change(3, [2]) == 0\nassert change(10, [10]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=518"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=518",
+   "trace": null
   },
   {
    "id": "13-48-perfect-squares",
@@ -879,7 +3369,8 @@
    "notes": {},
    "tests": "assert numSquares(12) == 3\nassert numSquares(13) == 2\nassert numSquares(1)  == 1\nassert numSquares(4)  == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=279"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=279",
+   "trace": null
   },
   {
    "id": "13-49-0-1-knapsack-classic",
@@ -898,7 +3389,8 @@
    },
    "tests": "assert knapsack01([1,3,4,5],[1,4,5,7],7) == 9\nassert knapsack01([2,3,4],[3,4,5],5) == 7\nassert knapsack01([1],[10],0) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "13-50-unbounded-knapsack-rod-cutting-classic",
@@ -917,7 +3409,8 @@
    },
    "tests": "assert rodCutting([1,5,8,9,10,17,17,20], 8) == 22\nassert rodCutting([3,5,8,9,10,17,17,20], 8) == 24\nassert rodCutting([1,5,8,9], 4) == 10\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "13-51-paint-house",
@@ -934,7 +3427,8 @@
    "notes": {},
    "tests": "assert minCostPaint([[17,2,17],[16,16,5],[14,3,19]]) == 10\nassert minCostPaint([[7,6,2]]) == 2\nassert minCostPaint([[1,2,3],[1,2,3]]) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=256"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=256",
+   "trace": null
   },
   {
    "id": "13-52-delete-and-earn",
@@ -951,7 +3445,8 @@
    "notes": {},
    "tests": "assert deleteAndEarn([3,4,2]) == 6\nassert deleteAndEarn([2,2,3,3,3,4]) == 9\nassert deleteAndEarn([1]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=740"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=740",
+   "trace": null
   },
   {
    "id": "13-53-count-ways-to-reach-nth-stair",
@@ -968,7 +3463,8 @@
    "notes": {},
    "tests": "assert countWays(1) == 1\nassert countWays(2) == 2\nassert countWays(4) == 5\nassert countWays(6) == 13\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=70"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=70",
+   "trace": null
   },
   {
    "id": "13-54-maximum-sum-of-non-adjacent-elements-house-robber-vari",
@@ -985,7 +3481,8 @@
    "notes": {},
    "tests": "assert maxNonAdj([5,5,10,100,10,5]) == 110\nassert maxNonAdj([1,2,3]) == 4\nassert maxNonAdj([2,4,6,2,5]) == 13\nassert maxNonAdj([]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "13-55-ugly-number-ii",
@@ -1002,7 +3499,8 @@
    "notes": {},
    "tests": "assert nthUglyNumber(1)  == 1\nassert nthUglyNumber(10) == 12\nassert nthUglyNumber(15) == 24\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=264"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=264",
+   "trace": null
   },
   {
    "id": "13-56-minimum-cost-for-tickets",
@@ -1019,7 +3517,8 @@
    "notes": {},
    "tests": "assert mincostTickets([1,4,6,7,8,20],[2,7,15]) == 11\nassert mincostTickets([1,2,3,4,5,6,7,8,9,10,30,31],[2,7,15]) == 17\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=983"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=983",
+   "trace": null
   },
   {
    "id": "13-57-ones-and-zeroes",
@@ -1036,7 +3535,8 @@
    "notes": {},
    "tests": "assert findMaxForm([\"10\",\"0001\",\"111001\",\"1\",\"0\"], 5, 3) == 4\nassert findMaxForm([\"10\",\"0\",\"1\"], 1, 1) == 2\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=474"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=474",
+   "trace": null
   },
   {
    "id": "13-58-longest-common-subsequence",
@@ -1055,7 +3555,8 @@
    "verified": [
     "longestCommonSubsequence"
    ],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1143"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1143",
+   "trace": null
   },
   {
    "id": "13-59-integer-break",
@@ -1072,7 +3573,8 @@
    "notes": {},
    "tests": "assert integerBreak(2) == 1\nassert integerBreak(10) == 36\nassert integerBreak(3) == 2\nassert integerBreak(4) == 4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=343"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=343",
+   "trace": null
   },
   {
    "id": "13-60-counting-bits-extended",
@@ -1089,7 +3591,8 @@
    "notes": {},
    "tests": "assert list(counts) == [0,1,1,2,1,2]\nassert pos[5] == [0, 2]   # 5 = 101b\nassert pos[3] == [0, 1]   # 3 = 011b\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=338"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=338",
+   "trace": null
   },
   {
    "id": "13-61-maximum-alternating-subsequence-length",
@@ -1106,7 +3609,8 @@
    "notes": {},
    "tests": "assert maxAlternatingSum([4,2,5,3]) == 7\nassert maxAlternatingSum([5,6,7,8]) == 8\nassert maxAlternatingSum([6,2,1,2,4,5]) == 10\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1911"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1911",
+   "trace": null
   },
   {
    "id": "13-62-maximize-the-confusion-of-an-exam",
@@ -1123,7 +3627,414 @@
    "notes": {},
    "tests": "assert maxConsecutiveAnswers(\"TTFF\", 2) == 4\nassert maxConsecutiveAnswers(\"TFFT\", 1) == 3\nassert maxConsecutiveAnswers(\"TTFTTFTT\", 1) == 5\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2024"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2024",
+   "trace": {
+    "rows": [
+     {
+      "name": "answerKey",
+      "kind": "text",
+      "values": [
+       "T",
+       "T",
+       "F",
+       "T",
+       "T",
+       "F",
+       "T",
+       "T"
+      ],
+      "movers": [
+       "left",
+       "right"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {
+       "left": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "left": 0,
+       "right": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "left": 0,
+       "right": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "left": 0,
+       "right": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "left": 0,
+       "right": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "left": 1,
+       "right": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "left": 1,
+       "right": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "left": 1,
+       "right": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "left": 1,
+       "right": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "left": 1,
+       "right": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "left": 1,
+       "right": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "left": 1,
+       "right": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "left": 1,
+       "right": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "left": 1,
+       "right": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 1,
+       "right": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 1,
+       "right": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "left": 2,
+       "right": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "left": 2,
+       "right": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "left": 2,
+       "right": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "left": 2,
+       "right": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "left": 2,
+       "right": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 2,
+       "right": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 2,
+       "right": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "left": 3,
+       "right": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 3,
+       "right": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 3,
+       "right": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "left": 4,
+       "right": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "left": 4,
+       "right": 4
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "left": 4,
+       "right": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "left": 4,
+       "right": 5
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "left": 4,
+       "right": 5
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "left": 4,
+       "right": 5
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "left": 4,
+       "right": 5
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "left": 4,
+       "right": 6
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "left": 4,
+       "right": 6
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 4,
+       "right": 6
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 4,
+       "right": 6
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "left": 5,
+       "right": 6
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "left": 5,
+       "right": 6
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "left": 5,
+       "right": 6
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "left": 5,
+       "right": 7
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "left": 5,
+       "right": 7
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 5,
+       "right": 7
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 5,
+       "right": 7
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "left": 6,
+       "right": 7
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "left": 6,
+       "right": 7
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "left": 6,
+       "right": 7
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "left": 7,
+       "right": 7
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "left": 7,
+       "right": 7
+      }
+     }
+    ],
+    "call": "maxConsecutiveAnswers('TTFTTFTT', 1)"
+   }
   },
   {
    "id": "13-63-stone-game-warmup",
@@ -1140,7 +4051,243 @@
    "notes": {},
    "tests": "assert stoneGameDP([5,3,4,5]) == True\nassert stoneGameDP([3,7,2,3]) == True\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=877"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=877",
+   "trace": {
+    "rows": [
+     {
+      "name": "piles",
+      "kind": "numbers",
+      "values": [
+       5,
+       3,
+       4,
+       5
+      ],
+      "movers": [
+       "i",
+       "j"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0,
+       "j": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0,
+       "j": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1,
+       "j": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1,
+       "j": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1,
+       "j": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2,
+       "j": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2,
+       "j": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2,
+       "j": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2,
+       "j": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2,
+       "j": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0,
+       "j": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0,
+       "j": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0,
+       "j": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1,
+       "j": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1,
+       "j": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1,
+       "j": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1,
+       "j": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1,
+       "j": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0,
+       "j": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0,
+       "j": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0,
+       "j": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0,
+       "j": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 0,
+       "j": 3
+      }
+     }
+    ],
+    "call": "stoneGameDP([5, 3, 4, 5])"
+   }
   },
   {
    "id": "13-64-number-of-dice-rolls-with-target-sum",
@@ -1157,7 +4304,8 @@
    "notes": {},
    "tests": "assert numRollsToTarget(1, 6, 3) == 1\nassert numRollsToTarget(2, 6, 7) == 6\nassert numRollsToTarget(2, 5, 10) == 1\nassert numRollsToTarget(1, 2, 3) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1155"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1155",
+   "trace": null
   },
   {
    "id": "13-65-knight-dialer",
@@ -1174,7 +4322,8 @@
    "notes": {},
    "tests": "assert knightDialer(1) == 10\nassert knightDialer(2) == 20\nassert knightDialer(3) == 46\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=935"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=935",
+   "trace": null
   },
   {
    "id": "13-66-coin-change-ii-full",
@@ -1194,7 +4343,8 @@
    },
    "tests": "assert changeFull(5, [1,2,5])  == 4\nassert changePerms(5, [1,2,5]) == 9\nassert changeFull(3, [2]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=518"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=518",
+   "trace": null
   },
   {
    "id": "13-67-minimum-cost-for-tickets-full",
@@ -1211,7 +4361,8 @@
    "notes": {},
    "tests": "assert mincostTicketsFull([1,4,6,7,8,20],[2,7,15]) == 11\nassert mincostTicketsFull([1,2,3,4,5,6,7,8,9,10,30,31],[2,7,15]) == 17\nassert mincostTicketsFull([1],[1,30,365]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=983"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=983",
+   "trace": null
   },
   {
    "id": "13-68-longest-arithmetic-subsequence",
@@ -1228,7 +4379,376 @@
    "notes": {},
    "tests": "assert longestArithSeqLength([3,6,9,12]) == 4\nassert longestArithSeqLength([9,4,7,2,10]) == 3\nassert longestArithSeqLength([20,1,15,3,10,5,8]) == 4\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1027"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1027",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       9,
+       4,
+       7,
+       2,
+       10
+      ],
+      "movers": [
+       "i",
+       "j"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1,
+       "j": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1,
+       "j": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1,
+       "j": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1,
+       "j": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 1,
+       "j": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2,
+       "j": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2,
+       "j": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2,
+       "j": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2,
+       "j": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2,
+       "j": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2,
+       "j": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2,
+       "j": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2,
+       "j": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2,
+       "j": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2,
+       "j": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3,
+       "j": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3,
+       "j": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3,
+       "j": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3,
+       "j": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3,
+       "j": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3,
+       "j": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3,
+       "j": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3,
+       "j": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3,
+       "j": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3,
+       "j": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3,
+       "j": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3,
+       "j": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3,
+       "j": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 3,
+       "j": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 4,
+       "j": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 4,
+       "j": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 4,
+       "j": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4,
+       "j": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 4,
+       "j": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 4,
+       "j": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 4,
+       "j": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4,
+       "j": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 4,
+       "j": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 4,
+       "j": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 4,
+       "j": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4,
+       "j": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 4,
+       "j": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 4,
+       "j": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 4,
+       "j": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4,
+       "j": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 4,
+       "j": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 4,
+       "j": 3
+      }
+     }
+    ],
+    "call": "longestArithSeqLength([9, 4, 7, 2, 10])"
+   }
   },
   {
    "id": "13-69-longest-palindromic-subsequence",
@@ -1245,7 +4765,292 @@
    "notes": {},
    "tests": "assert longestPalindromeSubseq(\"bbbab\") == 4\nassert longestPalindromeSubseq(\"cbbd\")  == 2\nassert longestPalindromeSubseq(\"a\")     == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=516"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=516",
+   "trace": {
+    "rows": [
+     {
+      "name": "s",
+      "kind": "text",
+      "values": [
+       "b",
+       "b",
+       "b",
+       "a",
+       "b"
+      ],
+      "movers": [
+       "j"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "j": 4
+      }
+     }
+    ],
+    "call": "longestPalindromeSubseq('bbbab')"
+   }
   },
   {
    "id": "13-70-best-time-to-buy-and-sell-stock-with-cooldown",
@@ -1262,7 +5067,8 @@
    "notes": {},
    "tests": "assert maxProfitCooldown([1,2,3,0,2]) == 3\nassert maxProfitCooldown([1]) == 0\nassert maxProfitCooldown([2,1,4]) == 3\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=309"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=309",
+   "trace": null
   },
   {
    "id": "13-71-best-time-to-buy-and-sell-stock-with-transaction-fee",
@@ -1279,7 +5085,8 @@
    "notes": {},
    "tests": "assert maxProfitFee([1,3,2,8,4,9], 2) == 8\nassert maxProfitFee([1,3,7,5,10,3], 3) == 6\nassert maxProfitFee([1,2], 1) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=714"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=714",
+   "trace": null
   },
   {
    "id": "13-72-arithmetic-slices-ii-subsequence",
@@ -1296,7 +5103,371 @@
    "notes": {},
    "tests": "assert numberOfArithmeticSlices([2,4,6,8,10]) == 7\nassert numberOfArithmeticSlices([7,7,7,7,7]) == 16\nassert numberOfArithmeticSlices([0,2000000000,-294967296]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=446"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=446",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       2,
+       4,
+       6,
+       8,
+       10
+      ],
+      "movers": [
+       "i",
+       "j"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1,
+       "j": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1,
+       "j": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 1,
+       "j": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 1,
+       "j": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1,
+       "j": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1,
+       "j": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2,
+       "j": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2,
+       "j": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2,
+       "j": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 2,
+       "j": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 2,
+       "j": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2,
+       "j": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2,
+       "j": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2,
+       "j": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 2,
+       "j": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 2,
+       "j": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2,
+       "j": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2,
+       "j": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3,
+       "j": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3,
+       "j": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3,
+       "j": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 3,
+       "j": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 3,
+       "j": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3,
+       "j": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3,
+       "j": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3,
+       "j": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 3,
+       "j": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 3,
+       "j": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3,
+       "j": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3,
+       "j": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3,
+       "j": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 3,
+       "j": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 3,
+       "j": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3,
+       "j": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3,
+       "j": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 4,
+       "j": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 4,
+       "j": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4,
+       "j": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 4,
+       "j": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 4,
+       "j": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 4,
+       "j": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 4,
+       "j": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4,
+       "j": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 4,
+       "j": 1
+      }
+     }
+    ],
+    "call": "numberOfArithmeticSlices([2, 4, 6, 8, 10])"
+   }
   },
   {
    "id": "13-73-reducing-dishes",
@@ -1313,7 +5484,8 @@
    "notes": {},
    "tests": "assert maxSatisfaction([-1,-8,0,5,-9]) == 14\nassert maxSatisfaction([4,3,2]) == 20\nassert maxSatisfaction([-1,-4,-5]) == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1402"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1402",
+   "trace": null
   },
   {
    "id": "13-74-number-of-dice-rolls-with-target-sum-full",
@@ -1330,7 +5502,8 @@
    "notes": {},
    "tests": "assert numRollsToTargetFull(1, 6, 3) == 1\nassert numRollsToTargetFull(2, 6, 7) == 6\nassert numRollsToTargetFull(30, 30, 500) == 222616187\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1155"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1155",
+   "trace": null
   },
   {
    "id": "13-75-stone-game-iii",
@@ -1347,7 +5520,8 @@
    "notes": {},
    "tests": "assert stoneGameIII([1,2,3,7])  == \"Bob\"\nassert stoneGameIII([1,2,3,-9]) == \"Alice\"\nassert stoneGameIII([1,2,3,6])  == \"Tie\"\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1406"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1406",
+   "trace": null
   },
   {
    "id": "13-76-maximum-score-from-performing-multiplication-operation",
@@ -1364,7 +5538,440 @@
    "notes": {},
    "tests": "assert maximumScore([1,2,3], [3,2,1]) == 14\nassert maximumScore([-5,-3,-3,-2,7,1],[-10,-5,3,4,6]) == 102\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1770"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1770",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       1,
+       2,
+       3
+      ],
+      "movers": [
+       "left",
+       "right"
+      ]
+     },
+     {
+      "name": "multipliers",
+      "kind": "numbers",
+      "values": [
+       3,
+       2,
+       1
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2,
+       "left": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2,
+       "left": 2,
+       "right": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2,
+       "left": 2,
+       "right": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 2,
+       "left": 2,
+       "right": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 2,
+       "left": 2,
+       "right": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2,
+       "left": 2,
+       "right": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2,
+       "left": 2,
+       "right": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2,
+       "left": 1,
+       "right": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2,
+       "left": 1,
+       "right": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2,
+       "left": 1,
+       "right": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 2,
+       "left": 1,
+       "right": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 2,
+       "left": 1,
+       "right": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2,
+       "left": 1,
+       "right": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2,
+       "left": 1,
+       "right": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2,
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2,
+       "left": 0,
+       "right": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2,
+       "left": 0,
+       "right": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 2,
+       "left": 0,
+       "right": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 2,
+       "left": 0,
+       "right": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2,
+       "left": 0,
+       "right": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2,
+       "left": 0,
+       "right": 0
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2,
+       "left": 0,
+       "right": 0
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1,
+       "left": 0,
+       "right": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1,
+       "left": 1,
+       "right": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1,
+       "left": 1,
+       "right": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1,
+       "left": 1,
+       "right": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 1,
+       "left": 1,
+       "right": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 1,
+       "left": 1,
+       "right": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1,
+       "left": 1,
+       "right": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1,
+       "left": 1,
+       "right": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 1,
+       "left": 0,
+       "right": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 1,
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1,
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 1,
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 1,
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1,
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1,
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 1,
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0,
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 0,
+       "left": 0,
+       "right": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 0,
+       "left": 0,
+       "right": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0,
+       "left": 0,
+       "right": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 0,
+       "left": 0,
+       "right": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 0,
+       "left": 0,
+       "right": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 0,
+       "left": 0,
+       "right": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 0,
+       "left": 0,
+       "right": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 0,
+       "left": 0,
+       "right": 2
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 0,
+       "left": 0,
+       "right": 2
+      }
+     }
+    ],
+    "call": "maximumScore([1, 2, 3], [3, 2, 1])"
+   }
   },
   {
    "id": "13-77-minimum-swaps-to-make-sequences-increasing",
@@ -1381,7 +5988,246 @@
    "notes": {},
    "tests": "assert minSwap([1,3,5,4],[1,2,3,7]) == 1\nassert minSwap([0,3,5,8,9],[2,1,4,6,9]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=801"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=801",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums1",
+      "kind": "numbers",
+      "values": [
+       0,
+       3,
+       5,
+       8,
+       9
+      ],
+      "movers": [
+       "i"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 1
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 2
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 3
+      }
+     },
+     {
+      "l": 3,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 2,
+      "m": {
+       "i": 4
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "i": 4
+      }
+     }
+    ],
+    "call": "minSwap([0, 3, 5, 8, 9], [2, 1, 4, 6, 9])"
+   }
   },
   {
    "id": "13-78-ones-and-zeroes-full",
@@ -1398,7 +6244,8 @@
    "notes": {},
    "tests": "assert findMaxFormFull([\"10\",\"0001\",\"111001\",\"1\",\"0\"],5,3) == 4\nassert findMaxFormFull([\"10\",\"0\",\"1\"],1,1) == 2\nassert findMaxFormFull([\"0\"],1,0) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=474"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=474",
+   "trace": null
   },
   {
    "id": "13-79-restore-the-array",
@@ -1415,7 +6262,349 @@
    "notes": {},
    "tests": "assert numberOfArrays(\"1000\",  10000) == 1\nassert numberOfArrays(\"1000\",  10)    == 0\nassert numberOfArrays(\"1317\",  2000)  == 8\nassert numberOfArrays(\"2020\",  30)    == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1416"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1416",
+   "trace": {
+    "rows": [
+     {
+      "name": "s",
+      "kind": "text",
+      "values": [
+       "1",
+       "3",
+       "1",
+       "7"
+      ],
+      "movers": [
+       "j"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 2
+      }
+     }
+    ],
+    "call": "numberOfArrays('1317', 2000)"
+   }
   },
   {
    "id": "13-80-delete-and-earn-full",
@@ -1432,7 +6621,8 @@
    "notes": {},
    "tests": "assert deleteAndEarnFull([3,4,2]) == 6\nassert deleteAndEarnFull([2,2,3,3,3,4]) == 9\nassert deleteAndEarnFull([1,1,1,2,4,5,5,5,6]) == 18\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=740"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=740",
+   "trace": null
   },
   {
    "id": "13-81-longest-increasing-subsequence-o-n-log-n-patience-sort",
@@ -1449,7 +6639,8 @@
    "notes": {},
    "tests": "assert lengthOfLISFast([10,9,2,5,3,7,101,18]) == 4\nassert lengthOfLISFast([0,1,0,3,2,3]) == 4\nassert lengthOfLISFast([7,7,7,7,7,7,7]) == 1\nassert lengthOfLISFast([1,3,6,7,9,4,10,5,6]) == 6\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "13-82-maximum-profit-in-job-scheduling",
@@ -1466,7 +6657,8 @@
    "notes": {},
    "tests": "assert jobScheduling([1,2,3,3],[3,4,5,6],[50,10,40,70]) == 120\nassert jobScheduling([1,2,3,4,6],[3,5,10,6,9],[20,20,100,70,60]) == 150\nassert jobScheduling([1,1,1],[2,3,4],[5,6,4]) == 6\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1235"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1235",
+   "trace": null
   },
   {
    "id": "13-83-strange-printer",
@@ -1483,7 +6675,318 @@
    "notes": {},
    "tests": "assert strangePrinter(\"aaabbb\") == 2\nassert strangePrinter(\"aba\") == 2\nassert strangePrinter(\"abcabc\") == 5\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=664"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=664",
+   "trace": {
+    "rows": [
+     {
+      "name": "s",
+      "kind": "text",
+      "values": [
+       "a",
+       "a",
+       "a",
+       "b",
+       "b",
+       "b"
+      ],
+      "movers": [
+       "j",
+       "k"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 1,
+      "m": {}
+     },
+     {
+      "l": 2,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 1,
+       "k": 0
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 1,
+       "k": 0
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 1,
+       "k": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 1,
+       "k": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 1,
+       "k": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "j": 1,
+       "k": 0
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 2,
+       "k": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 2,
+       "k": 0
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 2,
+       "k": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 2,
+       "k": 1
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 2,
+       "k": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 2,
+       "k": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 2,
+       "k": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "j": 2,
+       "k": 1
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 3,
+       "k": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 3,
+       "k": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 3,
+       "k": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 3,
+       "k": 2
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 3,
+       "k": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "j": 3,
+       "k": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 4,
+       "k": 2
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 4,
+       "k": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 4,
+       "k": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 4,
+       "k": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 4,
+       "k": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 4,
+       "k": 3
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 4,
+       "k": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "j": 4,
+       "k": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "j": 5,
+       "k": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 5,
+       "k": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 5,
+       "k": 4
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 5,
+       "k": 4
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 5,
+       "k": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 5,
+       "k": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "j": 5,
+       "k": 4
+      }
+     },
+     {
+      "l": 4,
+      "m": {
+       "j": 5,
+       "k": 4
+      }
+     }
+    ],
+    "call": "strangePrinter('aaabbb')"
+   }
   },
   {
    "id": "13-84-remove-boxes",
@@ -1500,7 +7003,371 @@
    "notes": {},
    "tests": "assert removeBoxes([1,3,2,2,2,3,4,3,1]) == 23\nassert removeBoxes([1,1,1]) == 9\nassert removeBoxes([1]) == 1\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=546"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=546",
+   "trace": {
+    "rows": [
+     {
+      "name": "boxes",
+      "kind": "numbers",
+      "values": [
+       1,
+       3,
+       2,
+       2,
+       2,
+       3,
+       4,
+       3,
+       1
+      ],
+      "movers": [
+       "l",
+       "m"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 13,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {
+       "l": 0
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "l": 0
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "l": 0
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "l": 1
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "l": 1
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "l": 1
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "l": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "l": 2
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "l": 2
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "l": 3
+      }
+     },
+     {
+      "l": 7,
+      "m": {
+       "l": 3
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "l": 4
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "l": 4
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "l": 5
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "l": 5
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "l": 5
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "l": 6
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "l": 6
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "l": 6
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "l": 7
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "l": 7
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "l": 7
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "l": 8
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "l": 8
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "l": 8
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "l": 9
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "l": 8
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "l": 8
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "l": 7
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "l": 7,
+       "m": 8
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "l": 7,
+       "m": 8
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "l": 7,
+       "m": 8
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "l": 6
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "l": 6,
+       "m": 7
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "l": 6,
+       "m": 7
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "l": 6,
+       "m": 8
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "l": 6,
+       "m": 8
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "l": 6,
+       "m": 8
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "l": 5
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "l": 5,
+       "m": 6
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "l": 5,
+       "m": 6
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "l": 5,
+       "m": 7
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "l": 5,
+       "m": 7
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "l": 6
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "l": 6
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "l": 6
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "l": 7
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "l": 6
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "l": 6
+      }
+     },
+     {
+      "l": 5,
+      "m": {
+       "l": 7
+      }
+     },
+     {
+      "l": 6,
+      "m": {
+       "l": 7
+      }
+     }
+    ],
+    "call": "removeBoxes([1, 3, 2, 2, 2, 3, 4, 3, 1])"
+   }
   },
   {
    "id": "13-85-minimum-cost-to-merge-stones",
@@ -1517,7 +7384,8 @@
    "notes": {},
    "tests": "assert mergeStones([3,2,4,1], 2) == 20\nassert mergeStones([3,2,4,1], 3) == -1\nassert mergeStones([3,5,1,2,6], 3) == 25\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1000"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1000",
+   "trace": null
   },
   {
    "id": "13-86-cherry-pickup-ii",
@@ -1534,7 +7402,8 @@
    "notes": {},
    "tests": "assert cherryPickup2([[3,1,1],[2,5,1],[1,5,5],[2,1,1]]) == 24\nassert cherryPickup2([[1,0,0,0,0,0,1],[2,0,0,0,0,3,0],[2,0,9,0,0,0,0],[0,3,0,5,4,0,0],[1,0,2,3,0,0,6]]) == 28\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1463"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1463",
+   "trace": null
   },
   {
    "id": "13-87-number-of-music-playlists",
@@ -1551,7 +7420,8 @@
    "notes": {},
    "tests": "assert numMusicPlaylists(3, 3, 1) == 6\nassert numMusicPlaylists(2, 3, 0) == 6\nassert numMusicPlaylists(2, 3, 1) == 2\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=920"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=920",
+   "trace": null
   },
   {
    "id": "13-88-longest-common-subsequence-of-three-strings-classic-ex",
@@ -1568,7 +7438,8 @@
    "notes": {},
    "tests": "assert lcsThree(\"geeks\",\"geeks\",\"geek\") == 4\nassert lcsThree(\"abcd1e2\",\"bc12ea\",\"bd1ea\") == 3\nassert lcsThree(\"abc\",\"def\",\"ghi\") == 0\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": null
+   "leetcodeUrl": null,
+   "trace": null
   },
   {
    "id": "13-89-count-all-valid-pickup-and-delivery-options",
@@ -1587,7 +7458,8 @@
    },
    "tests": "assert countOrders(1) == 1\nassert countOrders(2) == 6\nassert countOrders(3) == 90\nassert countOrders(4) == 2520\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=1359"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=1359",
+   "trace": null
   },
   {
    "id": "13-90-maximize-score-after-n-operations",
@@ -1604,7 +7476,325 @@
    "notes": {},
    "tests": "assert maximizeScore([1,2]) == 1\nassert maximizeScore([3,4,6,8]) == 11\nassert maximizeScore([1,2,3,4,5,6]) == 14\nprint(\"All tests passed!\")",
    "verified": [],
-   "leetcodeUrl": "https://leetcode.com/problemset/?search=2305"
+   "leetcodeUrl": "https://leetcode.com/problemset/?search=2305",
+   "trace": {
+    "rows": [
+     {
+      "name": "nums",
+      "kind": "numbers",
+      "values": [
+       3,
+       4,
+       6,
+       8
+      ],
+      "movers": [
+       "j"
+      ]
+     }
+    ],
+    "steps": [
+     {
+      "l": 3,
+      "m": {}
+     },
+     {
+      "l": 4,
+      "m": {}
+     },
+     {
+      "l": 5,
+      "m": {}
+     },
+     {
+      "l": 6,
+      "m": {}
+     },
+     {
+      "l": 7,
+      "m": {}
+     },
+     {
+      "l": 8,
+      "m": {}
+     },
+     {
+      "l": 9,
+      "m": {}
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 10,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 9,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 8,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 11,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 12,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 13,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 14,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 17,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 18,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 19,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 20,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 17,
+      "m": {
+       "j": 1
+      }
+     },
+     {
+      "l": 18,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 19,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 20,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 17,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 18,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 19,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 20,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 17,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 15,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 16,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 17,
+      "m": {
+       "j": 3
+      }
+     },
+     {
+      "l": 18,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 19,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 20,
+      "m": {
+       "j": 2
+      }
+     },
+     {
+      "l": 17,
+      "m": {
+       "j": 2
+      }
+     }
+    ],
+    "call": "maximizeScore([3, 4, 6, 8])"
+   }
   }
  ]
 }
