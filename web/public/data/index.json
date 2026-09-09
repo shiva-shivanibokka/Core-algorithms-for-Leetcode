@@ -1,0 +1,178 @@
+{
+ "totals": {
+  "patterns": 13,
+  "problems": 1170,
+  "verified": 37
+ },
+ "patterns": [
+  {
+   "id": "01",
+   "slug": "two-pointers",
+   "name": "Two Pointers",
+   "note": null,
+   "notebook": "01_Two_Pointers.ipynb",
+   "counts": {
+    "Easy": 40,
+    "Medium": 30,
+    "Hard": 20
+   },
+   "verified": 10
+  },
+  {
+   "id": "02",
+   "slug": "sliding-window",
+   "name": "Sliding Window",
+   "note": null,
+   "notebook": "02_Sliding_Window.ipynb",
+   "counts": {
+    "Easy": 40,
+    "Medium": 30,
+    "Hard": 20
+   },
+   "verified": 10
+  },
+  {
+   "id": "03",
+   "slug": "fast-and-slow-pointers",
+   "name": "Fast & Slow Pointers",
+   "note": "Floyd's Cycle Detection",
+   "notebook": "03_Fast_And_Slow_Pointers.ipynb",
+   "counts": {
+    "Easy": 40,
+    "Medium": 30,
+    "Hard": 20
+   },
+   "verified": 0
+  },
+  {
+   "id": "04",
+   "slug": "binary-search",
+   "name": "Binary Search",
+   "note": "Core + Modified",
+   "notebook": "04_Binary_Search.ipynb",
+   "counts": {
+    "Easy": 40,
+    "Medium": 30,
+    "Hard": 20
+   },
+   "verified": 2
+  },
+  {
+   "id": "05",
+   "slug": "merge-intervals",
+   "name": "Merge Intervals",
+   "note": null,
+   "notebook": "05_Merge_Intervals.ipynb",
+   "counts": {
+    "Easy": 40,
+    "Medium": 30,
+    "Hard": 20
+   },
+   "verified": 4
+  },
+  {
+   "id": "06",
+   "slug": "linked-list-reversal",
+   "name": "Linked List In-place Reversal",
+   "note": null,
+   "notebook": "06_Linked_List_Reversal.ipynb",
+   "counts": {
+    "Easy": 40,
+    "Medium": 30,
+    "Hard": 20
+   },
+   "verified": 0
+  },
+  {
+   "id": "07",
+   "slug": "binary-tree-dfs",
+   "name": "Binary Tree DFS",
+   "note": "Depth-First Search",
+   "notebook": "07_Binary_Tree_DFS.ipynb",
+   "counts": {
+    "Easy": 40,
+    "Medium": 30,
+    "Hard": 20
+   },
+   "verified": 0
+  },
+  {
+   "id": "08",
+   "slug": "binary-tree-bfs",
+   "name": "Binary Tree BFS",
+   "note": "Level Order Traversal",
+   "notebook": "08_Binary_Tree_BFS.ipynb",
+   "counts": {
+    "Easy": 40,
+    "Medium": 30,
+    "Hard": 20
+   },
+   "verified": 0
+  },
+  {
+   "id": "09",
+   "slug": "graph-dfs-bfs",
+   "name": "Graph DFS & BFS",
+   "note": null,
+   "notebook": "09_Graph_DFS_BFS.ipynb",
+   "counts": {
+    "Easy": 40,
+    "Medium": 30,
+    "Hard": 20
+   },
+   "verified": 0
+  },
+  {
+   "id": "10",
+   "slug": "topological-sort",
+   "name": "Topological Sort",
+   "note": null,
+   "notebook": "10_Topological_Sort.ipynb",
+   "counts": {
+    "Easy": 40,
+    "Medium": 30,
+    "Hard": 20
+   },
+   "verified": 0
+  },
+  {
+   "id": "11",
+   "slug": "top-k-elements",
+   "name": "Top K Elements",
+   "note": "Heap",
+   "notebook": "11_Top_K_Elements.ipynb",
+   "counts": {
+    "Easy": 40,
+    "Medium": 30,
+    "Hard": 20
+   },
+   "verified": 0
+  },
+  {
+   "id": "12",
+   "slug": "subsets-backtracking",
+   "name": "Subsets & Backtracking",
+   "note": null,
+   "notebook": "12_Subsets_Backtracking.ipynb",
+   "counts": {
+    "Easy": 40,
+    "Medium": 30,
+    "Hard": 20
+   },
+   "verified": 3
+  },
+  {
+   "id": "13",
+   "slug": "dynamic-programming",
+   "name": "Dynamic Programming",
+   "note": null,
+   "notebook": "13_Dynamic_Programming.ipynb",
+   "counts": {
+    "Easy": 40,
+    "Medium": 30,
+    "Hard": 20
+   },
+   "verified": 8
+  }
+ ]
+}

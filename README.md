@@ -4,6 +4,8 @@
 
 Built by Shivani Bokka.
 
+**Browse it: <https://pattern-bank.vercel.app>**
+
 [![Verify notebooks](https://github.com/shiva-shivanibokka/Core-algorithms-for-Leetcode/actions/workflows/verify.yml/badge.svg)](https://github.com/shiva-shivanibokka/Core-algorithms-for-Leetcode/actions/workflows/verify.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/)
@@ -14,7 +16,7 @@ Built by Shivani Bokka.
 
 - **What it is** — a self-built coding-interview study bank organized by *pattern* (Two Pointers, Sliding Window, DP, …) rather than by random problem: 1,170 problem slots, 1,130 distinct problems, 655 distinct LeetCode numbers cited, all worked and all runnable.
 - **Hardest problem solved** — making the bank *trustworthy*, which turned out to be a harder claim than it sounds. Inline asserts prove a solution matches the tests written beside it — by the same person, at the same sitting, from the same reading of the problem. That is circular, and three ways of being wrong survive it. All three are now checked by scripts that run in CI, and each one had already caught something real.
-- **Impact** — 13 patterns × 90 problems, difficulty-tiered, **every cell green under CI on every push**, plus 27 problems sampled and re-verified against brute-force references that share no code with the solutions.
+- **Impact** — 13 patterns × 90 problems, difficulty-tiered, **every cell green under CI on every push**, plus 27 problems sampled and re-verified against brute-force references that share no code with the solutions. All of it is [browsable](https://pattern-bank.vercel.app) — pick a pattern, pick a problem, and the solution is written out a line at a time with the reasoning first and the evidence after.
 
 ---
 
@@ -81,7 +83,7 @@ Honest accounting, because the headline numbers are easy to inflate:
 
 ## Architecture
 
-This is a study repo, not a deployed service — so its "architecture" is how correctness is guaranteed. Notebooks give you prose, runnable code, and tests in one place, but notebooks are notorious for silently rotting: a cell gets edited and never re-run. Three scripts close that gap, and CI runs all three on every push.
+This is a study repo, not a deployed service — so its "architecture" is how correctness is guaranteed. Notebooks give you prose, runnable code, and tests in one place, but notebooks are notorious for silently rotting: a cell gets edited and never re-run. Four scripts close that gap, and CI runs every one of them on each push.
 
 ```mermaid
 flowchart TD
@@ -93,10 +95,13 @@ flowchart TD
     B -->|executed top-to-bottom<br/>in a shared namespace| V["verify_notebooks.py<br/>every cell runs, every<br/>solution is reached"]
     B -->|run against brute-force<br/>references on random inputs| S["stress_test.py<br/>answers checked without<br/>the notebook's own asserts"]
     A -->|counted| C["check_claims.py<br/>this README's numbers"]
+    A --> D["build_site_data.py<br/>the browsable site,<br/>regenerated and diffed"]
+    B --> D
     V --> CI["GitHub Actions"]
     S --> CI
     C --> CI
-    CI --> G{"All three pass?"}
+    D --> CI
+    CI --> G{"All four pass?"}
     G -->|yes| OK["✅ green build"]
     G -->|no| BAD["❌ red build<br/>names the notebook,<br/>cell, and problem"]
 ```
@@ -109,13 +114,14 @@ flowchart TD
 - **`sortedcontainers`** — the only third-party dependency (used in 5 cells) for `SortedList` / `SortedDict`, Python's balanced-BST / TreeMap equivalent, on problems that need an ordered structure with O(log n) operations.
 - **Jupyter Notebooks** — chosen so explanation, solution, and tests live together in one readable artifact.
 - **GitHub Actions** — CI that runs the full verification on every push.
+- **Next.js, statically exported** — the browsable site in `web/`, generated from the notebooks and served as plain files. No backend, no database, nothing to keep running.
 
 ## Skills Demonstrated
 
 - **Data structures & algorithms** — 13 core patterns across arrays, strings, linked lists, trees, graphs, heaps, backtracking, and dynamic programming.
 - **Algorithm design & complexity analysis** — every solution annotated with its time/space trade-off and the reasoning behind the approach.
 - **Test design, including its limits** — inline asserts, plus an independent-reference layer built specifically because inline asserts cannot catch a misunderstanding of the problem.
-- **CI/CD pipeline implementation** — GitHub Actions runs all three checks on each push and blocks a red build.
+- **CI/CD pipeline implementation** — GitHub Actions runs every check plus the site build on each push and blocks a red build.
 - **System design & architecture reasoning** — a purpose-built verification harness with a documented design trade-off (shared-namespace execution) that models how the notebooks are actually run.
 
 ## Getting Started
@@ -155,6 +161,27 @@ FAIL  11_Top_K_Elements.ipynb  cell 85: IndexError: list index out of range
 
 This is the same check CI runs, so a green local run means a green build.
 
+## The site
+
+<https://pattern-bank.vercel.app> — the same bank, browsable.
+
+Pick one of the thirteen patterns, filter its ninety problems by tier or search
+by title, LeetCode number, or a line of code, and open one. The problem view
+runs in the order you would actually want to be told the answer:
+
+1. **The thinking** — the approach and the insight, before any code.
+2. **The solution**, written out one line at a time, with the code's own inline
+   comments arriving in the margin beside the line they explain. Click it, or
+   press *Show it all*, to skip straight to the finished solution; under
+   `prefers-reduced-motion` it never animates at all.
+3. **What it was proved against** — the asserts, plus a badge on the problems
+   that also cleared an independent reference.
+
+It is a static export. `build_site_data.py` reads the notebooks and writes an
+index plus one file per pattern into `web/public/data/`, the pages are rendered
+once at build time, and `--check` runs in CI — so the site cannot drift from the
+notebooks, there is no server to keep alive, and nothing about it can expire.
+
 ## Project Structure
 
 ```
@@ -167,8 +194,10 @@ This is the same check CI runs, so a green local run means a green build.
 │                                  #   no solution, or a solution never reached
 ├── stress_test.py                 # 27 problems vs independent brute-force references
 ├── check_claims.py                # the numbers in this README, recomputed
+├── build_site_data.py             # notebooks -> web/public/data/*.json
+├── web/                           # the browsable bank: Next.js, statically exported
 ├── requirements.txt               # single dependency: sortedcontainers
-├── .github/workflows/verify.yml   # CI: all three scripts on every push
+├── .github/workflows/verify.yml   # CI: every script, plus the site build
 ├── LICENSE
 └── README.md
 ```
