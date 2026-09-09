@@ -239,21 +239,27 @@ function ProblemView({ problem, pattern }: { problem: Problem; pattern: Pattern 
           )}
           <pre onClick={settle}>
             <code>
-              {lines.map((tokens, i) => (
-                <span
-                  key={i}
-                  className={`line${i >= written ? " pending" : ""}${
-                    i === written - 1 && !done ? " writing" : ""
-                  }`}
-                >
-                  {tokens.length === 0 ? " " : tokens.map((t, j) => (
-                    <span key={j} className={t.cls}>
-                      {t.text}
-                    </span>
-                  ))}
-                </span>
-              ))}
-              <span className={`caret${done ? "" : " on"}`} aria-hidden="true" />
+              {lines.map((tokens, i) => {
+                const writing = i === written - 1 && !done;
+                return (
+                  <span
+                    key={i}
+                    className={`line${i >= written ? " pending" : ""}${
+                      writing ? " writing" : ""
+                    }`}
+                  >
+                    {tokens.length === 0 ? " " : tokens.map((t, j) => (
+                      <span key={j} className={t.cls}>
+                        {t.text}
+                      </span>
+                    ))}
+                    {/* the caret rides the line being written, not the bottom
+                        of the block -- the pending lines below still occupy
+                        their space, so a caret after them floats in nothing */}
+                    {writing && <span className="caret on" aria-hidden="true" />}
+                  </span>
+                );
+              })}
             </code>
           </pre>
         </div>

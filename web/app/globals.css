@@ -347,7 +347,10 @@ a { color: inherit; }
   background: linear-gradient(90deg, rgba(167, 139, 250, 0.17), transparent 72%);
   box-shadow: inset 2px 0 0 var(--cyan);
 }
-.caret { display: inline-block; width: 0.55em; height: 1.05em; vertical-align: -0.2em; }
+.caret {
+  display: inline-block; width: 0.55em; height: 1.05em;
+  vertical-align: -0.2em; margin-left: 2px;
+}
 .caret.on {
   background: var(--cyan); box-shadow: 0 0 12px rgba(94, 234, 212, 0.55);
   animation: caret 1s steps(1) infinite;
