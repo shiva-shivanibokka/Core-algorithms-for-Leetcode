@@ -18,7 +18,10 @@
 
   --text: #cdcae0;
   --bright: #f3f1ff;
-  --dim: #746f96;
+  /* 5.7:1 on the page ground and 5.4:1 on a card. The previous value
+     looked right and measured 4.17:1, under AA for text this size --
+     and every LeetCode number, complexity and label uses it. */
+  --dim: #8b86b0;
 
   --violet: #a78bfa;
   --cyan: #5eead4;
