@@ -9,7 +9,10 @@ export default async function Home() {
     <>
       <section className="shell hero">
         <p className="kicker">Core algorithms for LeetCode</p>
-        <h1 className="gradient">Interview problems, filed by the shape of the answer</h1>
+        <h1 className="gradient">
+          <span>Interview problems,</span>
+          <span>filed by the shape of the answer</span>
+        </h1>
         <p className="stand">
           Not a pile of solved problems. Thirteen patterns, ninety problems each,
           worked from a warm-up Easy up to something a FAANG onsite would use — and

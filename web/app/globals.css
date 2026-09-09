@@ -133,9 +133,11 @@ a { color: inherit; }
   font-weight: 600;
   line-height: 1.03;
   letter-spacing: -0.035em;
-  max-width: 24ch;
-  text-wrap: balance;
 }
+/* The break is deliberate rather than wherever the measure happens to fall, so
+   no max-width and no balancing -- each half is its own line, and only a
+   viewport too narrow for the second half wraps it further. */
+.hero h1 span { display: block; }
 .hero p.stand {
   margin: 22px 0 0;
   font-size: clamp(16px, 1.7vw, 18.5px);
