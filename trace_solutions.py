@@ -102,6 +102,26 @@ def index_owners(solution):
                     target = target.elts[0]
                 if isinstance(target, ast.Name):
                     owners.setdefault(target.id, seq)
+
+        # One hop outwards: `mid = (left + right) // 2` makes mid a pointer
+        # into arr, and left and right are plainly pointers into the same arr
+        # even though neither ever appears inside a bracket. Repeat until it
+        # settles, so a chain of two resolves too.
+        for _ in range(3):
+            grew = False
+            for node in ast.walk(tree):
+                if not isinstance(node, ast.Assign) or len(node.targets) != 1:
+                    continue
+                target = node.targets[0]
+                if not isinstance(target, ast.Name) or target.id not in owners:
+                    continue
+                row = owners[target.id]
+                for inner in ast.walk(node.value):
+                    if isinstance(inner, ast.Name) and inner.id not in owners:
+                        owners[inner.id] = row
+                        grew = True
+            if not grew:
+                break
     return owners
 
 
