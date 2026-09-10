@@ -337,6 +337,21 @@ def main():
         if stale or extra:
             for name in stale:
                 print(f"FAIL  web/public/data/{name} is stale")
+                # Say *what* differs. "Stale" alone is useless when the build
+                # is reproducible on the machine you are standing at and not on
+                # the one that failed.
+                current = ((OUT / name).read_text(encoding="utf-8").splitlines()
+                           if (OUT / name).exists() else [])
+                fresh = written[name].splitlines()
+                for n, (a, b) in enumerate(zip(current, fresh, strict=False), 1):
+                    if a != b:
+                        print(f"      first difference at line {n}")
+                        print(f"      committed: {a.strip()[:120]}")
+                        print(f"      rebuilt:   {b.strip()[:120]}")
+                        break
+                else:
+                    print(f"      same {min(len(current), len(fresh))} lines, "
+                          f"then {len(current)} vs {len(fresh)} lines long")
             for name in extra:
                 print(f"FAIL  web/public/data/{name} is no longer generated")
             print("      run: python build_site_data.py")
