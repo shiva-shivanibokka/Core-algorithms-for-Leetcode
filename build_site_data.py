@@ -322,7 +322,11 @@ def main():
     data = build()
     if data is None:
         return 1
-    written = {name: json.dumps(body, ensure_ascii=False, indent=1) + "\n"
+    # allow_nan=False: json.dumps otherwise writes Infinity and NaN happily,
+    # and neither is JSON -- no browser will parse the file. A DP table
+    # initialised to float("inf") put seven of these files beyond reading.
+    # Better to fail the build than to ship data the site cannot load.
+    written = {name: json.dumps(body, ensure_ascii=False, indent=1, allow_nan=False) + "\n"
                for name, body in files(data).items()}
 
     if args.check:

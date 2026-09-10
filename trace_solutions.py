@@ -28,6 +28,7 @@ from __future__ import annotations
 import ast
 import contextlib
 import io
+import math
 import sys
 
 #: A trace longer than this is not worth watching, and the JSON gets large.
@@ -36,10 +37,35 @@ MAX_FRAMES = 56
 MAX_SEQ = 26
 #: A sequence in this range makes a watchable animation.
 GOOD_SEQ = range(3, 21)
+#: At most this many changing lists are worth watching at once.
+MAX_STATE_ROWS = 2
 #: More labels than this under one row is a wall of text, not a picture.
 MAX_MOVERS = 4
 #: Guard against a solution that loops forever on a traced run.
 MAX_STEPS = 400_000
+
+
+def as_row(value):
+    """A list short and simple enough to draw as a row of cells, or None."""
+    if not isinstance(value, list) or not 1 <= len(value) <= MAX_SEQ:
+        return None
+    cells = []
+    for item in value:
+        # bool before int: bool is a subclass of int, and "False" does not fit
+        if isinstance(item, bool):
+            cells.append("T" if item else "F")
+        elif isinstance(item, float) and not math.isfinite(item):
+            # `dp = [float('inf')] * n` is a real starting state and worth
+            # showing -- but json.dumps writes it as the literal `Infinity`,
+            # which no JSON parser accepts. A symbol says the same thing.
+            cells.append("∞" if item > 0 else "-∞")
+        elif isinstance(item, (int, float)):
+            cells.append(item)
+        elif isinstance(item, str) and len(item) <= 3:
+            cells.append(item)
+        else:
+            return None
+    return cells
 
 
 def _literal(node):
@@ -183,7 +209,7 @@ def _record(fn, args, node_map):
             raise TimeoutError("solution ran too long under the tracer")
         if len(frames) >= MAX_FRAMES:
             return None
-        ints, nodes = {}, {}
+        ints, nodes, lists = {}, {}, {}
         for k, v in frame.f_locals.items():
             if k.startswith("_"):
                 continue
@@ -191,7 +217,12 @@ def _record(fn, args, node_map):
                 ints[k] = v
             elif node_map and id(v) in node_map:
                 nodes[k] = node_map[id(v)]
-        frames.append({"line": frame.f_lineno - 1, "ints": ints, "nodes": nodes})
+            else:
+                row = as_row(v)
+                if row is not None:
+                    lists[k] = row
+        frames.append({"line": frame.f_lineno - 1, "ints": ints,
+                       "nodes": nodes, "lists": lists})
         return tracer
 
     sys.settrace(tracer)
@@ -220,6 +251,18 @@ def _prepare(solution, call, base_ns):
     return namespace[call.func.id], args, mapping
 
 
+def _changing_lists(frames):
+    """Lists whose contents actually change: a constant one is just the input."""
+    names = {k for f in frames for k in f["lists"]}
+    out = []
+    for name in names:
+        seen = {tuple(f["lists"][name]) for f in frames if name in f["lists"]}
+        if len(seen) > 1:
+            out.append((len(seen), name))
+    out.sort(reverse=True)
+    return [name for _, name in out[:MAX_STATE_ROWS]]
+
+
 def trace(solution: str, tests: str, base_ns: dict) -> dict | None:
     """A replayable recording of this solution, or None if it has no shape.
 
@@ -240,8 +283,6 @@ def trace(solution: str, tests: str, base_ns: dict) -> dict | None:
 
     for call in test_calls(tests, defined):
         seqs = literal_sequences(call)
-        if not seqs:
-            continue
         try:
             fn, args, node_map = _prepare(solution, call, base_ns)
             frames = _record(fn, args, node_map)
@@ -250,8 +291,10 @@ def trace(solution: str, tests: str, base_ns: dict) -> dict | None:
                            # asserts are what report a solution that is broken
         if not frames:
             continue
-        length = sum(len(s[1]) for s in seqs)
-        score = (1 if length in GOOD_SEQ else 0, min(len(frames), MAX_FRAMES))
+        length = sum(len(s[1]) for s in seqs) if seqs else 0
+        score = (len(_changing_lists(frames)),
+                 1 if length in GOOD_SEQ else 0,
+                 min(len(frames), MAX_FRAMES))
         if best is None or score > best[0]:
             best = (score, call, seqs, frames)
 
@@ -288,15 +331,43 @@ def trace(solution: str, tests: str, base_ns: dict) -> dict | None:
                 movers = sorted(sorted(movers, key=lambda m: (-len(seen[m]), m))[:MAX_MOVERS])
             rows.append({"name": name, "kind": kind, "values": values, "movers": movers})
 
+    # Lists whose contents change get a row of their own, drawn as cells that
+    # light up as they are written to. This is what topological sort and
+    # dynamic programming have instead of a pointer.
+    state = _changing_lists(frames)
+    shown = {row["name"] for row in rows}
+    state = [n for n in state if n not in shown]
+    for name in state:
+        first = next((f["lists"][name] for f in frames if name in f["lists"]), None)
+        if first is not None:
+            rows.append({"name": name, "kind": "state", "values": first, "movers": []})
+
     if not rows:
         return None
 
     tracked = {m for row in rows for m in row["movers"]}
-    steps = []
+    steps, previous = [], {}
     for f in frames:
         marks = {k: v for k, v in {**f["ints"], **f["nodes"]}.items() if k in tracked}
-        if steps and steps[-1]["l"] == f["line"] and steps[-1]["m"] == marks:
+        delta = {}
+        for name in state:
+            current = f["lists"].get(name)
+            if current is None:
+                continue
+            was = previous.get(name)
+            if was is None:
+                previous[name] = list(current)
+                continue
+            if len(current) != len(was):
+                changed = dict(enumerate(current))
+            else:
+                pairs = zip(was, current, strict=True)
+                changed = {i: b for i, (a, b) in enumerate(pairs) if a != b}
+            if changed:
+                delta[name] = {str(i): v for i, v in changed.items()}
+                previous[name] = list(current)
+        if (steps and steps[-1]["l"] == f["line"] and steps[-1]["m"] == marks and not delta):
             continue        # the same line with nothing moved is not a step
-        steps.append({"l": f["line"], "m": marks})
+        steps.append({"l": f["line"], "m": marks, "d": delta})
 
     return {"rows": rows, "steps": steps, "call": ast.unparse(call)}

@@ -172,9 +172,11 @@ runs in the order you would actually want to be told the answer:
 1. **The thinking** — the approach and the insight, before any code.
 2. **A replay of the solution running on one of its own test cases** — the row
    is the input the test actually passed (letters for Valid Palindrome, numbers
-   for Two Sum), the markers are where the solution's own pointers were sitting,
-   and the line of code executing at that step lights up beneath. It is a
-   recording, not an illustration, so it cannot drift from the code.
+   for Two Sum, the `indegree` array for Course Schedule), the markers are where
+   the solution's own pointers were sitting, cells light up as the solution
+   writes to them, and the line of code executing at that step lights up
+   beneath. It is a recording, not an illustration, so it cannot drift from the
+   code.
 3. **The solution**, written out one line at a time, with an explanation beside
    every line. Click it, or press *Show it all*, to skip straight to the
    finished solution; under `prefers-reduced-motion` it never animates at all.
@@ -184,15 +186,29 @@ runs in the order you would actually want to be told the answer:
 ### Where the animations come from
 
 `trace_solutions.py` runs each solution on one of its own test cases under a
-line tracer and records, per step, which line is executing and where each of its
-pointers is sitting. **363 of the 1,170 problems** get a replay of their own run
-that way. Nothing is guessed: a variable counts as a pointer into a sequence
-only if the source actually indexes that sequence with it — `s[left]` is what
-makes `left` a pointer into `s` — and a variable holding a linked-list node is
-reported as that node's position, because the list was built by the recorder and
-its identities are known. A problem whose state is a tree, a graph or a
-dictionary gets no recording, and the page says so and shows the pattern's shape
-instead.
+line tracer and records, per step, which line is executing and what its state
+looks like. **690 of the 1,170 problems** get a replay of their own run.
+
+A recording carries one of two kinds of row, because solutions have two kinds of
+state:
+
+- **A sequence with pointers moving over it.** A variable counts as a pointer
+  into a sequence only if the source actually indexes that sequence with it —
+  `s[left]` is what makes `left` a pointer into `s`, and `for i, ch in
+  enumerate(s)` says the same thing differently. One hop through the arithmetic
+  counts too: if `mid` indexes `nums`, so do `left` and `right` in
+  `mid = (left + right) // 2`. A variable holding a linked-list node is reported
+  as that node's position, because the recorder built the list and knows its
+  identities.
+- **A list whose contents change.** Topological sort has nothing to point at —
+  `canFinish(2, [[1,0]])` passes a count and a list of pairs — but `indegree`
+  drains to zero as the answer emerges, and that is the picture. Dynamic
+  programming fills a table the same way, union-find rewrites `parent`, and
+  backtracking grows and shrinks `path`. Steps carry only the cells that
+  changed, so a forty-step recording costs about a kilobyte.
+
+A problem whose state is none of those — a tree, a graph, a dictionary — gets no
+recording, and the page says so and shows the pattern's shape instead.
 
 It is a static export. `build_site_data.py` reads the notebooks and writes an
 index plus one file per pattern into `web/public/data/`, the pages are rendered

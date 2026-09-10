@@ -33,8 +33,24 @@ export interface Problem {
  */
 export interface Trace {
   call: string;
-  rows: { name: string; kind: "text" | "numbers"; values: (string | number)[]; movers: string[] }[];
-  steps: { l: number; m: Record<string, number> }[];
+  /**
+   * Either a sequence the solution walks, with its pointers moving over it, or
+   * a list whose contents change as the solution writes to it -- an indegree
+   * count draining, a DP table filling. The second kind is what topological
+   * sort and dynamic programming have instead of a pointer.
+   */
+  rows: {
+    name: string;
+    kind: "text" | "numbers" | "state";
+    values: (string | number)[];
+    movers: string[];
+  }[];
+  /** l = line executing, m = pointer positions, d = cells written this step */
+  steps: {
+    l: number;
+    m: Record<string, number>;
+    d?: Record<string, Record<string, string | number>>;
+  }[];
 }
 
 /** The explainer a notebook opens with, split into its sections. */

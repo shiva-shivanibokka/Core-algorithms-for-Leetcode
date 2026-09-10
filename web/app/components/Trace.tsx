@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Trace as Recording } from "@/lib/data";
 
 const STEP_MS = 900;
@@ -70,6 +70,29 @@ export default function Trace({
 
   const step = trace.steps[i];
 
+  // A changing row is replayed by applying every step's writes up to here.
+  // Cheaper than storing a full snapshot per step, and it makes "what changed
+  // on this step" fall out for free.
+  const { state, justWritten } = useMemo(() => {
+    const current: Record<string, (string | number)[]> = {};
+    for (const row of trace.rows) {
+      if (row.kind === "state") current[row.name] = [...row.values];
+    }
+    let written: Record<string, Set<number>> = {};
+    for (let n = 0; n <= i && n < trace.steps.length; n += 1) {
+      written = {};
+      for (const [name, cells] of Object.entries(trace.steps[n].d ?? {})) {
+        if (!current[name]) continue;
+        written[name] = new Set();
+        for (const [idx, value] of Object.entries(cells)) {
+          current[name][Number(idx)] = value;
+          written[name].add(Number(idx));
+        }
+      }
+    }
+    return { state: current, justWritten: written };
+  }, [trace, i]);
+
   return (
     <div className="trace">
       <div className="trace-head">
@@ -80,7 +103,10 @@ export default function Trace({
       <div className="trace-rows">
         {trace.rows.map((row) => (
           <div key={row.name} className="trace-row">
-            <span className="rowname mono">{row.name}</span>
+            <span className="rowname mono">
+              {row.name}
+              {row.kind === "state" && <em>changes</em>}
+            </span>
             <div
               className={`cells ${row.kind}`}
               style={
@@ -92,14 +118,20 @@ export default function Trace({
                 } as React.CSSProperties
               }
             >
-              {row.values.map((v, n) => {
-                const on = row.movers.filter((m) => step?.m[m] === n);
-                return (
-                  <span key={n} className={`cell${on.length ? " live" : ""}`}>
-                    {row.kind === "text" && v === " " ? "␣" : String(v)}
-                  </span>
-                );
-              })}
+              {(row.kind === "state" ? state[row.name] ?? row.values : row.values).map(
+                (v, n) => {
+                  const pointed = row.movers.some((m) => step?.m[m] === n);
+                  const wrote = justWritten[row.name]?.has(n);
+                  return (
+                    <span
+                      key={n}
+                      className={`cell${pointed ? " live" : ""}${wrote ? " wrote" : ""}`}
+                    >
+                      {row.kind === "text" && v === " " ? "␣" : String(v)}
+                    </span>
+                  );
+                },
+              )}
               {row.movers.map((m, n) => {
                 const at = step?.m[m];
                 // One slot past either end is meaningful and drawn: `right =
