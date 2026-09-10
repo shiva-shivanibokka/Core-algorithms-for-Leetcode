@@ -5,6 +5,7 @@
   "verified": 106,
   "traced": 688
  },
+ "python": "3.12.3",
  "patterns": [
   {
    "id": "01",

@@ -15,6 +15,7 @@ import contextlib
 import glob
 import io
 import json
+import platform
 import re
 import sys
 from pathlib import Path
@@ -298,7 +299,15 @@ def files(data):
     pattern's solutions arrive when that pattern is opened.
     """
     out = {}
-    index = {"totals": data["totals"], "patterns": []}
+    index = {"totals": data["totals"],
+             # The recordings come from tracing real execution, and CPython has
+             # changed which line it attributes a multi-line generator
+             # expression to between patch releases. So the data is tied to an
+             # exact interpreter, and CI pins the same one -- a mismatch here is
+             # the first thing to check when --check fails on a machine that
+             # did not write the files.
+             "python": platform.python_version(),
+             "patterns": []}
     for pattern in data["patterns"]:
         out[f"{pattern['slug']}.json"] = pattern
         index["patterns"].append({
