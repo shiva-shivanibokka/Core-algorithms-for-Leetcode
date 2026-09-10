@@ -197,9 +197,21 @@ def node_positions(head, limit=MAX_SEQ):
 
 
 def _record(fn, args, node_map):
-    """Run one call, keeping a frame per executed line of the solution."""
+    """Run one call, keeping a frame per executed line of the solution.
+
+    Returns the frames and whether the run finished inside the frame budget. A
+    truncated recording stops mid-answer and -- worse -- may be cut off before
+    the state it was chosen for ever changes, which made the choice of test
+    case depend on exactly where the cut fell.
+    """
     frames = []
     steps = [0]
+    truncated = [False]
+    # Which lists change is decided over the *whole* run, while only the first
+    # frames are kept to replay. Judging a candidate by the truncated view made
+    # the choice of test case depend on where the cut fell.
+    last_seen: dict[str, tuple] = {}
+    changed: set[str] = set()
 
     def tracer(frame, event, _arg):
         if event != "line" or frame.f_code.co_filename != "<solution>":
@@ -207,8 +219,7 @@ def _record(fn, args, node_map):
         steps[0] += 1
         if steps[0] > MAX_STEPS:
             raise TimeoutError("solution ran too long under the tracer")
-        if len(frames) >= MAX_FRAMES:
-            return None
+
         ints, nodes, lists = {}, {}, {}
         for k, v in frame.f_locals.items():
             if k.startswith("_"):
@@ -221,6 +232,14 @@ def _record(fn, args, node_map):
                 row = as_row(v)
                 if row is not None:
                     lists[k] = row
+                    shape = tuple(row)
+                    if k in last_seen and last_seen[k] != shape:
+                        changed.add(k)
+                    last_seen[k] = shape
+
+        if len(frames) >= MAX_FRAMES:
+            truncated[0] = True
+            return tracer      # keep watching; just stop storing
         frames.append({"line": frame.f_lineno - 1, "ints": ints,
                        "nodes": nodes, "lists": lists})
         return tracer
@@ -231,7 +250,7 @@ def _record(fn, args, node_map):
             fn(*args)
     finally:
         sys.settrace(None)
-    return frames
+    return frames, not truncated[0], changed
 
 
 def _prepare(solution, call, base_ns):
@@ -251,16 +270,18 @@ def _prepare(solution, call, base_ns):
     return namespace[call.func.id], args, mapping
 
 
-def _changing_lists(frames):
-    """Lists whose contents actually change: a constant one is just the input."""
-    names = {k for f in frames for k in f["lists"]}
-    out = []
-    for name in names:
+def _state_rows(frames, changed):
+    """The changing lists worth drawing, busiest first.
+
+    `changed` comes from the whole run; the ordering is by how much of the
+    change is visible in the frames that will actually be replayed.
+    """
+    ranked = []
+    for name in changed:
         seen = {tuple(f["lists"][name]) for f in frames if name in f["lists"]}
-        if len(seen) > 1:
-            out.append((len(seen), name))
-    out.sort(reverse=True)
-    return [name for _, name in out[:MAX_STATE_ROWS]]
+        ranked.append((len(seen), name))
+    ranked.sort(reverse=True)
+    return [name for _, name in ranked[:MAX_STATE_ROWS]]
 
 
 def trace(solution: str, tests: str, base_ns: dict) -> dict | None:
@@ -285,22 +306,26 @@ def trace(solution: str, tests: str, base_ns: dict) -> dict | None:
         seqs = literal_sequences(call)
         try:
             fn, args, node_map = _prepare(solution, call, base_ns)
-            frames = _record(fn, args, node_map)
+            frames, complete, changed = _record(fn, args, node_map)
         except Exception:  # noqa: S112 -- a solution that will not run under the
             continue       # tracer simply gets no animation; the cell's own
                            # asserts are what report a solution that is broken
         if not frames:
             continue
         length = sum(len(s[1]) for s in seqs) if seqs else 0
-        score = (len(_changing_lists(frames)),
+        # Every part of this is a property of the whole execution, so two
+        # machines agree: how much state moved, whether the run finished, and
+        # how big the example is. Nothing here depends on the frame budget.
+        score = (len(changed),
+                 1 if complete else 0,
                  1 if length in GOOD_SEQ else 0,
                  min(len(frames), MAX_FRAMES))
         if best is None or score > best[0]:
-            best = (score, call, seqs, frames)
+            best = (score, call, seqs, frames, changed)
 
     if best is None:
         return None
-    _, call, seqs, frames = best
+    _, call, seqs, frames, changed = best
 
     params = param_names(solution, call.func.id)
     rows = []
@@ -334,7 +359,7 @@ def trace(solution: str, tests: str, base_ns: dict) -> dict | None:
     # Lists whose contents change get a row of their own, drawn as cells that
     # light up as they are written to. This is what topological sort and
     # dynamic programming have instead of a pointer.
-    state = _changing_lists(frames)
+    state = _state_rows(frames, changed)
     shown = {row["name"] for row in rows}
     state = [n for n in state if n not in shown]
     for name in state:

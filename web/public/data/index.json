@@ -3,7 +3,7 @@
   "patterns": 13,
   "problems": 1170,
   "verified": 106,
-  "traced": 690
+  "traced": 688
  },
  "patterns": [
   {
@@ -88,7 +88,7 @@
     "Hard": 20
    },
    "verified": 11,
-   "traced": 57
+   "traced": 55
   },
   {
    "id": "07",
