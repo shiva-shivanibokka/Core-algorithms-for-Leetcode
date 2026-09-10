@@ -322,6 +322,52 @@ def files(data):
     return out
 
 
+def check_recordings(data):
+    """Is every recording playable?
+
+    A recording is data the page replays blind, so a step that names a line the
+    solution does not have, or writes to a cell outside its row, is not a
+    crash -- it is a picture that quietly disagrees with the code beside it.
+    That is exactly the failure this repo exists to not ship, and it happened:
+    a row that grows (`result.append(...)`) was writing 767 cells past the edge
+    of a grid sized from its opening width.
+    """
+    faults = []
+    for pattern in data["patterns"]:
+        for problem in pattern["problems"]:
+            trace = problem["trace"]
+            if not trace:
+                continue
+            where = f"{pattern['slug']}  {problem['title']}"
+            lines = problem["solution"].splitlines()
+            movers = {m for row in trace["rows"] for m in row["movers"]}
+            width = {row["name"]: len(row["values"])
+                     for row in trace["rows"] if row["kind"] == "state"}
+            if len(trace["steps"]) < 2:
+                faults.append(f"{where}: {len(trace['steps'])} step(s), nothing to watch")
+            for step in trace["steps"]:
+                if not 0 <= step["l"] < len(lines):
+                    faults.append(f"{where}: step points at line {step['l'] + 1} "
+                                  f"of a {len(lines)}-line solution")
+                for name in step["m"]:
+                    if name not in movers:
+                        faults.append(f"{where}: mark {name!r} belongs to no row")
+                for name, size in step.get("n", {}).items():
+                    if name not in width:
+                        faults.append(f"{where}: resize of unknown row {name!r}")
+                    else:
+                        width[name] = size
+                for name, delta in step["d"].items():
+                    if name not in width:
+                        faults.append(f"{where}: writes to unknown row {name!r}")
+                        continue
+                    off = [i for i in delta if not 0 <= int(i) < width[name]]
+                    if off:
+                        faults.append(f"{where}: writes cell {off[0]} of {name!r}, "
+                                      f"which is {width[name]} wide")
+    return faults
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true",
@@ -330,6 +376,13 @@ def main():
 
     data = build()
     if data is None:
+        return 1
+
+    faults = check_recordings(data)
+    for fault in faults[:10]:
+        print(f"FAIL  {fault}")
+    if faults:
+        print(f"{len(faults)} unplayable recording(s).")
         return 1
     # allow_nan=False: json.dumps otherwise writes Infinity and NaN happily,
     # and neither is JSON -- no browser will parse the file. A DP table

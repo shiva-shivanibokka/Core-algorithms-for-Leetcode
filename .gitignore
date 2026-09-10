@@ -12,5 +12,3 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# Per-machine editor/assistant settings, not part of the project
-.claude/

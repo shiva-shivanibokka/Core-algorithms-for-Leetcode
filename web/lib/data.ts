@@ -50,6 +50,8 @@ export interface Trace {
     l: number;
     m: Record<string, number>;
     d?: Record<string, Record<string, string | number>>;
+    /** rows whose length changed on this step, so the replay can resize them */
+    n?: Record<string, number>;
   }[];
 }
 

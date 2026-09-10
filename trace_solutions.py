@@ -374,7 +374,7 @@ def trace(solution: str, tests: str, base_ns: dict) -> dict | None:
     steps, previous = [], {}
     for f in frames:
         marks = {k: v for k, v in {**f["ints"], **f["nodes"]}.items() if k in tracked}
-        delta = {}
+        delta, widths = {}, {}
         for name in state:
             current = f["lists"].get(name)
             if current is None:
@@ -384,15 +384,31 @@ def trace(solution: str, tests: str, base_ns: dict) -> dict | None:
                 previous[name] = list(current)
                 continue
             if len(current) != len(was):
+                # A list that grows or shrinks -- `result.append(...)`, a
+                # backtracking `path.pop()` -- has to say so: cell values alone
+                # cannot express a row getting wider or a tail disappearing, and
+                # a replay that only ever writes cells would keep drawing the
+                # popped ones.
+                widths[name] = len(current)
                 changed = dict(enumerate(current))
             else:
                 pairs = zip(was, current, strict=True)
                 changed = {i: b for i, (a, b) in enumerate(pairs) if a != b}
-            if changed:
+            if changed or name in widths:
                 delta[name] = {str(i): v for i, v in changed.items()}
                 previous[name] = list(current)
-        if (steps and steps[-1]["l"] == f["line"] and steps[-1]["m"] == marks and not delta):
+        same_line = steps and steps[-1]["l"] == f["line"] and steps[-1]["m"] == marks
+        if same_line and not delta and not widths:
             continue        # the same line with nothing moved is not a step
-        steps.append({"l": f["line"], "m": marks, "d": delta})
+        step = {"l": f["line"], "m": marks, "d": delta}
+        if widths:
+            step["n"] = widths
+        steps.append(step)
+
+    if len(steps) < 2:
+        # A one-liner like `return ListNode(val, head)` records a single step:
+        # a still frame with a play button that does nothing. The pattern's own
+        # illustration is more use than that.
+        return None
 
     return {"rows": rows, "steps": steps, "call": ast.unparse(call)}

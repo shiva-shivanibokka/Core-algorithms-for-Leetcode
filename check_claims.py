@@ -13,6 +13,7 @@ problem and this fails until the sentence describing the bank is corrected.
 """
 import glob
 import json
+import pathlib
 import re
 import sys
 from collections import Counter
@@ -60,6 +61,23 @@ def survey():
     return notebooks, per_notebook, distinct, ids, tags, code_cells
 
 
+def recorded():
+    """How many problems the site actually has a recording for.
+
+    Read off the committed site data rather than re-running the tracer: that
+    data is already tied to the notebooks by `build_site_data.py --check`, and
+    it is what the page serves. The README quotes this number, so it drifts the
+    same way every other count does.
+    """
+    seen = 0
+    for path in sorted(pathlib.Path("web/public/data").glob("*.json")):
+        if path.name == "index.json":
+            continue
+        data = json.loads(path.read_text(encoding="utf-8"))
+        seen += sum(1 for problem in data["problems"] if problem.get("trace"))
+    return seen
+
+
 def main():
     notebooks, per_notebook, distinct, ids, tags, code_cells = survey()
     total = sum(per_notebook)
@@ -77,6 +95,7 @@ def main():
         "LeetCode numbers cited": str(len(ids)),
         "third-party dependencies": str(len(deps)),
         "problems with an independent reference": str(len(stress_test.PROBLEMS)),
+        "problems with a recorded run": str(recorded()),
     }
     if len(set(per_notebook)) != 1:
         print(f"FAIL  notebooks hold different numbers of problems: {per_notebook}")

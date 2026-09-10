@@ -187,7 +187,7 @@ runs in the order you would actually want to be told the answer:
 
 `trace_solutions.py` runs each solution on one of its own test cases under a
 line tracer and records, per step, which line is executing and what its state
-looks like. **690 of the 1,170 problems** get a replay of their own run.
+looks like. **687 of the 1,170 problems** get a replay of their own run.
 
 A recording carries one of two kinds of row, because solutions have two kinds of
 state:
@@ -205,10 +205,19 @@ state:
   drains to zero as the answer emerges, and that is the picture. Dynamic
   programming fills a table the same way, union-find rewrites `parent`, and
   backtracking grows and shrinks `path`. Steps carry only the cells that
-  changed, so a forty-step recording costs about a kilobyte.
+  changed, plus the row's new length when it grew or shrank, so a forty-step
+  recording costs about a kilobyte.
 
 A problem whose state is none of those — a tree, a graph, a dictionary — gets no
 recording, and the page says so and shows the pattern's shape instead.
+
+Every recording is checked before it ships: a step that names a line the
+solution does not have, or writes to a cell outside its row, is not a crash —
+it is a picture that quietly disagrees with the code beside it. That check is
+why the count above is not higher: a row that *grows*, like `result` filling
+up, was writing 767 cells past the edge of a grid sized from its opening
+width, and a one-line solution was recording a single still frame with a play
+button that did nothing.
 
 It is a static export. `build_site_data.py` reads the notebooks and writes an
 index plus one file per pattern into `web/public/data/`, the pages are rendered

@@ -81,6 +81,11 @@ export default function Trace({
     let written: Record<string, Set<number>> = {};
     for (let n = 0; n <= i && n < trace.steps.length; n += 1) {
       written = {};
+      // Resize before writing: a row that shrank has to lose its tail, or the
+      // popped cells stay on screen forever.
+      for (const [name, width] of Object.entries(trace.steps[n].n ?? {})) {
+        if (current[name]) current[name].length = width;
+      }
       for (const [name, cells] of Object.entries(trace.steps[n].d ?? {})) {
         if (!current[name]) continue;
         written[name] = new Set();
@@ -101,7 +106,12 @@ export default function Trace({
       </div>
 
       <div className="trace-rows">
-        {trace.rows.map((row) => (
+        {trace.rows.map((row) => {
+          // A state row is as wide as it is *now*: `result` starts empty and
+          // grows, so sizing the grid from the row's opening values would leave
+          // every appended cell outside it.
+          const cells = row.kind === "state" ? state[row.name] ?? row.values : row.values;
+          return (
           <div key={row.name} className="trace-row">
             <span className="rowname mono">
               {row.name}
@@ -111,14 +121,14 @@ export default function Trace({
               className={`cells ${row.kind}`}
               style={
                 {
-                  "--n": row.values.length,
+                  "--n": cells.length,
                   // the labels stack under the row, so the box has to be told
                   // how many tiers to leave space for
                   "--tiers": row.movers.length,
                 } as React.CSSProperties
               }
             >
-              {(row.kind === "state" ? state[row.name] ?? row.values : row.values).map(
+              {cells.map(
                 (v, n) => {
                   const pointed = row.movers.some((m) => step?.m[m] === n);
                   const wrote = justWritten[row.name]?.has(n);
@@ -138,7 +148,7 @@ export default function Trace({
                 // len(nums)` is an exclusive bound, and a pointer that has run
                 // off the front sits at -1. Anything further out is no longer
                 // pointing at this row, so it is not drawn at all.
-                if (at === undefined || at < -1 || at > row.values.length) return null;
+                if (at === undefined || at < -1 || at > cells.length) return null;
                 return (
                   <span
                     key={m}
@@ -152,7 +162,8 @@ export default function Trace({
               })}
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
 
       <div className="trace-controls">
